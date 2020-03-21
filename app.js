@@ -25,8 +25,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/login', indexRouter);
+app.use('/loginCopy', indexRouter);
 app.use('/register', indexRouter);
-
+app.use('/dashboard', indexRouter);
+app.use('/schedule', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
