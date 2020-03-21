@@ -44,6 +44,8 @@
     
     <!-- Scripts -->
     <script src="../../../global/vendor/breakpoints/breakpoints.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
       Breakpoints();
     </script>
@@ -63,14 +65,18 @@
               <img class="brand-img" src="../../assets//images/logo-ca.png" alt="..." style="width:40%">
               <h2 class="brand-text font-size-18">Remark</h2>
             </div>
-            <form method="post" action="#">
+            <form>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input type="text" class="form-control" name="name" />
-                <label class="floating-label">Full Name</label>
+                <input type="text" class="form-control" name="username" />
+                <label class="floating-label">User_Name</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
                 <input type="email" class="form-control" name="email" />
                 <label class="floating-label">Email</label>
+              </div>
+              <div class="form-group form-material floating" data-plugin="formMaterial">
+                <input type="phone" class="form-control" name="phone" />
+                <label class="floating-label">Phone No</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
                 <input type="password" class="form-control" name="password" />
@@ -80,8 +86,7 @@
                 <input type="password" class="form-control" name="PasswordCheck" />
                 <label class="floating-label">Re-enter Password</label>
               </div>
-
-              <button type="submit" class="btn btn-primary btn-block btn-lg mt-40">Sign up</button>
+              <button type="submit" class="btn btn-primary btn-block btn-lg mt-40" onclick="doregistration();">Sign up</button>
             </form>
             <p>Have account already? Please go to <a href="login">Sign In</a></p>
           </div>
@@ -158,6 +163,29 @@
           Site.run();
         });
       })(document, window, jQuery);
+      function doregistration(){
+        let usernameValue = document.getElementById("username").value;
+        let emailValue = document.getElementById("email").value;
+        let phoneValue = document.getElementById("phone").value;
+        let passwordValue = md5(document.getElementById("password").value);
+        let userTypeValue = "student";
+        let redirectURL = ""; // To be updated
+
+        axios.post('/doRegistration', {
+          user_type: userTypeValue,
+          user_name: usernameValue,
+          phone: phoneValue,
+          email: emailValue,
+          password: passwordValue
+          })
+          .then(function (response) {
+            console.log(response);
+            window.location.href = redirectURL;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
     </script>
   </body>
 </html>

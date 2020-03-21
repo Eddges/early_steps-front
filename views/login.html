@@ -44,6 +44,10 @@
     
     <!-- Scripts -->
     <script src="../../../global/vendor/breakpoints/breakpoints.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
     <script>
       Breakpoints();
     </script>
@@ -63,13 +67,13 @@
               <img class="brand-img" src="../../assets//images/logo-ca.png" alt="..." style="width:40%">
               
             </div>
-            <form method="post" action="#">
+            <form>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input type="email" class="form-control" name="email" />
-                <label class="floating-label">Email</label>
+                <input id="userEmailOrPhone" type="text" class="form-control" name="email" />
+                <label class="floating-label">Email/Phone</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input type="password" class="form-control" name="password" />
+                <input id="password" type="password" class="form-control" name="password" />
                 <label class="floating-label">Password</label>
               </div>
               <div class="form-group clearfix">
@@ -79,7 +83,8 @@
                 </div>
                 <a class="float-right" href="forgot-password.html">Forgot password?</a>
               </div>
-              <button type="submit" class="btn btn-primary btn-block btn-lg mt-40">Sign in</button>
+              <a class="btn btn-primary btn-block btn-lg mt-40" onclick="doLogin();" style="color:white;">Sign in
+            </a>
             </form>
             <p>Still no account? Please go to <a href="register">Sign up</a></p>
           </div>
@@ -144,8 +149,8 @@
     <script src="../../../global/js/Plugin/asscrollable.js"></script>
     <script src="../../../global/js/Plugin/slidepanel.js"></script>
     <script src="../../../global/js/Plugin/switchery.js"></script>
-        <script src="../../../global/js/Plugin/jquery-placeholder.js"></script>
-        <script src="../../../global/js/Plugin/material.js"></script>
+    <script src="../../../global/js/Plugin/jquery-placeholder.js"></script>
+    <script src="../../../global/js/Plugin/material.js"></script>
     
     <script>
       (function(document, window, $){
@@ -154,8 +159,41 @@
         var Site = window.Site;
         $(document).ready(function(){
           Site.run();
+          
         });
       })(document, window, jQuery);
+
+      function doLogin(){
+        let userEmailOrPhoneValue = document.getElementById("userEmailOrPhone").value;
+        let passwordValue = md5(document.getElementById("password").value);
+        let userTypeValue = "student";
+        let redirectURL = ""; // To be Updated
+
+        // CP : 1 - Template v1 - Working 
+        // alert (userEmailOrPhoneValue);
+        // alert(passwordValue);
+        // window.location.href = "./register";
+
+        // Input is string, i.e, email
+        if (isNaN(userEmailOrPhoneValue)) {
+          axios.get(`/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
+          .then(function (response){
+            console.log(response);
+            window.location.href = redirectURL; 
+          }).catch(function(error){
+            console.log(error);
+          });
+        } else {    
+          // Input is number
+          axios.get(`/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
+          .then(function (response){
+            console.log(response);
+            window.location.href = redirectURL; 
+          }).catch(function(error){
+            console.log(error);
+          });
+        }   
+      }
     </script>
   </body>
 </html>
