@@ -163,11 +163,11 @@
         });
       })(document, window, jQuery);
 
-      function doLogin(){
+      function doLogin() {
         let userEmailOrPhoneValue = document.getElementById("userEmailOrPhone").value;
         let passwordValue = md5(document.getElementById("password").value);
         let userTypeValue = "student";
-        let redirectURL = ""; // To be Updated
+        let redirectURL = "./dashboard";
 
         // CP : 1 - Template v1 - Working 
         // alert (userEmailOrPhoneValue);
@@ -176,18 +176,27 @@
 
         // Input is string, i.e, email
         if (isNaN(userEmailOrPhoneValue)) {
-          axios.get(`/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
-          .then(function (response){
+          axios.get(`http://3.136.20.160:80/isValidUserEmail?email=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
+          .then(function (response) {
             console.log(response);
-            window.location.href = redirectURL; 
-          }).catch(function(error){
+            axios.get(`http://3.136.20.160:80/getPhoneByEmail/${userEmailOrPhoneValue}`)
+            .then(function (response) {
+              console.log(response);
+              sessionStorage.setItem("user_id", response.data["a"][0].phone);
+              sessionStorage.setItem("loggedCA", md5("true"));
+              window.location.href = redirectURL; 
+            }).catch(function (error){
+              console.log(error);
+            });
+          }).catch(function(error) {
             console.log(error);
           });
         } else {    
           // Input is number
-          axios.get(`/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
+          axios.get(`http://3.136.20.160:80/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
           .then(function (response){
             console.log(response);
+            sessionStorage.setItem("loggedCA", "true");
             window.location.href = redirectURL; 
           }).catch(function(error){
             console.log(error);

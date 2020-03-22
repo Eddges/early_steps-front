@@ -45,6 +45,9 @@
     
     <!-- Scripts -->
     <script src="../../../global/vendor/breakpoints/breakpoints.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
+
     <script>
       Breakpoints();
     </script>
@@ -485,8 +488,8 @@
     <!-- Page -->
     <div class="page">
       <div class="page-content blue-grey-500">
-        <ul class="blocks blocks-100 blocks-xxl-4 blocks-lg-3 blocks-md-2" data-plugin="masonry">
-          <li class="masonry-item">
+        <ul id="video" class="blocks blocks-100 blocks-xxl-4 blocks-lg-3 blocks-md-2" data-plugin="masonry">
+          <!-- <li class="masonry-item">
             <div class="card card-shadow">
               <div class="card-header cover">
                 <img class="cover-image" src="../../../global/photos/placeholder.png" alt="...">
@@ -665,7 +668,7 @@
                 <button type="button" class="btn btn-outline btn-primary">Read more</button>
               </div>
             </div>
-          </li>
+          </li> -->
       
         </ul>
       </div>
@@ -730,6 +733,27 @@
           Site.run();
         });
       })(document, window, jQuery);
+    </script>
+    <script>
+      function globalFunction(){ 
+        let course_id = sessionStorage.getItem("course_id");
+        axios.get(`http://3.136.20.160/getTaskByCourseId/${course_id}`)
+            .then(function (response) {
+              console.log(response);
+              for (let i=0;i<response.data.a.length;i++){
+                $('#video').append(`<li class="masonry-item"><div class="card card-shadow"><div class="card-header cover"><img class="cover-image" src="../../../global/photos/placeholder.png"alt="..."></div><div class="card-block"><h3 class="card-title">${response.data.a[i].task_title}</h3><p class="card-text type-link"><small>By<a href="javascript:void(0)">Nathan Watts</a><a href="javascript:void(0)">${response.data.a[i].task_datetime}</a><a href="javascript:void(0)"><span>3</span> Comments</a></small></p><p class="card-text">${response.data.a[i].task_details}</p></div><div class="card-block"><div class="card-actions float-right"><a href="javascript:void(0)"><i class="icon wb-heart" aria-hidden="true"></i><span>108</span></a></div><button type="button" class="btn btn-outline btn-primarycard-link">Extra: ${response.data.a[i].task_extra}</button></div></div></li>`);
+              }
+              // response.data.a[0]
+            }).catch(function (error){
+              console.log(error);
+            });
+     }
+
+    if(sessionStorage.getItem("loggedCA") === md5("true")) {
+      globalFunction();
+    } else {
+      window.location.href = "./login";
+    }
     </script>
   </body>
 </html>

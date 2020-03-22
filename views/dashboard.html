@@ -49,6 +49,9 @@
     
     <!-- Scripts -->
     <script src="../../global/vendor/breakpoints/breakpoints.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
     <script>
       Breakpoints();
     </script>
@@ -678,8 +681,9 @@
                     <a class="avatar" href="javascript:void(0)">
                       <img alt="" src="../../../global/portraits/4.jpg">
                     </a>
-                    <div class="font-size-20 mt-10">MACHI</div>
-                    <div class="font-size-14">machidesign@163.com</div>
+                    <div id="name" class="font-size-20 mt-10">MACHI</div>
+                    <div id="email" class="font-size-14">machidesign@163.com</div>
+                    <div id="courses" class="font-size-14">Courses</div>
                   </div>
                 </div>
               </div>
@@ -713,7 +717,7 @@
                           </div>
                         </td>
                         <td>
-                          90%
+                          <span id="classes_completed">86</span>%
                         </td>
                       </tr>
                       <tr>
@@ -727,7 +731,7 @@
                           </div>
                         </td>
                         <td>
-                          86%
+                          <span id="problems_completed">86</span>%
                         </td>
                       </tr>
                       <tr>
@@ -741,7 +745,35 @@
                           </div>
                         </td>
                         <td>
-                          68%
+                          <span id="quiz_completed">86</span>%
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Total Time
+                        </td>
+                        <td>
+                          <div class="progress progress-xs mb-0">
+                            <div class="progress-bar progress-bar-info bg-green-600" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%">
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span id="total_time">86</span>%
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Progress Details
+                        </td>
+                        <td>
+                          <div class="progress progress-xs mb-0">
+                            <div class="progress-bar progress-bar-info bg-green-600" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%">
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span id="progress_details">86</span>%
                         </td>
                       </tr>
                     </tbody>
@@ -765,7 +797,7 @@
               </div>
               <ul class="list-group h-500 scrollable is-enabled scrollable-vertical" data-plugin="scrollable" style="position: relative;">
                 <div data-role="container" class="scrollable-container" style="height: 500px; width: 465px;">
-                  <div data-role="content" class="scrollable-content" style="width: 465px;">
+                  <div id="todo" data-role="content" class="scrollable-content" style="width: 465px;">
                     <li class="list-group-item flex-column align-items-start">
                       <div class="checkbox-custom checkbox-success checkbox-lg">
                         <input type="checkbox" name="checkbox" checked="checked">
@@ -785,7 +817,7 @@
                         </ul>
                       </div>
                     </li>
-                    <li class="list-group-item flex-column align-items-start">
+                    <!-- <li class="list-group-item flex-column align-items-start">
                       <div class="checkbox-custom checkbox-success checkbox-lg">
                         <input type="checkbox" name="checkbox" checked="checked">
                         <label class="item-title">Upload Photos and Video</label>
@@ -895,8 +927,8 @@
                       <div class="item-due-date">
                         <span>Tue,aug 25</span>
                       </div>
-                    </li>
-                    <li class="list-group-item flex-column align-items-start">
+                    </li> -->
+                    <!-- <li class="list-group-item flex-column align-items-start">
                       <div class="checkbox-custom checkbox-success checkbox-lg">
                         <input type="checkbox" name="checkbox">
                         <label class="item-title">Edit the blog system</label>
@@ -969,7 +1001,7 @@
                           </li>
                         </ul>
                       </div>
-                    </li>
+                    </li> -->
                   </div>
                 </div>
               <div class="scrollable-bar scrollable-bar-vertical scrollable-bar-hide" draggable="false"><div class="scrollable-bar-handle" style="height: 247.734px; transform: translate3d(0px, 0px, 0px);"></div></div></ul>
@@ -1041,5 +1073,65 @@
         <script src="../../global/js/Plugin/jvectormap.js"></script>
     
         <script src="../assets/examples/js/dashboard/v1.js"></script>
+
+        <script>
+          function globalCall() {
+            let user_id = sessionStorage.getItem("user_id");
+            axios.get(`http://3.136.20.160/getUserData/${user_id}`)
+            .then(function (response) {
+              console.log(response);
+              sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
+              document.getElementById("name").innerHTML = response.data["a"][0].name;
+              document.getElementById("photo").value = response.data["a"][0].photo;
+            }).catch(function(error) {
+              console.log(error);
+            });
+
+            axios.get(`http://3.136.20.160/getRegistration/${user_id}`)
+            .then(function (response) {
+              console.log(response);
+              document.getElementById("email").innerHTML = response.data.email;
+              axios.get(`http://3.136.20.160/getCourse/${user_id}`)
+              .then(function (response) {
+               console.log(response);
+                document.getElementById("courses").innerHTML = response.data.course_name;
+              }).catch(function(error) {
+               console.log(error);
+              });
+            }).catch(function(error) {
+              console.log(error);
+            });
+
+            axios.get(`http://3.136.20.160/getProgress/${user_id}`)
+            .then(function (response){
+              console.log(response);
+              document.getElementById("classes_completed").innerText = response.data["a"][0].classes_completed;
+              document.getElementById("problems_completed").innerText = response.data["a"][0].problems_completed;
+              document.getElementById("quiz_completed").innerText = response.data["a"][0].quiz_completed;
+              document.getElementById("total_time").innerText = response.data["a"][0].total_time;
+              document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
+
+            }).catch(function(error){
+              console.log(error);
+            });
+
+            axios.get(`http://3.136.20.160/getTaskByCourseId/${sessionStorage.getItem("course_id")}`)
+            .then(function (response){
+              console.log(response);
+              for (let i=0;i<response.data.a.length;i++){
+                $('#todo').append(`<li class="list-group-item flex-column align-items-start"><div class="checkbox-custom checkbox-success checkbox-lg"><input type="checkbox" name="checkbox" checked="checked"><label class="item-title"><span id="task_title">${response.data.a[i].task_title}</span></label></div><div class="w-full"><div class="item-due-date"><span id="task_datetime">${response.data.a[i].task_datetime}</span></div><ul class="item-members"><li><img class="avatar avatar-sm" src="../../../global/portraits/3.jpg"><button class="btn btn-sm btn-icon btn-default btn-outline btn-round"><i class="icon wb-pencil" aria-hidden="true"></i></button></li></ul></div></li>`);
+              }
+              // response.data.a[0]
+            }).catch(function (error){
+              console.log(error);
+            });
+
+          }
+          if(sessionStorage.getItem("loggedCA") === md5("true")) {
+          globalCall();
+          } else {
+            window.location.href = "./login";
+          }
+        </script>
   </body>
 </html>

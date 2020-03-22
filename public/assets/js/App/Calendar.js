@@ -53,11 +53,13 @@
     }, {
       key: "handleFullcalendar",
       value: function handleFullcalendar() {
+        var title1 = sessionStorage.getItem("Array");
+        var start1 = '2016-10-07';
         var myEvents = [{
-          title: 'All Day Event',
-          start: '2016-10-01'
+          title: title1[0],
+          start: start1
         }, {
-          title: 'Long Event',
+          title: title1[1],
           start: '2016-10-07',
           end: '2016-10-10',
           backgroundColor: (0, _Config.colors)('cyan', 600),
