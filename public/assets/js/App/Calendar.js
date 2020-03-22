@@ -53,46 +53,36 @@
     }, {
       key: "handleFullcalendar",
       value: function handleFullcalendar() {
-        var title1 = sessionStorage.getItem("Array");
-        var start1 = '2016-10-07';
+        var title1 = sessionStorage.getItem("stringDetail").split(";");
+        title1.pop();
+        var dateStart = sessionStorage.getItem("stringStart").split(";");
+        dateStart.pop();
+        var dateEnd = sessionStorage.getItem("stringEnd").split(";");
+        dateEnd.pop();
+        console.log(title1);
+        console.log(dateStart);
+        console.log(dateEnd);
+
         var myEvents = [{
           title: title1[0],
-          start: start1
-        }, {
+          start: dateStart[0],
+          end: dateEnd[0]
+        },{
           title: title1[1],
-          start: '2016-10-07',
-          end: '2016-10-10',
-          backgroundColor: (0, _Config.colors)('cyan', 600),
-          borderColor: (0, _Config.colors)('cyan', 600)
-        }, {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2016-10-09T16:00:00',
-          backgroundColor: (0, _Config.colors)('red', 600),
-          borderColor: (0, _Config.colors)('red', 600)
-        }, {
-          title: 'Conference',
-          start: '2016-10-11',
-          end: '2016-10-13'
-        }, {
-          title: 'Meeting',
-          start: '2016-10-12T10:30:00',
-          end: '2016-10-12T12:30:00'
-        }, {
-          title: 'Lunch',
-          start: '2016-10-12T12:00:00'
-        }, {
-          title: 'Meeting',
-          start: '2016-10-12T14:30:00'
-        }, {
-          title: 'Happy Hour',
-          start: '2016-10-12T17:30:00'
-        }, {
-          title: 'Dinner',
-          start: '2016-10-12T20:00:00'
-        }, {
-          title: 'Birthday Party',
-          start: '2016-10-13T07:00:00'
+          start: dateStart[1],
+          end: dateEnd[1]
+        },{
+          title: title1[2],
+          start: dateStart[2],
+          end: dateEnd[2]
+        },{
+          title: title1[3],
+          start: dateStart[3],
+          end: dateEnd[3]
+        },{
+          title: title1[4],
+          start: dateStart[4],
+          end: dateEnd[4]
         }];
         var myOptions = {
           header: {
@@ -100,7 +90,7 @@
             center: 'prev,title,next',
             right: 'month,agendaWeek,agendaDay'
           },
-          defaultDate: '2016-10-12',
+          defaultDate: '2020-01-01',
           selectable: true,
           selectHelper: true,
           select: function select() {
@@ -309,6 +299,30 @@
   function run() {
     var app = getInstance();
     app.run();
+      // alert("Het");
+      //    let course_id = "1234";
+      //    axios.get(`http://3.136.20.160/getScheduleByCourseId/${course_id}`)
+      //    .then(function(response) {
+      //      console.log(response);
+      //      var stringDetail = "";
+      //      var stringStart = "";
+      //      var stringEnd = "";
+
+      //      for(let i=0;i<response.data.a.length;i++) {
+      //        stringDetail+=response.data.a[i].schedule_details + ";";
+      //        stringStart+=response.data.a[i].schedule_start + ";";
+      //        stringEnd+=response.data.a[i].schedule_end + ";";
+      //      }
+      //      sessionStorage.setItem("stringDetail", stringDetail);
+      //      sessionStorage.setItem("stringStart", stringStart);
+      //      sessionStorage.setItem("stringEnd", stringEnd);
+      //      console.log(stringDetail);
+      //      console.log(stringStart);
+      //      console.log(stringEnd);
+           
+      //    }).catch(function(error){
+      //      console.log(error);
+      //    });
   }
 
   var _default = AppCalendar;

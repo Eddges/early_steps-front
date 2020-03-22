@@ -699,14 +699,14 @@
                 <div class="row text-center mb-20">
                   <div class="col-6">
                     <div class="counter">
-                      <div class="counter-label total-completed">TOTAL COMPLETED</div>
-                      <div class="counter-number red-600">1,628</div>
+                      <div class="counter-label total-completed">PROGRESS DETAILS</div>
+                      <div id="progress_details" class="counter-number red-600">1,628</div>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="counter">
                       <div class="counter-label">TOTAL TIME</div>
-                      <div class="counter-number blue-600">17</div>
+                      <div id="total_time" class="counter-number blue-600">17</div>
                     </div>
                   </div>
                 </div>
@@ -754,34 +754,6 @@
                         </td>
                         <td>
                           <span id="quiz_completed">86</span>%
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Total Time
-                        </td>
-                        <td>
-                          <div class="progress progress-xs mb-0">
-                            <div class="progress-bar progress-bar-info bg-green-600" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%">
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <span id="total_time">86</span>%
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Progress Details
-                        </td>
-                        <td>
-                          <div class="progress progress-xs mb-0">
-                            <div class="progress-bar progress-bar-info bg-green-600" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%">
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <span id="progress_details">86</span>%
                         </td>
                       </tr>
                     </tbody>
@@ -1088,7 +1060,7 @@
             axios.get(`http://3.136.20.160/getUserData/${user_id}`)
             .then(function (response) {
               console.log(response);
-              sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
+              // sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
               document.getElementById("name").innerHTML = response.data["a"][0].name;
               document.getElementById("photo").value = response.data["a"][0].photo;
             }).catch(function(error) {
@@ -1099,7 +1071,7 @@
             .then(function (response) {
               console.log(response);
               document.getElementById("email").innerHTML = response.data.email;
-              axios.get(`http://3.136.20.160/getCourse/${user_id}`)
+              axios.get(`http://3.136.20.160/getCourse/${sessionStorage.getItem("course_id")}`)
               .then(function (response) {
                console.log(response);
                 document.getElementById("courses").innerHTML = response.data.course_name;
@@ -1126,9 +1098,11 @@
             axios.get(`http://3.136.20.160/getTaskByCourseId/${sessionStorage.getItem("course_id")}`)
             .then(function (response){
               console.log(response);
+              if(response.data.a.length != 0){
               for (let i=0;i<response.data.a.length;i++){
                 $('#todo').append(`<li class="list-group-item flex-column align-items-start"><div class="checkbox-custom checkbox-success checkbox-lg"><input type="checkbox" name="checkbox" checked="checked"><label class="item-title"><span id="task_title">${response.data.a[i].task_title}</span></label></div><div class="w-full"><div class="item-due-date"><span id="task_datetime">${response.data.a[i].task_datetime}</span></div><ul class="item-members"><li><img class="avatar avatar-sm" src="../../../global/portraits/3.jpg"><button class="btn btn-sm btn-icon btn-default btn-outline btn-round"><i class="icon wb-pencil" aria-hidden="true"></i></button></li></ul></div></li>`);
               }
+            }
               // response.data.a[0]
             }).catch(function (error){
               console.log(error);
@@ -1140,6 +1114,10 @@
           } else {
             window.location.href = "./login";
           }
+          // function logout(){
+          //   sessionStorage.clear();
+          //   window.reload();
+          // }
         </script>
   </body>
 </html>

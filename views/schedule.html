@@ -49,11 +49,44 @@
     
     <!-- Scripts -->
     <script src="../../../../global/vendor/breakpoints/breakpoints.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
+
+    <script>
+      function globalFunction() {
+        let course_id = sessionStorage.getItem("course_id");
+        axios.get(`http://3.136.20.160/getScheduleByCourseId/${course_id}`)
+        .then(function(response) {
+          console.log(response);
+          var stringDetail = "";
+          var stringStart = "";
+          var stringEnd = "";
+          for(let i=0;i<response.data.a.length;i++) {
+            stringDetail+=response.data.a[i].schedule_details + ";";
+            stringStart+=response.data.a[i].schedule_start + ";";
+            stringEnd+=response.data.a[i].schedule_end + ";";
+          }
+          sessionStorage.setItem("stringDetail", stringDetail);
+          sessionStorage.setItem("stringStart", stringStart);
+          sessionStorage.setItem("stringEnd", stringEnd);
+          console.log(stringDetail);
+          console.log(stringStart);
+          console.log(stringEnd);
+        }).catch(function(error){
+          console.log(error);
+        });
+      }
+
+      if(sessionStorage.getItem("loggedCA") !== md5("true")) {
+      window.location.href = "./login";
+    }
+    </script>
+
     <script>
       Breakpoints();
     </script>
   </head>
-  <body class="animsition app-calendar page-aside-left">
+  <body class="animsition app-calendar page-aside-left" onload="globalFunction();">
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -308,7 +341,7 @@
                 <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
                 <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
                 <div class="dropdown-divider" role="presentation"></div>
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+                <a class="dropdown-item" href="javascript:void(0)" role="menuitem" onclick="logout();"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -1004,6 +1037,7 @@
       </div>
     </footer>
     <!-- Core  -->
+    
     <script src="../../../../global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
     <script src="../../../../global/vendor/jquery/jquery.js"></script>
     <script src="../../../../global/vendor/popper-js/umd/popper.min.js"></script>
@@ -1058,11 +1092,6 @@
         <script src="../../../assets/js/App/Calendar.js"></script>
     
         <script src="../../../assets/examples/js/apps/calendar.js"></script>
-        
-        <script>
-          function globalCall() {
-            // axios.get(http://)
-          }
-        </script>
+      
   </body>
 </html>

@@ -49,6 +49,8 @@
     <!-- Scripts -->
     <script src="../../../global/vendor/breakpoints/breakpoints.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
+
     <script>
       Breakpoints();
     </script>
@@ -796,7 +798,7 @@
                       </div>
                       <div class="form-group form-material">
                         <label class="form-control-label" for="inputCVVOne">Skype</label>
-                        <input type="text" class="form-control" id="skype" name="cvv" placeholder="CVV">
+                        <input type="text" class="form-control" id="skype" name="Skype" placeholder="Skype">
                       </div>
                       <center>
                         <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doJobProfile();" style="color:white;">Submit Information</a>
@@ -897,6 +899,10 @@
         <script src="../../assets/examples/js/forms/wizard.js"></script>
 
         <script>
+        if(sessionStorage.getItem("loggedCA") != md5("true")){
+            window.location.href = "./login"; 
+          }
+
           function doUserData() {
             let nameValue = document.getElementById("name").value;
             let genderValue = document.getElementById("gender").value;
@@ -910,7 +916,7 @@
 
             axios.post('http://3.136.20.160:80/doUserData', {
               bootcamp_id: "1234",
-              user_id: "12345",
+              user_id: sessionStorage.getItem("user_id"),
               name: nameValue,
               gender: genderValue,
               is_otp_verified: true,
@@ -944,7 +950,7 @@
             let skypeValue = document.getElementById("skype").value;
 
             axios.post('http://3.136.20.160:80/doJobProfile', {
-              user_id: "1234",
+              user_id: sessionStorage.getItem("user_id"),
               current_company: current_companyValue,
               last_degree: last_degreeValue,
               years_of_experience: years_of_experienceValue,
@@ -970,7 +976,7 @@
             let hackerrankValue = document.getElementById("hackerrank").value;
 
             axios.post('http://3.136.20.160:80/doProgrammingProfile', {
-              user_id: "1234",
+              user_id: sessionStorage.getItem("user_id"),
               codeforces: codeforcesValue,
               spoj: spojValue,
               topcoder: topcoderValue,
@@ -978,7 +984,7 @@
               hackerrank: hackerrankValue
               })
               .then(function (response) {
-                alert("Post Success")
+                window.location.href = './dashboard';
                 console.log(response);
               })
               .catch(function (error) {
