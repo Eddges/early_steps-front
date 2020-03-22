@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/login', indexRouter);
-app.use('/loginCopy', indexRouter);
+app.use('/profile', indexRouter);
 app.use('/register', indexRouter);
 app.use('/dashboard', indexRouter);
 app.use('/schedule', indexRouter);

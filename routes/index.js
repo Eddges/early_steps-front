@@ -22,8 +22,8 @@ router.get('/schedule', function(req, res, next) {
   res.render('schedule', { title: 'Express' });
 });
 
-router.get('/loginCopy', function(req, res, next) {
-  res.render('loginCopy', { title: 'Express' });
+router.get('/profile', function(req, res, next) {
+  res.render('profile', { title: 'Express' });
 });
 
 module.exports = router;
