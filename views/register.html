@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../../../global/vendor/intro-js/introjs.css">
     <link rel="stylesheet" href="../../../global/vendor/slidepanel/slidePanel.css">
     <link rel="stylesheet" href="../../../global/vendor/flag-icon-css/flag-icon.css">
-        <link rel="stylesheet" href="../../assets/examples/css/pages/register-v3.css">
+    <link rel="stylesheet" href="../../assets/examples/css/pages/register-v3.css">
     
     
     <!-- Fonts -->
@@ -44,6 +44,8 @@
     
     <!-- Scripts -->
     <script src="../../../global/vendor/breakpoints/breakpoints.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
       Breakpoints();
     </script>
@@ -63,25 +65,28 @@
               <img class="brand-img" src="../../assets//images/logo-ca.png" alt="..." style="width:40%">
               <h2 class="brand-text font-size-18">Remark</h2>
             </div>
-            <form method="post" action="#">
+            <form>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input type="text" class="form-control" name="name" />
-                <label class="floating-label">Full Name</label>
+                <input id="username" type="text" class="form-control" name="username" />
+                <label class="floating-label">UserName</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input type="email" class="form-control" name="email" />
+                <input id="email" type="email" class="form-control" name="email" />
                 <label class="floating-label">Email</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input type="password" class="form-control" name="password" />
+                <input id="phone" type="phone" class="form-control" name="phone" />
+                <label class="floating-label">Phone No</label>
+              </div>
+              <div class="form-group form-material floating" data-plugin="formMaterial">
+                <input id="password" type="password" class="form-control" name="password" />
                 <label class="floating-label">Password</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input type="password" class="form-control" name="PasswordCheck" />
+                <input id="retypePassword" type="password" class="form-control" name="PasswordCheck" />
                 <label class="floating-label">Re-enter Password</label>
               </div>
-
-              <button type="submit" class="btn btn-primary btn-block btn-lg mt-40">Sign up</button>
+              <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doregistration();" style="color:white;">Sign up</a>
             </form>
             <p>Have account already? Please go to <a href="login">Sign In</a></p>
           </div>
@@ -146,8 +151,8 @@
     <script src="../../../global/js/Plugin/asscrollable.js"></script>
     <script src="../../../global/js/Plugin/slidepanel.js"></script>
     <script src="../../../global/js/Plugin/switchery.js"></script>
-        <script src="../../../global/js/Plugin/jquery-placeholder.js"></script>
-        <script src="../../../global/js/Plugin/material.js"></script>
+    <script src="../../../global/js/Plugin/jquery-placeholder.js"></script>
+    <script src="../../../global/js/Plugin/material.js"></script>
     
     <script>
       (function(document, window, $){
@@ -158,6 +163,38 @@
           Site.run();
         });
       })(document, window, jQuery);
+
+      function doregistration(){
+        let usernameValue = document.getElementById("username").value;
+        let emailValue = document.getElementById("email").value;
+        let phoneValue = document.getElementById("phone").value;
+        let passwordValue = md5(document.getElementById("password").value);
+        let retypepasswordValue = md5(document.getElementById("retypePassword").value);
+        let userTypeValue = "student";
+        let redirectURL = "./login";
+        try {
+          if (passwordValue === retypepasswordValue) {
+            axios.post('http://3.136.20.160:80/doRegistration', {
+              user_id: phoneValue,
+              user_type: userTypeValue,
+              user_name: usernameValue,
+              phone: phoneValue,
+              email: emailValue,
+              password: passwordValue
+              })
+              .then(function (response) {
+                console.log(response);
+                window.location.href = redirectURL;
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          }
+        } catch (err) {
+          // Values are not Equal
+          console.log(err);
+        }
+      }
     </script>
   </body>
 </html>

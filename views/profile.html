@@ -5,60 +5,60 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="bootstrap admin template">
+    <meta name="description" content="bootstrap material admin template">
     <meta name="author" content="">
     
-    <title>Dashboard | Remark Admin Template</title>
+    <title>Form Wizard | Remark Material Admin Template</title>
     
-    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
-    <link rel="shortcut icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" href="../../assets/images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../../global/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../global/css/bootstrap-extend.min.css">
-    <link rel="stylesheet" href="../assets/css/site.min.css">
+    <link rel="stylesheet" href="../../../global/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../global/css/bootstrap-extend.min.css">
+    <link rel="stylesheet" href="../../assets/css/site.min.css">
     
     <!-- Plugins -->
-    <link rel="stylesheet" href="../../global/vendor/animsition/animsition.css">
-    <link rel="stylesheet" href="../../global/vendor/asscrollable/asScrollable.css">
-    <link rel="stylesheet" href="../../global/vendor/switchery/switchery.css">
-    <link rel="stylesheet" href="../../global/vendor/intro-js/introjs.css">
-    <link rel="stylesheet" href="../../global/vendor/slidepanel/slidePanel.css">
-    <link rel="stylesheet" href="../../global/vendor/flag-icon-css/flag-icon.css">
-        <link rel="stylesheet" href="../../global/vendor/chartist/chartist.css">
-        <link rel="stylesheet" href="../../global/vendor/jvectormap/jquery-jvectormap.css">
-        <link rel="stylesheet" href="../../global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
-        <link rel="stylesheet" href="../assets/examples/css/dashboard/v1.css">
-              <link rel="stylesheet" href="../../assets/examples/css/dashboard/team.css">
+    <link rel="stylesheet" href="../../../global/vendor/animsition/animsition.css">
+    <link rel="stylesheet" href="../../../global/vendor/asscrollable/asScrollable.css">
+    <link rel="stylesheet" href="../../../global/vendor/switchery/switchery.css">
+    <link rel="stylesheet" href="../../../global/vendor/intro-js/introjs.css">
+    <link rel="stylesheet" href="../../../global/vendor/slidepanel/slidePanel.css">
+    <link rel="stylesheet" href="../../../global/vendor/flag-icon-css/flag-icon.css">
+    <link rel="stylesheet" href="../../../global/vendor/waves/waves.css">
+        <link rel="stylesheet" href="../../../global/vendor/jquery-wizard/jquery-wizard.css">
+        <link rel="stylesheet" href="../../../global/vendor/formvalidation/formValidation.css">
     
     
     <!-- Fonts -->
-        <link rel="stylesheet" href="../../global/fonts/weather-icons/weather-icons.css">
-    <link rel="stylesheet" href="../../global/fonts/web-icons/web-icons.min.css">
-    <link rel="stylesheet" href="../../global/fonts/brand-icons/brand-icons.min.css">
+        <link rel="stylesheet" href="../../../global/fonts/web-icons/web-icons.min.css">
+    
+    <link rel="stylesheet" href="../../../global/fonts/material-design/material-design.min.css">
+    <link rel="stylesheet" href="../../../global/fonts/brand-icons/brand-icons.min.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
     
     <!--[if lt IE 9]>
-    <script src="../../global/vendor/html5shiv/html5shiv.min.js"></script>
+    <script src="../../../global/vendor/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
     
     <!--[if lt IE 10]>
-    <script src="../../global/vendor/media-match/media.match.min.js"></script>
-    <script src="../../global/vendor/respond/respond.min.js"></script>
+    <script src="../../../global/vendor/media-match/media.match.min.js"></script>
+    <script src="../../../global/vendor/respond/respond.min.js"></script>
     <![endif]-->
     
     <!-- Scripts -->
-    <script src="../../global/vendor/breakpoints/breakpoints.js"></script>
+    <script src="../../../global/vendor/breakpoints/breakpoints.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
       Breakpoints();
     </script>
   </head>
-  <body class="animsition dashboard">
+  <body class="animsition">
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <nav class=" navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
+  <nav class=" navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
     
       <div class="navbar-header">
         <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
@@ -71,7 +71,7 @@
           <i class="icon wb-more-horizontal" aria-hidden="true"></i>
         </button>
         <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-          <img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="..." >
+            <img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="..." >
          <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span>
         </div>
         <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
@@ -94,17 +94,7 @@
                 </i>
               </a>
             </li>
-            <li class="nav-item hidden-sm-down" id="toggleFullscreen">
-              <a class="nav-link icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
-                <span class="sr-only">Toggle fullscreen</span>
-              </a>
-            </li>
-            <li class="nav-item hidden-float">
-              <a class="nav-link icon wb-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"
-                role="button">
-                <span class="sr-only">Toggle Search</span>
-              </a>
-            </li>
+         
             <li class="nav-item dropdown dropdown-fw dropdown-mega">
               <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="fade"
                 role="button">Mega <i class="icon wb-chevron-down-mini" aria-hidden="true"></i></a>
@@ -521,7 +511,7 @@
       <div class="site-menubar-body">
         <div>
           <div>
-            <ul class="site-menu" data-plugin="menu">
+           <ul class="site-menu" data-plugin="menu">
               <li class="site-menu-category">General</li>
                <li class="site-menu-item has-sub">
                 <a href="/dashboard">
@@ -673,321 +663,179 @@
     <!-- Page -->
     <div class="page">
       <div class="page-content container-fluid">
-        <div class="row" data-plugin="matchHeight" data-by-row="true">
+        <div class="row">
+          <div class="col-lg-0" hidden>
+            <!-- Panel Wizard Form -->
+            <div class="panel" id="exampleWizardForm">
+              <!-- <div class="panel-heading">
+                <h3 class="panel-title">Wizard Form</h3>
+              </div> -->
+              <div class="panel-body">
+                <!-- Steps -->
+                <div class="steps steps-sm row" data-plugin="matchHeight" data-by-row="true" role="tablist">
+                  <div class="step col-lg-4 current" data-target="#exampleAccount" role="tab">
+                  </div>
+                  <div class="step col-lg-4" data-target="#exampleBilling" role="tab">
+                  </div>
+                </div>
+                <!-- End Steps -->
 
-
-     
-          <div class="col-xxl-4 col-xl-6 col-lg-6" style="height: 700px;">
-            <div id="personalCompletedWidget" class="card card-shadow pb-20">
-              <div class="card-header card-header-transparent cover overlay">
-                <img class="cover-image" src="../../../global/photos/placeholder.png">
-                <div class="overlay-panel overlay-background vertical-align">
-                  <div class="vertical-align-middle">
-                    <a class="avatar" href="javascript:void(0)">
-                      <img alt="" src="../../../global/portraits/4.jpg">
-                    </a>
-                    <div class="font-size-20 mt-10">MACHI</div>
-                    <div class="font-size-14">machidesign@163.com</div>
+                <!-- Wizard Content -->
+                <div class="wizard-content">
+                  <div class="wizard-pane active" id="exampleAccount" role="tabpanel">
+                  </div>
+                  <div class="wizard-pane" id="exampleBilling" role="tabpanel">
                   </div>
                 </div>
-              </div>
-              <div class="card-block">
-                <div class="row text-center mb-20">
-                  <div class="col-6">
-                    <div class="counter">
-                      <div class="counter-label total-completed">TOTAL COMPLETED</div>
-                      <div class="counter-number red-600">1,628</div>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="counter">
-                      <div class="counter-label">TOTAL TIME</div>
-                      <div class="counter-number blue-600">17</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="table-responsive">
-                  <table class="table">
-                    
-                    <tbody>
-                      <tr>
-                        <td>
-                          Class Completed
-                        </td>
-                        <td>
-                          <div class="progress progress-xs mb-0">
-                            <div class="progress-bar progress-bar-info bg-blue-600" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          90%
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Problem Completed
-                        </td>
-                        <td>
-                          <div class="progress progress-xs mb-0">
-                            <div class="progress-bar progress-bar-info bg-green-600" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%">
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          86%
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Quiz Completed
-                        </td>
-                        <td>
-                          <div class="progress progress-xs mb-0">
-                            <div class="progress-bar progress-bar-info bg-red-600" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 68%">
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          68%
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <!-- End Wizard Content -->
               </div>
             </div>
+            <!-- End Panel Wizard One Form -->
           </div>
 
-
-
-          <div class="col-xxl-4 col-xl-6 col-lg-6" style="height: 700px;">
-            <div id="toDoListWidget" class="card card-shadow card-lg pb-20">
-              <div class="card-header card-header-transparent">
-                <div class="card-header-actions">
-                  <a id="addNewItemBtn" href="javascript:void(0)" class="add-item-toggle">
-                <i class="icon wb-plus" aria-hidden="true"></i>
-              </a>
-                </div>
-                <h5 class="card-title">TO DO LIST</h5>
+          <div class="col-lg-12">
+            <!-- Panel Wizard Form Container -->
+            <div class="panel" id="exampleWizardFormContainer">
+              <div class="panel-heading">
+                <h3 class="panel-title">Complete Details</h3>
               </div>
-              <ul class="list-group h-500 scrollable is-enabled scrollable-vertical" data-plugin="scrollable" style="position: relative;">
-                <div data-role="container" class="scrollable-container" style="height: 500px; width: 465px;">
-                  <div data-role="content" class="scrollable-content" style="width: 465px;">
-                    <li class="list-group-item flex-column align-items-start">
-                      <div class="checkbox-custom checkbox-success checkbox-lg">
-                        <input type="checkbox" name="checkbox" checked="checked">
-                        <label class="item-title">Edit meeting record</label>
-                      </div>
-                      <div class="w-full">
-                        <div class="item-due-date">
-                          <span>Tue,aug 25</span>
-                        </div>
-                        <ul class="item-members">
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/3.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="list-group-item flex-column align-items-start">
-                      <div class="checkbox-custom checkbox-success checkbox-lg">
-                        <input type="checkbox" name="checkbox" checked="checked">
-                        <label class="item-title">Upload Photos and Video</label>
-                      </div>
-                      <div class="item-due-date">
-                        <span>Tue,aug 25</span>
-                      </div>
-                    </li>
-                    <li class="list-group-item flex-column align-items-start">
-                      <div class="checkbox-custom checkbox-success checkbox-lg">
-                        <input type="checkbox" name="checkbox">
-                        <label class="item-title">Edit the blog system</label>
-                      </div>
-                      <div class="w-full">
-                        <div class="item-due-date">
-                          <span>No due date</span>
-                        </div>
-                        <ul class="item-members">
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/1.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/5.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="list-group-item flex-column align-items-start">
-                      <div class="checkbox-custom checkbox-success checkbox-lg">
-                        <input type="checkbox" name="checkbox">
-                        <label class="item-title">Edit the blog system</label>
-                      </div>
-                      <div class="w-full">
-                        <div class="item-due-date">
-                          <span>No due date</span>
-                        </div>
-                        <ul class="item-members">
-                          <li>
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="list-group-item flex-column align-items-start">
-                      <div class="checkbox-custom checkbox-success checkbox-lg">
-                        <input type="checkbox" name="checkbox">
-                        <label class="item-title">Edit the blog system</label>
-                      </div>
-                      <div class="w-full">
-                        <div class="item-due-date">
-                          <span>No due date</span>
-                        </div>
-                        <ul class="item-members">
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/4.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/6.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/7.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="list-group-item flex-column align-items-start">
-                      <div class="checkbox-custom checkbox-success checkbox-lg">
-                        <input type="checkbox" name="checkbox" checked="checked">
-                        <label class="item-title">Edit meeting record</label>
-                      </div>
-                      <div class="w-full">
-                        <div class="item-due-date">
-                          <span>Tue,aug 25</span>
-                        </div>
-                        <ul class="item-members">
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/3.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="list-group-item flex-column align-items-start">
-                      <div class="checkbox-custom checkbox-success checkbox-lg">
-                        <input type="checkbox" name="checkbox" checked="checked">
-                        <label class="item-title">Upload Photos and Video</label>
-                      </div>
-                      <div class="item-due-date">
-                        <span>Tue,aug 25</span>
-                      </div>
-                    </li>
-                    <li class="list-group-item flex-column align-items-start">
-                      <div class="checkbox-custom checkbox-success checkbox-lg">
-                        <input type="checkbox" name="checkbox">
-                        <label class="item-title">Edit the blog system</label>
-                      </div>
-                      <div class="w-full">
-                        <div class="item-due-date">
-                          <span>No due date</span>
-                        </div>
-                        <ul class="item-members">
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/1.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/5.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="list-group-item flex-column align-items-start">
-                      <div class="checkbox-custom checkbox-success checkbox-lg">
-                        <input type="checkbox" name="checkbox">
-                        <label class="item-title">Edit the blog system</label>
-                      </div>
-                      <div class="w-full">
-                        <div class="item-due-date">
-                          <span>No due date</span>
-                        </div>
-                        <ul class="item-members">
-                          <li>
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="list-group-item flex-column align-items-start">
-                      <div class="checkbox-custom checkbox-success checkbox-lg">
-                        <input type="checkbox" name="checkbox">
-                        <label class="item-title">Edit the blog system</label>
-                      </div>
-                      <div class="w-full">
-                        <div class="item-due-date">
-                          <span>No due date</span>
-                        </div>
-                        <ul class="item-members">
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/4.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/6.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                          <li>
-                            <img class="avatar avatar-sm" src="../../../global/portraits/7.jpg">
-                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
+              <div class="panel-body">
+                <!-- Steps -->
+                <div class="pearls row">
+                  <div class="pearl current col-4">
+                    <div class="pearl-icon"><i class="icon md-account" aria-hidden="true"></i></div>
+                    <span class="pearl-title">Profile Settings</span>
+                  </div>
+                  <div class="pearl col-4">
+                    <div class="pearl-icon"><i class="icon md-card" aria-hidden="true"></i></div>
+                    <span class="pearl-title">Working Background</span>
+                  </div>
+                  <div class="pearl col-4">
+                    <div class="pearl-icon"><i class="icon md-check" aria-hidden="true"></i></div>
+                    <span class="pearl-title">Programming Profiles</span>
                   </div>
                 </div>
-              <div class="scrollable-bar scrollable-bar-vertical scrollable-bar-hide" draggable="false"><div class="scrollable-bar-handle" style="height: 247.734px; transform: translate3d(0px, 0px, 0px);"></div></div></ul>
+                <!-- End Steps -->
+
+                <!-- Wizard Content -->
+                <form id="exampleFormContainer">
+                  <div class="wizard-content">
+                    <div class="wizard-pane active" role="tabpanel">
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputUserNameOne">Name</label>
+                        <input type="text" class="form-control" id="name" name="username" required="required">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputUserNameOne">Gender</label>
+                        <input type="text" class="form-control" id="gender" name="username" required="required">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputPasswordOne">Organization</label>
+                        <input type="text" class="form-control" id="organization" name="password"
+                          required="required">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputPasswordOne">University</label>
+                        <input type="text" class="form-control" id="university" name="password"
+                          required="required">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputPasswordOne">Year Of Graduation</label>
+                        <input type="text" class="form-control" id="graduationYear" name="password"
+                          required="required">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputPasswordOne">LinkedIN Profile</label>
+                        <input type="text" class="form-control" id="linkedinProfile" name="password"
+                          required="required">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputPasswordOne">T-Shirt</label>
+                        <input type="text" class="form-control" id="teeShirt" name="password"
+                          required="required">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputPasswordOne">Address</label>
+                        <input type="text" class="form-control" id="address" name="password"
+                          required="required">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputPasswordOne">Github Id</label>
+                        <input type="text" class="form-control" id="github" name="password"
+                          required="required">
+                      </div>
+                      <center>
+                        <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doUserData();" style="color:white;">Submit Information</a>
+                    </center>
+                    </div>
+
+                    <div class="wizard-pane" id="exampleBillingOne" role="tabpanel">
+                      <div class="form-group form-material">
+                        <label class="form-control-label">Where do you currently work?</label>
+                        <input type="text" class="form-control" id="currentCompany" placeholder="Select Company">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputCardNumberOne">Last Degree</label>
+                        <input type="text" class="form-control" id="lastDegree" name="number" placeholder="Card number">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputCardNumberOne">Year Of exp:</label>
+                        <input type="text" class="form-control" id="yearOfExp" name="number" placeholder="Card number">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputCardNumberOne">Major in College</label>
+                        <input type="text" class="form-control" id="majorInCollege" name="number" placeholder="Card number">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputCardNumberOne">Current Job Title</label>
+                        <input type="text" class="form-control" id="currentJobTitle" name="number" placeholder="Card number">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputCardNumberOne">Location</label>
+                        <input type="text" class="form-control" id="location" name="number" placeholder="Card number">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label" for="inputCVVOne">Skype</label>
+                        <input type="text" class="form-control" id="skype" name="cvv" placeholder="CVV">
+                      </div>
+                      <center>
+                        <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doJobProfile();" style="color:white;">Submit Information</a>
+                      </center>
+                    </div>
+
+                    <div class="wizard-pane" id="exampleGettingOne" role="tabpanel">
+                      <div class="form-group form-material">
+                        <label class="form-control-label">Codeforces</label>
+                        <input type="text" class="form-control" id="codeforces" placeholder="Select Company">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label">Spoj</label>
+                        <input type="text" class="form-control" id="spoj" placeholder="Select Company">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label">TopCoder</label>
+                        <input type="text" class="form-control" id="topcoder" placeholder="Select Company">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label">Codechef</label>
+                        <input type="text" class="form-control" id="codechef" placeholder="Select Company">
+                      </div>
+                      <div class="form-group form-material">
+                        <label class="form-control-label">Hackerrank</label>
+                        <input type="text" class="form-control" id="hackerrank" placeholder="Select Company">
+                      </div>
+                      <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doProgrammingProfile();" style="color:white;">Submit Information</a>
+                    </div>
+                  </div>
+                </form>
+                <!-- Wizard Content -->
+              </div>
             </div>
+            <!-- End Panel Wizard Form Container -->
           </div>
-
-
-
-
         </div>
+
+        
       </div>
     </div>
     <!-- End Page -->
@@ -997,57 +845,146 @@
     <footer class="site-footer">
       <div class="site-footer-legal">© 2018 <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Remark</a></div>
       <div class="site-footer-right">
-        Crafted with <i class="red-600 wb wb-heart"></i> by <a href="https://themeforest.net/user/creation-studio">Creation Studio</a>
+        Crafted with <i class="red-600 icon md-favorite"></i> by <a href="https://themeforest.net/user/creation-studio">Creation Studio</a>
       </div>
     </footer>
     <!-- Core  -->
-    <script src="../../global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
-    <script src="../../global/vendor/jquery/jquery.js"></script>
-    <script src="../../global/vendor/popper-js/umd/popper.min.js"></script>
-    <script src="../../global/vendor/bootstrap/bootstrap.js"></script>
-    <script src="../../global/vendor/animsition/animsition.js"></script>
-    <script src="../../global/vendor/mousewheel/jquery.mousewheel.js"></script>
-    <script src="../../global/vendor/asscrollbar/jquery-asScrollbar.js"></script>
-    <script src="../../global/vendor/asscrollable/jquery-asScrollable.js"></script>
-    <script src="../../global/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+    <script src="../../../global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
+    <script src="../../../global/vendor/jquery/jquery.js"></script>
+    <script src="../../../global/vendor/popper-js/umd/popper.min.js"></script>
+    <script src="../../../global/vendor/bootstrap/bootstrap.js"></script>
+    <script src="../../../global/vendor/animsition/animsition.js"></script>
+    <script src="../../../global/vendor/mousewheel/jquery.mousewheel.js"></script>
+    <script src="../../../global/vendor/asscrollbar/jquery-asScrollbar.js"></script>
+    <script src="../../../global/vendor/asscrollable/jquery-asScrollable.js"></script>
+    <script src="../../../global/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+    <script src="../../../global/vendor/waves/waves.js"></script>
     
     <!-- Plugins -->
-    <script src="../../global/vendor/switchery/switchery.js"></script>
-    <script src="../../global/vendor/intro-js/intro.js"></script>
-    <script src="../../global/vendor/screenfull/screenfull.js"></script>
-    <script src="../../global/vendor/slidepanel/jquery-slidePanel.js"></script>
-        <script src="../../global/vendor/skycons/skycons.js"></script>
-        <script src="../../global/vendor/chartist/chartist.min.js"></script>
-        <script src="../../global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js"></script>
-        <script src="../../global/vendor/aspieprogress/jquery-asPieProgress.min.js"></script>
-        <script src="../../global/vendor/jvectormap/jquery-jvectormap.min.js"></script>
-        <script src="../../global/vendor/jvectormap/maps/jquery-jvectormap-au-mill-en.js"></script>
-        <script src="../../global/vendor/matchheight/jquery.matchHeight-min.js"></script>
+    <script src="../../../global/vendor/switchery/switchery.js"></script>
+    <script src="../../../global/vendor/intro-js/intro.js"></script>
+    <script src="../../../global/vendor/screenfull/screenfull.js"></script>
+    <script src="../../../global/vendor/slidepanel/jquery-slidePanel.js"></script>
+        <script src="../../../global/vendor/formvalidation/formValidation.js"></script>
+        <script src="../../../global/vendor/formvalidation/framework/bootstrap.js"></script>
+        <script src="../../../global/vendor/matchheight/jquery.matchHeight-min.js"></script>
+        <script src="../../../global/vendor/jquery-wizard/jquery-wizard.js"></script>
     
     <!-- Scripts -->
-    <script src="../../global/js/Component.js"></script>
-    <script src="../../global/js/Plugin.js"></script>
-    <script src="../../global/js/Base.js"></script>
-    <script src="../../global/js/Config.js"></script>
+    <script src="../../../global/js/Component.js"></script>
+    <script src="../../../global/js/Plugin.js"></script>
+    <script src="../../../global/js/Base.js"></script>
+    <script src="../../../global/js/Config.js"></script>
     
-    <script src="../assets/js/Section/Menubar.js"></script>
-    <script src="../assets/js/Section/GridMenu.js"></script>
-    <script src="../assets/js/Section/Sidebar.js"></script>
-    <script src="../assets/js/Section/PageAside.js"></script>
-    <script src="../assets/js/Plugin/menu.js"></script>
+    <script src="../../assets/js/Section/Menubar.js"></script>
+    <script src="../../assets/js/Section/Sidebar.js"></script>
+    <script src="../../assets/js/Section/PageAside.js"></script>
+    <script src="../../assets/js/Plugin/menu.js"></script>
     
-    <script src="../../global/js/config/colors.js"></script>
-    <script src="../assets/js/config/tour.js"></script>
-    <script>Config.set('assets', '../assets');</script>
+    <!-- Config -->
+    <script src="../../../global/js/config/colors.js"></script>
+    <script src="../../assets/js/config/tour.js"></script>
+    <script>Config.set('assets', '../../assets');</script>
     
     <!-- Page -->
-    <script src="../assets/js/Site.js"></script>
-    <script src="../../global/js/Plugin/asscrollable.js"></script>
-    <script src="../../global/js/Plugin/slidepanel.js"></script>
-    <script src="../../global/js/Plugin/switchery.js"></script>
-        <script src="../../global/js/Plugin/matchheight.js"></script>
-        <script src="../../global/js/Plugin/jvectormap.js"></script>
+    <script src="../../assets/js/Site.js"></script>
+    <script src="../../../global/js/Plugin/asscrollable.js"></script>
+    <script src="../../../global/js/Plugin/slidepanel.js"></script>
+    <script src="../../../global/js/Plugin/switchery.js"></script>
+        <script src="../../../global/js/Plugin/jquery-wizard.js"></script>
+        <script src="../../../global/js/Plugin/matchheight.js"></script>
     
-        <script src="../assets/examples/js/dashboard/v1.js"></script>
+        <script src="../../assets/examples/js/forms/wizard.js"></script>
+
+        <script>
+          function doUserData() {
+            let nameValue = document.getElementById("name").value;
+            let genderValue = document.getElementById("gender").value;
+            let organizationValue = document.getElementById("organization").value;
+            let universityValue = document.getElementById("university").value;
+            let graduationYearValue = document.getElementById("graduationYear").value;
+            let linkedInProfileValue = document.getElementById("linkedinProfile").value;
+            let t_shirt_sizeValue = document.getElementById("teeShirt").value;
+            let addressValue = document.getElementById("address").value;
+            let github_handleValue = document.getElementById("github").value;
+
+            axios.post('http://3.136.20.160:80/doUserData', {
+              bootcamp_id: "1234",
+              user_id: "12345",
+              name: nameValue,
+              gender: genderValue,
+              is_otp_verified: true,
+              is_email_verified: true,
+              photo: "photo",
+              organization: organizationValue,
+              university: universityValue,
+              graduation_year: graduationYearValue,
+              linkedIn_profile: linkedInProfileValue,
+              t_shirt_size: t_shirt_sizeValue,
+              address:addressValue,
+              public_sharing : "1",
+              github_handle: github_handleValue
+              })
+              .then(function (response) {
+                alert("Post Success")
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          }
+
+          function doJobProfile() {
+            let current_companyValue = document.getElementById("currentCompany").value;
+            let last_degreeValue = document.getElementById("lastDegree").value;
+            let years_of_experienceValue = document.getElementById("yearOfExp").value;
+            let major_in_collegeValue = document.getElementById("majorInCollege").value;
+            let current_job_titleValue = document.getElementById("currentJobTitle").value;
+            let locationValue = document.getElementById("location").value;
+            let skypeValue = document.getElementById("skype").value;
+
+            axios.post('http://3.136.20.160:80/doJobProfile', {
+              user_id: "1234",
+              current_company: current_companyValue,
+              last_degree: last_degreeValue,
+              years_of_experience: years_of_experienceValue,
+              major_in_college: major_in_collegeValue,
+              current_job_title: current_job_titleValue,
+              location: locationValue,
+              skype: skypeValue
+              })
+              .then(function (response) {
+                alert("Post Success")
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          }
+
+          function doProgrammingProfile() {
+            let codeforcesValue = document.getElementById("codeforces").value;
+            let spojValue = document.getElementById("spoj").value;
+            let topcoderValue = document.getElementById("topcoder").value;
+            let codechefValue = document.getElementById("codechef").value;
+            let hackerrankValue = document.getElementById("hackerrank").value;
+
+            axios.post('http://3.136.20.160:80/doProgrammingProfile', {
+              user_id: "1234",
+              codeforces: codeforcesValue,
+              spoj: spojValue,
+              topcoder: topcoderValue,
+              codechef: codechefValue,
+              hackerrank: hackerrankValue
+              })
+              .then(function (response) {
+                alert("Post Success")
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          }
+        </script>
   </body>
 </html>
