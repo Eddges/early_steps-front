@@ -26,5 +26,8 @@ router.get('/videos', function(req, res, next) {
   res.render('videos', { title: 'Express' });
 });
 
+router.get('/profile', function(req, res, next) {
+  res.render('profile', { title: 'Express' });
+});
 
 module.exports = router;
