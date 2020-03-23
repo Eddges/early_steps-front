@@ -910,32 +910,35 @@
         <script src="../assets/examples/js/dashboard/v1.js"></script>
 
         <script>
-          function userFeedback() {
+           function userFeedback() {
             let user_idValue = sessionStorage.getItem("user_id");
             let userFeedback_textValue = document.getElementById("userFeedback_text").value;
             let userFeedback_type;
-          
-            if(document.getElementById("radio_feedback_type1").checked)
-              userFeedback_type = document.getElementById("feedback_type1").innerHTML;
-            else if(document.getElementById("radio_feedback_type2").checked)
-              userFeedback_type = document.getElementById("feedback_type2").innerHTML;
-            else if(document.getElementById("radio_feedback_type3").checked)
-              userFeedback_type = document.getElementById("feedback_type3").innerHTML;
 
-            axios.post('', {
+            if(document.getElementById("radio_feedback_type1").checked)
+               userFeedback_type = document.getElementById("feedback_type1").innerHTML;
+            else if(document.getElementById("radio_feedback_type2").checked)
+               userFeedback_type = document.getElementById("feedback_type2").innerHTML;
+            else if(document.getElementById("radio_feedback_type3").checked)
+               userFeedback_type = document.getElementById("feedback_type3").innerHTML;
+              
+            axios.post('http://3.136.20.160:80/doFeedback', {
               user_id:user_idValue,
-              userFeedback_text:userFeedback_textValue,
-              inputRadiosUnchecked:inputRadiosUncheckedValue
+              feedback_details:userFeedback_textValue,
+              feedback_type:userFeedback_type
               })
               .then(function (response) {
                 alert("Post Success")
                 console.log(response);
               })
               .catch(function (error) {
+                alert("Something went wrong, Please try again!")
                 console.log(error);
               });
           }
+        </script>
 
+        <script>
           function globalCall() {
             let user_id = sessionStorage.getItem("user_id");
             axios.get(`http://3.136.20.160/getUserData/${user_id}`)
