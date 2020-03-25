@@ -785,7 +785,7 @@
                                             <label class="form-control-label">Hackerrank</label>
                                             <input type="text" class="form-control" id="hackerrank" placeholder="Select Company">
                                         </div>
-                                        <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doProgrammingProfile();" style="color:white;">Submit Inform ation</a>
+                                        <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doProgrammingProfile();" style="color:white;">Submit Information</a>
                                     </div>
                                 </div>
                             </form>
@@ -877,6 +877,7 @@
             axios.get(`http://3.136.20.160:80/getUserData/` + `${user_id}
                     `)
                 .then(res => {
+                    console.log(res)
                     UserData1 = UserData.concat(res.data.a);
                     if (res.data.a.length !== 0) {
                         document.getElementById("name").value = res.data.a[0].name;
@@ -898,6 +899,7 @@
             axios.get(`http://3.136.20.160:80/getJobProfile/` + `${user_id}
                     `)
                 .then(res => {
+                    console.log(res)
                     UserData2 = UserData.concat(res.data.a);
                     if (res.data.a.length !== 0) {
                         document.getElementById("currentCompany").value = res.data.a[0].current_company;
@@ -917,9 +919,9 @@
             axios.get(`http://3.136.20.160:80/getProgrammingProfile/` + `${user_id}
                     `)
                 .then(res => {
+                    console.log(res)
                     UserData3 = UserData.concat(res.data.a);
                     if (res.data.a.length !== 0) {
-                        console.log(res)
                         document.getElementById("codeforces").value = res.data.a[0].codeforces;
                         document.getElementById("spoj").value = res.data.a[0].spoj;
                         document.getElementById("topcoder").value = res.data.a[0].topcoder;
