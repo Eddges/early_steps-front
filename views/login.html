@@ -183,7 +183,7 @@
               console.log(response);
               sessionStorage.setItem("user_id", response.data["a"][0].phone);
               sessionStorage.setItem("loggedCA", md5("true"));
-              window.location.href = redirectURL; 
+              getProgrammingProfileData()
             }).catch(function (error){
               console.log(error);
             });
@@ -196,12 +196,29 @@
           .then(function (response){
             console.log(response);
             sessionStorage.setItem("loggedCA", "true");
-            window.location.href = redirectURL; 
+            getProgrammingProfileData() 
           }).catch(function(error){
             console.log(error);
           });
         }   
       }
+
+      function getProgrammingProfileData() {
+            let user_id = sessionStorage.getItem("user_id");
+            axios.get(`http://3.136.20.160:80/getProgrammingProfile/` + `${user_id}
+                    `)
+                .then(res => {
+                    if(res.data.a.length!=0)
+                    {
+                      window.location.href = "./dashboard"; 
+                    }
+                    else
+                    {
+                      window.location.href = "./profile"; 
+                    }
+                })
+                .catch(err => console.log(err))
+        }      
     </script>
   </body>
 </html>
