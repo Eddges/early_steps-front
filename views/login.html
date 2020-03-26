@@ -191,16 +191,18 @@
             console.log(error);
           });
         } else {    
-          // Input is number
-          axios.get(`http://3.136.20.160:80/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
-          .then(function (response){
-            console.log(response);
-            sessionStorage.setItem("loggedCA", "true");
-            getProgrammingProfileData() 
-          }).catch(function(error){
-            console.log(error);
-          });
-        }   
+    // Input is number
+    axios.get(`http://3.136.20.160:80/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
+    .then(function (response){
+        console.log(response);
+        sessionStorage.setItem("user_id", userEmailOrPhoneValue);
+        sessionStorage.setItem("loggedCA", md5("true"));
+        getProgrammingProfileData()
+      }).catch(function (error){
+        console.log(error);
+        alert("Invalid Credentials, PLease verify !!");
+      });
+  }   
       }
 
       function getProgrammingProfileData() {
