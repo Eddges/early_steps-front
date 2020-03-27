@@ -1,23 +1,23 @@
-
 <!DOCTYPE html>
 <html class="no-js css-menubar" lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description" content="bootstrap material admin template">
     <meta name="author" content="">
-    
+
     <title>Form Wizard | Remark Material Admin Template</title>
-    
+
     <link rel="apple-touch-icon" href="../../assets/images/apple-touch-icon.png">
     <link rel="shortcut icon" href="../../assets/images/favicon.ico">
-    
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../../../global/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../global/css/bootstrap-extend.min.css">
     <link rel="stylesheet" href="../../assets/css/site.min.css">
-    
+
     <!-- Plugins -->
     <link rel="stylesheet" href="../../../global/vendor/animsition/animsition.css">
     <link rel="stylesheet" href="../../../global/vendor/asscrollable/asScrollable.css">
@@ -26,502 +26,467 @@
     <link rel="stylesheet" href="../../../global/vendor/slidepanel/slidePanel.css">
     <link rel="stylesheet" href="../../../global/vendor/flag-icon-css/flag-icon.css">
     <link rel="stylesheet" href="../../../global/vendor/waves/waves.css">
-        <link rel="stylesheet" href="../../../global/vendor/jquery-wizard/jquery-wizard.css">
-        <link rel="stylesheet" href="../../../global/vendor/formvalidation/formValidation.css">
-    
-    
+    <link rel="stylesheet" href="../../../global/vendor/jquery-wizard/jquery-wizard.css">
+    <link rel="stylesheet" href="../../../global/vendor/formvalidation/formValidation.css">
+
+
     <!-- Fonts -->
-        <link rel="stylesheet" href="../../../global/fonts/web-icons/web-icons.min.css">
-    
+    <link rel="stylesheet" href="../../../global/fonts/web-icons/web-icons.min.css">
+
     <link rel="stylesheet" href="../../../global/fonts/material-design/material-design.min.css">
     <link rel="stylesheet" href="../../../global/fonts/brand-icons/brand-icons.min.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
-    
+
     <!--[if lt IE 9]>
     <script src="../../../global/vendor/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
-    
+
     <!--[if lt IE 10]>
     <script src="../../../global/vendor/media-match/media.match.min.js"></script>
     <script src="../../../global/vendor/respond/respond.min.js"></script>
     <![endif]-->
-    
+
     <!-- Scripts -->
     <script src="../../../global/vendor/breakpoints/breakpoints.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
 
     <script>
-      Breakpoints();
+        Breakpoints();
     </script>
-  </head>
-  <body class="animsition">
+</head>
+
+<body class="animsition" onload="getprofiledata()">
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-  <nav class=" navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
-    
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
-          data-toggle="menubar">
+
+    <nav class=" navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided" data-toggle="menubar">
           <span class="sr-only">Toggle navigation</span>
           <span class="hamburger-bar"></span>
         </button>
-        <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
-          data-toggle="collapse">
+            <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse" data-toggle="collapse">
           <i class="icon wb-more-horizontal" aria-hidden="true"></i>
         </button>
-        <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-            <img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="..." >
-         <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span>
-        </div>
-        <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
-          data-toggle="collapse">
+            <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
+                <img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
+                <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span>
+            </div>
+            <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search" data-toggle="collapse">
           <span class="sr-only">Toggle Search</span>
           <i class="icon wb-search" aria-hidden="true"></i>
         </button>
-      </div>
-    
-      <div class="navbar-container container-fluid">
-        <!-- Navbar Collapse -->
-        <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
-          <!-- Navbar Toolbar -->
-          <ul class="nav navbar-toolbar">
-            <li class="nav-item hidden-float" id="toggleMenubar">
-              <a class="nav-link" data-toggle="menubar" href="#" role="button">
-                <i class="icon hamburger hamburger-arrow-left">
+        </div>
+
+        <div class="navbar-container container-fluid">
+            <!-- Navbar Collapse -->
+            <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
+                <!-- Navbar Toolbar -->
+                <ul class="nav navbar-toolbar">
+                    <li class="nav-item hidden-float" id="toggleMenubar">
+                        <a class="nav-link" data-toggle="menubar" href="#" role="button">
+                            <i class="icon hamburger hamburger-arrow-left">
                   <span class="sr-only">Toggle menubar</span>
                   <span class="hamburger-bar"></span>
                 </i>
-              </a>
-            </li>
-         
-            <li class="nav-item dropdown dropdown-fw dropdown-mega">
-              <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="fade"
-                role="button">Mega <i class="icon wb-chevron-down-mini" aria-hidden="true"></i></a>
-              <div class="dropdown-menu" role="menu">
-                <div class="mega-content">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <h5>UI Kit</h5>
-                      <ul class="blocks-2">
-                        <li class="mega-menu m-0">
-                          <ul class="list-icons">
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="advanced/animation.html">Animation</a>
-                            </li>
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="uikit/buttons.html">Buttons</a>
-                            </li>
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="uikit/colors.html">Colors</a>
-                            </li>
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="uikit/dropdowns.html">Dropdowns</a>
-                            </li>
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="uikit/icons.html">Icons</a>
-                            </li>
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="advanced/lightbox.html">Lightbox</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="mega-menu m-0">
-                          <ul class="list-icons">
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="uikit/modals.html">Modals</a>
-                            </li>
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="uikit/panel-structure.html">Panels</a>
-                            </li>
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="structure/overlay.html">Overlay</a>
-                            </li>
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="uikit/tooltip-popover.html ">Tooltips</a>
-                            </li>
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="advanced/scrollable.html">Scrollable</a>
-                            </li>
-                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
-                              <a
-                                href="uikit/typography.html">Typography</a>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <h5>Media
-                        <span class="badge badge-pill badge-success">4</span>
-                      </h5>
-                      <ul class="blocks-3">
-                        <li>
-                          <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
-                          </a>
-                        </li>
-                        <li>
-                          <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
-                          </a>
-                        </li>
-                        <li>
-                          <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
-                          </a>
-                        </li>
-                        <li>
-                          <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
-                          </a>
-                        </li>
-                        <li>
-                          <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
-                          </a>
-                        </li>
-                        <li>
-                          <a class="thumbnail m-0" href="javascript:void(0)">
-                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <h5 class="mb-0">Accordion</h5>
-                      <!-- Accordion -->
-                      <div class="panel-group panel-group-simple" id="siteMegaAccordion" aria-multiselectable="true"
-                        role="tablist">
-                        <div class="panel">
-                          <div class="panel-heading" id="siteMegaAccordionHeadingOne" role="tab">
-                            <a class="panel-title" data-toggle="collapse" href="#siteMegaCollapseOne" data-parent="#siteMegaAccordion"
-                              aria-expanded="false" aria-controls="siteMegaCollapseOne">
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown dropdown-fw dropdown-mega">
+                        <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="fade" role="button">Mega <i class="icon wb-chevron-down-mini" aria-hidden="true"></i></a>
+                        <div class="dropdown-menu" role="menu">
+                            <div class="mega-content">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h5>UI Kit</h5>
+                                        <ul class="blocks-2">
+                                            <li class="mega-menu m-0">
+                                                <ul class="list-icons">
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="advanced/animation.html">Animation</a>
+                                                    </li>
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="uikit/buttons.html">Buttons</a>
+                                                    </li>
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="uikit/colors.html">Colors</a>
+                                                    </li>
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="uikit/dropdowns.html">Dropdowns</a>
+                                                    </li>
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="uikit/icons.html">Icons</a>
+                                                    </li>
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="advanced/lightbox.html">Lightbox</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="mega-menu m-0">
+                                                <ul class="list-icons">
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="uikit/modals.html">Modals</a>
+                                                    </li>
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="uikit/panel-structure.html">Panels</a>
+                                                    </li>
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="structure/overlay.html">Overlay</a>
+                                                    </li>
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="uikit/tooltip-popover.html ">Tooltips</a>
+                                                    </li>
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="advanced/scrollable.html">Scrollable</a>
+                                                    </li>
+                                                    <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                                                        <a href="uikit/typography.html">Typography</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5>Media
+                                            <span class="badge badge-pill badge-success">4</span>
+                                        </h5>
+                                        <ul class="blocks-3">
+                                            <li>
+                                                <a class="thumbnail m-0" href="javascript:void(0)">
+                                                    <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="thumbnail m-0" href="javascript:void(0)">
+                                                    <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="thumbnail m-0" href="javascript:void(0)">
+                                                    <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="thumbnail m-0" href="javascript:void(0)">
+                                                    <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="thumbnail m-0" href="javascript:void(0)">
+                                                    <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="thumbnail m-0" href="javascript:void(0)">
+                                                    <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 class="mb-0">Accordion</h5>
+                                        <!-- Accordion -->
+                                        <div class="panel-group panel-group-simple" id="siteMegaAccordion" aria-multiselectable="true" role="tablist">
+                                            <div class="panel">
+                                                <div class="panel-heading" id="siteMegaAccordionHeadingOne" role="tab">
+                                                    <a class="panel-title" data-toggle="collapse" href="#siteMegaCollapseOne" data-parent="#siteMegaAccordion" aria-expanded="false" aria-controls="siteMegaCollapseOne">
                               Collapsible Group Item #1
                             </a>
-                          </div>
-                          <div class="panel-collapse collapse" id="siteMegaCollapseOne" aria-labelledby="siteMegaAccordionHeadingOne"
-                            role="tabpanel">
-                            <div class="panel-body">
-                              De moveat laudatur vestra parum doloribus labitur sentire partes, eripuit praesenti
-                              congressus ostendit alienae, voluptati ornateque accusamus
-                              clamat reperietur convicia albucius.
-                            </div>
-                          </div>
-                        </div>
-                        <div class="panel">
-                          <div class="panel-heading" id="siteMegaAccordionHeadingTwo" role="tab">
-                            <a class="panel-title collapsed" data-toggle="collapse" href="#siteMegaCollapseTwo"
-                              data-parent="#siteMegaAccordion" aria-expanded="false"
-                              aria-controls="siteMegaCollapseTwo">
+                                                </div>
+                                                <div class="panel-collapse collapse" id="siteMegaCollapseOne" aria-labelledby="siteMegaAccordionHeadingOne" role="tabpanel">
+                                                    <div class="panel-body">
+                                                        De moveat laudatur vestra parum doloribus labitur sentire partes, eripuit praesenti congressus ostendit alienae, voluptati ornateque accusamus clamat reperietur convicia albucius.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel">
+                                                <div class="panel-heading" id="siteMegaAccordionHeadingTwo" role="tab">
+                                                    <a class="panel-title collapsed" data-toggle="collapse" href="#siteMegaCollapseTwo" data-parent="#siteMegaAccordion" aria-expanded="false" aria-controls="siteMegaCollapseTwo">
                               Collapsible Group Item #2
                             </a>
-                          </div>
-                          <div class="panel-collapse collapse" id="siteMegaCollapseTwo" aria-labelledby="siteMegaAccordionHeadingTwo"
-                            role="tabpanel">
-                            <div class="panel-body">
-                              Praestabiliorem. Pellat excruciant legantur ullum leniter vacare foris voluptate
-                              loco ignavi, credo videretur multoque choro fatemur mortis
-                              animus adoptionem, bello statuat expediunt naturales.
-                            </div>
-                          </div>
-                        </div>
-    
-                        <div class="panel">
-                          <div class="panel-heading" id="siteMegaAccordionHeadingThree" role="tab">
-                            <a class="panel-title collapsed" data-toggle="collapse" href="#siteMegaCollapseThree"
-                              data-parent="#siteMegaAccordion" aria-expanded="false"
-                              aria-controls="siteMegaCollapseThree">
+                                                </div>
+                                                <div class="panel-collapse collapse" id="siteMegaCollapseTwo" aria-labelledby="siteMegaAccordionHeadingTwo" role="tabpanel">
+                                                    <div class="panel-body">
+                                                        Praestabiliorem. Pellat excruciant legantur ullum leniter vacare foris voluptate loco ignavi, credo videretur multoque choro fatemur mortis animus adoptionem, bello statuat expediunt naturales.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel">
+                                                <div class="panel-heading" id="siteMegaAccordionHeadingThree" role="tab">
+                                                    <a class="panel-title collapsed" data-toggle="collapse" href="#siteMegaCollapseThree" data-parent="#siteMegaAccordion" aria-expanded="false" aria-controls="siteMegaCollapseThree">
                               Collapsible Group Item #3
                             </a>
-                          </div>
-                          <div class="panel-collapse collapse" id="siteMegaCollapseThree" aria-labelledby="siteMegaAccordionHeadingThree"
-                            role="tabpanel">
-                            <div class="panel-body">
-                              Horum, antiquitate perciperet d conspectum locus obruamus animumque perspici probabis
-                              suscipere. Desiderat magnum, contenta poena desiderant
-                              concederetur menandri damna disputandum corporum.
+                                                </div>
+                                                <div class="panel-collapse collapse" id="siteMegaCollapseThree" aria-labelledby="siteMegaAccordionHeadingThree" role="tabpanel">
+                                                    <div class="panel-body">
+                                                        Horum, antiquitate perciperet d conspectum locus obruamus animumque perspici probabis suscipere. Desiderat magnum, contenta poena desiderant concederetur menandri damna disputandum corporum.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Accordion -->
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
-                      <!-- End Accordion -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <!-- End Navbar Toolbar -->
-    
-          <!-- Navbar Toolbar Right -->
-          <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
-            <li class="nav-item dropdown">
-              <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" data-animation="scale-up"
-                aria-expanded="false" role="button">
-                <span class="flag-icon flag-icon-us"></span>
-              </a>
-              <div class="dropdown-menu" role="menu">
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                  <span class="flag-icon flag-icon-gb"></span> English</a>
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                  <span class="flag-icon flag-icon-fr"></span> French</a>
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                  <span class="flag-icon flag-icon-cn"></span> Chinese</a>
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                  <span class="flag-icon flag-icon-de"></span> German</a>
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                  <span class="flag-icon flag-icon-nl"></span> Dutch</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
-                data-animation="scale-up" role="button">
-                <span class="avatar avatar-online">
+                    </li>
+                </ul>
+                <!-- End Navbar Toolbar -->
+
+                <!-- Navbar Toolbar Right -->
+                <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" data-animation="scale-up" aria-expanded="false" role="button">
+                            <span class="flag-icon flag-icon-us"></span>
+                        </a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
+                                <span class="flag-icon flag-icon-gb"></span> English</a>
+                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
+                                <span class="flag-icon flag-icon-fr"></span> French</a>
+                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
+                                <span class="flag-icon flag-icon-cn"></span> Chinese</a>
+                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
+                                <span class="flag-icon flag-icon-de"></span> German</a>
+                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
+                                <span class="flag-icon flag-icon-nl"></span> Dutch</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
+                            <span class="avatar avatar-online">
                   <img src="../../global/portraits/5.jpg" alt="...">
                   <i></i>
                 </span>
-              </a>
-              <div class="dropdown-menu" role="menu">
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
-                <div class="dropdown-divider" role="presentation"></div>
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Notifications"
-                aria-expanded="false" data-animation="scale-up" role="button">
-                <i class="icon wb-bell" aria-hidden="true"></i>
-                <span class="badge badge-pill badge-danger up">5</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu">
-                <div class="dropdown-menu-header">
-                  <h5>NOTIFICATIONS</h5>
-                  <span class="badge badge-round badge-danger">New 5</span>
-                </div>
-    
-                <div class="list-group">
-                  <div data-role="container">
-                    <div data-role="content">
-                      <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                          <div class="pr-10">
-                            <i class="icon wb-order bg-red-600 white icon-circle" aria-hidden="true"></i>
-                          </div>
-                          <div class="media-body">
-                            <h6 class="media-heading">A new order has been placed</h6>
-                            <time class="media-meta" datetime="2018-06-12T20:50:48+08:00">5 hours ago</time>
-                          </div>
+                        </a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
+                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
+                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
+                            <div class="dropdown-divider" role="presentation"></div>
+                            <a class="dropdown-item"  href="./login" onclick="logout();" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
                         </div>
-                      </a>
-                      <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                          <div class="pr-10">
-                            <i class="icon wb-user bg-green-600 white icon-circle" aria-hidden="true"></i>
-                          </div>
-                          <div class="media-body">
-                            <h6 class="media-heading">Completed the task</h6>
-                            <time class="media-meta" datetime="2018-06-11T18:29:20+08:00">2 days ago</time>
-                          </div>
-                        </div>
-                      </a>
-                      <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                          <div class="pr-10">
-                            <i class="icon wb-settings bg-red-600 white icon-circle" aria-hidden="true"></i>
-                          </div>
-                          <div class="media-body">
-                            <h6 class="media-heading">Settings updated</h6>
-                            <time class="media-meta" datetime="2018-06-11T14:05:00+08:00">2 days ago</time>
-                          </div>
-                        </div>
-                      </a>
-                      <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                          <div class="pr-10">
-                            <i class="icon wb-calendar bg-blue-600 white icon-circle" aria-hidden="true"></i>
-                          </div>
-                          <div class="media-body">
-                            <h6 class="media-heading">Event started</h6>
-                            <time class="media-meta" datetime="2018-06-10T13:50:18+08:00">3 days ago</time>
-                          </div>
-                        </div>
-                      </a>
-                      <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                          <div class="pr-10">
-                            <i class="icon wb-chat bg-orange-600 white icon-circle" aria-hidden="true"></i>
-                          </div>
-                          <div class="media-body">
-                            <h6 class="media-heading">Message received</h6>
-                            <time class="media-meta" datetime="2018-06-10T12:34:48+08:00">3 days ago</time>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="dropdown-menu-footer">
-                  <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
-                    <i class="icon wb-settings" aria-hidden="true"></i>
-                  </a>
-                  <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Notifications" aria-expanded="false" data-animation="scale-up" role="button">
+                            <i class="icon wb-bell" aria-hidden="true"></i>
+                            <span class="badge badge-pill badge-danger up">5</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu">
+                            <div class="dropdown-menu-header">
+                                <h5>NOTIFICATIONS</h5>
+                                <span class="badge badge-round badge-danger">New 5</span>
+                            </div>
+
+                            <div class="list-group">
+                                <div data-role="container">
+                                    <div data-role="content">
+                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <i class="icon wb-order bg-red-600 white icon-circle" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">A new order has been placed</h6>
+                                                    <time class="media-meta" datetime="2018-06-12T20:50:48+08:00">5 hours ago</time>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <i class="icon wb-user bg-green-600 white icon-circle" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">Completed the task</h6>
+                                                    <time class="media-meta" datetime="2018-06-11T18:29:20+08:00">2 days ago</time>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <i class="icon wb-settings bg-red-600 white icon-circle" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">Settings updated</h6>
+                                                    <time class="media-meta" datetime="2018-06-11T14:05:00+08:00">2 days ago</time>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <i class="icon wb-calendar bg-blue-600 white icon-circle" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">Event started</h6>
+                                                    <time class="media-meta" datetime="2018-06-10T13:50:18+08:00">3 days ago</time>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <i class="icon wb-chat bg-orange-600 white icon-circle" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">Message received</h6>
+                                                    <time class="media-meta" datetime="2018-06-10T12:34:48+08:00">3 days ago</time>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-menu-footer">
+                                <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
+                                    <i class="icon wb-settings" aria-hidden="true"></i>
+                                </a>
+                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
                     All notifications
                   </a>
-                </div>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Messages"
-                aria-expanded="false" data-animation="scale-up" role="button">
-                <i class="icon wb-envelope" aria-hidden="true"></i>
-                <span class="badge badge-pill badge-info up">3</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu">
-                <div class="dropdown-menu-header" role="presentation">
-                  <h5>MESSAGES</h5>
-                  <span class="badge badge-round badge-info">New 3</span>
-                </div>
-    
-                <div class="list-group" role="presentation">
-                  <div data-role="container">
-                    <div data-role="content">
-                      <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                          <div class="pr-10">
-                            <span class="avatar avatar-sm avatar-online">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Messages" aria-expanded="false" data-animation="scale-up" role="button">
+                            <i class="icon wb-envelope" aria-hidden="true"></i>
+                            <span class="badge badge-pill badge-info up">3</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu">
+                            <div class="dropdown-menu-header" role="presentation">
+                                <h5>MESSAGES</h5>
+                                <span class="badge badge-round badge-info">New 3</span>
+                            </div>
+
+                            <div class="list-group" role="presentation">
+                                <div data-role="container">
+                                    <div data-role="content">
+                                        <a class="list-group-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <span class="avatar avatar-sm avatar-online">
                               <img src="../../global/portraits/2.jpg" alt="..." />
                               <i></i>
                             </span>
-                          </div>
-                          <div class="media-body">
-                            <h6 class="media-heading">Mary Adams</h6>
-                            <div class="media-meta">
-                              <time datetime="2018-06-17T20:22:05+08:00">30 minutes ago</time>
-                            </div>
-                            <div class="media-detail">Anyways, i would like just do it</div>
-                          </div>
-                        </div>
-                      </a>
-                      <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                          <div class="pr-10">
-                            <span class="avatar avatar-sm avatar-off">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">Mary Adams</h6>
+                                                    <div class="media-meta">
+                                                        <time datetime="2018-06-17T20:22:05+08:00">30 minutes ago</time>
+                                                    </div>
+                                                    <div class="media-detail">Anyways, i would like just do it</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <span class="avatar avatar-sm avatar-off">
                               <img src="../../global/portraits/3.jpg" alt="..." />
                               <i></i>
                             </span>
-                          </div>
-                          <div class="media-body">
-                            <h6 class="media-heading">Caleb Richards</h6>
-                            <div class="media-meta">
-                              <time datetime="2018-06-17T12:30:30+08:00">12 hours ago</time>
-                            </div>
-                            <div class="media-detail">I checheck the document. But there seems</div>
-                          </div>
-                        </div>
-                      </a>
-                      <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                          <div class="pr-10">
-                            <span class="avatar avatar-sm avatar-busy">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">Caleb Richards</h6>
+                                                    <div class="media-meta">
+                                                        <time datetime="2018-06-17T12:30:30+08:00">12 hours ago</time>
+                                                    </div>
+                                                    <div class="media-detail">I checheck the document. But there seems</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <span class="avatar avatar-sm avatar-busy">
                               <img src="../../global/portraits/4.jpg" alt="..." />
                               <i></i>
                             </span>
-                          </div>
-                          <div class="media-body">
-                            <h6 class="media-heading">June Lane</h6>
-                            <div class="media-meta">
-                              <time datetime="2018-06-16T18:38:40+08:00">2 days ago</time>
-                            </div>
-                            <div class="media-detail">Lorem ipsum Id consectetur et minim</div>
-                          </div>
-                        </div>
-                      </a>
-                      <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                          <div class="pr-10">
-                            <span class="avatar avatar-sm avatar-away">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">June Lane</h6>
+                                                    <div class="media-meta">
+                                                        <time datetime="2018-06-16T18:38:40+08:00">2 days ago</time>
+                                                    </div>
+                                                    <div class="media-detail">Lorem ipsum Id consectetur et minim</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item" href="javascript:void(0)" role="menuitem">
+                                            <div class="media">
+                                                <div class="pr-10">
+                                                    <span class="avatar avatar-sm avatar-away">
                               <img src="../../global/portraits/5.jpg" alt="..." />
                               <i></i>
                             </span>
-                          </div>
-                          <div class="media-body">
-                            <h6 class="media-heading">Edward Fletcher</h6>
-                            <div class="media-meta">
-                              <time datetime="2018-06-15T20:34:48+08:00">3 days ago</time>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">Edward Fletcher</h6>
+                                                    <div class="media-meta">
+                                                        <time datetime="2018-06-15T20:34:48+08:00">3 days ago</time>
+                                                    </div>
+                                                    <div class="media-detail">Dolor et irure cupidatat commodo nostrud nostrud.</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="media-detail">Dolor et irure cupidatat commodo nostrud nostrud.</div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="dropdown-menu-footer" role="presentation">
-                  <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
-                    <i class="icon wb-settings" aria-hidden="true"></i>
-                  </a>
-                  <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
+                            <div class="dropdown-menu-footer" role="presentation">
+                                <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
+                                    <i class="icon wb-settings" aria-hidden="true"></i>
+                                </a>
+                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
                     See all messages
                   </a>
-                </div>
-              </div>
-            </li>
-            <li class="nav-item" id="toggleChat">
-              <a class="nav-link" data-toggle="site-sidebar" href="javascript:void(0)" title="Chat"
-                data-url="site-sidebar.tpl">
-                <i class="icon wb-chat" aria-hidden="true"></i>
-              </a>
-            </li>
-          </ul>
-          <!-- End Navbar Toolbar Right -->
-        </div>
-        <!-- End Navbar Collapse -->
-    
-        <!-- Site Navbar Seach -->
-        <div class="collapse navbar-search-overlap" id="site-navbar-search">
-          <form role="search">
-            <div class="form-group">
-              <div class="input-search">
-                <i class="input-search-icon wb-search" aria-hidden="true"></i>
-                <input type="text" class="form-control" name="site-search" placeholder="Search...">
-                <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search"
-                  data-toggle="collapse" aria-label="Close"></button>
-              </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item" id="toggleChat">
+                        <a class="nav-link" data-toggle="site-sidebar" href="javascript:void(0)" title="Chat" data-url="site-sidebar.tpl">
+                            <i class="icon wb-chat" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- End Navbar Toolbar Right -->
             </div>
-          </form>
+            <!-- End Navbar Collapse -->
+
+            <!-- Site Navbar Seach -->
+            <div class="collapse navbar-search-overlap" id="site-navbar-search">
+                <form role="search">
+                    <div class="form-group">
+                        <div class="input-search">
+                            <i class="input-search-icon wb-search" aria-hidden="true"></i>
+                            <input type="text" class="form-control" name="site-search" placeholder="Search...">
+                            <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search" data-toggle="collapse" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- End Site Navbar Seach -->
         </div>
-        <!-- End Site Navbar Seach -->
-      </div>
-    </nav>    
+    </nav>
     <div class="site-menubar">
-      <div class="site-menubar-body">
-        <div>
-          <div>
-           <ul class="site-menu" data-plugin="menu">
-              <li class="site-menu-category">General</li>
-               <li class="site-menu-item has-sub">
-                <a href="/dashboard">
-                        <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
-                        <span class="site-menu-title">Dashboard</span>
-                          <span class="site-menu-arrow"></span>
-                    </a>
-               <!-- <ul class="site-menu-sub">
+        <div class="site-menubar-body">
+            <div>
+                <div>
+                    <ul class="site-menu" data-plugin="menu">
+                        <li class="site-menu-category">General</li>
+                        <li class="site-menu-item has-sub">
+                            <a href="/dashboard">
+                                <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+                                <span class="site-menu-title">Dashboard</span>
+                                <span class="site-menu-arrow"></span>
+                            </a>
+                            <!-- <ul class="site-menu-sub">
                   <li class="site-menu-item active">
                     <a class="animsition-link" href="index.html">
                       <span class="site-menu-title">Dashboard v1</span>
@@ -548,315 +513,310 @@
                     </a>
                   </li>
                 </ul> -->
-              </li>
-              <li class="site-menu-item ">
-                <a href="/profile">
-                        <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
-                        <span class="site-menu-title">Profile</span>
+                        </li>
+                        <li class="site-menu-item ">
+                            <a href="/profile">
+                                <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
+                                <span class="site-menu-title">Profile</span>
                                 <span class="site-menu-arrow"></span>
-                    </a>
-                
-              </li>
-              <li class="site-menu-item ">
-                <a href="/schedule">
-                        <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
-                        <span class="site-menu-title">Schedule</span>
-                                <span class="site-menu-arrow"></span>
-                    </a>
-                
-              </li>
-             
+                            </a>
 
-              <li class="site-menu-item ">
-                <a href="/videos">
-                        <i class="site-menu-icon wb-file" aria-hidden="true"></i>
-                        <span class="site-menu-title">Videos</span>
+                        </li>
+                        <li class="site-menu-item ">
+                            <a href="/schedule">
+                                <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
+                                <span class="site-menu-title">Schedule</span>
                                 <span class="site-menu-arrow"></span>
-                    </a>
-               
-              </li>
+                            </a>
 
-              <li class="site-menu-item ">
-                <a href="/rewards">
-                        <i class="site-menu-icon wb-file" aria-hidden="true"></i>
-                        <span class="site-menu-title">Rewards</span>
+                        </li>
+
+
+                        <li class="site-menu-item ">
+                            <a href="/videos">
+                                <i class="site-menu-icon wb-file" aria-hidden="true"></i>
+                                <span class="site-menu-title">Videos</span>
                                 <span class="site-menu-arrow"></span>
-                    </a>
-               
-              </li>
-             
-              
-                
-                </ul>
-              </li>
-            </ul>
-           </div>
+                            </a>
+
+                        </li>
+
+                        <li class="site-menu-item ">
+                            <a href="/rewards">
+                                <i class="site-menu-icon wb-file" aria-hidden="true"></i>
+                                <span class="site-menu-title">Rewards</span>
+                                <span class="site-menu-arrow"></span>
+                            </a>
+
+                        </li>
+
+
+
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-    
-      <div class="site-menubar-footer">
-        <a href="javascript: void(0);" class="fold-show" data-placement="top" data-toggle="tooltip"
-          data-original-title="Settings">
-          <span class="icon wb-settings" aria-hidden="true"></span>
-        </a>
-        <a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Lock">
-          <span class="icon wb-eye-close" aria-hidden="true"></span>
-        </a>
-        <a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
-          <span class="icon wb-power" aria-hidden="true"></span>
-        </a>
-      </div></div>    <div class="site-gridmenu">
-      <div>
+
+        <div class="site-menubar-footer">
+            <a href="javascript: void(0);" class="fold-show" data-placement="top" data-toggle="tooltip" data-original-title="Settings">
+                <span class="icon wb-settings" aria-hidden="true"></span>
+            </a>
+            <a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Lock">
+                <span class="icon wb-eye-close" aria-hidden="true"></span>
+            </a>
+            <a  href="./login" onclick="logout();" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
+                <span class="icon wb-power" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+    <div class="site-gridmenu">
         <div>
-          <ul>
-            <li>
-              <a href="apps/mailbox/mailbox.html">
-                <i class="icon wb-envelope"></i>
-                <span>Mailbox</span>
-              </a>
-            </li>
-            <li>
-              <a href="apps/calendar/calendar.html">
-                <i class="icon wb-calendar"></i>
-                <span>Calendar</span>
-              </a>
-            </li>
-            <li>
-              <a href="apps/contacts/contacts.html">
-                <i class="icon wb-user"></i>
-                <span>Contacts</span>
-              </a>
-            </li>
-            <li>
-              <a href="apps/media/overview.html">
-                <i class="icon wb-camera"></i>
-                <span>Media</span>
-              </a>
-            </li>
-            <li>
-              <a href="apps/documents/categories.html">
-                <i class="icon wb-order"></i>
-                <span>Documents</span>
-              </a>
-            </li>
-            <li>
-              <a href="apps/projects/projects.html">
-                <i class="icon wb-image"></i>
-                <span>Project</span>
-              </a>
-            </li>
-            <li>
-              <a href="apps/forum/forum.html">
-                <i class="icon wb-chat-group"></i>
-                <span>Forum</span>
-              </a>
-            </li>
-            <li>
-              <a href="index.html">
-                <i class="icon wb-dashboard"></i>
-                <span>Dashboard</span>
-              </a>
-            </li>
-          </ul>
+            <div>
+                <ul>
+                    <li>
+                        <a href="apps/mailbox/mailbox.html">
+                            <i class="icon wb-envelope"></i>
+                            <span>Mailbox</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="apps/calendar/calendar.html">
+                            <i class="icon wb-calendar"></i>
+                            <span>Calendar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="apps/contacts/contacts.html">
+                            <i class="icon wb-user"></i>
+                            <span>Contacts</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="apps/media/overview.html">
+                            <i class="icon wb-camera"></i>
+                            <span>Media</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="apps/documents/categories.html">
+                            <i class="icon wb-order"></i>
+                            <span>Documents</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="apps/projects/projects.html">
+                            <i class="icon wb-image"></i>
+                            <span>Project</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="apps/forum/forum.html">
+                            <i class="icon wb-chat-group"></i>
+                            <span>Forum</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html">
+                            <i class="icon wb-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </div>
 
     <!-- Page -->
     <div class="page">
-      <div class="page-content container-fluid">
-        <div class="row">
-          <div class="col-lg-0" hidden>
-            <!-- Panel Wizard Form -->
-            <div class="panel" id="exampleWizardForm">
-              <!-- <div class="panel-heading">
+        <div class="page-content container-fluid">
+            <div class="row">
+                <div class="col-lg-0" hidden>
+                    <!-- Panel Wizard Form -->
+                    <div class="panel" id="exampleWizardForm">
+                        <!-- <div class="panel-heading">
                 <h3 class="panel-title">Wizard Form</h3>
               </div> -->
-              <div class="panel-body">
-                <!-- Steps -->
-                <div class="steps steps-sm row" data-plugin="matchHeight" data-by-row="true" role="tablist">
-                  <div class="step col-lg-4 current" data-target="#exampleAccount" role="tab">
-                  </div>
-                  <div class="step col-lg-4" data-target="#exampleBilling" role="tab">
-                  </div>
-                </div>
-                <!-- End Steps -->
+                        <div class="panel-body">
+                            <!-- Steps -->
+                            <div class="steps steps-sm row" data-plugin="matchHeight" data-by-row="true" role="tablist">
+                                <div class="step col-lg-4 current" data-target="#exampleAccount" role="tab">
+                                </div>
+                                <div class="step col-lg-4" data-target="#exampleBilling" role="tab">
+                                </div>
+                            </div>
+                            <!-- End Steps -->
 
-                <!-- Wizard Content -->
-                <div class="wizard-content">
-                  <div class="wizard-pane active" id="exampleAccount" role="tabpanel">
-                  </div>
-                  <div class="wizard-pane" id="exampleBilling" role="tabpanel">
-                  </div>
+                            <!-- Wizard Content -->
+                            <div class="wizard-content">
+                                <div class="wizard-pane active" id="exampleAccount" role="tabpanel">
+                                </div>
+                                <div class="wizard-pane" id="exampleBilling" role="tabpanel">
+                                </div>
+                            </div>
+                            <!-- End Wizard Content -->
+                        </div>
+                    </div>
+                    <!-- End Panel Wizard One Form -->
                 </div>
-                <!-- End Wizard Content -->
-              </div>
+
+                <div class="col-lg-12">
+                    <!-- Panel Wizard Form Container -->
+                    <div class="panel" id="exampleWizardFormContainer">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Complete Details</h3>
+                        </div>
+                        <div class="panel-body">
+                            <!-- Steps -->
+                            <div class="pearls row">
+                                <div class="pearl current col-4">
+                                    <div class="pearl-icon"><i class="icon md-account" aria-hidden="true"></i></div>
+                                    <span class="pearl-title">Profile Settings</span>
+                                </div>
+                                <div class="pearl col-4">
+                                    <div class="pearl-icon"><i class="icon md-card" aria-hidden="true"></i></div>
+                                    <span class="pearl-title">Working Background</span>
+                                </div>
+                                <div class="pearl col-4">
+                                    <div class="pearl-icon"><i class="icon md-check" aria-hidden="true"></i></div>
+                                    <span class="pearl-title">Programming Profiles</span>
+                                </div>
+                            </div>
+                            <!-- End Steps -->
+
+                            <!-- Wizard Content -->
+                            <form id="exampleFormContainer">
+                                <div class="wizard-content">
+                                    <div class="wizard-pane active" role="tabpanel">
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label" for="inputUserNameOne">Name</label>
+                                            <input type="text" class="form-control" id="name" name="username" required="required">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label" for="inputUserNameOne">Gender</label>
+                                            <input type="text" class="form-control" id="gender" name="username" required="required">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label" for="inputPasswordOne">Organization</label>
+                                            <input type="text" class="form-control" id="organization" name="password" required="required">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label" for="inputPasswordOne">University</label>
+                                            <input type="text" class="form-control" id="university" name="password" required="required">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label" for="inputPasswordOne">Year Of Graduation</label>
+                                            <input type="text" class="form-control" id="graduationYear" name="password" required="required">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label" for="inputPasswordOne">LinkedIn Profile</label>
+                                            <input type="text" class="form-control" id="linkedinProfile" name="password" required="required">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label" for="inputPasswordOne">T-Shirt</label>
+                                            <input type="text" class="form-control" id="teeShirt" name="password" required="required">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label" for="inputPasswordOne">Address</label>
+                                            <input type="text" class="form-control" id="address" name="password" required="required">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label" for="inputPasswordOne">Github Id</label>
+                                            <input type="text" class="form-control" id="github" name="password" required="required">
+                                        </div>
+                                        <div class="form-group form-material">
+                                          <label for="file" style="cursor: pointer;border:2px solid rgb(62, 142, 247);border-radius: 16px;padding:12px 12px;color:black;background-color: rgb(62, 142, 247);">Upload Image</label>
+                                          <input id="file" type="file" style="display: none;" accept="image/*" />
+                                          <span  style="width:60px;height:60px;padding-left: 170px;">
+                                            <img id="myImg" src="../../assets/images/upload.png" alt="photo"  width="150" height="150" />
+                                          </span>
+                                          <p>*Max limit 2MB for photo upload</p>
+                                        </div>
+                                        <br/>
+                                        <center>
+                                            <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doUserData();" style="color:white;">Submit Information</a>
+                                        </center>
+                                    </div>
+
+                                    <div class="wizard-pane" id="exampleBillingOne" role="tabpanel">
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label" for="inputCardNumberOne">Where do you currently work?</label>
+                                            <input type="text" class="form-control" id="currentCompany" placeholder="Select Company" required="required">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label" for="inputCardNumberOne">Last Degree</label>
+                                            <input type="text" class="form-control" id="lastDegree" placeholder="Card number" required="required">
+                                        </div>
+                                        <div class="form-group form-material" for="inputCardNumberOne">
+                                            <label class="form-control-label">Year of exp:</label>
+                                            <input type="text" class="form-control" id="yearOfExp" placeholder="Card number" required="required">
+                                        </div>
+                                        <div class="form-group form-material" for="inputCardNumberOne">
+                                            <label class="form-control-label">Major in College</label>
+                                            <input type="text" class="form-control" id="majorInCollege" placeholder="Card number" required="required">
+                                        </div>
+                                        <div class="form-group form-material" for="inputCardNumberOne">
+                                            <label class="form-control-label">Current Job Title</label>
+                                            <input type="text" class="form-control" id="currentJobTitle" placeholder="Card number" required="required">
+                                        </div>
+                                        <div class="form-group form-material" for="inputCardNumberOne">
+                                            <label class="form-control-label">Location</label>
+                                            <input type="text" class="form-control" id="location" placeholder="Card number" required="required">
+                                        </div>
+                                        <div class="form-group form-material" for="inputCardNumberOne">
+                                            <label class="form-control-label">Skype</label>
+                                            <input type="text" class="form-control" id="skype" placeholder="Skype" required="required">
+                                        </div>
+                                        <center>
+                                            <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doJobProfile();" style="color:white;">Submit Information</a>
+                                        </center>
+                                    </div>
+
+                                    <div class="wizard-pane" id="exampleGettingOne" role="tabpanel">
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label">Codeforces</label>
+                                            <input type="text" class="form-control" id="codeforces" placeholder="Select Company">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label">Spoj</label>
+                                            <input type="text" class="form-control" id="spoj" placeholder="Select Company">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label">TopCoder</label>
+                                            <input type="text" class="form-control" id="topcoder" placeholder="Select Company">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label">Codechef</label>
+                                            <input type="text" class="form-control" id="codechef" placeholder="Select Company">
+                                        </div>
+                                        <div class="form-group form-material">
+                                            <label class="form-control-label">Hackerrank</label>
+                                            <input type="text" class="form-control" id="hackerrank" placeholder="Select Company">
+                                        </div>
+                                        <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doProgrammingProfile();" style="color:white;">Submit Information</a>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Wizard Content -->
+                        </div>
+                    </div>
+                    <!-- End Panel Wizard Form Container -->
+                </div>
             </div>
-            <!-- End Panel Wizard One Form -->
-          </div>
 
-          <div class="col-lg-12">
-            <!-- Panel Wizard Form Container -->
-            <div class="panel" id="exampleWizardFormContainer">
-              <div class="panel-heading">
-                <h3 class="panel-title">Complete Details</h3>
-              </div>
-              <div class="panel-body">
-                <!-- Steps -->
-                <div class="pearls row">
-                  <div class="pearl current col-4">
-                    <div class="pearl-icon"><i class="icon md-account" aria-hidden="true"></i></div>
-                    <span class="pearl-title">Profile Settings</span>
-                  </div>
-                  <div class="pearl col-4">
-                    <div class="pearl-icon"><i class="icon md-card" aria-hidden="true"></i></div>
-                    <span class="pearl-title">Working Background</span>
-                  </div>
-                  <div class="pearl col-4">
-                    <div class="pearl-icon"><i class="icon md-check" aria-hidden="true"></i></div>
-                    <span class="pearl-title">Programming Profiles</span>
-                  </div>
-                </div>
-                <!-- End Steps -->
 
-                <!-- Wizard Content -->
-                <form id="exampleFormContainer">
-                  <div class="wizard-content">
-                    <div class="wizard-pane active" role="tabpanel">
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputUserNameOne">Name</label>
-                        <input type="text" class="form-control" id="name" name="username" required="required">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputUserNameOne">Gender</label>
-                        <input type="text" class="form-control" id="gender" name="username" required="required">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputPasswordOne">Organization</label>
-                        <input type="text" class="form-control" id="organization" name="password"
-                          required="required">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputPasswordOne">University</label>
-                        <input type="text" class="form-control" id="university" name="password"
-                          required="required">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputPasswordOne">Year Of Graduation</label>
-                        <input type="text" class="form-control" id="graduationYear" name="password"
-                          required="required">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputPasswordOne">LinkedIN Profile</label>
-                        <input type="text" class="form-control" id="linkedinProfile" name="password"
-                          required="required">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputPasswordOne">T-Shirt</label>
-                        <input type="text" class="form-control" id="teeShirt" name="password"
-                          required="required">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputPasswordOne">Address</label>
-                        <input type="text" class="form-control" id="address" name="password"
-                          required="required">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputPasswordOne">Github Id</label>
-                        <input type="text" class="form-control" id="github" name="password"
-                          required="required">
-                      </div>
-                      <div class="form-group form-material">
-                        <label for="file" style="cursor: pointer;border:2px solid rgb(62, 142, 247);border-radius: 16px;padding:12px 12px;color:black;background-color: rgb(62, 142, 247);">Upload Image</label>
-                        <input id="file" type="file" style="display: none;" accept="image/*" />
-                        <span  style="width:60px;height:60px;padding-left: 170px;">
-                          <img id="myImg" src="../../assets/images/upload.png" alt="photo"  width="150" height="150" />
-                        </span>
-                      </div>
-                      <br/>
-                      <center>
-                        <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doUserData();" style="color:white;">Submit Information</a>
-                    </center>
-                    </div>
-
-                    <div class="wizard-pane" id="exampleBillingOne" role="tabpanel">
-                      <div class="form-group form-material">
-                        <label class="form-control-label">Where do you currently work?</label>
-                        <input type="text" class="form-control" id="currentCompany" placeholder="Select Company">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputCardNumberOne">Last Degree</label>
-                        <input type="text" class="form-control" id="lastDegree" name="number" placeholder="Card number">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputCardNumberOne">Year Of exp:</label>
-                        <input type="text" class="form-control" id="yearOfExp" name="number" placeholder="Card number">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputCardNumberOne">Major in College</label>
-                        <input type="text" class="form-control" id="majorInCollege" name="number" placeholder="Card number">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputCardNumberOne">Current Job Title</label>
-                        <input type="text" class="form-control" id="currentJobTitle" name="number" placeholder="Card number">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputCardNumberOne">Location</label>
-                        <input type="text" class="form-control" id="location" name="number" placeholder="Card number">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label" for="inputCVVOne">Skype</label>
-                        <input type="text" class="form-control" id="skype" name="Skype" placeholder="Skype">
-                      </div>
-                      <center>
-                        <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doJobProfile();" style="color:white;">Submit Information</a>
-                      </center>
-                    </div>
-
-                    <div class="wizard-pane" id="exampleGettingOne" role="tabpanel">
-                      <div class="form-group form-material">
-                        <label class="form-control-label">Codeforces</label>
-                        <input type="text" class="form-control" id="codeforces" placeholder="Select Company">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label">Spoj</label>
-                        <input type="text" class="form-control" id="spoj" placeholder="Select Company">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label">TopCoder</label>
-                        <input type="text" class="form-control" id="topcoder" placeholder="Select Company">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label">Codechef</label>
-                        <input type="text" class="form-control" id="codechef" placeholder="Select Company">
-                      </div>
-                      <div class="form-group form-material">
-                        <label class="form-control-label">Hackerrank</label>
-                        <input type="text" class="form-control" id="hackerrank" placeholder="Select Company">
-                      </div>
-                      <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doProgrammingProfile();" style="color:white;">Submit Information</a>
-                    </div>
-                  </div>
-                </form>
-                <!-- Wizard Content -->
-              </div>
-            </div>
-            <!-- End Panel Wizard Form Container -->
-          </div>
         </div>
-
-        
-      </div>
     </div>
     <!-- End Page -->
 
 
     <!-- Footer -->
     <footer class="site-footer">
-      <div class="site-footer-legal">© 2018 <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Remark</a></div>
-      <div class="site-footer-right">
-        Crafted with <i class="red-600 icon md-favorite"></i> by <a href="https://themeforest.net/user/creation-studio">Creation Studio</a>
-      </div>
+        <div class="site-footer-legal">© 2018 <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Remark</a></div>
+        <div class="site-footer-right">
+            Crafted with <i class="red-600 icon md-favorite"></i> by <a href="https://themeforest.net/user/creation-studio">Creation Studio</a>
+        </div>
     </footer>
     <!-- Core  -->
     <script src="../../../global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
@@ -869,49 +829,123 @@
     <script src="../../../global/vendor/asscrollable/jquery-asScrollable.js"></script>
     <script src="../../../global/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
     <script src="../../../global/vendor/waves/waves.js"></script>
-    
+
     <!-- Plugins -->
     <script src="../../../global/vendor/switchery/switchery.js"></script>
     <script src="../../../global/vendor/intro-js/intro.js"></script>
     <script src="../../../global/vendor/screenfull/screenfull.js"></script>
     <script src="../../../global/vendor/slidepanel/jquery-slidePanel.js"></script>
-        <script src="../../../global/vendor/formvalidation/formValidation.js"></script>
-        <script src="../../../global/vendor/formvalidation/framework/bootstrap.js"></script>
-        <script src="../../../global/vendor/matchheight/jquery.matchHeight-min.js"></script>
-        <script src="../../../global/vendor/jquery-wizard/jquery-wizard.js"></script>
-    
+    <script src="../../../global/vendor/formvalidation/formValidation.js"></script>
+    <script src="../../../global/vendor/formvalidation/framework/bootstrap.js"></script>
+    <script src="../../../global/vendor/matchheight/jquery.matchHeight-min.js"></script>
+    <script src="../../../global/vendor/jquery-wizard/jquery-wizard.js"></script>
+
     <!-- Scripts -->
     <script src="../../../global/js/Component.js"></script>
     <script src="../../../global/js/Plugin.js"></script>
     <script src="../../../global/js/Base.js"></script>
     <script src="../../../global/js/Config.js"></script>
-    
+
     <script src="../../assets/js/Section/Menubar.js"></script>
     <script src="../../assets/js/Section/Sidebar.js"></script>
     <script src="../../assets/js/Section/PageAside.js"></script>
     <script src="../../assets/js/Plugin/menu.js"></script>
-    
+
     <!-- Config -->
     <script src="../../../global/js/config/colors.js"></script>
     <script src="../../assets/js/config/tour.js"></script>
-    <script>Config.set('assets', '../../assets');</script>
-    
+    <script>
+        Config.set('assets', '../../assets');
+    </script>
+
     <!-- Page -->
     <script src="../../assets/js/Site.js"></script>
     <script src="../../../global/js/Plugin/asscrollable.js"></script>
     <script src="../../../global/js/Plugin/slidepanel.js"></script>
     <script src="../../../global/js/Plugin/switchery.js"></script>
-        <script src="../../../global/js/Plugin/jquery-wizard.js"></script>
-        <script src="../../../global/js/Plugin/matchheight.js"></script>
-    
-        <script src="../../assets/examples/js/forms/wizard.js"></script>
+    <script src="../../../global/js/Plugin/jquery-wizard.js"></script>
+    <script src="../../../global/js/Plugin/matchheight.js"></script>
 
-        <script>
-        if(sessionStorage.getItem("loggedCA") != md5("true")){
-            window.location.href = "./login"; 
-          }
-          let photoUrl="";
-          function doUserData() {
+    <script src="../../assets/examples/js/forms/wizard.js"></script>
+
+    <script>
+        if (sessionStorage.getItem("loggedCA") != md5("true")) {
+            window.location.href = "./login";
+        }
+        var UserData = [];
+        let photoUrl="";
+
+        function getprofiledata() {
+
+            getUserData();
+            getJobProfileData();
+            getProgrammingProfileData();
+        }
+
+        function getUserData() {
+            let user_id = sessionStorage.getItem("user_id");
+            axios.get(`http://3.136.20.160:80/getUserData/` + `${user_id}
+                    `)
+                .then(res => {
+                    console.log(res)
+                    UserData1 = UserData.concat(res.data.a);
+                    if (res.data.a.length !== 0) {
+                        document.getElementById("name").value = res.data.a[0].name;
+                        document.getElementById("gender").value = res.data.a[0].gender;
+                        document.getElementById("organization").value = res.data.a[0].organization;
+                        document.getElementById("university").value = res.data.a[0].university;
+                        document.getElementById("graduationYear").value = res.data.a[0].graduation_year;
+                        document.getElementById("linkedinProfile").value = res.data.a[0].linkedIn_profile;
+                        document.getElementById("teeShirt").value = res.data.a[0].t_shirt_size;
+                        document.getElementById("address").value = res.data.a[0].address;
+                        document.getElementById("github").value = res.data.a[0].github_handle;
+                        document.getElementById("myImg").src = res.data.a[0].photo;
+                    }
+                })
+                .catch(err => console.log(err))
+        }
+
+        function getJobProfileData() {
+            let user_id = sessionStorage.getItem("user_id");
+            axios.get(`http://3.136.20.160:80/getJobProfile/` + `${user_id}
+                    `)
+                .then(res => {
+                    console.log(res)
+                    UserData2 = UserData.concat(res.data.a);
+                    if (res.data.a.length !== 0) {
+                        document.getElementById("currentCompany").value = res.data.a[0].current_company;
+                        document.getElementById("lastDegree").value = res.data.a[0].last_degree;
+                        document.getElementById("yearOfExp").value = res.data.a[0].years_of_experience;
+                        document.getElementById("majorInCollege").value = res.data.a[0].major_in_college;
+                        document.getElementById("currentJobTitle").value = res.data.a[0].current_job_title;
+                        document.getElementById("location").value = res.data.a[0].location;
+                        document.getElementById("skype").value = res.data.a[0].skype;
+                    }
+                })
+                .catch(err => console.log(err))
+        }
+
+        function getProgrammingProfileData() {
+            let user_id = sessionStorage.getItem("user_id");
+            axios.get(`http://3.136.20.160:80/getProgrammingProfile/` + `${user_id}
+                    `)
+                .then(res => {
+                    console.log(res)
+                    UserData3 = UserData.concat(res.data.a);
+                    if (res.data.a.length !== 0) {
+                        document.getElementById("codeforces").value = res.data.a[0].codeforces;
+                        document.getElementById("spoj").value = res.data.a[0].spoj;
+                        document.getElementById("topcoder").value = res.data.a[0].topcoder;
+                        document.getElementById("codechef").value = res.data.a[0].codechef;
+                        document.getElementById("hackerrank").value = res.data.a[0].hackerrank;
+
+                    }
+                })
+                .catch(err => console.log(err))
+        }
+        console.log(UserData.length);
+
+        function doUserData() {
             let nameValue = document.getElementById("name").value;
             let genderValue = document.getElementById("gender").value;
             let organizationValue = document.getElementById("organization").value;
@@ -923,34 +957,64 @@
             let github_handleValue = document.getElementById("github").value;
             let photoValue = photoUrl;
 
-            console.log(photoUrl);
-            axios.post('http://3.136.20.160:80/doUserData', {
-              bootcamp_id: "1234",
-              user_id: sessionStorage.getItem("user_id"),
-              name: nameValue,
-              gender: genderValue,
-              is_otp_verified: true,
-              is_email_verified: true,
-              photo: photoValue,
-              organization: organizationValue,
-              university: universityValue,
-              graduation_year: graduationYearValue,
-              linkedIn_profile: linkedInProfileValue,
-              t_shirt_size: t_shirt_sizeValue,
-              address:addressValue,
-              public_sharing : "1",
-              github_handle: github_handleValue
-              })
-              .then(function (response) {
-                alert("Post Success")
-                console.log(response);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
-          }
+            console.log(UserData1.length);
+            if (UserData1.length !== 0) {
+                let User_id = sessionStorage.getItem("user_id");
+                axios.put('http://3.136.20.160:80/updateUserData/' + `${User_id}`, {
+                        bootcamp_id: 1234,
+                        user_id: User_id,
+                        name: nameValue,
+                        gender: genderValue,
+                        is_otp_verified: true,
+                        is_email_verified: true,
+                        photo: photoValue,
+                        organization: organizationValue,
+                        university: universityValue,
+                        graduation_year: graduationYearValue,
+                        linkedIn_profile: linkedInProfileValue,
+                        t_shirt_size: t_shirt_sizeValue,
+                        address: addressValue,
+                        public_sharing: "1",
+                        github_handle: github_handleValue
+                    })
+                    .then(function(response) {
+                        alert("Put Success")
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+            } else {
+                axios.post('http://3.136.20.160:80/doUserData', {
+                        bootcamp_id: 1234,
+                        user_id: sessionStorage.getItem("user_id"),
+                        name: nameValue,
+                        gender: genderValue,
+                        is_otp_verified: true,
+                        is_email_verified: true,
+                        photo: photoValue,
+                        organization: organizationValue,
+                        university: universityValue,
+                        graduation_year: graduationYearValue,
+                        linkedIn_profile: linkedInProfileValue,
+                        t_shirt_size: t_shirt_sizeValue,
+                        address: addressValue,
+                        public_sharing: "1",
+                        github_handle: github_handleValue
+                    })
+                    .then(function(response) {
+                        alert("Post Success")
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
 
-          function doJobProfile() {
+            }
+
+        }
+
+        function doJobProfile() {
             let current_companyValue = document.getElementById("currentCompany").value;
             let last_degreeValue = document.getElementById("lastDegree").value;
             let years_of_experienceValue = document.getElementById("yearOfExp").value;
@@ -959,53 +1023,101 @@
             let locationValue = document.getElementById("location").value;
             let skypeValue = document.getElementById("skype").value;
 
-            axios.post('http://3.136.20.160:80/doJobProfile', {
-              user_id: sessionStorage.getItem("user_id"),
-              current_company: current_companyValue,
-              last_degree: last_degreeValue,
-              years_of_experience: years_of_experienceValue,
-              major_in_college: major_in_collegeValue,
-              current_job_title: current_job_titleValue,
-              location: locationValue,
-              skype: skypeValue
-              })
-              .then(function (response) {
-                alert("Post Success")
-                console.log(response);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
-          }
+            if (UserData2.length !== 0) {
+                let User_id = sessionStorage.getItem("user_id");
+                axios.put('http://3.136.20.160:80/updateJobProfile/' + `${User_id}`, {
+                        user_id: sessionStorage.getItem("user_id"),
+                        current_company: current_companyValue,
+                        last_degree: last_degreeValue,
+                        years_of_experience: years_of_experienceValue,
+                        major_in_college: major_in_collegeValue,
+                        current_job_title: current_job_titleValue,
+                        location: locationValue,
+                        skype: skypeValue
+                    })
+                    .then(function(response) {
+                        alert("Put Success")
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+            } else {
+                axios.post('http://3.136.20.160:80/doJobProfile', {
+                        user_id: sessionStorage.getItem("user_id"),
+                        current_company: current_companyValue,
+                        last_degree: last_degreeValue,
+                        years_of_experience: years_of_experienceValue,
+                        major_in_college: major_in_collegeValue,
+                        current_job_title: current_job_titleValue,
+                        location: locationValue,
+                        skype: skypeValue
+                    })
+                    .then(function(response) {
+                        alert("Post Success")
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+            }
+        }
 
-          function doProgrammingProfile() {
+        function doProgrammingProfile() {
             let codeforcesValue = document.getElementById("codeforces").value;
             let spojValue = document.getElementById("spoj").value;
             let topcoderValue = document.getElementById("topcoder").value;
             let codechefValue = document.getElementById("codechef").value;
             let hackerrankValue = document.getElementById("hackerrank").value;
 
-            axios.post('http://3.136.20.160:80/doProgrammingProfile', {
-              user_id: sessionStorage.getItem("user_id"),
-              codeforces: codeforcesValue,
-              spoj: spojValue,
-              topcoder: topcoderValue,
-              codechef: codechefValue,
-              hackerrank: hackerrankValue
-              })
-              .then(function (response) {
-                window.location.href = './dashboard';
-                console.log(response);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
-          }
+
+            if (UserData3.length !== 0) {
+                let User_id = sessionStorage.getItem("user_id");
+                axios.put('http://3.136.20.160:80/updateProgrammingProfile/' + `${User_id}`, {
+                        user_id: User_id,
+                        codeforces: codeforcesValue,
+                        spoj: spojValue,
+                        topcoder: topcoderValue,
+                        codechef: codechefValue,
+                        hackerrank: hackerrankValue
+                    })
+                    .then(function(response) {
+                        alert("Put Success")
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+            } else {
+                axios.post('http://3.136.20.160:80/doProgrammingProfile', {
+                        user_id: sessionStorage.getItem("user_id"),
+                        codeforces: codeforcesValue,
+                        spoj: spojValue,
+                        topcoder: topcoderValue,
+                        codechef: codechefValue,
+                        hackerrank: hackerrankValue
+                    })
+                    .then(function(response) {
+                        window.location.href = './dashboard';
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+            }
+        }
+
 
   window.addEventListener('load', function() {
         document.querySelector('input[type="file"]').addEventListener('change', function() {
         if (this.files && this.files[0]) {
-        var img = document.getElementById('myImg'); // $('img')[0]
+          var x = this.files[0].size / 1024 / 1024 ;
+        if(x > 2)
+        {
+          alert(x);
+        }
+        else {
+          var img = document.getElementById('myImg'); // $('img')[0]
         img.src = URL.createObjectURL(this.files[0]);
         var reader = new FileReader();
         reader.readAsDataURL(this.files[0]); 
@@ -1017,6 +1129,8 @@
         } // set src to blob url
         img.onload = imageIsLoaded;
         }
+       
+        }
         });
         });
 
@@ -1024,6 +1138,13 @@
         alert("image uploaded successfully"); // blob url
 
   }
-        </script>
-  </body>
+
+        function logout(){
+            sessionStorage.clear();
+            window.location.href();
+        }
+
+    </script>
+</body>
+
 </html>
