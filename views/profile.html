@@ -891,7 +891,7 @@
                         document.getElementById("github").value = res.data.a[0].github_handle;
                     }
                 })
-                .catch(err => console.log(err))
+                .catch(err => {console.log(err),alert("Something went wrong, please try again")})
         }
 
         function getJobProfileData() {
@@ -911,7 +911,7 @@
                         document.getElementById("skype").value = res.data.a[0].skype;
                     }
                 })
-                .catch(err => console.log(err))
+                .catch(err => {console.log(err),alert("Something went wrong, please try again")})
         }
 
         function getProgrammingProfileData() {
@@ -930,7 +930,7 @@
 
                     }
                 })
-                .catch(err => console.log(err))
+                .catch(err => {console.log(err),alert("Something went wrong, please try again")})
         }
 
         function doUserData() {
@@ -964,11 +964,12 @@
                         github_handle: github_handleValue
                     })
                     .then(function(response) {
-                        alert("Put Success")
+                        alert("Profile details updated successfully")
                         console.log(response);
                     })
                     .catch(function(error) {
                         console.log(error);
+                        alert("Something went wrong, please try again")
                     });
             } else {
                 axios.post('http://3.136.20.160:80/doUserData', {
@@ -989,11 +990,12 @@
                         github_handle: github_handleValue
                     })
                     .then(function(response) {
-                        alert("Post Success")
+                        alert("Profile details submitted successfully")
                         console.log(response);
                     })
                     .catch(function(error) {
                         console.log(error);
+                        alert("Something went wrong, please try again")
                     });
 
             }
@@ -1022,11 +1024,12 @@
                         skype: skypeValue
                     })
                     .then(function(response) {
-                        alert("Put Success")
+                        alert("Working background details updated successfully")
                         console.log(response);
                     })
                     .catch(function(error) {
                         console.log(error);
+                        alert("Something went wrong, please try again")
                     });
             } else {
                 axios.post('http://3.136.20.160:80/doJobProfile', {
@@ -1040,11 +1043,12 @@
                         skype: skypeValue
                     })
                     .then(function(response) {
-                        alert("Post Success")
+                        alert("Working background details updated successfully")
                         console.log(response);
                     })
                     .catch(function(error) {
                         console.log(error);
+                        alert("Something went wrong, please try again")
                     });
             }
         }
@@ -1068,11 +1072,13 @@
                         hackerrank: hackerrankValue
                     })
                     .then(function(response) {
-                        alert("Put Success")
+                        alert("Programming profile details updated successfully")
+                        window.location.href = './dashboard';
                         console.log(response);
                     })
                     .catch(function(error) {
                         console.log(error);
+                        alert("Something went wrong, please try again")
                     });
             } else {
                 axios.post('http://3.136.20.160:80/doProgrammingProfile', {
@@ -1089,6 +1095,7 @@
                     })
                     .catch(function(error) {
                         console.log(error);
+                        alert("Something went wrong, please try again")
                     });
             }
         }
