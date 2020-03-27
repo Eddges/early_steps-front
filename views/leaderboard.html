@@ -670,7 +670,7 @@
       function getAllProfile() {
         axios.get('http://3.136.20.160:80/getAllProgress')
           .then(res1 =>{
-            getUserData(res1.user_id).then( function (response2) {
+            getAllUserData(res1.user_id).then( function (response2) {
             let sample = res1.data.a.sort(function (a, b) { return b.problems_completed - a.problems_completed })
             sample.map((res, index) => {
               var tr = document.createElement("tr");
@@ -696,17 +696,19 @@
           })
           })
           .catch(function (error) {
+            alert("Something went wrong, please try again!")
             console.log(error);
           });
       }
 
-      function getUserData(props) {
+      function getAllUserData(props) {
         return axios.get(`http://3.136.20.160:80/getAllUsers`)
           .then(function (response) {
             console.log(response);
             return response.data.a;
           })
           .catch(function (error) {
+            alert("Something went wrong, please try again!")
             console.log(error);
           });
       }
