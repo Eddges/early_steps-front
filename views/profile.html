@@ -731,6 +731,15 @@
                                             <label class="form-control-label" for="inputPasswordOne">Github Id</label>
                                             <input type="text" class="form-control" id="github" name="password" required="required">
                                         </div>
+                                        <div class="form-group form-material">
+                                          <label for="file" style="cursor: pointer;border:2px solid rgb(62, 142, 247);border-radius: 16px;padding:12px 12px;color:black;background-color: rgb(62, 142, 247);">Upload Image</label>
+                                          <input id="file" type="file" style="display: none;" accept="image/*" />
+                                          <span  style="width:60px;height:60px;padding-left: 170px;">
+                                            <img id="myImg" src="../../assets/images/upload.png" alt="photo"  width="150" height="150" />
+                                          </span>
+                                          <p>*Max limit 2MB for photo upload</p>
+                                        </div>
+                                        <br/>
                                         <center>
                                             <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doUserData();" style="color:white;">Submit Information</a>
                                         </center>
@@ -870,6 +879,7 @@
             window.location.href = "./login";
         }
         var UserData = [];
+        let photoUrl="";
 
         function getprofiledata() {
 
@@ -895,6 +905,7 @@
                         document.getElementById("teeShirt").value = res.data.a[0].t_shirt_size;
                         document.getElementById("address").value = res.data.a[0].address;
                         document.getElementById("github").value = res.data.a[0].github_handle;
+                        document.getElementById("myImg").src = res.data.a[0].photo;
                     }
                 })
                 .catch(err => {console.log(err),alert("Something went wrong, please try again")})
@@ -949,6 +960,8 @@
             let t_shirt_sizeValue = document.getElementById("teeShirt").value;
             let addressValue = document.getElementById("address").value;
             let github_handleValue = document.getElementById("github").value;
+            let photoValue = photoUrl;
+
             console.log(UserData1.length);
             if (UserData1.length !== 0) {
                 let User_id = sessionStorage.getItem("user_id");
@@ -959,7 +972,7 @@
                         gender: genderValue,
                         is_otp_verified: true,
                         is_email_verified: true,
-                        photo: "photo",
+                        photo: photoValue,
                         organization: organizationValue,
                         university: universityValue,
                         graduation_year: graduationYearValue,
@@ -985,7 +998,7 @@
                         gender: genderValue,
                         is_otp_verified: true,
                         is_email_verified: true,
-                        photo: "photo",
+                        photo: photoValue,
                         organization: organizationValue,
                         university: universityValue,
                         graduation_year: graduationYearValue,
@@ -1105,6 +1118,38 @@
                     });
             }
         }
+
+
+  window.addEventListener('load', function() {
+        document.querySelector('input[type="file"]').addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          var x = this.files[0].size / 1024 / 1024 ;
+        if(x > 2)
+        {
+          alert(x);
+        }
+        else {
+          var img = document.getElementById('myImg'); // $('img')[0]
+        img.src = URL.createObjectURL(this.files[0]);
+        var reader = new FileReader();
+        reader.readAsDataURL(this.files[0]); 
+        reader.onloadend = function() {
+            var base64data = reader.result; 
+            photoUrl = base64data;               
+            console.log(base64data);
+            console.log(photoUrl);
+        } // set src to blob url
+        img.onload = imageIsLoaded;
+        }
+       
+        }
+        });
+        });
+
+        function imageIsLoaded() {
+        alert("image uploaded successfully"); // blob url
+
+  }
 
         function logout(){
             sessionStorage.clear();
