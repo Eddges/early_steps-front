@@ -567,41 +567,40 @@
   </div>
   </div>
   <!-- End Page -->
-  <div class="modal fade" id="exampleFormModal" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1"
-    aria-hidden="true" style="display: none;">
+  <div class="modal fade" id="exampleFormModal" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-simple modal-center" style="z-index:20000;">
-      <form class="modal-content" style="z-index:20000;">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-          <h4 class="modal-title" id="exampleFormModalLabel">Send us some feedback!</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-
-            <div class="col-xl-12 form-group">
-              <textarea class="form-control" rows="5" placeholder="Describe your issue or idea.."></textarea>
-              <div class="radio-custom radio-primary">
-                <input type="radio" id="inputRadiosUnchecked" name="inputRadios">
-                <label for="inputRadiosUnchecked">Bug</label>
-              </div>
-              <div class="radio-custom radio-primary">
-                <input type="radio" id="inputRadiosUnchecked" name="inputRadios">
-                <label for="inputRadiosUnchecked">Improvement</label>
-              </div>
-              <div class="radio-custom radio-primary">
-                <input type="radio" id="inputRadiosUnchecked" name="inputRadios">
-                <label for="inputRadiosUnchecked">Comment</label>
-              </div>
+        <form class="modal-content" style="z-index:20000;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                <h4 class="modal-title" id="exampleFormModalLabel">Send us some feedback!</h4>
             </div>
+            <div class="modal-body">
+                <div class="row">
 
-            <div class="col-md-12 float-right">
-              <button class="btn btn-primary btn-outline" data-dismiss="modal" type="button">Send Feedback</button>
+                    <div class="col-xl-12 form-group">
+                        <textarea class="form-control" rows="5" placeholder="Describe your issue or idea.." id="userFeedback_text"></textarea>
+                        <div class="radio-custom radio-primary">
+                            <input type="radio" id="radio_feedback_type1" name="inputRadios">
+                            <label for="inputRadiosUnchecked" id="feedback_type1">Bug</label>
+                        </div>
+                        <div class="radio-custom radio-primary">
+                            <input type="radio" id="radio_feedback_type2" name="inputRadios">
+                            <label for="inputRadiosUnchecked" id="feedback_type2">Improvement</label>
+                        </div>
+                        <div class="radio-custom radio-primary">
+                            <input type="radio" id="radio_feedback_type3" name="inputRadios">
+                            <label for="inputRadiosUnchecked" id="feedback_type3">Comment</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 float-right">
+                        <button class="btn btn-primary btn-outline" data-dismiss="modal" type="button" onclick="userFeedback()">Send Feedback</button>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </form>
+        </form>
     </div>
 
     <!-- Footer -->
@@ -717,6 +716,32 @@
         sessionStorage.clear();
         window.reload();
       }      
+      function userFeedback() {
+                let user_idValue = sessionStorage.getItem("user_id");
+                let userFeedback_textValue = document.getElementById("userFeedback_text").value;
+                let userFeedback_type;
+
+                if (document.getElementById("radio_feedback_type1").checked)
+                    userFeedback_type = document.getElementById("feedback_type1").innerHTML;
+                else if (document.getElementById("radio_feedback_type2").checked)
+                    userFeedback_type = document.getElementById("feedback_type2").innerHTML;
+                else if (document.getElementById("radio_feedback_type3").checked)
+                    userFeedback_type = document.getElementById("feedback_type3").innerHTML;
+
+                axios.post('http://3.136.20.160:80/doFeedback', {
+                        user_id: user_idValue,
+                        feedback_details: userFeedback_textValue,
+                        feedback_type: userFeedback_type
+                    })
+                    .then(function(response) {
+                        alert("Feedback submitted successfully!");
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        alert("Something went wrong, Please try again!")
+                        console.log(error);
+                    });
+            }
     </script>
 </body>
 
