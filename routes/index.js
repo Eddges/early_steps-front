@@ -33,4 +33,7 @@ router.get('/profile', function(req, res, next) {
 router.get('/leaderboard', function(req, res, next) {
   res.render('leaderboard', { title: 'Express' });
 });
+router.get('/rewards', function(req, res, next) {
+  res.render('rewards', { title: 'Express' });
+});
 module.exports = router;

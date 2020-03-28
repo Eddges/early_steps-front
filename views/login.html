@@ -8,10 +8,10 @@
     <meta name="description" content="bootstrap admin template">
     <meta name="author" content="">
     
-    <title>Login V3 | Remark Admin Template</title>
+    <title>CodeAsylums</title>
     
-    <link rel="apple-touch-icon" href="../../assets/images/apple-touch-icon.png">
-    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" href="../../assets/images/logo-ca.png">
+    <link rel="shortcut icon" href="../../assets/images/logo-ca.png">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../../../global/css/bootstrap.min.css">
@@ -90,7 +90,7 @@
         </div>
 
         <footer class="page-copyright page-copyright-inverse">
-          <p>WEBSITE BY Creation Studio</p>
+          <p>WEBSITE BY CodeAsylums</p>
           <p>© 2018. All RIGHT RESERVED.</p>
           <div class="social">
             <a class="btn btn-icon btn-pure" href="javascript:void(0)">
@@ -183,25 +183,46 @@
               console.log(response);
               sessionStorage.setItem("user_id", response.data["a"][0].phone);
               sessionStorage.setItem("loggedCA", md5("true"));
-              window.location.href = redirectURL; 
+              getProgrammingProfileData()
             }).catch(function (error){
               console.log(error);
+              alert("Invalid Credentials, Please verify!");
             });
           }).catch(function(error) {
-            console.log(error);
+              console.log(error);
+              alert("Invalid Credentials, Please verify!");
           });
         } else {    
-          // Input is number
-          axios.get(`http://3.136.20.160:80/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
-          .then(function (response){
-            console.log(response);
-            sessionStorage.setItem("loggedCA", "true");
-            window.location.href = redirectURL; 
-          }).catch(function(error){
-            console.log(error);
-          });
-        }   
+    // Input is number
+    axios.get(`http://3.136.20.160:80/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
+    .then(function (response){
+        console.log(response);
+        sessionStorage.setItem("user_id", userEmailOrPhoneValue);
+        sessionStorage.setItem("loggedCA", md5("true"));
+        getProgrammingProfileData()
+      }).catch(function (error){
+        console.log(error);
+        alert("Invalid Credentials, Please verify!");
+      });
+  }   
       }
+
+      function getProgrammingProfileData() {
+            let user_id = sessionStorage.getItem("user_id");
+            axios.get(`http://3.136.20.160:80/getProgrammingProfile/` + `${user_id}
+                    `)
+                .then(res => {
+                    if(res.data.a.length!=0)
+                    {
+                      window.location.href = "./dashboard"; 
+                    }
+                    else
+                    {
+                      window.location.href = "./profile"; 
+                    }
+                })
+                .catch(err => console.log(err))
+        }      
     </script>
   </body>
 </html>
