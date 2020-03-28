@@ -61,10 +61,18 @@
     <div class="page vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">>
       <div class="page-content vertical-align-middle animation-slide-top animation-duration-1">
         <div class="panel">
+         <!-- alert message -->
+         <div class="alert dark alert-danger alert-dismissible animation-slide-top " id="alert-message-div" style="display:none" role="alert">
+                    <button type="button" class="close" onClick="hideme()" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <div id="message-div"></div>
+                  </div>
+          <!-- End alert message -->
           <div class="panel-body">
             <div class="brand">
               <img class="brand-img" src="../../assets//images/logo-ca.png" alt="..." style="width:40%">
-              <h2 class="brand-text font-size-18">Remark</h2>
+              
             </div>
             <form>
               <div class="form-group form-material floating" data-plugin="formMaterial">
@@ -94,19 +102,9 @@
         </div>
 
         <footer class="page-copyright page-copyright-inverse">
-          <p>WEBSITE BY CodeAsylums</Code></p>
-          <p>© 2018. All RIGHT RESERVED.</p>
-          <div class="social">
-            <a class="btn btn-icon btn-pure" href="javascript:void(0)">
-            <i class="icon bd-twitter" aria-hidden="true"></i>
-          </a>
-            <a class="btn btn-icon btn-pure" href="javascript:void(0)">
-            <i class="icon bd-facebook" aria-hidden="true"></i>
-          </a>
-            <a class="btn btn-icon btn-pure" href="javascript:void(0)">
-            <i class="icon bd-google-plus" aria-hidden="true"></i>
-          </a>
-          </div>
+           <p>CODEASYLUMS</p>
+          <p>© 2020. All RIGHT RESERVED.</p>
+         
         </footer>
       </div>
     </div>
@@ -156,6 +154,11 @@
     <script src="../../../global/js/Plugin/material.js"></script>
     
     <script>
+    
+     function hideme(){
+      document.getElementById('alert-message-div').style.display="none";
+    }
+
       (function(document, window, $){
         'use strict';
     
@@ -171,6 +174,61 @@
         let phoneValue = document.getElementById("phone").value;
         let passwordValue = md5(document.getElementById("password").value);
         let retypepasswordValue = md5(document.getElementById("retypePassword").value);
+
+        if(usernameValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Username is required";
+          return false;
+        }
+         if(emailValue==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Email is required";
+          return false;
+        }
+          
+          //var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+          var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        
+          if(!regex.test(emailValue))
+          {
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="You have entered an invalid email address!";
+          return false;
+          }
+        
+          
+
+         if(phoneValue==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Phone is required";
+          return false;
+        }
+
+        var phoneno = /^\d{10}$/;
+        if(!(phoneValue.match(phoneno)))
+        {
+            document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Please enter 10 digit phone number";
+          return false;
+        }
+      
+         if(document.getElementById("password").value==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Password is required";
+          return false;
+        }
+         if(document.getElementById("retypePassword").value==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Confirm password is required";
+          return false;
+        }
+         if(document.getElementById("retypePassword").value!=document.getElementById("password").value){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Passwords do not match";
+          return false;
+        }
+
+
         let userTypeValue = "student";
         let redirectURL = "./login";
         var flag1 = true;
@@ -180,7 +238,10 @@
         .then((res)=>{
           if(res.data==="True")
             {
-            alert("Email already registered!")
+               document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Email already registered!";
+          //return false;
+           
           }
         })
         .catch(async (err)=>{
@@ -190,7 +251,10 @@
               .then((res)=>{
                 if(res.data==="True")
                 {
-                  alert("Phone number already registered!")              
+                    document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Phone number already registered!";
+          //return false;
+                            
                 }
               })
               .catch((err)=>{flag2 = false;console.log(flag1,flag2)})  
