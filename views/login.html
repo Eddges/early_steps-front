@@ -60,13 +60,24 @@
 
     <!-- Page -->
     <div class="page vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">>
+
+    
       <div class="page-content vertical-align-middle animation-slide-top animation-duration-1">
         <div class="panel">
+        <!-- alert message -->
+         <div class="alert dark alert-danger alert-dismissible animation-slide-top " id="alert-message-div" style="display:none" role="alert">
+                    <button type="button" class="close" onClick="hideme()" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <div id="message-div"></div>
+                  </div>
+          <!-- End alert message -->
           <div class="panel-body">
             <div class="brand">
               <img class="brand-img" src="../../assets//images/logo-ca.png" alt="..." style="width:40%">
               
             </div>
+           
             <form>
               <div class="form-group form-material floating" data-plugin="formMaterial">
                 <input id="userEmailOrPhone" type="text" class="form-control" name="email" />
@@ -142,6 +153,12 @@
     <script src="../../../global/js/Plugin/material.js"></script>
     
     <script>
+
+    function hideme(){
+      document.getElementById('alert-message-div').style.display="none";
+    }
+
+
       (function(document, window, $){
         'use strict';
     
@@ -155,6 +172,19 @@
       function doLogin() {
         let userEmailOrPhoneValue = document.getElementById("userEmailOrPhone").value;
         let passwordValue = md5(document.getElementById("password").value);
+        
+        if(userEmailOrPhoneValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Email or Phone is required";
+          return false;
+        }
+
+        if(passwordValue==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Password is required";
+          return false;
+        }
+        
         let userTypeValue = "student";
         let redirectURL = "./profile";
 
