@@ -64,27 +64,27 @@
           <div class="panel-body">
             <div class="brand">
               <img class="brand-img" src="../../assets//images/logo-ca.png" alt="..." style="width:40%">
-             
+              <h2 class="brand-text font-size-18">Remark</h2>
             </div>
             <form>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="username" type="text" class="form-control" name="username" />
+                <input id="username" type="text" class="form-control" name="username" required="required"/>
                 <label class="floating-label">UserName</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="email" type="email" class="form-control" name="email" />
+                <input id="email" type="email" class="form-control" name="email" required="required"/>
                 <label class="floating-label">Email</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="phone" type="phone" class="form-control" name="phone" />
+                <input id="phone" type="phone" class="form-control" name="phone" required="required"/>
                 <label class="floating-label">Phone No</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="password" type="password" class="form-control" name="password" />
+                <input id="password" type="password" class="form-control" name="password" required="required"/>
                 <label class="floating-label">Password</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="retypePassword" type="password" class="form-control" name="PasswordCheck" />
+                <input id="retypePassword" type="password" class="form-control" name="PasswordCheck" required="required"/>
                 <label class="floating-label">Re-enter Password</label>
               </div>
               <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doregistration();" style="color:white;">Sign up</a>
@@ -94,9 +94,19 @@
         </div>
 
         <footer class="page-copyright page-copyright-inverse">
-          <p>CODEASYLUMS</p>
-          <p>© 2020. All RIGHT RESERVED.</p>
-         
+          <p>WEBSITE BY CodeAsylums</Code></p>
+          <p>© 2018. All RIGHT RESERVED.</p>
+          <div class="social">
+            <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+            <i class="icon bd-twitter" aria-hidden="true"></i>
+          </a>
+            <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+            <i class="icon bd-facebook" aria-hidden="true"></i>
+          </a>
+            <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+            <i class="icon bd-google-plus" aria-hidden="true"></i>
+          </a>
+          </div>
         </footer>
       </div>
     </div>
@@ -155,7 +165,7 @@
         });
       })(document, window, jQuery);
 
-      function doregistration(){
+      async function doregistration(){
         let usernameValue = document.getElementById("username").value;
         let emailValue = document.getElementById("email").value;
         let phoneValue = document.getElementById("phone").value;
@@ -163,28 +173,50 @@
         let retypepasswordValue = md5(document.getElementById("retypePassword").value);
         let userTypeValue = "student";
         let redirectURL = "./login";
-        try {
-          if (passwordValue === retypepasswordValue) {
-            axios.post('http://3.136.20.160:80/doRegistration', {
-              user_id: phoneValue,
-              user_type: userTypeValue,
-              user_name: usernameValue,
-              phone: phoneValue,
-              email: emailValue,
-              password: passwordValue
-              })
-              .then(function (response) {
-                console.log(response);
-                alert("SuccessFully Registered, Now Login !");
-                window.location.href = redirectURL;
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+        var flag1 = true;
+        var flag2 = true
+        console.log(flag1,flag2)
+      await axios.get(`http://3.136.20.160:80/isRegisteredUserEmail/`+`${emailValue}`)
+        .then((res)=>{
+          if(res.data==="True")
+            {
+            alert("Email already registered!")
           }
-        } catch (err) {
-          // Values are not Equal
-          console.log(err);
+        })
+        .catch(async (err)=>{
+          flag1 = false;
+          console.log(flag1,flag2)
+          await axios.get(`http://3.136.20.160:80/isRegisteredUserPhone/`+`${phoneValue}`)
+              .then((res)=>{
+                if(res.data==="True")
+                {
+                  alert("Phone number already registered!")              
+                }
+              })
+              .catch((err)=>{flag2 = false;console.log(flag1,flag2)})  
+        })
+
+        if (flag1 === false && flag2 === false){
+           if (passwordValue === retypepasswordValue) {
+              console.log("reg")
+              axios.post('http://3.136.20.160:80/doRegistration', {
+                user_id: phoneValue,
+                user_type: userTypeValue,
+                user_name: usernameValue,
+                phone: phoneValue,
+                email: emailValue,
+                password: passwordValue
+                })
+                .then(function (response) {
+                  console.log(response);
+                  alert("Successfully Registered, Now Login!");
+                  window.location.href = redirectURL;
+                })
+                .catch(function (error) {
+                  console.log(error);
+                  alert("UserName already registered!");
+                });
+            }
         }
       }
     </script>
