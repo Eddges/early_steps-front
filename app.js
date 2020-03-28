@@ -30,6 +30,7 @@ app.use('/register', indexRouter);
 app.use('/dashboard', indexRouter);
 app.use('/schedule', indexRouter);
 app.use('/videos', indexRouter);
+app.use('/rewards', indexRouter);
 app.use('/leaderboard', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
