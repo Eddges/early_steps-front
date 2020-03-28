@@ -652,6 +652,9 @@
     <script src="../../assets/examples/js/tables/footable.js"></script>
     <script>
 
+if (sessionStorage.getItem("loggedCA") != md5("true")) {
+            window.location.href = "./login";
+        }
       function getAllProfile() {
         axios.get('http://3.136.20.160:80/getAllProgress')
           .then(res1 =>{
