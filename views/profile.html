@@ -346,10 +346,7 @@
                                               </select>
                                             
                                         </div>
-                                        <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputPasswordOne">Organization</label>
-                                            <input type="text" class="form-control" id="organization" name="hello" required="required" placeholder="put N/A if you are a student" >
-                                        </div>
+                                        
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">University</label>
                                             <input type="text" class="form-control" id="university"  name="hello" required="required">
@@ -363,8 +360,14 @@
                                             <input type="text" class="form-control" id="linkedinProfile" name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputPasswordOne">T-Shirt</label>
-                                            <input type="text" class="form-control" id="teeShirt" name="hello" required="required">
+                                            <label class="form-control-label" for="inputUserNameOne" >T-shirt</label>
+                                            <select class="form-control" id="teeShirt" required="required" name="hello" >
+                                                <option value="S">Small</option>
+                                                <option value="M">Medium</option>
+                                                <option value="L">Large</option>
+                                                <option value="XL">XLarge</option>
+                                              </select>
+                                            
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Address</label>
@@ -395,27 +398,27 @@
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Last Degree</label>
-                                            <input type="text" class="form-control" id="lastDegree" placeholder="Card number" name="hello" required="required">
+                                            <input type="text" class="form-control" id="lastDegree"  name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Year of exp:</label>
-                                            <input type="text" class="form-control" id="yearOfExp" placeholder="Card number" name="hello" >
+                                            <input type="text" class="form-control" id="yearOfExp"   >
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Major in College</label>
-                                            <input type="text" class="form-control" id="majorInCollege" placeholder="Card number" name="hello" required="required">
+                                            <input type="text" class="form-control" id="majorInCollege"  name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Current Job Title</label>
-                                            <input type="text" class="form-control" id="currentJobTitle" placeholder="Card number" name="hello" >
+                                            <input type="text" class="form-control" id="currentJobTitle"  >
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Location</label>
-                                            <input type="text" class="form-control" id="location" placeholder="Card number" name="hello" required="required">
+                                            <input type="text" class="form-control" id="location"  name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Skype</label>
-                                            <input type="text" class="form-control" id="skype" placeholder="Skype" name="hello" >
+                                            <input type="text" class="form-control" id="skype"  >
                                         </div>
                                         <center>
                                             <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doJobProfile();" style="color:white;">Submit Information</a>
@@ -425,23 +428,23 @@
                                     <div class="wizard-pane" id="exampleGettingOne" role="tabpanel">
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Codeforces</label>
-                                            <input type="text" class="form-control" id="codeforces" placeholder="Select Company">
+                                            <input type="text" class="form-control" id="codeforces" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Spoj</label>
-                                            <input type="text" class="form-control" id="spoj" placeholder="Select Company">
+                                            <input type="text" class="form-control" id="spoj" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">TopCoder</label>
-                                            <input type="text" class="form-control" id="topcoder" placeholder="Select Company">
+                                            <input type="text" class="form-control" id="topcoder" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Codechef</label>
-                                            <input type="text" class="form-control" id="codechef" placeholder="Select Company">
+                                            <input type="text" class="form-control" id="codechef">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Hackerrank</label>
-                                            <input type="text" class="form-control" id="hackerrank" placeholder="Select Company">
+                                            <input type="text" class="form-control" id="hackerrank" >
                                         </div>
                                         <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doProgrammingProfile();" style="color:white;">Submit Information</a>
                                     </div>
@@ -576,7 +579,7 @@
                     if (res.data.a.length !== 0) {
                         document.getElementById("name").value = res.data.a[0].name;
                         document.getElementById("gender").value = res.data.a[0].gender;
-                        document.getElementById("organization").value = res.data.a[0].organization;
+                        
                         document.getElementById("university").value = res.data.a[0].university;
                         document.getElementById("graduationYear").value = res.data.a[0].graduation_year;
                         document.getElementById("linkedinProfile").value = res.data.a[0].linkedIn_profile;
@@ -631,7 +634,7 @@
         function doUserData() {
             let nameValue = document.getElementById("name").value;
             let genderValue = document.getElementById("gender").value;
-            let organizationValue = document.getElementById("organization").value;
+            let organizationValue = "none"
             let universityValue = document.getElementById("university").value;
             let graduationYearValue = document.getElementById("graduationYear").value;
             let linkedInProfileValue = document.getElementById("linkedinProfile").value;
