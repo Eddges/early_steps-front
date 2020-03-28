@@ -342,13 +342,13 @@
                                             <select class="form-control" id="gender" required="required" name="hello" >
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
-                                                <option value="Transgender">Transgender</option>
+                                                <option value="Transgender">Others</option>
                                               </select>
                                             
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Organization</label>
-                                            <input type="text" class="form-control" id="organization" name="hello" required="required" >
+                                            <input type="text" class="form-control" id="organization" name="hello" required="required" placeholder="put N/A if you are a student" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">University</label>
@@ -391,7 +391,7 @@
                                     <div class="wizard-pane" id="exampleBillingOne" role="tabpanel">
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Where do you currently work?</label>
-                                            <input type="text" class="form-control" id="currentCompany" placeholder="Select Company" name="hello" required="required">
+                                            <input type="text" class="form-control" id="currentCompany" placeholder="Select Company" name="hello" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Last Degree</label>
@@ -399,7 +399,7 @@
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Year of exp:</label>
-                                            <input type="text" class="form-control" id="yearOfExp" placeholder="Card number" name="hello" required="required">
+                                            <input type="text" class="form-control" id="yearOfExp" placeholder="Card number" name="hello" >
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Major in College</label>
@@ -407,7 +407,7 @@
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Current Job Title</label>
-                                            <input type="text" class="form-control" id="currentJobTitle" placeholder="Card number" name="hello" required="required">
+                                            <input type="text" class="form-control" id="currentJobTitle" placeholder="Card number" name="hello" >
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Location</label>
@@ -415,7 +415,7 @@
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Skype</label>
-                                            <input type="text" class="form-control" id="skype" placeholder="Skype" name="hello" required="required">
+                                            <input type="text" class="form-control" id="skype" placeholder="Skype" name="hello" >
                                         </div>
                                         <center>
                                             <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doJobProfile();" style="color:white;">Submit Information</a>
@@ -652,12 +652,6 @@
           return false;
         }
         
-         if(organizationValue==""){
-          document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Organization name is required";
-          return false;
-        }
-
          if(universityValue==""){
            document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="University name is required";
@@ -762,41 +756,25 @@
             let locationValue = document.getElementById("location").value;
             let skypeValue = document.getElementById("skype").value;
 
-            if(current_companyValue==""){
-          document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Comapny name is required";
-          return false;
-        }
+            
         if(last_degreeValue==""){
           document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Degree is required";
           return false;
         }
-        if(years_of_experienceValue==""){
-          document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Experience is required";
-          return false;
-        }
+        
         if(major_in_collegeValue==""){
           document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Major name is required";
           return false;
         }
-        if(current_job_titleValue==""){
-          document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Job title is required";
-          return false;
-        }
+        
         if(locationValue==""){
           document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Location is required";
           return false;
         }
-        if(skypeValue==""){
-          document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Skype id is required";
-          return false;
-        }
+        
 
             if (UserData2.length !== 0) {
                 let User_id = sessionStorage.getItem("user_id");
