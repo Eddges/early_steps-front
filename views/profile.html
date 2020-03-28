@@ -62,7 +62,7 @@
     <![endif]-->
 
 
-    <nav class=" navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
+   <nav class=" navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
 
         <div class="navbar-header">
             <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided" data-toggle="menubar">
@@ -72,7 +72,7 @@
             <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse" data-toggle="collapse">
           <i class="icon wb-more-horizontal" aria-hidden="true"></i>
         </button>
-            <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
+            <div class="navbar-brand navbar-brand-center site-gridmenu-toggle active" data-toggle="gridmenu" aria-expanded="true">
                 <img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
                 <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span>
             </div>
@@ -96,7 +96,6 @@
                         </a>
                     </li>
 
-                    
                 </ul>
                 <!-- End Navbar Toolbar -->
 
@@ -106,200 +105,16 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../global/portraits/5.jpg" alt="...">
+                  <img src="../../assets/images/upload.png" alt="...">
                   <i></i>
                 </span>
                         </a>
                         <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
-                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
-                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
-                            <div class="dropdown-divider" role="presentation"></div>
-                            <a class="dropdown-item"  href="./login" onclick="logout();" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+                          
+                            <a class="dropdown-item" href="./login" onclick="logout();" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Notifications" aria-expanded="false" data-animation="scale-up" role="button">
-                            <i class="icon wb-bell" aria-hidden="true"></i>
-                            <span class="badge badge-pill badge-danger up">0</span>
-                        </a>
-                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu"> 
-                            <div class="dropdown-menu-header">
-                                <h5>NOTIFICATIONS</h5>
-                                <span class="badge badge-round badge-danger">New 0</span>
-                            </div>
-          
-                            <!-- <div class="list-group">
-                                <div data-role="container">
-                                    <div data-role="content">
-                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                                            <div class="media">
-                                                <div class="pr-10">
-                                                    <i class="icon wb-order bg-red-600 white icon-circle" aria-hidden="true"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="media-heading">A new order has been placed</h6>
-                                                    <time class="media-meta" datetime="2018-06-12T20:50:48+08:00">5 hours ago</time>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                                            <div class="media">
-                                                <div class="pr-10">
-                                                    <i class="icon wb-user bg-green-600 white icon-circle" aria-hidden="true"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="media-heading">Completed the task</h6>
-                                                    <time class="media-meta" datetime="2018-06-11T18:29:20+08:00">2 days ago</time>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                                            <div class="media">
-                                                <div class="pr-10">
-                                                    <i class="icon wb-settings bg-red-600 white icon-circle" aria-hidden="true"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="media-heading">Settings updated</h6>
-                                                    <time class="media-meta" datetime="2018-06-11T14:05:00+08:00">2 days ago</time>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                                            <div class="media">
-                                                <div class="pr-10">
-                                                    <i class="icon wb-calendar bg-blue-600 white icon-circle" aria-hidden="true"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="media-heading">Event started</h6>
-                                                    <time class="media-meta" datetime="2018-06-10T13:50:18+08:00">3 days ago</time>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                                            <div class="media">
-                                                <div class="pr-10">
-                                                    <i class="icon wb-chat bg-orange-600 white icon-circle" aria-hidden="true"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="media-heading">Message received</h6>
-                                                    <time class="media-meta" datetime="2018-06-10T12:34:48+08:00">3 days ago</time>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dropdown-menu-footer">
-                                <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
-                                    <i class="icon wb-settings" aria-hidden="true"></i>
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                    All notifications
-                  </a>
-                            </div> -->
-                        </div> 
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Messages" aria-expanded="false" data-animation="scale-up" role="button">
-                            <i class="icon wb-envelope" aria-hidden="true"></i>
-                            <span class="badge badge-pill badge-info up">0</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-media" role="menu"> 
-                            <div class="dropdown-menu-header" role="presentation">
-                                <h5>MESSAGES</h5>
-                                <span class="badge badge-round badge-info">New 0</span>
-                            </div>
-          
-                            <!-- <div class="list-group" role="presentation">
-                                <div data-role="container">
-                                    <div data-role="content">
-                                        <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                                            <div class="media">
-                                                <div class="pr-10">
-                                                    <span class="avatar avatar-sm avatar-online">
-                              <img src="../../global/portraits/2.jpg" alt="..." />
-                              <i></i>
-                            </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="media-heading">Mary Adams</h6>
-                                                    <div class="media-meta">
-                                                        <time datetime="2018-06-17T20:22:05+08:00">30 minutes ago</time>
-                                                    </div>
-                                                    <div class="media-detail">Anyways, i would like just do it</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                                            <div class="media">
-                                                <div class="pr-10">
-                                                    <span class="avatar avatar-sm avatar-off">
-                              <img src="../../global/portraits/3.jpg" alt="..." />
-                              <i></i>
-                            </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="media-heading">Caleb Richards</h6>
-                                                    <div class="media-meta">
-                                                        <time datetime="2018-06-17T12:30:30+08:00">12 hours ago</time>
-                                                    </div>
-                                                    <div class="media-detail">I checheck the document. But there seems</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                                            <div class="media">
-                                                <div class="pr-10">
-                                                    <span class="avatar avatar-sm avatar-busy">
-                              <img src="../../global/portraits/4.jpg" alt="..." />
-                              <i></i>
-                            </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="media-heading">June Lane</h6>
-                                                    <div class="media-meta">
-                                                        <time datetime="2018-06-16T18:38:40+08:00">2 days ago</time>
-                                                    </div>
-                                                    <div class="media-detail">Lorem ipsum Id consectetur et minim</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a class="list-group-item" href="javascript:void(0)" role="menuitem">
-                                            <div class="media">
-                                                <div class="pr-10">
-                                                    <span class="avatar avatar-sm avatar-away">
-                              <img src="../../global/portraits/5.jpg" alt="..." />
-                              <i></i>
-                            </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="media-heading">Edward Fletcher</h6>
-                                                    <div class="media-meta">
-                                                        <time datetime="2018-06-15T20:34:48+08:00">3 days ago</time>
-                                                    </div>
-                                                    <div class="media-detail">Dolor et irure cupidatat commodo nostrud nostrud.</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dropdown-menu-footer" role="presentation">
-                                <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
-                                    <i class="icon wb-settings" aria-hidden="true"></i>
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                    See all messages
-                  </a>
-                            </div> -->
-                        </div> 
-                    </li>
-                    <li class="nav-item" id="toggleChat">
-                        <a class="nav-link" data-toggle="site-sidebar" href="javascript:void(0)" title="Chat" data-url="site-sidebar.tpl">
-                            <i class="icon wb-chat" aria-hidden="true"></i>
-                        </a>
-                    </li>
+
                 </ul>
                 <!-- End Navbar Toolbar Right -->
             </div>
@@ -320,57 +135,31 @@
             <!-- End Site Navbar Seach -->
         </div>
     </nav>
-    <div class="site-menubar">
-        <div class="site-menubar-body">
-            <div>
-                <div>
-                    <ul class="site-menu" data-plugin="menu">
-                        <li class="site-menu-category">STUDENT</li>
-                        <li class="site-menu-item has-sub">
+  <div class="site-menubar">
+        <div class="site-menubar-body scrollable scrollable-inverse is-enabled scrollable-vertical hoverscorll-disabled" style="position: relative;">
+            <div class="scrollable-container" style="height: 401.984px; width: 260px;">
+                <div class="scrollable-content" style="width: 260px;">
+                    <ul class="site-menu" data-plugin="menu" style="transform: translate3d(0px, 0px, 0px);">
+                        <li class="site-menu-category"></li>
+                        <li class="site-menu-item has-sub ">
                             <a href="/dashboard">
-                                <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+                                <i class="site-menu-icon wb-home" style="color:#23b7e5" aria-hidden="true"></i>
                                 <span class="site-menu-title">Dashboard</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
-                            <!-- <ul class="site-menu-sub">
-                  <li class="site-menu-item active">
-                    <a class="animsition-link" href="index.html">
-                      <span class="site-menu-title">Dashboard v1</span>
-                    </a>
-                  </li>
-                  <li class="site-menu-item">
-                    <a class="animsition-link" href="dashboard/v2.html">
-                      <span class="site-menu-title">Dashboard v2</span>
-                    </a>
-                  </li>
-                  <li class="site-menu-item">
-                    <a class="animsition-link" href="dashboard/ecommerce.html">
-                      <span class="site-menu-title">Ecommerce</span>
-                    </a>
-                  </li>
-                  <li class="site-menu-item">
-                    <a class="animsition-link" href="dashboard/analytics.html">
-                      <span class="site-menu-title">Analytics</span>
-                    </a>
-                  </li>
-                  <li class="site-menu-item">
-                    <a class="animsition-link" href="dashboard/team.html">
-                      <span class="site-menu-title">Team</span>
-                    </a>
-                  </li>
-                </ul> -->
+                           
                         </li>
-                        <li class="site-menu-item ">
+                        <li class="site-menu-item active">
                             <a href="/profile">
-                                <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
+                                <i class="site-menu-icon wb-layout" style="color:#27c24c" aria-hidden="true"></i>
                                 <span class="site-menu-title">Profile</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
 
                         </li>
-                        <li class="site-menu-item ">
+                        <li class="site-menu-item">
                             <a href="/schedule">
-                                <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
+                                <i class="site-menu-icon wb-calendar" style="color:#528ff0" aria-hidden="true"></i>
                                 <span class="site-menu-title">Schedule</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
@@ -378,50 +167,44 @@
                         </li>
 
 
-                        <li class="site-menu-item ">
+                        <li class="site-menu-item">
                             <a href="/videos">
-                                <i class="site-menu-icon wb-file" aria-hidden="true"></i>
+                                <i class="site-menu-icon wb-camera" style="color:#f19a5e" aria-hidden="true"></i>
                                 <span class="site-menu-title">Videos</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
 
                         </li>
 
-                        <li class="site-menu-item ">
+                        <li class="site-menu-item">
                             <a href="/rewards">
-                                <i class="site-menu-icon wb-file" aria-hidden="true"></i>
+                                <i class="site-menu-icon wb-star-outline" style="color:#23b7e5" aria-hidden="true"></i>
                                 <span class="site-menu-title">Rewards</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
 
                         </li>
-                        <li class="site-menu-item ">
-                            <a href="/leaderboard">
-                              <i class="site-menu-icon wb-file" aria-hidden="true"></i>
-                              <span class="site-menu-title">LeaderBoard</span>
-                              <span class="site-menu-arrow"></span>
-                            </a>
-                          </li>
+                        <li class="site-menu-item">
+                          <a href="/leaderboard">
+                            <i class="site-menu-icon wb-graph-up" style="color:#f05050" aria-hidden="true"></i>
+                            <span class="site-menu-title">LeaderBoard</span>
+                            <span class="site-menu-arrow"></span>
+                          </a>
+                        </li>
 
 
                     </ul>
-                    </li>
-                    </ul>
+                    
+                    
                 </div>
             </div>
-        </div>
+        <div class="scrollable-bar scrollable-bar-vertical is-disabled scrollable-bar-hide" draggable="false"><div class="scrollable-bar-handle"></div></div></div>
+
 
         <div class="site-menubar-footer">
-            <a href="javascript: void(0);" class="fold-show" data-placement="top" data-toggle="tooltip" data-original-title="Settings">
-                <span class="icon wb-settings" aria-hidden="true"></span>
-            </a>
-            <a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Lock">
-                <span class="icon wb-eye-close" aria-hidden="true"></span>
-            </a>
-            <a  href="./login" onclick="logout();" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
-                <span class="icon wb-power" aria-hidden="true"></span>
-            </a>
+            <button type="button" class="btn btn-info" data-target="#exampleFormModal" data-toggle="modal" style="width: inherit;"><i class="icon wb-chat" aria-hidden="true"></i> Submit Feedback</button>
         </div>
+
     </div>
     <div class="site-gridmenu">
         <div>
@@ -662,6 +445,41 @@
     </div>
     <!-- End Page -->
 
+<div class="modal fade" id="exampleFormModal" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-simple modal-center" style="z-index:20000;">
+            <form class="modal-content" style="z-index:20000;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                    <h4 class="modal-title" id="exampleFormModalLabel">Send us some feedback!</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-xl-12 form-group">
+                            <textarea class="form-control" rows="5" placeholder="Describe your issue or idea.." id="userFeedback_text"></textarea>
+                            <div class="radio-custom radio-primary">
+                                <input type="radio" id="radio_feedback_type1" name="inputRadios">
+                                <label for="inputRadiosUnchecked" id="feedback_type1">Bug</label>
+                            </div>
+                            <div class="radio-custom radio-primary">
+                                <input type="radio" id="radio_feedback_type2" name="inputRadios">
+                                <label for="inputRadiosUnchecked" id="feedback_type2">Improvement</label>
+                            </div>
+                            <div class="radio-custom radio-primary">
+                                <input type="radio" id="radio_feedback_type3" name="inputRadios">
+                                <label for="inputRadiosUnchecked" id="feedback_type3">Comment</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 float-right">
+                            <button class="btn btn-primary btn-outline" data-dismiss="modal" type="button" onclick="userFeedback()">Send Feedback</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
 
     <!-- Footer -->
     <!-- <footer class="site-footer">
@@ -1001,6 +819,33 @@
             sessionStorage.clear();
             window.location.href();
         }
+
+        function userFeedback() {
+                let user_idValue = sessionStorage.getItem("user_id");
+                let userFeedback_textValue = document.getElementById("userFeedback_text").value;
+                let userFeedback_type;
+
+                if (document.getElementById("radio_feedback_type1").checked)
+                    userFeedback_type = document.getElementById("feedback_type1").innerHTML;
+                else if (document.getElementById("radio_feedback_type2").checked)
+                    userFeedback_type = document.getElementById("feedback_type2").innerHTML;
+                else if (document.getElementById("radio_feedback_type3").checked)
+                    userFeedback_type = document.getElementById("feedback_type3").innerHTML;
+
+                axios.post('http://3.136.20.160:80/doFeedback', {
+                        user_id: user_idValue,
+                        feedback_details: userFeedback_textValue,
+                        feedback_type: userFeedback_type
+                    })
+                    .then(function(response) {
+                        alert("Feedback submitted successfully!");
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        alert("Something went wrong, Please try again!")
+                        console.log(error);
+                    });
+            }
 
     </script>
 </body>

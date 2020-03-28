@@ -94,7 +94,7 @@
           selectable: true,
           selectHelper: true,
           select: function select() {
-            $('#addNewEvent').modal('show');
+           // $('#addNewEvent').modal('show');
           },
           editable: true,
           eventLimit: true,
