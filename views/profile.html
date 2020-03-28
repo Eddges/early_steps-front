@@ -273,6 +273,7 @@
                         <!-- <div class="panel-heading">
                 <h3 class="panel-title">Wizard Form</h3>
               </div> -->
+              
                         <div class="panel-body">
                             <!-- Steps -->
                             <div class="steps steps-sm row" data-plugin="matchHeight" data-by-row="true" role="tablist">
@@ -299,6 +300,14 @@
                 <div class="col-lg-12">
                     <!-- Panel Wizard Form Container -->
                     <div class="panel" id="exampleWizardFormContainer">
+                        <!-- alert message -->
+         <div class="alert dark alert-danger alert-dismissible animation-slide-top " id="alert-message-div" style="display:none" role="alert">
+            <button type="button" class="close" onClick="hideme()" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <div id="message-div"></div>
+          </div>
+  <!-- End alert message -->
                         <div class="panel-heading">
                             <h3 class="panel-title">Complete Details</h3>
                         </div>
@@ -326,39 +335,47 @@
                                     <div class="wizard-pane active" role="tabpanel">
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputUserNameOne">Name</label>
-                                            <input type="text" class="form-control" id="name" name="username" required="required">
+                                            <input type="text" class="form-control" id="name"  name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputUserNameOne">Gender</label>
-                                            <input type="text" class="form-control" id="gender" name="username" required="required">
+                                            <label class="form-control-label" for="inputUserNameOne" >Gender</label>
+                                            <select class="form-control" id="gender" required="required" name="hello" >
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Transgender">Others</option>
+                                              </select>
+                                            
                                         </div>
-                                        <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputPasswordOne">Organization</label>
-                                            <input type="text" class="form-control" id="organization" name="password" required="required">
-                                        </div>
+                                        
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">University</label>
-                                            <input type="text" class="form-control" id="university" name="password" required="required">
+                                            <input type="text" class="form-control" id="university"  name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Year Of Graduation</label>
-                                            <input type="text" class="form-control" id="graduationYear" name="password" required="required">
+                                            <input type="text" class="form-control" id="graduationYear" name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">LinkedIn Profile</label>
-                                            <input type="text" class="form-control" id="linkedinProfile" name="password" required="required">
+                                            <input type="text" class="form-control" id="linkedinProfile" name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputPasswordOne">T-Shirt</label>
-                                            <input type="text" class="form-control" id="teeShirt" name="password" required="required">
+                                            <label class="form-control-label" for="inputUserNameOne" >T-shirt</label>
+                                            <select class="form-control" id="teeShirt" required="required" name="hello" >
+                                                <option value="S">Small</option>
+                                                <option value="M">Medium</option>
+                                                <option value="L">Large</option>
+                                                <option value="XL">XLarge</option>
+                                              </select>
+                                            
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Address</label>
-                                            <input type="text" class="form-control" id="address" name="password" required="required">
+                                            <input type="text" class="form-control" id="address" name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Github Id</label>
-                                            <input type="text" class="form-control" id="github" name="password" required="required">
+                                            <input type="text" class="form-control" id="github" name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material">
                                           <label for="file" style="cursor: pointer;border:2px solid rgb(62, 142, 247);border-radius: 16px;padding:12px 12px;color:black;background-color: rgb(62, 142, 247);">Upload Image</label>
@@ -370,38 +387,38 @@
                                         </div>
                                         <br/>
                                         <center>
-                                            <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doUserData();" style="color:white;">Submit Information</a>
+                                            <a  class="btn btn-primary btn-block btn-lg mx-auto" onclick="doUserData();" style="color:white;" >Submit Information</a>
                                         </center>
                                     </div>
 
                                     <div class="wizard-pane" id="exampleBillingOne" role="tabpanel">
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Where do you currently work?</label>
-                                            <input type="text" class="form-control" id="currentCompany" placeholder="Select Company" required="required">
+                                            <input type="text" class="form-control" id="currentCompany" placeholder="Select Company" name="hello" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Last Degree</label>
-                                            <input type="text" class="form-control" id="lastDegree" placeholder="Card number" required="required">
+                                            <input type="text" class="form-control" id="lastDegree"  name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Year of exp:</label>
-                                            <input type="text" class="form-control" id="yearOfExp" placeholder="Card number" required="required">
+                                            <input type="text" class="form-control" id="yearOfExp"   >
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Major in College</label>
-                                            <input type="text" class="form-control" id="majorInCollege" placeholder="Card number" required="required">
+                                            <input type="text" class="form-control" id="majorInCollege"  name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Current Job Title</label>
-                                            <input type="text" class="form-control" id="currentJobTitle" placeholder="Card number" required="required">
+                                            <input type="text" class="form-control" id="currentJobTitle"  >
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Location</label>
-                                            <input type="text" class="form-control" id="location" placeholder="Card number" required="required">
+                                            <input type="text" class="form-control" id="location"  name="hello" required="required">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Skype</label>
-                                            <input type="text" class="form-control" id="skype" placeholder="Skype" required="required">
+                                            <input type="text" class="form-control" id="skype"  >
                                         </div>
                                         <center>
                                             <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doJobProfile();" style="color:white;">Submit Information</a>
@@ -411,23 +428,23 @@
                                     <div class="wizard-pane" id="exampleGettingOne" role="tabpanel">
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Codeforces</label>
-                                            <input type="text" class="form-control" id="codeforces" placeholder="Select Company">
+                                            <input type="text" class="form-control" id="codeforces" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Spoj</label>
-                                            <input type="text" class="form-control" id="spoj" placeholder="Select Company">
+                                            <input type="text" class="form-control" id="spoj" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">TopCoder</label>
-                                            <input type="text" class="form-control" id="topcoder" placeholder="Select Company">
+                                            <input type="text" class="form-control" id="topcoder" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Codechef</label>
-                                            <input type="text" class="form-control" id="codechef" placeholder="Select Company">
+                                            <input type="text" class="form-control" id="codechef">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Hackerrank</label>
-                                            <input type="text" class="form-control" id="hackerrank" placeholder="Select Company">
+                                            <input type="text" class="form-control" id="hackerrank" >
                                         </div>
                                         <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doProgrammingProfile();" style="color:white;">Submit Information</a>
                                     </div>
@@ -563,7 +580,7 @@
                     if (res.data.a.length !== 0) {
                         document.getElementById("name").value = res.data.a[0].name;
                         document.getElementById("gender").value = res.data.a[0].gender;
-                        document.getElementById("organization").value = res.data.a[0].organization;
+                        
                         document.getElementById("university").value = res.data.a[0].university;
                         document.getElementById("graduationYear").value = res.data.a[0].graduation_year;
                         document.getElementById("linkedinProfile").value = res.data.a[0].linkedIn_profile;
@@ -618,7 +635,7 @@
         function doUserData() {
             let nameValue = document.getElementById("name").value;
             let genderValue = document.getElementById("gender").value;
-            let organizationValue = document.getElementById("organization").value;
+            let organizationValue = "none"
             let universityValue = document.getElementById("university").value;
             let graduationYearValue = document.getElementById("graduationYear").value;
             let linkedInProfileValue = document.getElementById("linkedinProfile").value;
@@ -627,6 +644,54 @@
             let github_handleValue = document.getElementById("github").value;
             let photoValue = photoUrl;
 
+         if(nameValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Name is required";
+         return false;
+        }
+
+         if(genderValue==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Gender is required";
+          return false;
+        }
+        
+         if(universityValue==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="University name is required";
+          return false;
+        }
+
+         if(graduationYearValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Graduation year is required";
+          return false;
+        }
+
+         if(linkedInProfileValue==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="LinkedIn profile is required";
+          return false;
+        }
+        
+         if(t_shirt_sizeValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="T-shirt is required";
+          return false;
+        }
+
+         if(addressValue==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Address is required";
+          return false;
+        }
+         if(github_handleValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Github handle is required";
+          return false;
+        }
+        
+        
             console.log(UserData1.length);
             if (UserData1.length !== 0) {
                 let User_id = sessionStorage.getItem("user_id");
@@ -695,6 +760,26 @@
             let locationValue = document.getElementById("location").value;
             let skypeValue = document.getElementById("skype").value;
 
+            
+        if(last_degreeValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Degree is required";
+          return false;
+        }
+        
+        if(major_in_collegeValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Major name is required";
+          return false;
+        }
+        
+        if(locationValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Location is required";
+          return false;
+        }
+        
+
             if (UserData2.length !== 0) {
                 let User_id = sessionStorage.getItem("user_id");
                 axios.put('http://3.136.20.160:80/updateJobProfile/' + `${User_id}`, {
@@ -743,6 +828,8 @@
             let topcoderValue = document.getElementById("topcoder").value;
             let codechefValue = document.getElementById("codechef").value;
             let hackerrankValue = document.getElementById("hackerrank").value;
+
+            
 
 
             if (UserData3.length !== 0) {
@@ -848,6 +935,13 @@
                     });
             }
 
+            function hideme(){
+      document.getElementById('alert-message-div').style.display="none";
+    }
+
+
+
+            
     </script>
 </body>
 
