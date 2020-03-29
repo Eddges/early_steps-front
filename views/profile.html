@@ -342,7 +342,7 @@
                                             <select class="form-control" id="gender" required="required" name="hello" >
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
-                                                <option value="Transgender">Others</option>
+                                                <option value="Others">Others</option>
                                               </select>
                                             
                                         </div>
@@ -394,7 +394,7 @@
                                     <div class="wizard-pane" id="exampleBillingOne" role="tabpanel">
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Where do you currently work?</label>
-                                            <input type="text" class="form-control" id="currentCompany" placeholder="Select Company" name="hello" >
+                                            <input type="text" class="form-control" id="currentCompany"  name="hello" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Last Degree</label>
@@ -579,12 +579,14 @@
                     UserData1 = UserData.concat(res.data.a);
                     if (res.data.a.length !== 0) {
                         document.getElementById("name").value = res.data.a[0].name;
-                        document.getElementById("gender").value = res.data.a[0].gender;
+                        document.getElementById("gender").selectedIndex = res.data.a[0].gender;
                         
                         document.getElementById("university").value = res.data.a[0].university;
                         document.getElementById("graduationYear").value = res.data.a[0].graduation_year;
                         document.getElementById("linkedinProfile").value = res.data.a[0].linkedIn_profile;
-                        document.getElementById("teeShirt").value = res.data.a[0].t_shirt_size;
+                        // document.getElementById("teeShirt").value = res.data.a[0].t_shirt_size;
+                        document.getElementById("teeShirt").selectedIndex = res.data.a[0].t_shirt_size;
+                        
                         document.getElementById("address").value = res.data.a[0].address;
                         document.getElementById("github").value = res.data.a[0].github_handle;
                         document.getElementById("myImg").src = res.data.a[0].photo;
@@ -634,12 +636,14 @@
 
         function doUserData() {
             let nameValue = document.getElementById("name").value;
-            let genderValue = document.getElementById("gender").value;
+            let genderValue = String(document.getElementById("gender").selectedIndex);
             let organizationValue = "none"
             let universityValue = document.getElementById("university").value;
             let graduationYearValue = document.getElementById("graduationYear").value;
             let linkedInProfileValue = document.getElementById("linkedinProfile").value;
-            let t_shirt_sizeValue = document.getElementById("teeShirt").value;
+            // let t_shirt_sizeValue = document.getElementById("teeShirt").value;
+
+            let t_shirt_sizeValue = String(document.getElementById("teeShirt").selectedIndex);            
             let addressValue = document.getElementById("address").value;
             let github_handleValue = document.getElementById("github").value;
             let photoValue = photoUrl;
