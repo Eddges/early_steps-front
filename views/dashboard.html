@@ -285,9 +285,9 @@
                                     <a class="avatar" href="javascript:void(0)">
                                         <img alt="" src="../../assets/images/upload.png">
                                     </a>
-                                    <div id="name" class="font-size-20 mt-10">MACHI</div>
-                                    <div id="email" class="font-size-14">machidesign@163.com</div>
-                                    <div id="courses" class="font-size-14">Courses</div>
+                                    <div id="name" class="font-size-20 mt-10"></div>
+                                    <div id="email" class="font-size-14"></div>
+                                    <div id="courses" class="font-size-14"></div>
                                 </div>
                             </div>
                         </div>
@@ -296,13 +296,13 @@
                                 <div class="col-6">
                                     <div class="counter">
                                         <div class="counter-label total-completed">PROGRESS DETAILS</div>
-                                        <div id="progress_details" class="counter-number red-600">1,628</div>
+                                        <div id="progress_details" class="counter-number red-600"></div>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="counter">
                                         <div class="counter-label">TOTAL TIME</div>
-                                        <div id="total_time" class="counter-number blue-600">17</div>
+                                        <div id="total_time" class="counter-number blue-600"></div>
                                     </div>
                                 </div>
                             </div>
@@ -316,12 +316,12 @@
                                             </td>
                                             <td>
                                                 <div class="progress progress-xs mb-0">
-                                                    <div class="progress-bar progress-bar-info bg-blue-600" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                                    <div class="progress-bar progress-bar-info bg-blue-600" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <span id="classes_completed">86</span>%
+                                                <span id="classes_completed">0</span>%
                                             </td>
                                         </tr>
                                         <tr>
@@ -330,12 +330,12 @@
                                             </td>
                                             <td>
                                                 <div class="progress progress-xs mb-0">
-                                                    <div class="progress-bar progress-bar-info bg-green-600" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%">
+                                                    <div class="progress-bar progress-bar-info bg-green-600" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <span id="problems_completed">86</span>%
+                                                <span id="problems_completed">0</span>%
                                             </td>
                                         </tr>
                                         <tr>
@@ -344,12 +344,12 @@
                                             </td>
                                             <td>
                                                 <div class="progress progress-xs mb-0">
-                                                    <div class="progress-bar progress-bar-info bg-red-600" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 68%">
+                                                    <div class="progress-bar progress-bar-info bg-red-600" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <span id="quiz_completed">86</span>%
+                                                <span id="quiz_completed">0</span>%
                                             </td>
                                         </tr>
                                     </tbody>
@@ -374,25 +374,7 @@
                         <ul class="list-group h-500 scrollable is-enabled scrollable-vertical" data-plugin="scrollable" style="position: relative;">
                             <div data-role="container" class="scrollable-container" style="height: 500px; width: 465px;">
                                 <div id="todo" data-role="content" class="scrollable-content" style="width: 465px;">
-                                    <li class="list-group-item flex-column align-items-start">
-                                        <div class="checkbox-custom checkbox-success checkbox-lg">
-                                            <input type="checkbox" name="checkbox" checked="checked">
-                                            <label class="item-title">Edit meeting record</label>
-                                        </div>
-                                        <div class="w-full">
-                                            <div class="item-due-date">
-                                                <span>Tue,aug 25</span>
-                                            </div>
-                                            <ul class="item-members">
-                                                <li>
-                                                    <img class="avatar avatar-sm" src="../../../global/portraits/3.jpg">
-                                                    <button class="btn btn-sm btn-icon btn-default btn-outline btn-round">
-                              <i class="icon wb-pencil" aria-hidden="true"></i>
-                            </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    
                                     <!-- <li class="list-group-item flex-column align-items-start">
                       <div class="checkbox-custom checkbox-success checkbox-lg">
                         <input type="checkbox" name="checkbox" checked="checked">
@@ -722,7 +704,7 @@
                 axios.get(`http://3.136.20.160/getUserData/${user_id}`)
                     .then(function(response) {
                         console.log(response);
-                        // sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
+                        sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
                         document.getElementById("name").innerHTML = response.data["a"][0].name;
                         document.getElementById("photo").value = response.data["a"][0].photo;
                     }).catch(function(error) {
@@ -748,8 +730,14 @@
                     .then(function(response) {
                         console.log(response);
                         document.getElementById("classes_completed").innerText = response.data["a"][0].classes_completed;
+                        document.getElementById("classes_completed").style.width = response.data["a"][0].classes_completed;
+
                         document.getElementById("problems_completed").innerText = response.data["a"][0].problems_completed;
+                        document.getElementById("problems_completed").style.width = response.data["a"][0].problems_completed;
+
                         document.getElementById("quiz_completed").innerText = response.data["a"][0].quiz_completed;
+                        document.getElementById("quiz_completed").style.width = response.data["a"][0].quiz_completed;
+
                         document.getElementById("total_time").innerText = response.data["a"][0].total_time;
                         document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
 
