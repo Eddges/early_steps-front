@@ -90,7 +90,7 @@
             center: 'prev,title,next',
             right: 'month,agendaWeek,agendaDay'
           },
-          defaultDate: '2020-01-01',
+          defaultDate: new Date(),
           selectable: true,
           selectHelper: true,
           select: function select() {
