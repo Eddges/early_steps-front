@@ -335,7 +335,9 @@
                                     <div class="wizard-pane active" role="tabpanel">
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputUserNameOne">Name</label>
-                                            <input type="text" class="form-control" id="name"  name="default" required="required">
+
+                                            <input type="text" class="form-control" id="name"  name="default" required="required" placeholder="Full name">
+
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputUserNameOne" >Gender</label>
@@ -349,15 +351,17 @@
                                         
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">University</label>
-                                            <input type="text" class="form-control" id="university"  name="default" required="required">
+
+                                            <input type="text" class="form-control" id="university"  name="default" required="required" placeholder="University">
                                         </div>
                                         <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputPasswordOne">Year Of Graduation</label>
-                                            <input type="text" class="form-control" id="graduationYear" name="default" required="required">
+                                            <label class="form-control-label" for="inputPasswordOne">Year of Graduation</label>
+                                            <input type="text" class="form-control" id="graduationYear" name="default" required="required" placeholder="2020">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">LinkedIn Profile</label>
-                                            <input type="text" class="form-control" id="linkedinProfile" name="default" required="required">
+                                            <input type="text" class="form-control" id="linkedinProfile" name="default" required="required" placeholder="https://www.linkedin.com/">
+
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputUserNameOne" >T-shirt</label>
@@ -371,11 +375,13 @@
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Address</label>
-                                            <input type="text" class="form-control" id="address" name="default" required="required">
+
+                                            <input type="text" class="form-control" id="address" name="default" required="required" placeholder="Address">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Github Id</label>
-                                            <input type="text" class="form-control" id="github" name="default" required="required">
+                                            <input type="text" class="form-control" id="github" name="default" required="required" placeholder="Github Id">
+
                                         </div>
                                         <div class="form-group form-material">
                                           <label for="file" style="cursor: pointer;border:2px solid rgb(62, 142, 247);border-radius: 16px;padding:12px 12px;color:black;background-color: rgb(62, 142, 247);">Upload Image</label>
@@ -394,23 +400,27 @@
                                     <div class="wizard-pane" id="exampleBillingOne" role="tabpanel">
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Where do you currently work?</label>
-                                            <input type="text" class="form-control" id="currentCompany" name="default" placeholder="Put N/A if you are a student." >
+
+                                            <input type="text" class="form-control" id="currentCompany" name="default" placeholder="Put N/A if you are a student." required="required" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Last Degree</label>
-                                            <input type="text" class="form-control" id="lastDegree"  name="default" required="required">
+                                            <input type="text" class="form-control" id="lastDegree"  name="default" required="required" placeholder="Bachelor of Engineering">
+
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
-                                            <label class="form-control-label">Year of exp:</label>
-                                            <input type="text" class="form-control" id="yearOfExp"   >
+                                            <label class="form-control-label">Years of experience:</label>
+                                            <input type="text" class="form-control" id="yearOfExp" name="default" required="required" placeholder="0 Years" >
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Major in College</label>
-                                            <input type="text" class="form-control" id="majorInCollege"  name="default" required="required">
+
+                                            <input type="text" class="form-control" id="majorInCollege"  name="default" required="required" placeholder="Branch">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Current Job Title</label>
-                                            <input type="text" class="form-control" id="currentJobTitle" placeholder="Put N/A if you are a student." >
+                                            <input type="text" class="form-control" id="currentJobTitle" placeholder="Put N/A if you are a student."name="default" required="required" >
+
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Location</label>
@@ -418,7 +428,7 @@
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Skype</label>
-                                            <input type="text" class="form-control" id="skype"  >
+                                            <input type="text" class="form-control" id="skype" placeholder="Skype Id" >
                                         </div>
                                         <center>
                                             <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doJobProfile();" style="color:white;">Submit Information</a>
@@ -428,23 +438,23 @@
                                     <div class="wizard-pane" id="exampleGettingOne" role="tabpanel">
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Codeforces</label>
-                                            <input type="text" class="form-control" id="codeforces" >
+                                            <input type="text" class="form-control" id="codeforces" placeholder="Codeforces Id" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Spoj</label>
-                                            <input type="text" class="form-control" id="spoj" >
+                                            <input type="text" class="form-control" id="spoj" placeholder="Spoj Id" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">TopCoder</label>
-                                            <input type="text" class="form-control" id="topcoder" >
+                                            <input type="text" class="form-control" id="topcoder" placeholder="TopCoder Id" >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Codechef</label>
-                                            <input type="text" class="form-control" id="codechef">
+                                            <input type="text" class="form-control" id="codechef" placeholder="Codechef Id">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label">Hackerrank</label>
-                                            <input type="text" class="form-control" id="hackerrank" >
+                                            <input type="text" class="form-control" id="hackerrank" placeholder="Hackerrank Id" >
                                         </div>
                                         <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doProgrammingProfile();" style="color:white;">Submit Information</a>
                                     </div>

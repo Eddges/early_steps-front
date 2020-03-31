@@ -198,7 +198,12 @@
           axios.get(`http://3.136.20.160:80/isValidUserEmail?email=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
           .then(function (response) {
             console.log(response);
-            axios.get(`http://3.136.20.160:80/getPhoneByEmail/${userEmailOrPhoneValue}`)
+            if(response.data==="False"){
+              document.getElementById('alert-message-div').style.display="block";
+              document.getElementById('message-div').innerHTML="You have entered an invalid email address or password!";              
+            }
+            else{
+              axios.get(`http://3.136.20.160:80/getPhoneByEmail/${userEmailOrPhoneValue}`)
             .then(function (response) {
               console.log(response);
               sessionStorage.setItem("user_id", response.data["a"][0].phone);
@@ -206,23 +211,36 @@
               getProgrammingProfileData()
             }).catch(function (error){
               console.log(error);
-              alert("Invalid Credentials, Please verify!");
+              document.getElementById('alert-message-div').style.display="block";
+              document.getElementById('message-div').innerHTML="Something went wrong, Please try again!!";              
+
             });
+            }
+
           }).catch(function(error) {
               console.log(error);
-              alert("Invalid Credentials, Please verify!");
+              document.getElementById('alert-message-div').style.display="block";
+              document.getElementById('message-div').innerHTML="Invalid Credentials, Please verify!";              
           });
         } else {    
     // Input is number
     axios.get(`http://3.136.20.160:80/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
     .then(function (response){
         console.log(response);
-        sessionStorage.setItem("user_id", userEmailOrPhoneValue);
-        sessionStorage.setItem("loggedCA", md5("true"));
-        getProgrammingProfileData()
+        if(response.data==="False"){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Invalid Credentials, Please verify!";     
+        }
+        else{
+          sessionStorage.setItem("user_id", userEmailOrPhoneValue);
+          sessionStorage.setItem("loggedCA", md5("true"));
+          getProgrammingProfileData();
+        }
       }).catch(function (error){
         console.log(error);
-        alert("Invalid Credentials, Please verify!");
+        document.getElementById('alert-message-div').style.display="block";
+        document.getElementById('message-div').innerHTML="Invalid Credentials, Please verify!";              
+
       });
   }   
       }

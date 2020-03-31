@@ -203,6 +203,7 @@
         return true;
       },
       onFinish: function onFinish() {// $('#exampleFormContainer').submit();
+      window.location.href = './dashboard';
       },
       buttonsAppendTo: '.panel-body'
     });
