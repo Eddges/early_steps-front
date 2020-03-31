@@ -108,8 +108,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
-                  <i></i>
+                  <img id="photo" src="../../assets/images/upload.png" alt="...">
+                
                 </span>
                         </a>
                         <div class="dropdown-menu" role="menu">
@@ -283,7 +283,7 @@
                             <div class="overlay-panel overlay-background vertical-align">
                                 <div class="vertical-align-middle">
                                     <a class="avatar" href="javascript:void(0)">
-                                        <img alt="" src="../../assets/images/upload.png">
+                                        <img id="photo" alt="" src="../../assets/images/upload.png">
                                     </a>
                                     <div id="name" class="font-size-20 mt-10"></div>
                                     <div id="bootcamp_id" class="font-size-14"></div>
@@ -545,7 +545,7 @@
                         sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
                         document.getElementById("bootcamp_id").innerHTML = response.data["a"][0].bootcamp_id;
                         document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
-                        document.getElementById("photo").value = response.data["a"][0].photo;
+                        document.getElementById("photo").src = response.data["a"][0].photo;
                     }).catch(function(error) {
                         console.log(error);
                     });
@@ -572,10 +572,10 @@
                         document.getElementById("classes_completed_bar").style.width = `${response.data["a"][0].classes_completed}`+`%`;
 
                         document.getElementById("problems_completed").innerText = response.data["a"][0].problems_completed;
-                        document.getElementById("problems_completed_bar").style.width = `${response.data["a"][0].classes_completed}`+`%`;
+                        document.getElementById("problems_completed_bar").style.width = `${response.data["a"][0].problems_completed}`+`%`;
 
                         document.getElementById("contest_completed").innerText = response.data["a"][0].quiz_completed;
-                        document.getElementById("contest_completed_bar").style.width = `${response.data["a"][0].classes_completed}`+`%`;
+                        document.getElementById("contest_completed_bar").style.width = `${response.data["a"][0].quiz_completed}`+`%`;
 
                         document.getElementById("total_time").innerText = response.data["a"][0].total_time;
                         document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
@@ -663,7 +663,7 @@
                         <p>
                           <span><i class="icon wb-video" aria-hidden="true"></i>${response.data.a[i].schedule_details.split(",")[0]}</span>
                         </p>
-                        <small>Teached by
+                        <small>Mentored by
                           <a class="hightlight" href="javascript:void(0)">
                             <span>${response.data.a[i].schedule_details.split(",")[1]} </span>
                           </a>
