@@ -335,33 +335,33 @@
                                     <div class="wizard-pane active" role="tabpanel">
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputUserNameOne">Name</label>
-                                            <input type="text" class="form-control" id="name"  name="hello" required="required">
+                                            <input type="text" class="form-control" id="name"  name="default" required="required">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputUserNameOne" >Gender</label>
-                                            <select class="form-control" id="gender" required="required" name="hello" >
+                                            <select class="form-control" id="gender" required="required" name="default" >
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
-                                                <option value="Transgender">Others</option>
+                                                <option value="Others">Others</option>
                                               </select>
                                             
                                         </div>
                                         
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">University</label>
-                                            <input type="text" class="form-control" id="university"  name="hello" required="required">
+                                            <input type="text" class="form-control" id="university"  name="default" required="required">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Year Of Graduation</label>
-                                            <input type="text" class="form-control" id="graduationYear" name="hello" required="required">
+                                            <input type="text" class="form-control" id="graduationYear" name="default" required="required">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">LinkedIn Profile</label>
-                                            <input type="text" class="form-control" id="linkedinProfile" name="hello" required="required">
+                                            <input type="text" class="form-control" id="linkedinProfile" name="default" required="required">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputUserNameOne" >T-shirt</label>
-                                            <select class="form-control" id="teeShirt" required="required" name="hello" >
+                                            <select class="form-control" id="teeShirt" required="required" name="default" >
                                                 <option value="S">Small</option>
                                                 <option value="M">Medium</option>
                                                 <option value="L">Large</option>
@@ -371,11 +371,11 @@
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Address</label>
-                                            <input type="text" class="form-control" id="address" name="hello" required="required">
+                                            <input type="text" class="form-control" id="address" name="default" required="required">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Github Id</label>
-                                            <input type="text" class="form-control" id="github" name="hello" required="required">
+                                            <input type="text" class="form-control" id="github" name="default" required="required">
                                         </div>
                                         <div class="form-group form-material">
                                           <label for="file" style="cursor: pointer;border:2px solid rgb(62, 142, 247);border-radius: 16px;padding:12px 12px;color:black;background-color: rgb(62, 142, 247);">Upload Image</label>
@@ -394,11 +394,11 @@
                                     <div class="wizard-pane" id="exampleBillingOne" role="tabpanel">
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Where do you currently work?</label>
-                                            <input type="text" class="form-control" id="currentCompany" placeholder="Select Company" name="hello" >
+                                            <input type="text" class="form-control" id="currentCompany" name="default" placeholder="Put N/A if you are a student." >
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Last Degree</label>
-                                            <input type="text" class="form-control" id="lastDegree"  name="hello" required="required">
+                                            <input type="text" class="form-control" id="lastDegree"  name="default" required="required">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Year of exp:</label>
@@ -406,15 +406,15 @@
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Major in College</label>
-                                            <input type="text" class="form-control" id="majorInCollege"  name="hello" required="required">
+                                            <input type="text" class="form-control" id="majorInCollege"  name="default" required="required">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Current Job Title</label>
-                                            <input type="text" class="form-control" id="currentJobTitle"  >
+                                            <input type="text" class="form-control" id="currentJobTitle" placeholder="Put N/A if you are a student." >
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Location</label>
-                                            <input type="text" class="form-control" id="location"  name="hello" required="required">
+                                            <input type="text" class="form-control" id="location"  name="default" required="required" placeholder="Put N/A if you are a student.">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Skype</label>
@@ -580,7 +580,6 @@
                     if (res.data.a.length !== 0) {
                         document.getElementById("name").value = res.data.a[0].name;
                         document.getElementById("gender").value = res.data.a[0].gender;
-                        
                         document.getElementById("university").value = res.data.a[0].university;
                         document.getElementById("graduationYear").value = res.data.a[0].graduation_year;
                         document.getElementById("linkedinProfile").value = res.data.a[0].linkedIn_profile;
