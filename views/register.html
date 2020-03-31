@@ -76,23 +76,23 @@
             </div>
             <form>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="username" type="text" class="form-control" name="username" required="required"/>
+                <input onclick="clearAlert()" id="username" type="text" class="form-control" name="username" required="required"/>
                 <label class="floating-label">UserName</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="email" type="email" class="form-control" name="email" required="required"/>
+                <input onclick="clearAlert()" id="email" type="email" class="form-control" name="email" required="required"/>
                 <label class="floating-label">Email</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="phone" type="phone" class="form-control" name="phone" required="required"/>
+                <input onclick="clearAlert()" id="phone" type="phone" class="form-control" name="phone" required="required"/>
                 <label class="floating-label">Phone No</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="password" type="password" class="form-control" name="password" required="required"/>
+                <input onclick="clearAlert()" id="password" type="password" class="form-control" name="password" required="required"/>
                 <label class="floating-label">Password</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="retypePassword" type="password" class="form-control" name="PasswordCheck" required="required"/>
+                <input onclick="clearAlert()" id="retypePassword" type="password" class="form-control" name="PasswordCheck" required="required"/>
                 <label class="floating-label">Re-enter Password</label>
               </div>
               <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doregistration();" style="color:white;">Sign up</a>
@@ -278,11 +278,16 @@
                 })
                 .catch(function (error) {
                   console.log(error);
-                  alert("UserName already registered!");
+                  document.getElementById('alert-message-div').style.display="block";
+                  document.getElementById('message-div').innerHTML="User Name already registered!";
                 });
             }
         }
       }
+      function clearAlert(){
+          document.getElementById('alert-message-div').style.display="none";
+          document.getElementById('message-div').innerHTML="jhbkjsd!";    
+        }    
     </script>
   </body>
 </html>
