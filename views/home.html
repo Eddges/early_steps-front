@@ -146,64 +146,32 @@
                         <li class="site-menu-category"></li>
                         
                         <li class="site-menu-item has-sub active">
-                            <a href="/dashboard">
+                            <a href="/home">
                                 <i class="site-menu-icon wb-home" style="color:#23b7e5" aria-hidden="true"></i>
                                 <span class="site-menu-title">Home</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
                            
                         </li>
-                        <li class="site-menu-item has-sub active">
-                            <a href="/dashboard">
-                                <i class="site-menu-icon wb-home" style="color:#23b7e5" aria-hidden="true"></i>
-                                <span class="site-menu-title">Dashboard</span>
-                                <span class="site-menu-arrow"></span>
-                            </a>
-                           
-                        </li>
+                        
                         <li class="site-menu-item ">
-                            <a href="/profile">
+                            <a href="/profileothers">
                                 <i class="site-menu-icon wb-layout" style="color:#27c24c" aria-hidden="true"></i>
                                 <span class="site-menu-title">Profile</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
 
                         </li>
-                        <li class="site-menu-item ">
-                            <a href="/schedule">
-                                <i class="site-menu-icon wb-calendar" style="color:#528ff0" aria-hidden="true"></i>
-                                <span class="site-menu-title">Schedule</span>
-                                <span class="site-menu-arrow"></span>
-                            </a>
-
-                        </li>
-
+                        
 
                         <li class="site-menu-item ">
-                            <a href="/videos">
+                            <a href="/testmaterials">
                                 <i class="site-menu-icon wb-camera" style="color:#f19a5e" aria-hidden="true"></i>
-                                <span class="site-menu-title">Videos</span>
+                                <span class="site-menu-title">Test Materials</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
 
                         </li>
-
-                        <li class="site-menu-item ">
-                            <a href="/rewards">
-                                <i class="site-menu-icon wb-star-outline" style="color:#23b7e5" aria-hidden="true"></i>
-                                <span class="site-menu-title">Rewards</span>
-                                <span class="site-menu-arrow"></span>
-                            </a>
-
-                        </li>
-                        <li class="site-menu-item ">
-                          <a href="/leaderboard">
-                            <i class="site-menu-icon wb-graph-up" style="color:#f05050" aria-hidden="true"></i>
-                            <span class="site-menu-title">LeaderBoard</span>
-                            <span class="site-menu-arrow"></span>
-                          </a>
-                        </li>
-
 
                     </ul>
                     </li>
@@ -296,12 +264,12 @@
                 <div class="avatar avatar-100 mb-20">
                   <img src="../../assets/images/fullstackicon.png" alt="" style="border-radius:0px;">
                 </div>
-                <p class="font-size-20 blue-grey-700">Virgin Algorithms</p>
+                <p id="coursename1" class="font-size-20 blue-grey-700">Virgin Algorithms</p>
                 
                 <p class="mb-35" style="font-weight:bold">Are you a looking forward to excel coding skills and interviews from scratch at your pace ? Wanna Crack coding interviews of product based companies ? </p>
                 
-                <button type="button" class="btn btn-primary px-20">REQUEST CALLBACK</button>
-                <button type="button" class="btn px-20 btn-success">ENTER CLASSROOM</button>
+                <button type="button" class="btn btn-primary px-20"  onclick="requestcallback(1);" >REQUEST CALLBACK</button>
+                <button id="btn1" type="button"  disabled="true" class="btn px-20 btn-success" onclick="enterportal();">ENTER CLASSROOM</button>
               </div>
             </div>
             <!-- End Panel Web Designer -->
@@ -314,12 +282,12 @@
                 <div class="avatar avatar-100 mb-20">
                   <img src="../../assets/images/machinelearning.png" alt="" style="border-radius:0px;">
                 </div>
-                <p class="font-size-20 blue-grey-700">Full Stack Web Development + DSA</p>
+                <p id="coursename2" class="font-size-20 blue-grey-700">Full Stack Web Development + DSA</p>
                
                 <p class="mb-35" style="font-weight:bold">Wanna develop, debug & deploy a complete web application? Looking forward to crack coding interviews for Microsoft, Amazon, Flipkart?</p>
                
-                <button type="button" class="btn btn-primary px-20">REQUEST CALLBACK</button>
-                <button type="button" class="btn px-20 btn-success">ENTER CLASSROOM</button>
+                <button type="button" class="btn btn-primary px-20"  onclick="requestcallback(2);" >REQUEST CALLBACK</button>
+                <button type="button" id="btn2" disabled="true" class="btn px-20 btn-success" onclick="enterportal();" >ENTER CLASSROOM</button>
               </div>
             </div>
             <!-- End Panel Web Designer -->
@@ -333,12 +301,12 @@
                 <div class="avatar avatar-100 mb-20">
                  <img src="../../assets/images/dataanalyticsicon.png" alt="" style="border-radius:0px;">
                 </div>
-                <p class="font-size-20 blue-grey-700">Machine Learning + DSA</p>
+                <p id="coursename3" class="font-size-20 blue-grey-700">Machine Learning + DSA</p>
                
                 <p class="mb-35" style="font-weight:bold">Career around Data, Numbers, Math and Programming sounds interesting? Take a step towards the world of Artificial Intellegence</p>
                
-                <button type="button" class="btn btn-primary px-20">REQUEST CALLBACK</button>
-                <button type="button" class="btn px-20 btn-success">ENTER CLASSROOM</button>
+                <button type="button" class="btn btn-primary px-20"  onclick="requestcallback(3);" >REQUEST CALLBACK</button>
+                <button type="button"  id="btn3" disabled="true" class="btn px-20 btn-success" onclick="enterportal();" >ENTER CLASSROOM</button>
               </div>
             </div>
             <!-- End Panel Web Designer -->
@@ -351,12 +319,12 @@
                 <div class="avatar avatar-100 mb-20">
                   <img src="../../assets/images/devopsicon.png" alt="" style="border-radius:0px;">
                 </div>
-                <p class="font-size-20 blue-grey-700">Business & Data Analytics</p>
+                <p id="coursename4" class="font-size-20 blue-grey-700">Business & Data Analytics</p>
                 
                 <p class="mb-35" style="font-weight:bold">Are you the Data + Business guy? Targeting the companies like Deloitte, ZS, MuSigma, Optum, Fractal, Accenture, EXL, KPMG, PWC </p>
                
-               <button type="button" class="btn btn-primary px-20">REQUEST CALLBACK</button>
-                <button type="button" class="btn px-20 btn-success">ENTER CLASSROOM</button>
+               <button type="button" class="btn btn-primary px-20" onclick="requestcallback(4);" >REQUEST CALLBACK</button>
+                <button type="button" id="btn4" disabled="true" class="btn px-20 btn-success" onclick="enterportal();" >ENTER CLASSROOM</button>
               </div>
             </div>
             <!-- End Panel Web Designer -->
@@ -468,6 +436,33 @@
         <script src="../assets/examples/js/dashboard/v1.js"></script>
 
         <script>
+            function enterportal(key){
+                
+                window.location.href = "/dashboard";
+
+            }
+
+            function requestcallback(key){
+               
+                let user_idValue = sessionStorage.getItem("user_id");
+                let userFeedback_textValue = document.getElementById(`coursename`+`${key}`).innerHTML;
+                let userFeedback_type = "callback";
+                
+                axios.post('http://3.136.20.160:80/doFeedback', {
+                        user_id: user_idValue,
+                        feedback_details: userFeedback_textValue,
+                        feedback_type: userFeedback_type
+                    })
+                    .then(function(response) {
+                        alert("Request submitted successfully!");
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        alert("Something went wrong, Please try again!")
+                        console.log(error);
+                    });
+            }
+
             function userFeedback() {
                 let user_idValue = sessionStorage.getItem("user_id");
                 let userFeedback_textValue = document.getElementById("userFeedback_text").value;
@@ -499,157 +494,10 @@
                 let user_id = sessionStorage.getItem("user_id");
                 axios.get(`http://3.136.20.160/getUserData/${user_id}`)
                     .then(function(response) {
-                        console.log(response);
-
-                        sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
-
-                        document.getElementById("name").innerHTML = response.data["a"][0].name;
-                        document.getElementById("photo").value = response.data["a"][0].photo;
-                    }).catch(function(error) {
-                        console.log(error);
-                    });
-
-                axios.get(`http://3.136.20.160/getRegistration/${user_id}`)
-                    .then(function(response) {
-                        console.log(response);
-                        document.getElementById("email").innerHTML = response.data.email;
-                        axios.get(`http://3.136.20.160/getCourse/`+`${sessionStorage.getItem("course_id")}`)
-                            .then(function(response) {
-                                console.log(response);
-                                document.getElementById("courses").innerHTML = response.data.course_name;
-                            }).catch(function(error) {
-                                console.log(error);
-                            });
-                    }).catch(function(error) {
-                        console.log(error);
-                    });
-
-                axios.get(`http://3.136.20.160/getProgress/${user_id}`)
-                    .then(function(response) {
-                        console.log(response);
-                        document.getElementById("classes_completed").innerText = response.data["a"][0].classes_completed;
-                        document.getElementById("classes_completed").style.width = response.data["a"][0].classes_completed;
-
-                        document.getElementById("problems_completed").innerText = response.data["a"][0].problems_completed;
-                        document.getElementById("problems_completed").style.width = response.data["a"][0].problems_completed;
-
-                        document.getElementById("quiz_completed").innerText = response.data["a"][0].quiz_completed;
-                        document.getElementById("quiz_completed").style.width = response.data["a"][0].quiz_completed;
-
-                        document.getElementById("total_time").innerText = response.data["a"][0].total_time;
-                        document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
-
-                    }).catch(function(error) {
-                        console.log(error);
-                    });
-
-                axios.get(`http://3.136.20.160/getTaskByCourseId/`+`${sessionStorage.getItem("course_id")}`)
-                    .then(function(response) {
-                        console.log(response);
+                        var x =  response.data["a"][0].course_id;
+                        sessionStorage.setItem("course_id",response.data["a"][0].course_id);
+                        document.getElementById(`btn`+`${x}`).disabled = false;
                         
-                        if (response.data.a.length != 0) {
-                            for (let i = 0; i < response.data.a.length; i++) {
-                              let y = new Date(response.data.a[i].task_datetime)
-                              
-                                $('#todo').append(`<li class="timeline-reverse timeline-item">
-                  <div class="timeline-content-wrap">
-                    <div class="timeline-dot " style="width: 45px;
-    height: 45px;
-    margin-right: -20px;
-    line-height: 47px;
-    background-color:moccasin;
-">
-                      <i class="icon" aria-hidden="true">
-                       <img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="..." style="width:42px;">
-                        </i>
-                    </div>
-                    <div class="timeline-content">
-                      <div class="title">
-                        <span class="authors">CodeAsylums</span> assigned a task
-                      </div>
-                       <div class="metas">
-                        <span id="task_datetime">${y.toDateString()}</span>
-                      </div> 
-                      <br/>
-                      
-                        <label class="item-title"><span id="task_title" style="color:black;">${response.data.a[i].task_title}</span></label>
-                       
-                      <div class="w-full">
-                        <div class="item-due-date" style="font-size:13px;">
-                          ${response.data.a[i].task_details}
-                        </div>
-                    </div>
-                  </div>
-                </li>`);
-                            }
-                        }
-                        // response.data.a[0]
-                    }).catch(function(error) {
-                        console.log(error);
-                    });
-
-                    axios.get(`http://3.136.20.160/getClasses`)
-                    .then((response) => {
-                        console.log(response)
-                        
-                     
-                          
-                        if (response.data.a.length != 0) {
-                          
-                            for (let i = 0; i < response.data.a.length; i++) {
-
-                              let start = new Date(response.data.a[i].schedule_start)
-                          let end = new Date(response.data.a[i].schedule_end)
-                          let x = ""
-                          if(start > new Date())
-                          {
-                            x = "Upcoming"
-                            
-                          }
-                          else if(end < new Date())
-                          {
-                            x = "Completed"
-                           
-                          }
-                          else {
-                            x = "Live"
-                            
-                          }
-                          
-                                $('#classes').append(`<li class="list-group-item justify-content-between">
-                        <small id="badge${i}" class="badge badge-round float-right" style="color:black;padding:5px 5px;">${x}</small>
-                        <p>
-                          <span><i class="icon wb-video" aria-hidden="true"></i>${response.data.a[i].schedule_details.split(",")[0]}</span>
-                        </p>
-                        <small>Teached by
-                          <a class="hightlight" href="javascript:void(0)">
-                            <span>${response.data.a[i].schedule_details.split(",")[1]} </span>
-                          </a>
-                          
-                        </small>
-                      </li>`);
-
-                      if(x == "Upcoming")
-                          {
-                            console.log("a")
-                           
-                            document.getElementById(`badge`+`${i}`).style.backgroundColor = "lightblue";
-                            
-                          }
-                        else if(x == "Completed")
-                          {
-                            console.log("b")
-                            
-                            document.getElementById(`badge`+`${i}`).style.backgroundColor = "lightgreen";
-                          }
-                       else  {
-                          console.log("c")
-                          
-                            document.getElementById(`badge`+`${i}`).style.backgroundColor = "red";
-                          }
-                            }
-                        }
-                        // response.data.a[0]
                     }).catch(function(error) {
                         console.log(error);
                     });
