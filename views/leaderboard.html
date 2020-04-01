@@ -444,8 +444,16 @@ if (sessionStorage.getItem("loggedCA") != md5("true")) {
         }
       function getAllProfile() {
 
-        document.getElementById("photoimg").src = sessionStorage.getItem("photo");
-        
+        if(sessionStorage.getItem("photo"))
+          {
+              document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+
+          }
+          else {
+              document.getElementById("photoimg").src = "../../assets/images/upload.png";
+
+          }
+
         axios.get('http://3.136.20.160:80/getAllProgress')
           .then(res1 =>{
             getAllUserData(res1.user_id).then( function (response2) {
