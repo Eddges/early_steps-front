@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/login', indexRouter);
 app.use('/profile', indexRouter);
+app.use('/profileothers', indexRouter);
 app.use('/register', indexRouter);
 app.use('/dashboard', indexRouter);
 app.use('/schedule', indexRouter);
@@ -33,6 +34,7 @@ app.use('/videos', indexRouter);
 app.use('/rewards', indexRouter);
 app.use('/home', indexRouter);
 app.use('/leaderboard', indexRouter);
+app.use('/testmaterials', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

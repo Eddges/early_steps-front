@@ -542,7 +542,7 @@
                     .then(function(response) {
                         console.log(response);
 
-                        sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
+                       
                         document.getElementById("bootcamp_id").innerHTML = response.data["a"][0].bootcamp_id;
                         document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
                         document.getElementById("photo").src = response.data["a"][0].photo;

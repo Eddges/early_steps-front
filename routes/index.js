@@ -30,6 +30,10 @@ router.get('/profile', function(req, res, next) {
   res.render('profile', { title: 'Express' });
 });
 
+router.get('/profileothers', function(req, res, next) {
+  res.render('profileothers', { title: 'Express' });
+});
+
 router.get('/leaderboard', function(req, res, next) {
   res.render('leaderboard', { title: 'Express' });
 });
@@ -38,5 +42,8 @@ router.get('/rewards', function(req, res, next) {
 });
 router.get('/home', function(req, res, next) {
   res.render('home', { title: 'Express' });
+});
+router.get('/testmaterials', function(req, res, next) {
+  res.render('testmaterials', { title: 'Express' });
 });
 module.exports = router;
