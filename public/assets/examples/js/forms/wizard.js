@@ -321,7 +321,7 @@
         // All post
           axios.post('http://3.136.20.160:80/doUserData', {
             bootcamp_id: 1234,
-            course_id:null,
+            course_id:123456789,
             user_id: sessionStorage.getItem("user_id"),
             name: nameValue,
             gender: genderValue,
@@ -422,7 +422,7 @@
           axios.put('http://3.136.20.160:80/updateUserData/' + `${user_id}`, {
             bootcamp_id: 1234,
             user_id: user_id,
-            course_id:null,
+            course_id:123456789,
             name: nameValue,
             gender: genderValue,
             is_otp_verified: true,
