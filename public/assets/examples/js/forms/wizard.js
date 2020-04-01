@@ -203,7 +203,288 @@
         return true;
       },
       onFinish: function onFinish() {// $('#exampleFormContainer').submit();
-      window.location.href = './dashboard';
+
+
+      // console.log("CP: 0");
+      // axios.get(`http://3.136.20.160:80/getJobProfile/` + `${user_id}`)
+      // .then(res => {
+      //     console.log(res);
+      //     if (res.data.a.length !== 0) {
+      //         document.getElementById("currentCompany").value = res.data.a[0].current_company;
+      //         document.getElementById("lastDegree").value = res.data.a[0].last_degree;
+      //         document.getElementById("yearOfExp").value = res.data.a[0].years_of_experience;
+      //         document.getElementById("majorInCollege").value = res.data.a[0].major_in_college;
+      //         document.getElementById("currentJobTitle").value = res.data.a[0].current_job_title;
+      //         document.getElementById("location").value = res.data.a[0].location;
+      //         document.getElementById("skype").value = res.data.a[0].skype;
+      //         sessionStorage.setItem("request", "put");
+      //     }
+      // }).catch(err => {console.log(err),alert("Something went wrong, please try again")})
+
+      console.log("CP: 1");
+        let nameValue = document.getElementById("name").value;
+        let genderValue = document.getElementById("gender").value;
+        let organizationValue = "none";
+        let universityValue = document.getElementById("university").value;
+        let graduationYearValue = document.getElementById("graduationYear").value;
+        let linkedInProfileValue = document.getElementById("linkedinProfile").value;
+        let t_shirt_sizeValue = document.getElementById("teeShirt").value;
+        let addressValue = document.getElementById("address").value;
+        let github_handleValue = document.getElementById("github").value;
+        let photoValue;
+        if (genderValue == "Male"){
+            photoValue = "../../../global/photos/boy_image.png";
+        } else {
+            photoValue = "../../../global/photos/girl_image.png";
+        }
+        let current_companyValue = document.getElementById("currentCompany").value;
+        let last_degreeValue = document.getElementById("lastDegree").value;
+        let years_of_experienceValue = document.getElementById("yearOfExp").value;
+        let major_in_collegeValue = document.getElementById("majorInCollege").value;
+        let current_job_titleValue = document.getElementById("currentJobTitle").value;
+        let locationValue = document.getElementById("location").value;
+        let skypeValue = document.getElementById("skype").value;
+
+        let codeforcesValue = document.getElementById("codeforces").value;
+        let spojValue = document.getElementById("spoj").value;
+        let topcoderValue = document.getElementById("topcoder").value;
+        let codechefValue = document.getElementById("codechef").value;
+        let hackerrankValue = document.getElementById("hackerrank").value;
+
+        if(last_degreeValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Degree is required";
+          return false;
+        }
+        
+        if(major_in_collegeValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Major name is required";
+          return false;
+        }
+        
+        if(locationValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Location is required";
+          return false;
+        }
+
+        if(nameValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Name is required";
+          return false;
+        }
+
+         if(genderValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Gender is required";
+          return false;
+        }
+        
+         if(universityValue==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="University name is required";
+          return false;
+        }
+
+         if(graduationYearValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Graduation year is required";
+          return false;
+        }
+
+         if(linkedInProfileValue==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="LinkedIn profile is required";
+          return false;
+        }
+        
+         if(t_shirt_sizeValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="T-shirt is required";
+          return false;
+        }
+
+         if(addressValue==""){
+           document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Address is required";
+          return false;
+        }
+         if(github_handleValue==""){
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Github handle is required";
+          return false;
+        }
+        console.log("CP: 2");
+        console.log("sessionstorage : " + sessionStorage.getItem("request"));
+      if(sessionStorage.getItem("request") == "post"){
+        // All post
+          axios.post('http://3.136.20.160:80/doUserData', {
+            bootcamp_id: 1234,
+            user_id: sessionStorage.getItem("user_id"),
+            name: nameValue,
+            gender: genderValue,
+            is_otp_verified: true,
+            is_email_verified: true,
+            photo: photoValue,
+            organization: organizationValue,
+            university: universityValue,
+            graduation_year: graduationYearValue,
+            linkedIn_profile: linkedInProfileValue,
+            t_shirt_size: t_shirt_sizeValue,
+            address: addressValue,
+            public_sharing: "1",
+            github_handle: github_handleValue
+        })
+        .then(function(response) {
+          console.log("CP: 3");
+            // alert("Profile details submitted successfully")
+            console.log(response);
+            axios.post('http://3.136.20.160:80/doJobProfile', {
+              user_id: sessionStorage.getItem("user_id"),
+              current_company: current_companyValue,
+              last_degree: last_degreeValue,
+              years_of_experience: years_of_experienceValue,
+              major_in_college: major_in_collegeValue,
+              current_job_title: current_job_titleValue,
+              location: locationValue,
+              skype: skypeValue
+          })
+          .then(function(response) {
+            console.log("CP: 4");
+              // alert("Working background details submitted successfully")
+              console.log(response);
+              axios.post('http://3.136.20.160:80/doProgrammingProfile', {
+                        user_id: sessionStorage.getItem("user_id"),
+                        codeforces: codeforcesValue,
+                        spoj: spojValue,
+                        topcoder: topcoderValue,
+                        codechef: codechefValue,
+                        hackerrank: hackerrankValue
+                    })
+                    .then(function(response) {
+                      console.log("CP: 5");
+                        window.location.href = './dashboard';
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                        alert("Something went wrong, please try again")
+                    });
+          })
+          .catch(function(error) {
+              console.log(error);
+              alert("Something went wrong, please try again")
+          });
+        })
+        .catch(function(error) {
+            console.log(error);
+            alert("Something went wrong, please try again")
+        });
+
+      } else {
+        console.log("CP: 6");
+        // All put
+        let nameValue = document.getElementById("name").value;
+        let genderValue = document.getElementById("gender").value;
+        let organizationValue = "none";
+        let universityValue = document.getElementById("university").value;
+        let graduationYearValue = document.getElementById("graduationYear").value;
+        let linkedInProfileValue = document.getElementById("linkedinProfile").value;
+        let t_shirt_sizeValue = document.getElementById("teeShirt").value;
+        let addressValue = document.getElementById("address").value;
+        let github_handleValue = document.getElementById("github").value;
+        let photoValue;
+        if (genderValue == "Male"){
+            photoValue = "../../../global/photos/boy_image.png";
+        } else if(genderValue == "Female"){
+            photoValue = "../../../global/photos/girl_image.png";
+        } else {
+          photoValue = "../../../global/photos/transgender.png";
+        }
+        let current_companyValue = document.getElementById("currentCompany").value;
+        let last_degreeValue = document.getElementById("lastDegree").value;
+        let years_of_experienceValue = document.getElementById("yearOfExp").value;
+        let major_in_collegeValue = document.getElementById("majorInCollege").value;
+        let current_job_titleValue = document.getElementById("currentJobTitle").value;
+        let locationValue = document.getElementById("location").value;
+        let skypeValue = document.getElementById("skype").value;
+
+        let codeforcesValue = document.getElementById("codeforces").value;
+        let spojValue = document.getElementById("spoj").value;
+        let topcoderValue = document.getElementById("topcoder").value;
+        let codechefValue = document.getElementById("codechef").value;
+        let hackerrankValue = document.getElementById("hackerrank").value;
+
+
+        let user_id = sessionStorage.getItem("user_id");
+          axios.put('http://3.136.20.160:80/updateUserData/' + `${user_id}`, {
+            bootcamp_id: 1234,
+            user_id: user_id,
+            name: nameValue,
+            gender: genderValue,
+            is_otp_verified: true,
+            is_email_verified: true,
+            photo: photoValue,
+            organization: organizationValue,
+            university: universityValue,
+            graduation_year: graduationYearValue,
+            linkedIn_profile: linkedInProfileValue,
+            t_shirt_size: t_shirt_sizeValue,
+            address: addressValue,
+            public_sharing: "1",
+            github_handle: github_handleValue
+        })
+        .then(function(response) {
+            // alert("Profile details updated successfully")
+            console.log("CP: 7");
+            console.log(response);
+            let user_id = sessionStorage.getItem("user_id");
+            axios.put('http://3.136.20.160:80/updateJobProfile/' + `${user_id}`, {
+                  user_id: user_id,
+                  current_company: current_companyValue,
+                  last_degree: last_degreeValue,
+                  years_of_experience: years_of_experienceValue,
+                  major_in_college: major_in_collegeValue,
+                  current_job_title: current_job_titleValue,
+                  location: locationValue,
+                  skype: skypeValue
+              })
+              .then(function(response) {
+                console.log("CP: 8");
+                  // alert("Working background details updated successfully")
+                  let user_id = sessionStorage.getItem("user_id");
+                  console.log(response);
+                  axios.put('http://3.136.20.160:80/updateProgrammingProfile/' + `${user_id}`, {
+                        user_id: user_id,
+                        codeforces: codeforcesValue,
+                        spoj: spojValue,
+                        topcoder: topcoderValue,
+                        codechef: codechefValue,
+                        hackerrank: hackerrankValue
+                    })
+                    .then(function(response) {
+                      console.log("CP: 9");
+                        // alert("Programming profile details updated successfully")
+                        window.location.href = './dashboard';
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                        alert("Something went wrong, please try again")
+                    });
+              })
+              .catch(function(error) {
+                  console.log(error);
+                  alert("Something went wrong, please try again")
+              });
+        })
+        .catch(function(error) {
+            console.log(error);
+            alert("Something went wrong, please try again")
+        });
+      }
+
       },
       buttonsAppendTo: '.panel-body'
     });
