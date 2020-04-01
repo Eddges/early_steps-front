@@ -494,10 +494,16 @@
                 let user_id = sessionStorage.getItem("user_id");
                 axios.get(`http://3.136.20.160/getUserData/${user_id}`)
                     .then(function(response) {
+                        console.log(response);
                         var x =  response.data["a"][0].course_id;
-                        sessionStorage.setItem("course_id",response.data["a"][0].course_id);
+                        try{
                         document.getElementById(`btn`+`${x}`).disabled = false;
-                        
+                        sessionStorage.setItem("course_id",response.data["a"][0].course_id);
+                        sessionStorage.setItem("redirect", "dashboard");
+                        } catch(err) {
+                            sessionStorage.setItem("redirect", "home");
+                            console.log(err);
+                        }                        
                     }).catch(function(error) {
                         console.log(error);
                     });
