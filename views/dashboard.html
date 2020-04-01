@@ -109,7 +109,7 @@
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
                   <img id="photo" src="../../assets/images/upload.png" alt="...">
-                
+                <i></i>
                 </span>
                         </a>
                         <div class="dropdown-menu" role="menu">
@@ -190,7 +190,7 @@
                         <li class="site-menu-item ">
                           <a href="/leaderboard">
                             <i class="site-menu-icon wb-graph-up" style="color:#f05050" aria-hidden="true"></i>
-                            <span class="site-menu-title">LeaderBoard</span>
+                            <span class="site-menu-title">Leaderboard</span>
                             <span class="site-menu-arrow"></span>
                           </a>
                         </li>
@@ -283,7 +283,7 @@
                             <div class="overlay-panel overlay-background vertical-align">
                                 <div class="vertical-align-middle">
                                     <a class="avatar" href="javascript:void(0)">
-                                        <img id="photo" alt="" src="../../assets/images/upload.png">
+                                        <img id="photoimg" alt="" src="../../assets/images/upload.png">
                                     </a>
                                     <div id="name" class="font-size-20 mt-10"></div>
                                     <div id="bootcamp_id" class="font-size-14"></div>
@@ -542,10 +542,20 @@
                     .then(function(response) {
                         console.log(response);
 
-                       
-                        document.getElementById("bootcamp_id").innerHTML = response.data["a"][0].bootcamp_id;
+                        sessionStorage.setItem("photo", response.data["a"][0].photo);
+                        document.getElementById("bootcamp_id").innerHTML = `Bootcamp Id : ${response.data["a"][0].bootcamp_id}`;
                         document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
                         document.getElementById("photo").src = response.data["a"][0].photo;
+                        if(sessionStorage.getItem("photo"))
+                        {
+                            document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+
+                        }
+                        else {
+                            document.getElementById("photoimg").src = "../../assets/images/upload.png";
+
+                        }
+                        
                     }).catch(function(error) {
                         console.log(error);
                     });
@@ -577,7 +587,7 @@
                         document.getElementById("contest_completed").innerText = response.data["a"][0].quiz_completed;
                         document.getElementById("contest_completed_bar").style.width = `${response.data["a"][0].quiz_completed}`+`%`;
 
-                        document.getElementById("total_time").innerText = response.data["a"][0].total_time;
+                        document.getElementById("total_time").innerText = `${response.data["a"][0].total_time}`+`hrs`;
                         document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
 
                     }).catch(function(error) {
