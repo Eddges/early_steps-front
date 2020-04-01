@@ -100,7 +100,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
+                  <img id="photoimg" src="../../assets/images/upload.png" alt="...">
                   <i></i>
                 </span>
                         </a>
@@ -308,6 +308,9 @@
     </script>
     <script>
       function globalFunction(){ 
+          
+        document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+
         let course_id = sessionStorage.getItem("course_id");
         axios.get(`http://3.136.20.160/getTaskByCourseId/${course_id}`)
             .then(function (response) {

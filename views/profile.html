@@ -54,6 +54,9 @@
     <script>
         Breakpoints();
         function globalCall(){
+
+            document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+            
             if (sessionStorage.getItem("loggedCA") != md5("true")) {
                     console.log("GLOBAL");
                     window.location.href = "./login";
@@ -226,7 +229,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
+                  <img id="photoimg" src="../../assets/images/upload.png" alt="...">
                   <i></i>
                 </span>
                         </a>

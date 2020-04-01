@@ -105,7 +105,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
+                  <img id="photoimg" src="../../assets/images/upload.png" alt="...">
                   <i></i>
                 </span>
                         </a>
@@ -443,6 +443,9 @@ if (sessionStorage.getItem("loggedCA") != md5("true")) {
             window.location.href = "./login";
         }
       function getAllProfile() {
+
+        document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+        
         axios.get('http://3.136.20.160:80/getAllProgress')
           .then(res1 =>{
             getAllUserData(res1.user_id).then( function (response2) {

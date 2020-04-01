@@ -109,7 +109,7 @@
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
                   <img id="photo" src="../../assets/images/upload.png" alt="...">
-                
+                <i></i>
                 </span>
                         </a>
                         <div class="dropdown-menu" role="menu">
@@ -283,7 +283,7 @@
                             <div class="overlay-panel overlay-background vertical-align">
                                 <div class="vertical-align-middle">
                                     <a class="avatar" href="javascript:void(0)">
-                                        <img id="photo" alt="" src="../../assets/images/upload.png">
+                                        <img id="photoimg" alt="" src="../../assets/images/upload.png">
                                     </a>
                                     <div id="name" class="font-size-20 mt-10"></div>
                                     <div id="bootcamp_id" class="font-size-14"></div>
@@ -542,10 +542,12 @@
                     .then(function(response) {
                         console.log(response);
 
-                        // sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
+                        sessionStorage.setItem("photo", response.data["a"][0].photo);
                         document.getElementById("bootcamp_id").innerHTML = `Bootcamp Id : ${response.data["a"][0].bootcamp_id}`;
                         document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
                         document.getElementById("photo").src = response.data["a"][0].photo;
+                        document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+
                     }).catch(function(error) {
                         console.log(error);
                     });
