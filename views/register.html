@@ -76,31 +76,32 @@
             </div>
             <form>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="username" type="text" class="form-control" name="username" required="required"/>
+                <input onclick="clearAlert()" id="username" type="text" class="form-control" name="username" required="required"/>
                 <label class="floating-label">UserName</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="email" type="email" class="form-control" name="email" required="required"/>
+                <input onclick="clearAlert()" id="email" type="email" class="form-control" name="email" required="required"/>
                 <label class="floating-label">Email</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="phone" type="phone" class="form-control" name="phone" required="required"/>
+                <input onclick="clearAlert()" id="phone" type="phone" class="form-control" name="phone" required="required"/>
                 <label class="floating-label">Phone No</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="password" type="password" class="form-control" name="password" required="required"/>
+                <input onclick="clearAlert()" id="password" type="password" class="form-control" name="password" required="required"/>
                 <label class="floating-label">Password</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="retypePassword" type="password" class="form-control" name="PasswordCheck" required="required"/>
+                <input onclick="clearAlert()" id="retypePassword" type="password" class="form-control" name="PasswordCheck" required="required"/>
                 <label class="floating-label">Re-enter Password</label>
               </div>
-              <div class="form-group form-material" data-plugin="formMaterial">
+              <!-- <div class="form-group form-material" data-plugin="formMaterial">
                 <label class="form-control-label"></label>
                 <select class="form-control" id="course_id" required="required" name="default" >
                   <option value="0">Select Course</option>
+                    <option value="1000">Not Enrolled</option>
                     <option value="1">Virgin Algorithm - 4th April 2020</option>
-                    <option value="2">Virgir Algorithm - 12th April 2020</option>
+                    <option value="2">Virgin Algorithm - 12th April 2020</option>
                     <option value="3">Full Stack - 12th April 2020</option>
                     <option value="4">Machine Learning - 12th April 2020</option>
                     <option value="5">Virgin Algorithm - 19th April 2020</option>
@@ -112,7 +113,7 @@
                     <option value="7">Full Stack - 26th April 2020</option>
                     <option value="7">Data Analytics - 26th April 2020</option>
                   </select>
-            </div>
+            </div> -->
               <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doregistration();" style="color:white;">Sign up</a>
             </form>
             <p>Have account already? Please go to <a href="login">Sign In</a></p>
@@ -203,6 +204,13 @@
           document.getElementById('message-div').innerHTML="Email is required";
           return false;
         }
+
+        // if(document.getElementById('course_id').value==="0")
+        // {
+        //   document.getElementById('alert-message-div').style.display="block";
+        //   document.getElementById('message-div').innerHTML="Select Course";
+        //   return false;          
+        // }
           
           //var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
           var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -296,11 +304,15 @@
                 })
                 .catch(function (error) {
                   console.log(error);
-                  alert("UserName already registered!");
+                  document.getElementById('alert-message-div').style.display="block";
+                  document.getElementById('message-div').innerHTML="User Name already registered!";
                 });
             }
         }
       }
+      function clearAlert(){
+          document.getElementById('alert-message-div').style.display="none";
+        }    
     </script>
   </body>
 </html>

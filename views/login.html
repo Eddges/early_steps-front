@@ -80,19 +80,20 @@
            
             <form>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="userEmailOrPhone" type="text" class="form-control" name="email" />
+                <input onclick="clearAlert()" id="userEmailOrPhone" type="text" class="form-control" name="email" />
                 <label class="floating-label">Email/Phone</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input id="password" type="password" class="form-control" name="password" />
+                <input onclick="clearAlert()" id="password" type="password" class="form-control" name="password" />
                 <label class="floating-label">Password</label>
               </div>
-              <div class="form-group form-material">
+              <!-- <div class="form-group form-material">
                 <label class="form-control-label"></label>
                 <select class="form-control" id="course_id" required="required" name="default" >
                   <option value="0">Select Course</option>
+                    <option value="100">Not Enrolled</option>
                     <option value="1">Virgin Algorithm - 4th April 2020</option>
-                    <option value="2">Virgir Algorithm - 12th April 2020</option>
+                    <option value="2">Virgin Algorithm - 12th April 2020</option>
                     <option value="3">Full Stack - 12th April 2020</option>
                     <option value="4">Machine Learning - 12th April 2020</option>
                     <option value="5">Virgin Algorithm - 19th April 2020</option>
@@ -104,7 +105,7 @@
                     <option value="7">Full Stack - 26th April 2020</option>
                     <option value="7">Data Analytics - 26th April 2020</option>
                   </select>
-            </div>
+            </div> -->
               <div class="form-group clearfix">
               <!--  <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg float-left">
                   <input type="checkbox" id="inputCheckbox" name="remember">
@@ -202,6 +203,13 @@
           document.getElementById('message-div').innerHTML="Password is required";
           return false;
         }
+
+        // if(document.getElementById('course_id').value==="0")
+        // {
+        //   document.getElementById('alert-message-div').style.display="block";
+        //   document.getElementById('message-div').innerHTML="Select Course";
+        //   return false;          
+        // }
         
         let userTypeValue = "student";
         let redirectURL = "./profile";
@@ -268,17 +276,26 @@
             axios.get(`http://3.136.20.160:80/getProgrammingProfile/` + `${user_id}
                     `)
                 .then(res => {
-                  sessionStorage.setItem("course_id", document.getElementById("course_id").value);
-                    if(res.data.a.length!=0)
-                    {
-                      window.location.href = "./dashboard"; 
-                    }
-                    else
-                    {
-                      window.location.href = "./profile"; 
-                    }
+                  // sessionStorage.setItem("course_id", document.getElementById("course_id").value);
+                    // if(document.getElementById("course_id").value==="1000")
+                    // {
+                    //   window.location.href = "./dashboard-others";                     }
+                    // else
+                    // {
+                        if(res.data.a.length!=0)
+                      {
+                        window.location.href = "./dashboard"; 
+                      }
+                      else
+                      {
+                        window.location.href = "./profile"; 
+                      }                      
+                    // }
                 })
                 .catch(err => console.log(err))
+        }
+        function clearAlert(){
+          document.getElementById('alert-message-div').style.display="none";
         }      
     </script>
   </body>

@@ -54,6 +54,9 @@
     <script>
         Breakpoints();
         function globalCall(){
+
+            document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+            
             if (sessionStorage.getItem("loggedCA") != md5("true")) {
                     console.log("GLOBAL");
                     window.location.href = "./login";
@@ -65,9 +68,31 @@
         var UserData = [];
 
         function getprofiledata() {
-            sessionStorage.setItem("stringDetail", "");
-	        sessionStorage.setItem("stringStart", "");
-	        sessionStorage.setItem("stringEnd", "");
+            if(!sessionStorage.getItem("stringDetail"))
+            {
+                let course_id = sessionStorage.getItem("course_id");
+                axios.get(`http://3.136.20.160/getScheduleByCourseId/${course_id}`)
+                .then(function(response) {
+                console.log(response);
+                var stringDetail = "";
+                var stringStart = "";
+                var stringEnd = "";
+                for(let i=0;i<response.data.a.length;i++) {
+                    stringDetail+=response.data.a[i].schedule_details + ";";
+                    stringStart+=response.data.a[i].schedule_start + ";";
+                    stringEnd+=response.data.a[i].schedule_end + ";";
+                }
+                sessionStorage.setItem("stringDetail", stringDetail);
+                sessionStorage.setItem("stringStart", stringStart);
+                sessionStorage.setItem("stringEnd", stringEnd);
+                console.log(stringDetail);
+                console.log(stringStart);
+                console.log(stringEnd);
+                }).catch(function(error){
+                console.log(error);
+                });
+            }
+
             getUserData();
             getJobProfileData();
             getProgrammingProfileData();
@@ -204,7 +229,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
+                  <img id="photoimg" src="../../assets/images/upload.png" alt="...">
                   <i></i>
                 </span>
                         </a>
@@ -286,7 +311,7 @@
                         <li class="site-menu-item">
                           <a href="/leaderboard">
                             <i class="site-menu-icon wb-graph-up" style="color:#f05050" aria-hidden="true"></i>
-                            <span class="site-menu-title">LeaderBoard</span>
+                            <span class="site-menu-title">Leaderboard</span>
                             <span class="site-menu-arrow"></span>
                           </a>
                         </li>
@@ -459,7 +484,7 @@
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">LinkedIn Profile</label>
-                                            <input type="text" class="form-control" id="linkedinProfile" name="default" required="required" placeholder="https://www.linkedin.com/">
+                                            <input type="text" class="form-control" id="linkedinProfile" name="default" placeholder="https://www.linkedin.com/">
 
                                         </div>
                                         <div class="form-group form-material">
@@ -479,7 +504,7 @@
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Github Id</label>
-                                            <input type="text" class="form-control" id="github" name="default" required="required" placeholder="Github Id">
+                                            <input type="text" class="form-control" id="github" name="default" required="required" value="N/A">
 
                                         </div>
                                         <!-- <div class="form-group form-material">
@@ -553,7 +578,7 @@
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Skype</label>
-                                            <input type="text" class="form-control" id="skype" placeholder="Skype Id" >
+                                            <input type="text" class="form-control" id="skype" value="N/A" >
                                         </div>
                                         <center>
                                             <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doJobProfile();" style="color:white;" hidden>Submit Information</a>

@@ -105,7 +105,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
+                  <img id="photoimg" src="../../assets/images/upload.png" alt="...">
                   <i></i>
                 </span>
                         </a>
@@ -187,7 +187,7 @@
                         <li class="site-menu-item active">
                           <a href="/leaderboard">
                             <i class="site-menu-icon wb-graph-up" style="color:#f05050" aria-hidden="true"></i>
-                            <span class="site-menu-title">LeaderBoard</span>
+                            <span class="site-menu-title">Leaderboard</span>
                             <span class="site-menu-arrow"></span>
                           </a>
                         </li>
@@ -274,7 +274,7 @@
           <!-- Panel Filtering rows -->
           <div class="panel">
             <header class="panel-heading">
-              <h3 class="panel-title">LeaderBoards</h3>
+              <h3 class="panel-title">Leaderboard</h3>
             </header>
             <div class="panel-body">
               <table
@@ -286,7 +286,6 @@
                       <form class="form-inline">
                         <div class="form-group"><label class="sr-only">Status</label><select class="form-control">
                             <option>Course 1</option>
-                            <option>Course 2</option>
                           </select></div>
                         <ul class="dropdown-menu dropdown-menu-right">
                           <li><a class="checkbox"><label><input type="checkbox" checked="checked">ID</label></a></li>
@@ -444,6 +443,9 @@ if (sessionStorage.getItem("loggedCA") != md5("true")) {
             window.location.href = "./login";
         }
       function getAllProfile() {
+
+        document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+        
         axios.get('http://3.136.20.160:80/getAllProgress')
           .then(res1 =>{
             getAllUserData(res1.user_id).then( function (response2) {

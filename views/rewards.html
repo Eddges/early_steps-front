@@ -100,7 +100,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
+                  <img id="photoimg" src="../../assets/images/upload.png" alt="...">
                   <i></i>
                 </span>
                         </a>
@@ -182,7 +182,7 @@
                         <li class="site-menu-item">
                           <a href="/leaderboard">
                             <i class="site-menu-icon wb-graph-up" style="color:#f05050" aria-hidden="true"></i>
-                            <span class="site-menu-title">LeaderBoard</span>
+                            <span class="site-menu-title">Leaderboard</span>
                             <span class="site-menu-arrow"></span>
                           </a>
                         </li>
@@ -205,9 +205,12 @@
     <!-- Page -->
     <div class="page">
       <div class="page-content blue-grey-500">
-        <ul id="video" class="blocks blocks-100 blocks-xxl-4 blocks-lg-3 blocks-md-2" data-plugin="masonry">
+          <h4>
+              Currently Unavailable
+          </h4>
+        <!-- <ul id="video" class="blocks blocks-100 blocks-xxl-4 blocks-lg-3 blocks-md-2" data-plugin="masonry">
 
-        </ul>
+        </ul> -->
       </div>
     </div>
 <div class="modal fade" id="exampleFormModal" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1" aria-hidden="true" style="display: none;">
@@ -308,6 +311,7 @@
     </script>
     <script>
       function globalFunction(){ 
+        document.getElementById("photoimg").src = sessionStorage.getItem("photo");
         let course_id = sessionStorage.getItem("course_id");
         axios.get(`http://3.136.20.160/getTaskByCourseId/${course_id}`)
             .then(function (response) {
