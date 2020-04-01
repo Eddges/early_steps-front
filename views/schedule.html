@@ -53,6 +53,16 @@
 
     <script>
       function globalFunction() {
+
+        if(sessionStorage.getItem("photo"))
+          {
+              document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+
+          }
+          else {
+              document.getElementById("photoimg").src = "../../assets/images/upload.png";
+
+          }
         let course_id = sessionStorage.getItem("course_id");
         axios.get(`http://3.136.20.160/getScheduleByCourseId/${course_id}`)
         .then(function(response) {
@@ -133,7 +143,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
+                  <img id="photoimg" src="../../assets/images/upload.png" alt="...">
                   <i></i>
                 </span>
                         </a>
@@ -215,7 +225,7 @@
                         <li class="site-menu-item">
                           <a href="/leaderboard">
                             <i class="site-menu-icon wb-graph-up" style="color:#f05050" aria-hidden="true"></i>
-                            <span class="site-menu-title">LeaderBoard</span>
+                            <span class="site-menu-title">Leaderboard</span>
                             <span class="site-menu-arrow"></span>
                           </a>
                         </li>

@@ -100,7 +100,7 @@
                 <select class="form-control" id="course_id" required="required" name="default" >
                   <option value="0">Select Course</option>
                     <option value="1">Virgin Algorithm - 4th April 2020</option>
-                    <option value="2">Virgir Algorithm - 12th April 2020</option>
+                    <option value="2">Virgin Algorithm - 12th April 2020</option>
                     <option value="3">Full Stack - 12th April 2020</option>
                     <option value="4">Machine Learning - 12th April 2020</option>
                     <option value="5">Virgin Algorithm - 19th April 2020</option>
@@ -202,6 +202,13 @@
            document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Email is required";
           return false;
+        }
+
+        if(document.getElementById('course_id').value==="0")
+        {
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Select Course";
+          return false;          
         }
           
           //var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
