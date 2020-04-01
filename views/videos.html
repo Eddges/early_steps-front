@@ -320,11 +320,11 @@
         }
 
         let course_id = sessionStorage.getItem("course_id");
-        axios.get(`http://3.136.20.160/getTaskByCourseId/${course_id}`)
+        axios.get(`http://3.136.20.160/getVideoByCourseId/1`)
             .then(function (response) {
               console.log(response);
               for (let i=0;i<response.data.a.length;i++){
-                $('#video').append(`<li class="masonry-item"><div class="card card-shadow"><div class="card-header cover"><img class="cover-image" src="../../../global/photos/placeholder.png"alt="..."></div><div class="card-block"><h3 class="card-title">${response.data.a[i].task_title}</h3><p class="card-text type-link"><small>By<a href="javascript:void(0)">Nathan Watts</a><a href="javascript:void(0)">${response.data.a[i].task_datetime}</a><a href="javascript:void(0)"><span>3</span> Comments</a></small></p><p class="card-text">${response.data.a[i].task_details}</p></div><div class="card-block"><div class="card-actions float-right"><a href="javascript:void(0)"><i class="icon wb-heart" aria-hidden="true"></i><span>108</span></a></div><button type="button" class="btn btn-outline btn-primarycard-link">Extra: ${response.data.a[i].task_extra}</button></div></div></li>`);
+                $('#video').append(`<li class="masonry-item"><div class="card card-shadow"><div class="card-header cover"><img class="cover-image" src="../../../global/photos/placeholder.png"alt="..."></div><div class="card-block"><h3 class="card-title">${response.data.a[i].video_title}</h3><p class="card-text type-link"><small>By<a href="javascript:void(0)">Codeasylums</a><a href="javascript:void(0)">${response.data.a[i].video_datetime}</a><a href="javascript:void(0)"><span>3</span> Comments</a></small></p><p class="card-text">${response.data.a[i].video_details}</p></div><div class="card-block"><div class="card-actions float-right"><a href="javascript:void(0)"><i class="icon wb-heart" aria-hidden="true"></i><span>108</span></a></div><button type="button" class="btn btn-outline btn-primarycard-link">Extra: ${response.data.a[i].video_extra}</button></div></div></li>`);
               }
               // response.data.a[0]
             }).catch(function (error){

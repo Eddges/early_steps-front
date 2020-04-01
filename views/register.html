@@ -95,10 +95,11 @@
                 <input onclick="clearAlert()" id="retypePassword" type="password" class="form-control" name="PasswordCheck" required="required"/>
                 <label class="floating-label">Re-enter Password</label>
               </div>
-              <div class="form-group form-material" data-plugin="formMaterial">
+              <!-- <div class="form-group form-material" data-plugin="formMaterial">
                 <label class="form-control-label"></label>
                 <select class="form-control" id="course_id" required="required" name="default" >
                   <option value="0">Select Course</option>
+                    <option value="1000">Not Enrolled</option>
                     <option value="1">Virgin Algorithm - 4th April 2020</option>
                     <option value="2">Virgin Algorithm - 12th April 2020</option>
                     <option value="3">Full Stack - 12th April 2020</option>
@@ -112,7 +113,7 @@
                     <option value="7">Full Stack - 26th April 2020</option>
                     <option value="7">Data Analytics - 26th April 2020</option>
                   </select>
-            </div>
+            </div> -->
               <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doregistration();" style="color:white;">Sign up</a>
             </form>
             <p>Have account already? Please go to <a href="login">Sign In</a></p>
@@ -204,12 +205,12 @@
           return false;
         }
 
-        if(document.getElementById('course_id').value==="0")
-        {
-          document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Select Course";
-          return false;          
-        }
+        // if(document.getElementById('course_id').value==="0")
+        // {
+        //   document.getElementById('alert-message-div').style.display="block";
+        //   document.getElementById('message-div').innerHTML="Select Course";
+        //   return false;          
+        // }
           
           //var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
           var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;

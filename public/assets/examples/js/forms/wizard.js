@@ -370,17 +370,17 @@
                     })
                     .catch(function(error) {
                         console.log(error);
-                        alert("Something went wrong, please try again")
+                        alert("Something went wrong, please try again1")
                     });
           })
           .catch(function(error) {
               console.log(error);
-              alert("Something went wrong, please try again")
+              alert("Something went wrong, please try again2")
           });
         })
         .catch(function(error) {
             console.log(error);
-            alert("Something went wrong, please try again")
+            alert("Something went wrong, please try again3")
         });
 
       } else {
@@ -423,6 +423,7 @@
             bootcamp_id: 1234,
             course_id:1,
             user_id: user_id,
+            course_id:123456789,
             name: nameValue,
             gender: genderValue,
             is_otp_verified: true,
