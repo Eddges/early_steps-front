@@ -321,7 +321,7 @@
         // All post
           axios.post('http://3.136.20.160:80/doUserData', {
             bootcamp_id: 1234,
-            course_id:9874563210,
+            course_id:1,
             user_id: sessionStorage.getItem("user_id"),
             name: nameValue,
             gender: genderValue,
@@ -423,7 +423,6 @@
             bootcamp_id: 1234,
             course_id:1,
             user_id: user_id,
-            course_id:123456789,
             name: nameValue,
             gender: genderValue,
             is_otp_verified: true,
