@@ -456,8 +456,9 @@ if (sessionStorage.getItem("loggedCA") != md5("true")) {
 
         axios.get('http://3.136.20.160:80/getAllProgress')
           .then(res1 =>{
-            getAllUserData(res1.user_id).then( function (response2) {
+            getAllUserData().then( function (response2) {
             let sample = res1.data.a.sort(function (a, b) { return b.problems_completed - a.problems_completed })
+            console.log(sample,response2)
             sample.map((res, index) => {
               var tr = document.createElement("tr");
               var td1 = tr.appendChild(document.createElement('td'));
@@ -472,11 +473,19 @@ if (sessionStorage.getItem("loggedCA") != md5("true")) {
               td5a.classList.add("badge-table");
               td5a.classList.add("badge-success");
 
-              td1.innerHTML = index + 1;
-              td2.innerHTML = response2[index].user_name;
-              td3.innerHTML = response2[index].email; 
-              td4.innerHTML = res.problems_completed;
-              td5a.innerHTML = "active";
+              response2.map(a=>{
+                if(a.user_id==res.user_id)
+                {
+                  td1.innerHTML = index + 1;
+                  td2.innerHTML = a.user_name; 
+                  td3.innerHTML = a.email; 
+                  td4.innerHTML = res.problems_completed;
+                  td5a.innerHTML = "active";
+                }
+              })
+
+
+
               document.getElementById("table_data").appendChild(tr)
             })
           })
@@ -487,7 +496,7 @@ if (sessionStorage.getItem("loggedCA") != md5("true")) {
           });
       }
 
-      function getAllUserData(props) {
+      function getAllUserData() {
         return axios.get(`http://3.136.20.160:80/getAllUsers`)
           .then(function (response) {
             console.log(response);

@@ -421,9 +421,8 @@
         let user_id = sessionStorage.getItem("user_id");
           axios.put('http://3.136.20.160:80/updateUserData/' + `${user_id}`, {
             bootcamp_id: 1234,
-            course_id:1,
             user_id: user_id,
-            course_id:123456789,
+            course_id:9874563210,
             name: nameValue,
             gender: genderValue,
             is_otp_verified: true,
