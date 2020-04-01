@@ -108,8 +108,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
-                  <i></i>
+                  <img id="photo" src="../../assets/images/upload.png" alt="...">
+                
                 </span>
                         </a>
                         <div class="dropdown-menu" role="menu">
@@ -283,10 +283,10 @@
                             <div class="overlay-panel overlay-background vertical-align">
                                 <div class="vertical-align-middle">
                                     <a class="avatar" href="javascript:void(0)">
-                                        <img alt="" src="../../assets/images/upload.png">
+                                        <img id="photo" alt="" src="../../assets/images/upload.png">
                                     </a>
                                     <div id="name" class="font-size-20 mt-10"></div>
-                                    <div id="email" class="font-size-14"></div>
+                                    <div id="bootcamp_id" class="font-size-14"></div>
                                     <div id="courses" class="font-size-14"></div>
                                 </div>
                             </div>
@@ -316,7 +316,7 @@
                                             </td>
                                             <td>
                                                 <div class="progress progress-xs mb-0">
-                                                    <div class="progress-bar progress-bar-info bg-blue-600" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                    <div id="classes_completed_bar" class="progress-bar progress-bar-info bg-blue-600" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                                                     </div>
                                                 </div>
                                             </td>
@@ -326,11 +326,11 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Problem Completed
+                                                Problem Solved
                                             </td>
                                             <td>
                                                 <div class="progress progress-xs mb-0">
-                                                    <div class="progress-bar progress-bar-info bg-green-600" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                    <div id="problems_completed_bar" class="progress-bar progress-bar-info bg-green-600" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                                                     </div>
                                                 </div>
                                             </td>
@@ -340,16 +340,16 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Quiz Completed
+                                                Contests Completed
                                             </td>
                                             <td>
                                                 <div class="progress progress-xs mb-0">
-                                                    <div class="progress-bar progress-bar-info bg-red-600" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                    <div id="contest_completed_bar" class="progress-bar progress-bar-info bg-red-600" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <span id="quiz_completed">0</span>%
+                                                <span id="contest_completed">0</span>%
                                             </td>
                                         </tr>
                                     </tbody>
@@ -543,9 +543,9 @@
                         console.log(response);
 
                         sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
-
-                        document.getElementById("name").innerHTML = response.data["a"][0].name;
-                        document.getElementById("photo").value = response.data["a"][0].photo;
+                        document.getElementById("bootcamp_id").innerHTML = response.data["a"][0].bootcamp_id;
+                        document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
+                        document.getElementById("photo").src = response.data["a"][0].photo;
                     }).catch(function(error) {
                         console.log(error);
                     });
@@ -553,11 +553,11 @@
                 axios.get(`http://3.136.20.160/getRegistration/${user_id}`)
                     .then(function(response) {
                         console.log(response);
-                        document.getElementById("email").innerHTML = response.data.email;
                         axios.get(`http://3.136.20.160/getCourse/`+`${sessionStorage.getItem("course_id")}`)
                             .then(function(response) {
                                 console.log(response);
-                                document.getElementById("courses").innerHTML = response.data.course_name;
+                                
+                                document.getElementById("courses").innerHTML = response.data.course_name.toUpperCase();
                             }).catch(function(error) {
                                 console.log(error);
                             });
@@ -569,13 +569,13 @@
                     .then(function(response) {
                         console.log(response);
                         document.getElementById("classes_completed").innerText = response.data["a"][0].classes_completed;
-                        document.getElementById("classes_completed").style.width = response.data["a"][0].classes_completed;
+                        document.getElementById("classes_completed_bar").style.width = `${response.data["a"][0].classes_completed}`+`%`;
 
                         document.getElementById("problems_completed").innerText = response.data["a"][0].problems_completed;
-                        document.getElementById("problems_completed").style.width = response.data["a"][0].problems_completed;
+                        document.getElementById("problems_completed_bar").style.width = `${response.data["a"][0].problems_completed}`+`%`;
 
-                        document.getElementById("quiz_completed").innerText = response.data["a"][0].quiz_completed;
-                        document.getElementById("quiz_completed").style.width = response.data["a"][0].quiz_completed;
+                        document.getElementById("contest_completed").innerText = response.data["a"][0].quiz_completed;
+                        document.getElementById("contest_completed_bar").style.width = `${response.data["a"][0].quiz_completed}`+`%`;
 
                         document.getElementById("total_time").innerText = response.data["a"][0].total_time;
                         document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
@@ -629,6 +629,7 @@
                         console.log(error);
                     });
 
+                     // <span class="border border-primary">${x}</span>
                     axios.get(`http://3.136.20.160/getClasses`)
                     .then((response) => {
                         console.log(response)
@@ -658,35 +659,45 @@
                           }
                           
                                 $('#classes').append(`<li class="list-group-item justify-content-between">
-                        <small id="badge${i}" class="badge badge-round float-right" style="color:black;padding:5px 5px;">${x}</small>
+                        <small id="badge${i}" class="badge  float-right" style="padding:5px 5px;">${x}</small>
                         <p>
                           <span><i class="icon wb-video" aria-hidden="true"></i>${response.data.a[i].schedule_details.split(",")[0]}</span>
                         </p>
-                        <small>Teached by
+                        <small>Mentored by
                           <a class="hightlight" href="javascript:void(0)">
                             <span>${response.data.a[i].schedule_details.split(",")[1]} </span>
                           </a>
-                          
+                          <br/>
+                        </small>
+                        <small>Start date :
+                            <span>${new Date(response.data.a[i].schedule_start).toLocaleString()} </span>
+                         
+                        </small>
+                        <br/>
+                        <small>End date :
+                            <span>${new Date(response.data.a[i].schedule_end).toLocaleString()} </span>
+                         
                         </small>
                       </li>`);
 
                       if(x == "Upcoming")
                           {
-                            console.log("a")
+                            
                            
-                            document.getElementById(`badge`+`${i}`).style.backgroundColor = "lightblue";
+                            document.getElementById(`badge`+`${i}`).style.border = "1px solid dodgerblue";
+                            document.getElementById(`badge`+`${i}`).style.color = "dodgerblue";
                             
                           }
                         else if(x == "Completed")
                           {
-                            console.log("b")
-                            
-                            document.getElementById(`badge`+`${i}`).style.backgroundColor = "lightgreen";
+                          
+                            document.getElementById(`badge`+`${i}`).style.color = "seagreen";
+                            document.getElementById(`badge`+`${i}`).style.border = "1px solid seagreen";
                           }
                        else  {
-                          console.log("c")
                           
-                            document.getElementById(`badge`+`${i}`).style.backgroundColor = "red";
+                          document.getElementById(`badge`+`${i}`).style.color = "red";
+                            document.getElementById(`badge`+`${i}`).style.border = "1px solid red";
                           }
                             }
                         }
@@ -695,6 +706,27 @@
                         console.log(error);
                     });
 
+                    let course_id = sessionStorage.getItem("course_id");
+                        axios.get(`http://3.136.20.160/getScheduleByCourseId/${course_id}`)
+                        .then(function(response) {
+                        console.log(response);
+                        var stringDetail = "";
+                        var stringStart = "";
+                        var stringEnd = "";
+                        for(let i=0;i<response.data.a.length;i++) {
+                        stringDetail+=response.data.a[i].schedule_details + ";";
+                        stringStart+=response.data.a[i].schedule_start + ";";
+                        stringEnd+=response.data.a[i].schedule_end + ";";
+                        }
+                        sessionStorage.setItem("stringDetail", stringDetail);
+                        sessionStorage.setItem("stringStart", stringStart);
+                        sessionStorage.setItem("stringEnd", stringEnd);
+                        console.log(stringDetail);
+                        console.log(stringStart);
+                        console.log(stringEnd);
+                        }).catch(function(error){
+                        console.log(error);
+                        });
 
             }
             if (sessionStorage.getItem("loggedCA") === md5("true")) {
