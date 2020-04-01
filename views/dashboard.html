@@ -542,8 +542,8 @@
                     .then(function(response) {
                         console.log(response);
 
-                        sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
-                        document.getElementById("bootcamp_id").innerHTML = response.data["a"][0].bootcamp_id;
+                        // sessionStorage.setItem("course_id", response.data["a"][0].bootcamp_id);
+                        document.getElementById("bootcamp_id").innerHTML = `Bootcamp Id : ${response.data["a"][0].bootcamp_id}`;
                         document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
                         document.getElementById("photo").src = response.data["a"][0].photo;
                     }).catch(function(error) {
@@ -577,7 +577,7 @@
                         document.getElementById("contest_completed").innerText = response.data["a"][0].quiz_completed;
                         document.getElementById("contest_completed_bar").style.width = `${response.data["a"][0].quiz_completed}`+`%`;
 
-                        document.getElementById("total_time").innerText = response.data["a"][0].total_time;
+                        document.getElementById("total_time").innerText = `${response.data["a"][0].total_time}`+`hrs`;
                         document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
 
                     }).catch(function(error) {

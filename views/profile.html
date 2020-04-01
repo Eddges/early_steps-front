@@ -65,9 +65,31 @@
         var UserData = [];
 
         function getprofiledata() {
-            sessionStorage.setItem("stringDetail", "");
-	        sessionStorage.setItem("stringStart", "");
-	        sessionStorage.setItem("stringEnd", "");
+            if(!sessionStorage.getItem("stringDetail"))
+            {
+                let course_id = sessionStorage.getItem("course_id");
+                axios.get(`http://3.136.20.160/getScheduleByCourseId/${course_id}`)
+                .then(function(response) {
+                console.log(response);
+                var stringDetail = "";
+                var stringStart = "";
+                var stringEnd = "";
+                for(let i=0;i<response.data.a.length;i++) {
+                    stringDetail+=response.data.a[i].schedule_details + ";";
+                    stringStart+=response.data.a[i].schedule_start + ";";
+                    stringEnd+=response.data.a[i].schedule_end + ";";
+                }
+                sessionStorage.setItem("stringDetail", stringDetail);
+                sessionStorage.setItem("stringStart", stringStart);
+                sessionStorage.setItem("stringEnd", stringEnd);
+                console.log(stringDetail);
+                console.log(stringStart);
+                console.log(stringEnd);
+                }).catch(function(error){
+                console.log(error);
+                });
+            }
+
             getUserData();
             getJobProfileData();
             getProgrammingProfileData();
