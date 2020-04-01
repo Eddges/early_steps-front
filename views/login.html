@@ -282,12 +282,11 @@
                     //   window.location.href = "./dashboard-others";                     }
                     // else
                     // {
-                        if(res.data.a.length!=0)
-                      {
+                        sessionStorage.setItem("redirect", "home");
+                        if(res.data.a.length!=0){
                         window.location.href = "./home"; 
                       }
-                      else
-                      {
+                      else{
                         window.location.href = "./profileothers"; 
                       }                      
                     // }
