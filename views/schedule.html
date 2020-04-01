@@ -54,7 +54,15 @@
     <script>
       function globalFunction() {
 
-        document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+        if(sessionStorage.getItem("photo"))
+          {
+              document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+
+          }
+          else {
+              document.getElementById("photoimg").src = "../../assets/images/upload.png";
+
+          }
         let course_id = sessionStorage.getItem("course_id");
         axios.get(`http://3.136.20.160/getScheduleByCourseId/${course_id}`)
         .then(function(response) {

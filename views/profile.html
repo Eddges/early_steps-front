@@ -55,8 +55,16 @@
         Breakpoints();
         function globalCall(){
 
-            document.getElementById("photoimg").src = sessionStorage.getItem("photo");
-            
+            if(sessionStorage.getItem("photo"))
+                        {
+                            document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+
+                        }
+                        else {
+                            document.getElementById("photoimg").src = "../../assets/images/upload.png";
+
+                        }
+
             if (sessionStorage.getItem("loggedCA") != md5("true")) {
                     console.log("GLOBAL");
                     window.location.href = "./login";
