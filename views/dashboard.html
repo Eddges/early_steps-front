@@ -543,7 +543,7 @@
                         console.log(response);
 
                         sessionStorage.setItem("photo", response.data["a"][0].photo);
-                        document.getElementById("bootcamp_id").innerHTML = `Bootcamp Id : ${response.data["a"][0].bootcamp_id}`;
+                        // document.getElementById("bootcamp_id").innerHTML = `Bootcamp Id : ${response.data["a"][0].bootcamp_id}`;
                         document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
                         document.getElementById("photo").src = response.data["a"][0].photo;
                         if(sessionStorage.getItem("photo"))

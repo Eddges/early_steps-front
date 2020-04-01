@@ -203,7 +203,7 @@
         return true;
       },
       onFinish: function onFinish() {// $('#exampleFormContainer').submit();
-
+      sessionStorage.getItem("redirect") == "home";
 
       // console.log("CP: 0");
       // axios.get(`http://3.136.20.160:80/getJobProfile/` + `${user_id}`)
@@ -321,7 +321,7 @@
         // All post
           axios.post('http://3.136.20.160:80/doUserData', {
             bootcamp_id: 1234,
-            course_id:9874563210,
+            course_id: 1,
             user_id: sessionStorage.getItem("user_id"),
             name: nameValue,
             gender: genderValue,
@@ -365,7 +365,7 @@
                     })
                     .then(function(response) {
                       console.log("CP: 5");
-                        window.location.href = './dashboard';
+                        window.location.href = './home';
                         console.log(response);
                     })
                     .catch(function(error) {
@@ -419,10 +419,16 @@
 
 
         let user_id = sessionStorage.getItem("user_id");
+        let course_id;
+        if(sessionStorage.getItem("redirect") == "home"){
+          course_id = 1;
+        } else {
+          course_id = parseInt(sessionStorage.getItem("course_id"));
+        }
           axios.put('http://3.136.20.160:80/updateUserData/' + `${user_id}`, {
             bootcamp_id: 1234,
             user_id: user_id,
-            course_id:9874563210,
+            course_id: course_id,
             name: nameValue,
             gender: genderValue,
             is_otp_verified: true,
@@ -468,7 +474,7 @@
                     .then(function(response) {
                       console.log("CP: 9");
                         // alert("Programming profile details updated successfully")
-                        window.location.href = './dashboard';
+                          window.location.href = sessionStorage.getItem("redirect");
                         console.log(response);
                     })
                     .catch(function(error) {
