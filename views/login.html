@@ -87,6 +87,24 @@
                 <input onclick="clearAlert()" id="password" type="password" class="form-control" name="password" />
                 <label class="floating-label">Password</label>
               </div>
+              <div class="form-group form-material">
+                <label class="form-control-label"></label>
+                <select class="form-control" id="course_id" required="required" name="default" >
+                  <option value="0">Select Course</option>
+                    <option value="1">Virgin Algorithm - 4th April 2020</option>
+                    <option value="2">Virgir Algorithm - 12th April 2020</option>
+                    <option value="3">Full Stack - 12th April 2020</option>
+                    <option value="4">Machine Learning - 12th April 2020</option>
+                    <option value="5">Virgin Algorithm - 19th April 2020</option>
+                    <option value="6">Machine Learning - 19th April 2020</option>
+                    <option value="7">Full Stack - 19th April 2020</option>
+                    <option value="7">Data Analytics - 19th April 2020</option>
+                    <option value="5">Virgin Algorithm - 26th April 2020</option>
+                    <option value="6">Machine Learning - 26th April 2020</option>
+                    <option value="7">Full Stack - 26th April 2020</option>
+                    <option value="7">Data Analytics - 26th April 2020</option>
+                  </select>
+            </div>
               <div class="form-group clearfix">
               <!--  <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg float-left">
                   <input type="checkbox" id="inputCheckbox" name="remember">
@@ -250,6 +268,7 @@
             axios.get(`http://3.136.20.160:80/getProgrammingProfile/` + `${user_id}
                     `)
                 .then(res => {
+                  sessionStorage.setItem("course_id", document.getElementById("course_id").value);
                     if(res.data.a.length!=0)
                     {
                       window.location.href = "./dashboard"; 
