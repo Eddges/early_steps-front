@@ -61,14 +61,35 @@
     <div class="page vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">>
       <div class="page-content vertical-align-middle animation-slide-top animation-duration-1">
         <div class="panel">
-         <!-- alert message -->
-         <div class="alert dark alert-danger alert-dismissible animation-slide-top " id="alert-message-div" style="display:none" role="alert">
-                    <button type="button" class="close" onClick="hideme()" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                    <div id="message-div"></div>
-                  </div>
-          <!-- End alert message -->
+          <!-- alert message -->
+          <div class="alert dark alert-info alert-dismissible animation-slide-top " id="processing-div" style="display:none" role="alert">
+            <button type="button" class="close" onClick="hidemepro()" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <div id="message-processing"></div>
+          </div>
+  <!-- End alert message -->
+
+
+ <!-- alert message -->
+ <div class="alert dark alert-danger alert-dismissible animation-slide-top " id="alert-message-div" style="display:none" role="alert">
+            <button type="button" class="close" onClick="hideme()" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <div id="message-div"></div>
+          </div>
+  <!-- End alert message -->
+  
+
+<!-- alert message -->
+ <div class="alert dark alert-success alert-dismissible animation-slide-top " id="info-message-div" style="display:none" role="alert">
+            <button type="button" class="close" onClick="hidemeinfo()" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <div id="message-div-info"></div>
+          </div>
+  <!-- End alert message -->
+
           <div class="panel-body">
             <div class="brand">
               <img class="brand-img" src="../../assets//images/logo-ca.png" alt="..." style="width:40%">
@@ -174,9 +195,18 @@
     
     <script>
     
-     function hideme(){
+    function hideme(){
       document.getElementById('alert-message-div').style.display="none";
     }
+
+    function hidemeinfo(){
+      document.getElementById('info-message-div').style.display="none";
+    }
+
+     function hidemepro(){
+      document.getElementById('processing-div').style.display="none";
+    }
+
 
       (function(document, window, $){
         'use strict';
@@ -188,6 +218,11 @@
       })(document, window, jQuery);
 
       async function doregistration(){
+
+        document.getElementById('processing-div').style.display="block";
+                document.getElementById('message-processing').innerHTML="Processing...";
+
+                
         let usernameValue = document.getElementById("username").value;
         let emailValue = document.getElementById("email").value;
         let phoneValue = document.getElementById("phone").value;
@@ -290,9 +325,7 @@
            if (passwordValue === retypepasswordValue) {
               console.log("reg")
 
-              document.getElementById('processing-div').style.display="block";
-                document.getElementById('message-processing').innerHTML="Processing...";
-                
+             
               axios.post('http://3.136.20.160:80/doRegistration', {
                 user_id: phoneValue,
                 user_type: userTypeValue,
@@ -302,9 +335,13 @@
                 password: passwordValue
                 })
                 .then(function (response) {
-                  console.log(response);
-                  alert("Successfully Registered, Now Login!");
-                  window.location.href = redirectURL;
+                  document.getElementById('processing-div').style.display="none";
+                       document.getElementById('info-message-div').style.display="block";
+                        document.getElementById('message-div-info').innerHTML="Registered successfully!";
+                        setTimeout(()=>{
+                          window.location.href = redirectURL;
+                        },1500);
+                 
                 })
                 .catch(function (error) {
                   console.log(error);
