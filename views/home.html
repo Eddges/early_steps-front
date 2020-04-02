@@ -108,7 +108,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
+                  <img id="photo" src="../../assets/images/upload.png" alt="...">
                   <i></i>
                 </span>
                         </a>
@@ -496,6 +496,10 @@
                     .then(function(response) {
                         console.log(response);
                         var x =  response.data["a"][0].course_id;
+
+                        sessionStorage.setItem("photo", response.data["a"][0].photo);
+                        document.getElementById("photo").src = response.data["a"][0].photo;
+
                         try{
                         document.getElementById(`btn`+`${x}`).disabled = false;
                         sessionStorage.setItem("course_id",response.data["a"][0].course_id);
