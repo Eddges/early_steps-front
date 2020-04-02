@@ -713,7 +713,7 @@
                         // document.getElementById("total_time").innerText = `${response.data["a"][0].total_time}`+`hrs`;
                         document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
                         
-                        let val=response.data["a"][0].progress_details;
+                        let val=response.data["a"][0].total_time;
                         for(let i=0;i<4;i++)
                         {
                             if(val!=0)
