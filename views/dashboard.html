@@ -448,6 +448,38 @@
                 </div>
             </form>
         </div>
+        </div>
+<!-- mentor feedback modal-->
+<div class="modal fade" id="MentorFormModal" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-simple modal-center" style="z-index:20000;">
+        <form class="modal-content" style="z-index:20000;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                <h4 class="modal-title" id="MentorFormModalLabel">Send us some feedback!</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-xl-12 form-group">
+                        <textarea class="form-control" rows="5" placeholder="Describe your issue or idea.." id="mentorFeedback_text"></textarea>
+                        <br/>
+                        <label for="mentorvalue">Mentor name</label>
+                        <input class="form-control" placeholder = "mentor's name" id="mentorvalue" >
+                        <br/>
+                        <label for="classvalue">Class name</label>
+                        <input class="form-control" placeholder = "class name" id="classvalue" >
+                    </div>
+
+                    <div class="col-md-12 float-right">
+                        <button class="btn btn-primary btn-outline" data-dismiss="modal" type="button" onclick="mentorFeedback()">Send Feedback</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
 
         <!-- Footer -->
         <!-- <footer class="site-footer">
@@ -536,6 +568,28 @@
                     });
             }
 
+            function mentorFeedback(){
+                let user_idValue = sessionStorage.getItem("user_id");
+                let mentorFeedback_textValue = document.getElementById("mentorFeedback_text").value;
+                let mentorName = document.getElementById("mentorvalue").value;
+                let classesName = document.getElementById("classvalue").value;
+                let mentorFeedback_type = "mentor"
+
+                axios.post('http://3.136.20.160:80/doFeedback', {
+                        user_id: user_idValue,
+                        feedback_details: mentorFeedback_textValue + "," + mentorName + "," + classesName,
+                        feedback_type: mentorFeedback_type
+                    })
+                    .then(function(response) {
+                        alert("Mentor Feedback submitted successfully!");
+                        console.log(response);
+                    })
+                    .catch(function(error) {
+                        alert("Something went wrong, Please try again!")
+                        console.log(error);
+                    });
+            }
+
             function globalCall() {
                 let user_id = sessionStorage.getItem("user_id");
                 axios.get(`http://3.136.20.160/getUserData/${user_id}`)
@@ -543,7 +597,6 @@
                         console.log(response);
 
                         sessionStorage.setItem("photo", response.data["a"][0].photo);
-                        // document.getElementById("bootcamp_id").innerHTML = `Bootcamp Id : ${response.data["a"][0].bootcamp_id}`;
                         document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
                         document.getElementById("photo").src = response.data["a"][0].photo;
                         if(sessionStorage.getItem("photo"))
@@ -639,6 +692,9 @@
                         console.log(error);
                     });
 
+                    if(sessionStorage.getItem("course_id"))
+                    {
+
                      // <span class="border border-primary">${x}</span>
                     axios.get(`http://3.136.20.160/getClasses`)
                     .then((response) => {
@@ -679,6 +735,9 @@
                           </a>
                           <br/>
                         </small>
+                        <small id="feedbackbadge${i}" class="badge  float-right"  data-target="#MentorFormModal" data-toggle="modal" style="padding:5px 5px;cursor:pointer;" >
+                            Feedback
+                            </small>
                         <small>Start date :
                             <span>${new Date(response.data.a[i].schedule_start).toLocaleString()} </span>
                          
@@ -709,12 +768,19 @@
                           document.getElementById(`badge`+`${i}`).style.color = "red";
                             document.getElementById(`badge`+`${i}`).style.border = "1px solid red";
                           }
+
+                          document.getElementById(`feedbackbadge`+`${i}`).style.color = "white";
+                          document.getElementById(`feedbackbadge`+`${i}`).style.backgroundColor = "orange";
+                            document.getElementById(`feedbackbadge`+`${i}`).style.border = "1px solid orange";
+
                             }
+                            
                         }
                         // response.data.a[0]
                     }).catch(function(error) {
                         console.log(error);
                     });
+                }
 
                     let course_id = sessionStorage.getItem("course_id");
                         axios.get(`http://3.136.20.160/getScheduleByCourseId/${course_id}`)
