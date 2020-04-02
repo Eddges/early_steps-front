@@ -63,27 +63,51 @@
         console.log(dateStart);
         console.log(dateEnd);
 
-        var myEvents = [{
-          title: title1[0],
-          start: dateStart[0],
-          end: dateEnd[0]
-        },{
-          title: title1[1],
-          start: dateStart[1],
-          end: dateEnd[1]
-        },{
-          title: title1[2],
-          start: dateStart[2],
-          end: dateEnd[2]
-        },{
-          title: title1[3],
-          start: dateStart[3],
-          end: dateEnd[3]
-        },{
-          title: title1[4],
-          start: dateStart[4],
-          end: dateEnd[4]
-        }];
+        var myEvents = [];
+        var newColor = ["cyan","blue","green","pink","red"]
+        for(let i=0;i<title1.length;i++)
+        {
+          myEvents.push({
+          title: `Topic: `+title1[i].split(",")[0] +","+` Mentor: `+title1[i].split(",")[1],
+          start: dateStart[i],
+          end: dateEnd[i],
+          backgroundColor: (0, _Config.colors)(newColor[i%10], 600),
+          borderColor: (0, _Config.colors)(newColor[i%10], 600)            
+          })
+        }
+        console.log(myEvents)
+
+        // var myEvents = [{
+        //   title: `Topic: `+title1[0].split(",")[0] +","+` Mentor: `+title1[0].split(",")[1],
+        //   start: dateStart[0],
+        //   end: dateEnd[0],
+        //   backgroundColor: (0, _Config.colors)('blue', 600),
+        //   borderColor: (0, _Config.colors)('blue', 600)
+        // },{
+        //   title: `Topic: `+title1[1].split(",")[0] +","+` Mentor: `+title1[1].split(",")[1],
+        //   start: dateStart[1],
+        //   end: dateEnd[1],
+        //   backgroundColor: (0, _Config.colors)('red', 600),
+        //   borderColor: (0, _Config.colors)('red', 600)
+        // },{
+        //   title: `Topic: `+title1[2].split(",")[0] +","+` Mentor: `+title1[2].split(",")[1],
+        //   start: dateStart[2],
+        //   end: dateEnd[2],
+        //   backgroundColor: (0, _Config.colors)('green', 600),
+        //   borderColor: (0, _Config.colors)('green', 600)          
+        // },{
+        //   title: `Topic: `+title1[3].split(",")[0] +","+` Mentor: `+title1[3].split(",")[1],
+        //   start: dateStart[3],
+        //   end: dateEnd[3],
+        //   backgroundColor: (0, _Config.colors)('pink', 600),
+        //   borderColor: (0, _Config.colors)('pink', 600)          
+        // },{
+        //   title: `Topic: `+title1[0].split(",")[0] +","+` Mentor: `+title1[0].split(",")[1],
+        //   start: dateStart[4],
+        //   end: dateEnd[4],
+        //   backgroundColor: (0, _Config.colors)('cyan', 600),
+        //   borderColor: (0, _Config.colors)('cyan', 600)          
+        // }];
         var myOptions = {
           header: {
             left: null,
