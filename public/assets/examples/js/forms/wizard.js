@@ -321,7 +321,7 @@
         // All post
           axios.post('http://3.136.20.160:80/doUserData', {
             bootcamp_id: 1234,
-            course_id: 1,
+            course_id: 12345,
             user_id: sessionStorage.getItem("user_id"),
             name: nameValue,
             gender: genderValue,
@@ -421,7 +421,7 @@
         let user_id = sessionStorage.getItem("user_id");
         let course_id;
         if(sessionStorage.getItem("redirect") == "home"){
-          course_id = 1;
+          course_id = 12345;
         } else {
           course_id = parseInt(sessionStorage.getItem("course_id"));
         }

@@ -746,7 +746,7 @@
                           </a>
                           <br/>
                         </small>
-                        <small id="feedbackbadge${i}" class="badge  float-right"  data-target="#MentorFormModal" data-toggle="modal" style="padding:5px 5px;cursor:pointer;" >
+                        <small id="feedbackbadge${i}" class="badge  float-right"  data-target="#MentorFormModal" data-toggle="modal" style="padding:5px 5px;cursor:pointer;display:none;" >
                             Feedback
                             </small>
                         <small>Start date :
@@ -760,6 +760,10 @@
                         </small>
                       </li>`);
 
+                      document.getElementById(`feedbackbadge`+`${i}`).style.color = "white";
+                          document.getElementById(`feedbackbadge`+`${i}`).style.backgroundColor = "orange";
+                            document.getElementById(`feedbackbadge`+`${i}`).style.border = "1px solid orange";
+
                       if(x == "Upcoming")
                           {
                             
@@ -770,7 +774,7 @@
                           }
                         else if(x == "Completed")
                           {
-                          
+                            document.getElementById(`feedbackbadge`+`${i}`).style.display = "block";
                             document.getElementById(`badge`+`${i}`).style.color = "seagreen";
                             document.getElementById(`badge`+`${i}`).style.border = "1px solid seagreen";
                           }
@@ -780,9 +784,7 @@
                             document.getElementById(`badge`+`${i}`).style.border = "1px solid red";
                           }
 
-                          document.getElementById(`feedbackbadge`+`${i}`).style.color = "white";
-                          document.getElementById(`feedbackbadge`+`${i}`).style.backgroundColor = "orange";
-                            document.getElementById(`feedbackbadge`+`${i}`).style.border = "1px solid orange";
+                          
 
                             }
                         }
