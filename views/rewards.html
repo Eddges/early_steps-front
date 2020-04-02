@@ -333,7 +333,7 @@
             });
      }
 
-    if(sessionStorage.getItem("loggedCA") === md5("true")) {
+    if(sessionStorage.getItem("loggedCA") === md5("true")&& sessionStorage.getItem("redirect") == "dashboard") {
       globalFunction();
     } else {
       window.location.href = "./login";

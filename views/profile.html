@@ -65,7 +65,7 @@
 
                         }
 
-            if (sessionStorage.getItem("loggedCA") != md5("true")) {
+            if (sessionStorage.getItem("loggedCA") != md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
                     console.log("GLOBAL");
                     window.location.href = "./login";
             } else {

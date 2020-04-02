@@ -541,6 +541,15 @@
         <script src="../assets/examples/js/dashboard/v1.js"></script>
 
         <script>
+            if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
+                globalCall();
+            } else {
+                window.location.href = "./login";
+            }
+            function logout(){
+              sessionStorage.clear();
+              window.reload();
+            }
             function userFeedback() {
                 let user_idValue = sessionStorage.getItem("user_id");
                 let userFeedback_textValue = document.getElementById("userFeedback_text").value;
@@ -805,15 +814,8 @@
                         });
 
             }
-            if (sessionStorage.getItem("loggedCA") === md5("true")) {
-                globalCall();
-            } else {
-                window.location.href = "./login";
-            }
-            function logout(){
-              sessionStorage.clear();
-              window.reload();
-            }
+
+            
         </script>
 </body>
 

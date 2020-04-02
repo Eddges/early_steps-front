@@ -439,7 +439,7 @@
     <script src="../../assets/examples/js/tables/footable.js"></script>
     <script>
 
-if (sessionStorage.getItem("loggedCA") != md5("true")) {
+if (sessionStorage.getItem("loggedCA") != md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
             window.location.href = "./login";
         }
       function getAllProfile() {
