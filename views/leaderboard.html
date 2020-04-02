@@ -281,12 +281,8 @@
                 class="table table-bordered table-hover toggle-circle footable footable-9 footable-filtering footable-filtering-right footable-paging footable-paging-center breakpoint-lg"
                 id="exampleFootableFiltering" data-paging="true" data-filtering="true" data-sorting="true" >
                 <thead>
-                  <tr class="footable-filtering">
-                    <th colspan="7">
                       <form class="form-inline">
-                        <div class="form-group"><label class="sr-only">Status</label><select class="form-control">
-                            <option>Course 1</option>
-                          </select></div>
+                 
                         <ul class="dropdown-menu dropdown-menu-right">
                           <li><a class="checkbox"><label><input type="checkbox" checked="checked">ID</label></a></li>
                           <li><a class="checkbox"><label><input type="checkbox" checked="checked">First Name</label></a>
@@ -458,24 +454,23 @@ if (sessionStorage.getItem("loggedCA") != md5("true")) {
           .then(res1 =>{
             getAllUserData().then( function (response2) {
             let sample = res1.data.a.sort(function (a, b) { return b.problems_completed - a.problems_completed })
-            console.log(sample,response2)
+            // console.log(sample,response2)
             sample.map((res, index) => {
-              var tr = document.createElement("tr");
-              var td1 = tr.appendChild(document.createElement('td'));
-              var td2 = tr.appendChild(document.createElement('td'));
-              var td3 = tr.appendChild(document.createElement('td'));
-              var td4 = tr.appendChild(document.createElement('td'));
-              var td6 = document.createElement("tr");
-
-              var td5 = tr.appendChild(document.createElement('td'));
-              var td5a = td5.appendChild(document.createElement('span'))
-              td5a.classList.add("badge");
-              td5a.classList.add("badge-table");
-              td5a.classList.add("badge-success");
-
+                      var tr = document.createElement("tr");
               response2.map(a=>{
                 if(a.user_id==res.user_id)
                 {
+                  var td1 = tr.appendChild(document.createElement('td'));
+                  var td2 = tr.appendChild(document.createElement('td'));
+                  var td3 = tr.appendChild(document.createElement('td'));
+                  var td4 = tr.appendChild(document.createElement('td'));
+                  var td6 = document.createElement("tr");
+
+                  var td5 = tr.appendChild(document.createElement('td'));
+                  var td5a = td5.appendChild(document.createElement('span'))
+                  td5a.classList.add("badge");
+                  td5a.classList.add("badge-table");
+                  td5a.classList.add("badge-success");
                   td1.innerHTML = index + 1;
                   td2.innerHTML = a.user_name; 
                   td3.innerHTML = a.email; 
