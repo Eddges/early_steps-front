@@ -205,6 +205,37 @@
     <!-- Page -->
     <div class="page">
       <div class="page-content blue-grey-500">
+
+        <!-- alert message -->
+        <div class="alert dark alert-info alert-dismissible animation-slide-top " id="processing-div" style="display:none" role="alert">
+            <button type="button" class="close" onClick="hidemepro()" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <div id="message-processing"></div>
+          </div>
+  <!-- End alert message -->
+
+
+ <!-- alert message -->
+ <div class="alert dark alert-danger alert-dismissible animation-slide-top " id="alert-message-div" style="display:none" role="alert">
+            <button type="button" class="close" onClick="hideme()" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <div id="message-div"></div>
+          </div>
+  <!-- End alert message -->
+  
+
+<!-- alert message -->
+ <div class="alert dark alert-success alert-dismissible animation-slide-top " id="info-message-div" style="display:none" role="alert">
+            <button type="button" class="close" onClick="hidemeinfo()" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <div id="message-div-info"></div>
+          </div>
+  <!-- End alert message -->
+
+
           <h4>
               Currently Unavailable
           </h4>
@@ -310,6 +341,21 @@
       })(document, window, jQuery);
     </script>
     <script>
+
+
+function hideme(){
+      document.getElementById('alert-message-div').style.display="none";
+    }
+
+    function hidemeinfo(){
+      document.getElementById('info-message-div').style.display="none";
+    }
+
+     function hidemepro(){
+      document.getElementById('processing-div').style.display="none";
+    }
+
+
       function globalFunction(){ 
         if(sessionStorage.getItem("photo"))
         {
@@ -355,6 +401,9 @@
                     userFeedback_type = document.getElementById("feedback_type2").innerHTML;
                 else if (document.getElementById("radio_feedback_type3").checked)
                     userFeedback_type = document.getElementById("feedback_type3").innerHTML;
+                    
+                    document.getElementById('processing-div').style.display="block";
+                document.getElementById('message-processing').innerHTML="Processing...";
 
                 axios.post('http://3.136.20.160:80/doFeedback', {
                         user_id: user_idValue,
@@ -362,11 +411,16 @@
                         feedback_type: userFeedback_type
                     })
                     .then(function(response) {
-                        alert("Feedback submitted successfully!");
+                        document.getElementById('processing-div').style.display="none";
+                       document.getElementById('info-message-div').style.display="block";
+                        document.getElementById('message-div-info').innerHTML="Feedback submitted successfully!";
+                        
                         console.log(response);
                     })
                     .catch(function(error) {
-                        alert("Something went wrong, Please try again!")
+                        document.getElementById('processing-div').style.display="none";
+                        document.getElementById('alert-message-div').style.display="block";
+                        document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
                         console.log(error);
                     });
             }   

@@ -248,15 +248,43 @@
 
     <!-- Page -->
     <div class="page">
-    
+   
+
         <div class="page-content container-fluid">
         
+
+         <!-- alert message -->
+         <div class="alert dark alert-info alert-dismissible animation-slide-top " id="processing-div" style="display:none" role="alert">
+                    <button type="button" class="close" onClick="hidemepro()" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <div id="message-processing"></div>
+                  </div>
+          <!-- End alert message -->
+
+
+         <!-- alert message -->
+         <div class="alert dark alert-danger alert-dismissible animation-slide-top " id="alert-message-div" style="display:none" role="alert">
+                    <button type="button" class="close" onClick="hideme()" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <div id="message-div"></div>
+                  </div>
+          <!-- End alert message -->
+          
+
+ <!-- alert message -->
+         <div class="alert dark alert-success alert-dismissible animation-slide-top " id="info-message-div" style="display:none" role="alert">
+                    <button type="button" class="close" onClick="hidemeinfo()" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <div id="message-div-info"></div>
+                  </div>
+          <!-- End alert message -->
+
             <div class="row" data-plugin="matchHeight" data-by-row="true">
 
-
-
-
-
+ 
 <div class="col-xxl-3 col-xl-6" style="height: 380px;">
             
             <div class="card card-shadow">
@@ -436,6 +464,18 @@
         <script src="../assets/examples/js/dashboard/v1.js"></script>
 
         <script>
+
+        function hideme(){
+      document.getElementById('alert-message-div').style.display="none";
+    }
+
+    function hidemeinfo(){
+      document.getElementById('info-message-div').style.display="none";
+    }
+
+     function hidemepro(){
+      document.getElementById('processing-div').style.display="none";
+    }
             function enterportal(key){
                 
                 window.location.href = "/dashboard";
@@ -447,18 +487,26 @@
                 let user_idValue = sessionStorage.getItem("user_id");
                 let userFeedback_textValue = document.getElementById(`coursename`+`${key}`).innerHTML;
                 let userFeedback_type = "callback";
-                
+                document.getElementById('processing-div').style.display="block";
+                document.getElementById('message-processing').innerHTML="Processing...";
+                        
                 axios.post('http://3.136.20.160:80/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type
                     })
                     .then(function(response) {
-                        alert("Request submitted successfully!");
+                        document.getElementById('processing-div').style.display="none";
+                       document.getElementById('info-message-div').style.display="block";
+                        document.getElementById('message-div-info').innerHTML="your request has been submitted successfully. We will get back to you soon";
+                        
                         console.log(response);
                     })
                     .catch(function(error) {
-                        alert("Something went wrong, Please try again!")
+                        document.getElementById('processing-div').style.display="none";
+                        document.getElementById('alert-message-div').style.display="block";
+                        document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
+                        //alert("Something went wrong, Please try again!")
                         console.log(error);
                     });
             }
@@ -475,17 +523,25 @@
                 else if (document.getElementById("radio_feedback_type3").checked)
                     userFeedback_type = document.getElementById("feedback_type3").innerHTML;
 
+                document.getElementById('processing-div').style.display="block";
+                document.getElementById('message-processing').innerHTML="Processing...";
                 axios.post('http://3.136.20.160:80/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type
                     })
                     .then(function(response) {
-                        alert("Feedback submitted successfully!");
+                        document.getElementById('processing-div').style.display="none";
+                       document.getElementById('info-message-div').style.display="block";
+                        document.getElementById('message-div-info').innerHTML="your feedback has been submitted successfully.";
+                        
                         console.log(response);
                     })
                     .catch(function(error) {
-                        alert("Something went wrong, Please try again!")
+                        document.getElementById('processing-div').style.display="none";
+                        document.getElementById('alert-message-div').style.display="block";
+                        document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
+                        
                         console.log(error);
                     });
             }
@@ -517,7 +573,7 @@
             if (sessionStorage.getItem("loggedCA") === md5("true")) {
                 globalCall();
             } else {
-                //window.location.href = "./login";
+                window.location.href = "./login";
             }
             function logout(){
               sessionStorage.clear();

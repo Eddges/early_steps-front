@@ -307,6 +307,37 @@
     
 
       <div class="page-main">
+
+        <!-- alert message -->
+        <div class="alert dark alert-info alert-dismissible animation-slide-top " id="processing-div" style="display:none" role="alert">
+          <button type="button" class="close" onClick="hidemepro()" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+          <div id="message-processing"></div>
+        </div>
+<!-- End alert message -->
+
+
+<!-- alert message -->
+<div class="alert dark alert-danger alert-dismissible animation-slide-top " id="alert-message-div" style="display:none" role="alert">
+          <button type="button" class="close" onClick="hideme()" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+          <div id="message-div"></div>
+        </div>
+<!-- End alert message -->
+
+
+<!-- alert message -->
+<div class="alert dark alert-success alert-dismissible animation-slide-top " id="info-message-div" style="display:none" role="alert">
+          <button type="button" class="close" onClick="hidemeinfo()" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+          <div id="message-div-info"></div>
+        </div>
+<!-- End alert message -->
+
+
         <div class="calendar-container">
           <div id="calendar"></div>
 
@@ -732,6 +763,18 @@
             window.reload();
           }
 
+          function hideme(){
+      document.getElementById('alert-message-div').style.display="none";
+    }
+
+    function hidemeinfo(){
+      document.getElementById('info-message-div').style.display="none";
+    }
+
+     function hidemepro(){
+      document.getElementById('processing-div').style.display="none";
+    }
+
           function userFeedback() {
                 let user_idValue = sessionStorage.getItem("user_id");
                 let userFeedback_textValue = document.getElementById("userFeedback_text").value;
@@ -744,17 +787,25 @@
                 else if (document.getElementById("radio_feedback_type3").checked)
                     userFeedback_type = document.getElementById("feedback_type3").innerHTML;
 
+                    document.getElementById('processing-div').style.display="block";
+                document.getElementById('message-processing').innerHTML="Processing...";
+
                 axios.post('http://3.136.20.160:80/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type
                     })
                     .then(function(response) {
-                        alert("Feedback submitted successfully!");
+                        document.getElementById('processing-div').style.display="none";
+                       document.getElementById('info-message-div').style.display="block";
+                        document.getElementById('message-div-info').innerHTML="Feedback submitted successfully!";
+                        
                         console.log(response);
                     })
                     .catch(function(error) {
-                        alert("Something went wrong, Please try again!")
+                        document.getElementById('processing-div').style.display="none";
+                        document.getElementById('alert-message-div').style.display="block";
+                        document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
                         console.log(error);
                     });
             }
