@@ -71,6 +71,14 @@
             getUserData();
             getJobProfileData();
             getProgrammingProfileData();
+
+            if(sessionStorage.getItem("photo"))
+            {
+                document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+            }
+            else {
+                document.getElementById("photoimg").src = "../../assets/images/upload.png";
+            }
         }
 
         function getUserData() {
@@ -204,7 +212,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
+                  <img id="photoimg" src="../../assets/images/upload.png" alt="...">
                   <i></i>
                 </span>
                         </a>
@@ -240,7 +248,7 @@
                 <div class="scrollable-content" style="width: 260px;">
                     <ul class="site-menu" data-plugin="menu" style="transform: translate3d(0px, 0px, 0px);">
                         <li class="site-menu-category"></li>
-                        <li class="site-menu-item has-sub active">
+                        <li class="site-menu-item has-sub">
                             <a href="/home">
                                 <i class="site-menu-icon wb-home" style="color:#23b7e5" aria-hidden="true"></i>
                                 <span class="site-menu-title">Home</span>
@@ -249,7 +257,7 @@
                            
                         </li>
                         
-                        <li class="site-menu-item ">
+                        <li class="site-menu-item active">
                             <a href="/profileothers">
                                 <i class="site-menu-icon wb-layout" style="color:#27c24c" aria-hidden="true"></i>
                                 <span class="site-menu-title">Profile</span>
