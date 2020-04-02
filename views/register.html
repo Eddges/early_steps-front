@@ -289,6 +289,10 @@
         if (flag1 === false && flag2 === false){
            if (passwordValue === retypepasswordValue) {
               console.log("reg")
+
+              document.getElementById('processing-div').style.display="block";
+                document.getElementById('message-processing').innerHTML="Processing...";
+                
               axios.post('http://3.136.20.160:80/doRegistration', {
                 user_id: phoneValue,
                 user_type: userTypeValue,

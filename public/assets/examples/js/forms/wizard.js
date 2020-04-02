@@ -319,6 +319,10 @@
         console.log("sessionstorage : " + sessionStorage.getItem("request"));
       if(sessionStorage.getItem("request") == "post"){
         // All post
+
+        document.getElementById('processing-div').style.display="block";
+        document.getElementById('message-processing').innerHTML="Processing...";
+
           axios.post('http://3.136.20.160:80/doUserData', {
             bootcamp_id: 1234,
             course_id: 12345,
@@ -355,6 +359,7 @@
             console.log("CP: 4");
               // alert("Working background details submitted successfully")
               console.log(response);
+
               axios.post('http://3.136.20.160:80/doProgrammingProfile', {
                         user_id: sessionStorage.getItem("user_id"),
                         codeforces: codeforcesValue,
@@ -363,25 +368,37 @@
                         codechef: codechefValue,
                         hackerrank: hackerrankValue
                     })
-                    .then(function(response) {
+                    .then(async function(response) {
+                      document.getElementById('processing-div').style.display="none";
+                     document.getElementById('info-message-div').style.display="block";
+                      document.getElementById('message-div-info').innerHTML="Profile submitted successfully!";
                       console.log("CP: 5");
+                      setTimeout(()=>{
                         window.location.href = './home';
-                        console.log(response);
-                    })
-                    .catch(function(error) {
-                        console.log(error);
-                        alert("Something went wrong, please try again1")
-                    });
+                      },2000);
+                     
+                      console.log(response);
+                  })
+                  .catch(function(error) {
+                      document.getElementById('processing-div').style.display="none";
+                      document.getElementById('alert-message-div').style.display="block";
+                      document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
+                      console.log(error);
+                  });
           })
           .catch(function(error) {
-              console.log(error);
-              alert("Something went wrong, please try again2")
-          });
+            document.getElementById('processing-div').style.display="none";
+            document.getElementById('alert-message-div').style.display="block";
+            document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
+            console.log(error);
+        });
         })
         .catch(function(error) {
-            console.log(error);
-            alert("Something went wrong, please try again3")
-        });
+          document.getElementById('processing-div').style.display="none";
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
+          console.log(error);
+      });
 
       } else {
         console.log("CP: 6");
@@ -425,6 +442,10 @@
         } else {
           course_id = parseInt(sessionStorage.getItem("course_id"));
         }
+
+        document.getElementById('processing-div').style.display="block";
+        document.getElementById('message-processing').innerHTML="Processing...";
+
           axios.put('http://3.136.20.160:80/updateUserData/' + `${user_id}`, {
             bootcamp_id: 1234,
             user_id: user_id,
@@ -472,25 +493,39 @@
                         hackerrank: hackerrankValue
                     })
                     .then(function(response) {
+                      document.getElementById('processing-div').style.display="none";
+                     document.getElementById('info-message-div').style.display="block";
+                      document.getElementById('message-div-info').innerHTML="Profile updated successfully!";
+                      
                       console.log("CP: 9");
-                        // alert("Programming profile details updated successfully")
-                          window.location.href = sessionStorage.getItem("redirect");
-                        console.log(response);
-                    })
-                    .catch(function(error) {
-                        console.log(error);
-                        alert("Something went wrong, please try again")
-                    });
+                      // alert("Programming profile details updated successfully")
+                      setTimeout(()=>{
+                        window.location.href = sessionStorage.getItem("redirect");
+                      },2000);
+                       
+                      console.log(response);
+                  })
+                  .catch(function(error) {
+                      document.getElementById('processing-div').style.display="none";
+                      document.getElementById('alert-message-div').style.display="block";
+                      document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
+                      console.log(error);
+                  });
+                    
               })
               .catch(function(error) {
-                  console.log(error);
-                  alert("Something went wrong, please try again")
-              });
+                document.getElementById('processing-div').style.display="none";
+                document.getElementById('alert-message-div').style.display="block";
+                document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
+                console.log(error);
+            });
         })
         .catch(function(error) {
-            console.log(error);
-            alert("Something went wrong, please try again")
-        });
+          document.getElementById('processing-div').style.display="none";
+          document.getElementById('alert-message-div').style.display="block";
+          document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
+          console.log(error);
+      });
       }
 
       },
