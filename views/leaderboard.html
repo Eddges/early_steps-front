@@ -105,7 +105,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
-                  <img src="../../assets/images/upload.png" alt="...">
+                  <img id="photoimg" src="../../assets/images/upload.png" alt="...">
                   <i></i>
                 </span>
                         </a>
@@ -187,7 +187,7 @@
                         <li class="site-menu-item active">
                           <a href="/leaderboard">
                             <i class="site-menu-icon wb-graph-up" style="color:#f05050" aria-hidden="true"></i>
-                            <span class="site-menu-title">LeaderBoard</span>
+                            <span class="site-menu-title">Leaderboard</span>
                             <span class="site-menu-arrow"></span>
                           </a>
                         </li>
@@ -274,20 +274,15 @@
           <!-- Panel Filtering rows -->
           <div class="panel">
             <header class="panel-heading">
-              <h3 class="panel-title">LeaderBoards</h3>
+              <h3 class="panel-title">Leaderboard</h3>
             </header>
             <div class="panel-body">
               <table
                 class="table table-bordered table-hover toggle-circle footable footable-9 footable-filtering footable-filtering-right footable-paging footable-paging-center breakpoint-lg"
                 id="exampleFootableFiltering" data-paging="true" data-filtering="true" data-sorting="true" >
                 <thead>
-                  <tr class="footable-filtering">
-                    <th colspan="7">
                       <form class="form-inline">
-                        <div class="form-group"><label class="sr-only">Status</label><select class="form-control">
-                            <option>Course 1</option>
-                            <option>Course 2</option>
-                          </select></div>
+                 
                         <ul class="dropdown-menu dropdown-menu-right">
                           <li><a class="checkbox"><label><input type="checkbox" checked="checked">ID</label></a></li>
                           <li><a class="checkbox"><label><input type="checkbox" checked="checked">First Name</label></a>
@@ -440,33 +435,52 @@
     <script src="../../assets/examples/js/tables/footable.js"></script>
     <script>
 
-if (sessionStorage.getItem("loggedCA") != md5("true")) {
+if (sessionStorage.getItem("loggedCA") != md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
             window.location.href = "./login";
         }
       function getAllProfile() {
+
+        if(sessionStorage.getItem("photo"))
+          {
+              document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+
+          }
+          else {
+              document.getElementById("photoimg").src = "../../assets/images/upload.png";
+
+          }
+
         axios.get('http://3.136.20.160:80/getAllProgress')
           .then(res1 =>{
-            getAllUserData(res1.user_id).then( function (response2) {
+            getAllUserData().then( function (response2) {
             let sample = res1.data.a.sort(function (a, b) { return b.problems_completed - a.problems_completed })
+            // console.log(sample,response2)
             sample.map((res, index) => {
-              var tr = document.createElement("tr");
-              var td1 = tr.appendChild(document.createElement('td'));
-              var td2 = tr.appendChild(document.createElement('td'));
-              var td3 = tr.appendChild(document.createElement('td'));
-              var td4 = tr.appendChild(document.createElement('td'));
-              var td6 = document.createElement("tr");
+                      var tr = document.createElement("tr");
+              response2.map(a=>{
+                if(a.user_id==res.user_id)
+                {
+                  var td1 = tr.appendChild(document.createElement('td'));
+                  var td2 = tr.appendChild(document.createElement('td'));
+                  var td3 = tr.appendChild(document.createElement('td'));
+                  var td4 = tr.appendChild(document.createElement('td'));
+                  var td6 = document.createElement("tr");
 
-              var td5 = tr.appendChild(document.createElement('td'));
-              var td5a = td5.appendChild(document.createElement('span'))
-              td5a.classList.add("badge");
-              td5a.classList.add("badge-table");
-              td5a.classList.add("badge-success");
+                  var td5 = tr.appendChild(document.createElement('td'));
+                  var td5a = td5.appendChild(document.createElement('span'))
+                  td5a.classList.add("badge");
+                  td5a.classList.add("badge-table");
+                  td5a.classList.add("badge-success");
+                  td1.innerHTML = index + 1;
+                  td2.innerHTML = a.user_name; 
+                  td3.innerHTML = a.email; 
+                  td4.innerHTML = res.problems_completed;
+                  td5a.innerHTML = "active";
+                }
+              })
 
-              td1.innerHTML = index + 1;
-              td2.innerHTML = response2[index].user_name;
-              td3.innerHTML = response2[index].email; 
-              td4.innerHTML = res.problems_completed;
-              td5a.innerHTML = "active";
+
+
               document.getElementById("table_data").appendChild(tr)
             })
           })
@@ -477,7 +491,7 @@ if (sessionStorage.getItem("loggedCA") != md5("true")) {
           });
       }
 
-      function getAllUserData(props) {
+      function getAllUserData() {
         return axios.get(`http://3.136.20.160:80/getAllUsers`)
           .then(function (response) {
             console.log(response);
