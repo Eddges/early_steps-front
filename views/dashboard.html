@@ -714,6 +714,8 @@
                         if (response.data.a.length != 0) {
                           
                             for (let i = 0; i < response.data.a.length; i++) {
+                                if(response.data.a[i].course_id == sessionStorage.getItem("course_id"))
+                                {
 
                               let start = new Date(response.data.a[i].schedule_start)
                           let end = new Date(response.data.a[i].schedule_end)
@@ -783,7 +785,7 @@
                             document.getElementById(`feedbackbadge`+`${i}`).style.border = "1px solid orange";
 
                             }
-                            
+                        }
                         }
                         // response.data.a[0]
                     }).catch(function(error) {
