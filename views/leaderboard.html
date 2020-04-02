@@ -530,10 +530,12 @@ if (sessionStorage.getItem("loggedCA") != md5("true") && sessionStorage.getItem(
             })
           })
           })
-          .catch(function (error) {
-            alert("Something went wrong, please try again!")
-            console.log(error);
-          });
+          .catch(function(error) {
+                        document.getElementById('processing-div').style.display="none";
+                        document.getElementById('alert-message-div').style.display="block";
+                        document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
+                        console.log(error);
+                    });
       }
 
       function getAllUserData() {
@@ -542,10 +544,12 @@ if (sessionStorage.getItem("loggedCA") != md5("true") && sessionStorage.getItem(
             console.log(response);
             return response.data.a;
           })
-          .catch(function (error) {
-            alert("Something went wrong, please try again!")
-            console.log(error);
-          });
+          .catch(function(error) {
+                        document.getElementById('processing-div').style.display="none";
+                        document.getElementById('alert-message-div').style.display="block";
+                        document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
+                        console.log(error);
+                    });
       }
 
       function logout(){
