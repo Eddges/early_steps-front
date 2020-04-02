@@ -295,14 +295,16 @@
                             <div class="row text-center mb-20">
                                 <div class="col-6">
                                     <div class="counter">
-                                        <div class="counter-label total-completed">PROGRESS DETAILS</div>
-                                        <div id="progress_details" class="counter-number red-600"></div>
+                                        <div class="counter-label total-completed">BADGE</div>
+                                        <div id="progress_details" class="red-600" style="font-size: 35px;"></div>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="counter">
-                                        <div class="counter-label">TOTAL TIME</div>
-                                        <div id="total_time" class="counter-number blue-600"></div>
+                                        <div class="counter-label">RATINGS</div>
+                                        <div id="star" style="margin-top: 10px;">
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -312,7 +314,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                Class Completed
+                                                Class Attended
                                             </td>
                                             <td>
                                                 <div class="progress progress-xs mb-0">
@@ -321,12 +323,12 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <span id="classes_completed">0</span>%
+                                                <span id="classes_completed">0</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                Problem Solved
+                                                Problems Solved
                                             </td>
                                             <td>
                                                 <div class="progress progress-xs mb-0">
@@ -335,12 +337,12 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <span id="problems_completed">0</span>%
+                                                <span id="problems_completed">0</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                Contests Completed
+                                                Contests Attempted
                                             </td>
                                             <td>
                                                 <div class="progress progress-xs mb-0">
@@ -349,7 +351,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <span id="contest_completed">0</span>%
+                                                <span id="contest_completed">0</span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -539,7 +541,7 @@
         <script src="../../global/js/Plugin/jvectormap.js"></script>
 
         <script src="../assets/examples/js/dashboard/v1.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
         <script>
             if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
                 globalCall();
@@ -606,7 +608,7 @@
                         console.log(response);
 
                         sessionStorage.setItem("photo", response.data["a"][0].photo);
-                        document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
+                        // document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
                         document.getElementById("photo").src = response.data["a"][0].photo;
                         if(sessionStorage.getItem("photo"))
                         {
@@ -625,6 +627,7 @@
                 axios.get(`http://3.136.20.160/getRegistration/${user_id}`)
                     .then(function(response) {
                         console.log(response);
+                        document.getElementById("name").innerHTML = response.data.user_name.toUpperCase();
                         axios.get(`http://3.136.20.160/getCourse/`+`${sessionStorage.getItem("course_id")}`)
                             .then(function(response) {
                                 console.log(response);
@@ -649,9 +652,24 @@
                         document.getElementById("contest_completed").innerText = response.data["a"][0].quiz_completed;
                         document.getElementById("contest_completed_bar").style.width = `${response.data["a"][0].quiz_completed}`+`%`;
 
-                        document.getElementById("total_time").innerText = `${response.data["a"][0].total_time}`+`hrs`;
+                        // document.getElementById("total_time").innerText = `${response.data["a"][0].total_time}`+`hrs`;
                         document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
-
+                        
+                        let val=response.data["a"][0].progress_details;
+                        for(let i=0;i<4;i++)
+                        {
+                            if(val!=0)
+                            {
+                                $('#star').append(`<i class="fas fa-star icon-2x" style="color:yellow"></i>`)
+                                val--;
+                            }
+                            else
+                            {
+                                $('#star').append(`<i class="fas fa-star icon-2x" style="color:#9fc4c1"></i>`)
+                            }
+                        }
+                        // $('#star').append(`<li>Currently Unavailable</li>`);
+                        
                     }).catch(function(error) {
                         console.log(error);
                     });
