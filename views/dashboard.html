@@ -326,7 +326,7 @@
                                 <div class="col-6">
                                     <div class="counter">
                                         <div class="counter-label total-completed">BADGE</div>
-                                        <div id="badge" class="blue-600" style="font-size: 35px;"></div>
+                                        <div id="progress_details" class="red-600" style="font-size: 35px;"></div>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -711,10 +711,10 @@
                         document.getElementById("contest_completed_bar").style.width = `${response.data["a"][0].quiz_completed}`+`%`;
 
                         // document.getElementById("total_time").innerText = `${response.data["a"][0].total_time}`+`hrs`;
-                        document.getElementById("badge").innerText = response.data["a"][0].progress_details;
+                        document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
                         
                         let val=response.data["a"][0].total_time;
-                        for(let i=0;i<5;i++)
+                        for(let i=0;i<4;i++)
                         {
                             if(val!=0)
                             {
