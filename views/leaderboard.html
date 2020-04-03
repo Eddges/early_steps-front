@@ -194,7 +194,7 @@
 
                         <li class="site-menu-item ">
                           <a href="/testmaterials_dashboard ">
-                              <i class="site-menu-icon wb-camera" style="color:#f19a5e" aria-hidden="true"></i>
+                              <i class="site-menu-icon wb-library" style="color:#f19a5e" aria-hidden="true"></i>
                               <span class="site-menu-title">Test Materials</span>
                               <span class="site-menu-arrow"></span>
                           </a>
@@ -487,8 +487,12 @@ function hideme(){
     }
 
 
-if (sessionStorage.getItem("loggedCA") != md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
-            window.location.href = "./login";
+if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
+            
+        }
+        else
+        {
+          window.location.href = "./login";
         }
       function getAllProfile() {
 
