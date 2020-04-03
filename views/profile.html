@@ -52,6 +52,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
 
     <script>
+         var url= '<%= process.env.URL %>';
         Breakpoints();
         function globalCall(){
 
@@ -79,7 +80,7 @@
             if(!sessionStorage.getItem("stringDetail"))
             {
                 let course_id = sessionStorage.getItem("course_id");
-                axios.get(`http://3.136.20.160/getScheduleByCourseId/${course_id}`)
+                axios.get( url+`/getScheduleByCourseId/${course_id}`)
                 .then(function(response) {
                 console.log(response);
                 var stringDetail = "";
@@ -112,7 +113,7 @@
                     window.location.href = "./login";
             }
             let user_id = sessionStorage.getItem("user_id");
-            axios.get(`http://3.136.20.160:80/getUserData/` + `${user_id}
+            axios.get( url+`/getUserData/` + `${user_id}
                     `)
                 .then(res => {
                     console.log(res)
@@ -140,7 +141,7 @@
                     window.location.href = "./login";
             }
             let user_id = sessionStorage.getItem("user_id");
-            axios.get(`http://3.136.20.160:80/getJobProfile/` + `${user_id}
+            axios.get( url+`/getJobProfile/` + `${user_id}
                     `)
                 .then(res => {
                     console.log(res)
@@ -167,7 +168,7 @@
                     window.location.href = "./login";
             }
             let user_id = sessionStorage.getItem("user_id");
-            axios.get(`http://3.136.20.160:80/getProgrammingProfile/` + `${user_id}
+            axios.get( url+`/getProgrammingProfile/` + `${user_id}
                     `)
                 .then(res => {
                     console.log(res)
@@ -752,6 +753,8 @@
     <script src="../../assets/examples/js/forms/wizard.js"></script>
 
     <script>
+         var url= '<%= process.env.URL %>';
+
         //     if (sessionStorage.getItem("loggedCA") != md5("true")) {
         //         console.log("GLOBAL");
         //         window.location.href = "./login";
@@ -771,7 +774,7 @@
 
         // function getUserData() {
         //     let user_id = sessionStorage.getItem("user_id");
-        //     axios.get(`http://3.136.20.160:80/getUserData/` + `${user_id}
+        //     axios.get( url+`:80/getUserData/` + `${user_id}
         //             `)
         //         .then(res => {
         //             console.log(res)
@@ -793,7 +796,7 @@
 
         // function getJobProfileData() {
         //     let user_id = sessionStorage.getItem("user_id");
-        //     axios.get(`http://3.136.20.160:80/getJobProfile/` + `${user_id}
+        //     axios.get( url+`:80/getJobProfile/` + `${user_id}
         //             `)
         //         .then(res => {
         //             console.log(res)
@@ -814,7 +817,7 @@
 
         // function getProgrammingProfileData() {
         //     let user_id = sessionStorage.getItem("user_id");
-        //     axios.get(`http://3.136.20.160:80/getProgrammingProfile/` + `${user_id}
+        //     axios.get( url+`:80/getProgrammingProfile/` + `${user_id}
         //             `)
         //         .then(res => {
         //             console.log(res)
@@ -899,7 +902,7 @@
         //     console.log(UserData1.length);
         //     if (UserData1.length !== 0) {
         //         let User_id = sessionStorage.getItem("user_id");
-        //         axios.put('http://3.136.20.160:80/updateUserData/' + `${User_id}`, {
+        //         axios.put( url+':80/updateUserData/' + `${User_id}`, {
         //                 bootcamp_id: 1234,
         //                 user_id: User_id,
         //                 name: nameValue,
@@ -925,7 +928,7 @@
         //                 alert("Something went wrong, please try again")
         //             });
         //     } else {
-        //         axios.post('http://3.136.20.160:80/doUserData', {
+        //         axios.post( url+':80/doUserData', {
         //                 bootcamp_id: 1234,
         //                 user_id: sessionStorage.getItem("user_id"),
         //                 name: nameValue,
@@ -986,7 +989,7 @@
 
         //     if (UserData2.length !== 0) {
         //         let User_id = sessionStorage.getItem("user_id");
-        //         axios.put('http://3.136.20.160:80/updateJobProfile/' + `${User_id}`, {
+        //         axios.put( url+':80/updateJobProfile/' + `${User_id}`, {
         //                 user_id: sessionStorage.getItem("user_id"),
         //                 current_company: current_companyValue,
         //                 last_degree: last_degreeValue,
@@ -1005,7 +1008,7 @@
         //                 alert("Something went wrong, please try again")
         //             });
         //     } else {
-        //         axios.post('http://3.136.20.160:80/doJobProfile', {
+        //         axios.post( url+':80/doJobProfile', {
         //                 user_id: sessionStorage.getItem("user_id"),
         //                 current_company: current_companyValue,
         //                 last_degree: last_degreeValue,
@@ -1038,7 +1041,7 @@
 
         //     if (UserData3.length !== 0) {
         //         let User_id = sessionStorage.getItem("user_id");
-        //         axios.put('http://3.136.20.160:80/updateProgrammingProfile/' + `${User_id}`, {
+        //         axios.put( url+':80/updateProgrammingProfile/' + `${User_id}`, {
         //                 user_id: User_id,
         //                 codeforces: codeforcesValue,
         //                 spoj: spojValue,
@@ -1056,7 +1059,7 @@
         //                 alert("Something went wrong, please try again")
         //             });
         //     } else {
-        //         axios.post('http://3.136.20.160:80/doProgrammingProfile', {
+        //         axios.post( url+':80/doProgrammingProfile', {
         //                 user_id: sessionStorage.getItem("user_id"),
         //                 codeforces: codeforcesValue,
         //                 spoj: spojValue,
@@ -1141,7 +1144,7 @@
                     document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
 
-                axios.post('http://3.136.20.160:80/doFeedback', {
+                axios.post( url+'/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type

@@ -195,6 +195,7 @@
     
     <script>
     
+    var url= '<%= process.env.URL %>';
     function hideme(){
       document.getElementById('alert-message-div').style.display="none";
     }
@@ -295,7 +296,7 @@
         var flag1 = true;
         var flag2 = true
         console.log(flag1,flag2)
-      await axios.get(`http://3.136.20.160:80/isRegisteredUserEmail/`+`${emailValue}`)
+      await axios.get( url+`/isRegisteredUserEmail/`+`${emailValue}`)
         .then((res)=>{
           if(res.data==="True")
             {
@@ -308,7 +309,7 @@
         .catch(async (err)=>{
           flag1 = false;
           console.log(flag1,flag2)
-          await axios.get(`http://3.136.20.160:80/isRegisteredUserPhone/`+`${phoneValue}`)
+          await axios.get( url+`/isRegisteredUserPhone/`+`${phoneValue}`)
               .then((res)=>{
                 if(res.data==="True")
                 {
@@ -326,7 +327,7 @@
               console.log("reg")
 
              
-              axios.post('http://3.136.20.160:80/doRegistration', {
+              axios.post( url+'/doRegistration', {
                 user_id: phoneValue,
                 user_type: userTypeValue,
                 user_name: usernameValue,

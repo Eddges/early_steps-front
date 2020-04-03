@@ -1,3 +1,6 @@
+
+      var url= '<%= process.env.URL %>';
+
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define("/forms/wizard", ["jquery", "Site"], factory);
@@ -204,9 +207,9 @@
       },
       onFinish: function onFinish() {// $('#exampleFormContainer').submit();
       sessionStorage.getItem("redirect") == "home";
-
+      
       // console.log("CP: 0");
-      // axios.get(`http://3.136.20.160:80/getJobProfile/` + `${user_id}`)
+      // axios.get( url+`/getJobProfile/` + `${user_id}`)
       // .then(res => {
       //     console.log(res);
       //     if (res.data.a.length !== 0) {
@@ -323,7 +326,7 @@
         document.getElementById('processing-div').style.display="block";
         document.getElementById('message-processing').innerHTML="Processing...";
 
-          axios.post('http://3.136.20.160:80/doUserData', {
+          axios.post( url+'/doUserData', {
             bootcamp_id: 1234,
             course_id: 12345,
             user_id: sessionStorage.getItem("user_id"),
@@ -345,7 +348,7 @@
           console.log("CP: 3");
             // alert("Profile details submitted successfully")
             console.log(response);
-            axios.post('http://3.136.20.160:80/doJobProfile', {
+            axios.post( url+'/doJobProfile', {
               user_id: sessionStorage.getItem("user_id"),
               current_company: current_companyValue,
               last_degree: last_degreeValue,
@@ -360,7 +363,7 @@
               // alert("Working background details submitted successfully")
               console.log(response);
 
-              axios.post('http://3.136.20.160:80/doProgrammingProfile', {
+              axios.post( url+'/doProgrammingProfile', {
                         user_id: sessionStorage.getItem("user_id"),
                         codeforces: codeforcesValue,
                         spoj: spojValue,
@@ -402,6 +405,7 @@
 
       } else {
         console.log("CP: 6");
+        
         // All put
         let nameValue = document.getElementById("name").value;
         let genderValue = document.getElementById("gender").value;
@@ -446,7 +450,7 @@
         document.getElementById('processing-div').style.display="block";
         document.getElementById('message-processing').innerHTML="Processing...";
 
-          axios.put('http://3.136.20.160:80/updateUserData/' + `${user_id}`, {
+          axios.put( `${url}`+'/updateUserData/' + `${user_id}`, {
             bootcamp_id: 1234,
             user_id: user_id,
             course_id: course_id,
@@ -469,7 +473,7 @@
             console.log("CP: 7");
             console.log(response);
             let user_id = sessionStorage.getItem("user_id");
-            axios.put('http://3.136.20.160:80/updateJobProfile/' + `${user_id}`, {
+            axios.put( `${url}`+'/updateJobProfile/' + `${user_id}`, {
                   user_id: user_id,
                   current_company: current_companyValue,
                   last_degree: last_degreeValue,
@@ -484,7 +488,7 @@
                   // alert("Working background details updated successfully")
                   let user_id = sessionStorage.getItem("user_id");
                   console.log(response);
-                  axios.put('http://3.136.20.160:80/updateProgrammingProfile/' + `${user_id}`, {
+                  axios.put( `${url}`+'/updateProgrammingProfile/' + `${user_id}`, {
                         user_id: user_id,
                         codeforces: codeforcesValue,
                         spoj: spojValue,

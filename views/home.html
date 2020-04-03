@@ -76,8 +76,8 @@
           <i class="icon wb-more-horizontal" aria-hidden="true"></i>
         </button>
             <div class="navbar-brand navbar-brand-center site-gridmenu-toggle">
-                <a href="./home" style="color:black"></a><img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
-                <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span>
+                <a href="./home" style="color:black"><img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
+                <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span></a>
             </div>
             <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search" data-toggle="collapse">
           <span class="sr-only">Toggle Search</span>
@@ -464,7 +464,7 @@
         <script src="../assets/examples/js/dashboard/v1.js"></script>
 
         <script>
-
+        var url= '<%= process.env.URL %>';
         function hideme(){
       document.getElementById('alert-message-div').style.display="none";
     }
@@ -490,7 +490,7 @@
                 document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
                         
-                axios.post('http://3.136.20.160:80/doFeedback', {
+                axios.post(url+'/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type
@@ -525,7 +525,7 @@
 
                 document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
-                axios.post('http://3.136.20.160:80/doFeedback', {
+                axios.post(url + '/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type
@@ -548,14 +548,14 @@
 
             function globalCall() {
                 let user_id = sessionStorage.getItem("user_id");
-                axios.get(`http://3.136.20.160/getUserData/${user_id}`)
+                axios.get(url+`/getUserData/${user_id}`)
                     .then(function(response) {
                         console.log(response);
                         var x =  response.data["a"][0].course_id;
 
                         sessionStorage.setItem("photo", response.data["a"][0].photo);
                         document.getElementById("photo").src = response.data["a"][0].photo;
-                        axios.get(`http://3.136.20.160/getCourse/`+`${response.data["a"][0].course_id}`)
+                        axios.get(url+`/getCourse/`+`${response.data["a"][0].course_id}`)
                             .then(function(response) {
                                 try{
                                     document.getElementById(`${response.data.course_name}`).disabled = false;
