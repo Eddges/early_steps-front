@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 //var registrationRouter = require('./routes/registration');
-
+require('dotenv').config({path:'.env'});
 var app = express();
 
 // view engine setup

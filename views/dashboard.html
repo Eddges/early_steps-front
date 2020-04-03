@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="../assets/examples/css/dashboard/v1.css">
     <link rel="stylesheet" href="../../assets/examples/css/dashboard/team.css">
     <link rel="stylesheet" href="../../assets/examples/css/uikit/modals.css">
+         <link rel="stylesheet" href="../../assets/examples/css/advanced/rating.css">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="../../global/fonts/weather-icons/weather-icons.css">
@@ -326,13 +327,13 @@
                                 <div class="col-6">
                                     <div class="counter">
                                         <div class="counter-label total-completed">BADGE</div>
-                                        <div id="progress_details" class="red-600" style="font-size: 35px;"></div>
+                                        <div id="progress_details" class="red-600 example-title" style="font-weight:bold;margin-top: 10px;"></div>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="counter">
                                         <div class="counter-label">RATINGS</div>
-                                        <div id="star" style="margin-top: 10px;">
+                                        <div id="star" class="rating" data-plugin="rating" style="margin-top: 10px;">
 
                                         </div>
                                     </div>
@@ -569,10 +570,12 @@
         <script src="../../global/js/Plugin/switchery.js"></script>
         <script src="../../global/js/Plugin/matchheight.js"></script>
         <script src="../../global/js/Plugin/jvectormap.js"></script>
-
+   <script src="../../../global/js/Plugin/raty.js"></script>
         <script src="../assets/examples/js/dashboard/v1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
         <script>
+        var url= '<%= process.env.URL %>';
+        alert(url);
             if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
                 globalCall();
             } else {
@@ -714,16 +717,16 @@
                         document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
                         
                         let val=response.data["a"][0].total_time;
-                        for(let i=0;i<4;i++)
+                        for(let i=0;i<5;i++)
                         {
                             if(val!=0)
                             {
-                                $('#star').append(`<i class="fas fa-star icon-2x" style="color:yellow"></i>`)
+                                $('#star').append(`<i data-alt="1" class="icon wb-star orange-600"></i>`)
                                 val--;
                             }
                             else
                             {
-                                $('#star').append(`<i class="fas fa-star icon-2x" style="color:#9fc4c1"></i>`)
+                                $('#star').append(`<i data-alt="1" class="icon wb-star "></i>`)
                             }
                         }
                         // $('#star').append(`<li>Currently Unavailable</li>`);
