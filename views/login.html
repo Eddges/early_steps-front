@@ -172,6 +172,7 @@
     <script src="../../../global/js/Plugin/material.js"></script>
     
     <script>
+       var url= '<%= process.env.URL %>';
 
     function hideme(){
       document.getElementById('alert-message-div').style.display="none";
@@ -221,7 +222,7 @@
 
         // Input is string, i.e, email
         if (isNaN(userEmailOrPhoneValue)) {
-          axios.get(`http://3.136.20.160:80/isValidUserEmail?email=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
+          axios.get( url+`/isValidUserEmail?email=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
           .then(function (response) {
             console.log(response);
             if(response.data==="False"){
@@ -229,7 +230,7 @@
               document.getElementById('message-div').innerHTML="You have entered an invalid email address or password!";              
             }
             else{
-              axios.get(`http://3.136.20.160:80/getPhoneByEmail/${userEmailOrPhoneValue}`)
+              axios.get( url+`:80/getPhoneByEmail/${userEmailOrPhoneValue}`)
             .then(function (response) {
               console.log(response);
               sessionStorage.setItem("user_id", response.data["a"][0].phone);
@@ -250,7 +251,7 @@
           });
         } else {    
     // Input is number
-    axios.get(`http://3.136.20.160:80/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
+    axios.get( url+`/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
     .then(function (response){
         console.log(response);
         if(response.data==="False"){
@@ -273,7 +274,7 @@
 
       function getProgrammingProfileData() {
             let user_id = sessionStorage.getItem("user_id");
-            axios.get(`http://3.136.20.160:80/getProgrammingProfile/` + `${user_id}
+            axios.get( url+`/getProgrammingProfile/` + `${user_id}
                     `)
                 .then(res => {
                   // sessionStorage.setItem("course_id", document.getElementById("course_id").value);

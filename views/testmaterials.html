@@ -452,6 +452,7 @@
         <script src="../../../global/js/Plugin/tasklist.js"></script>
     
     <script>
+       var url= '<%= process.env.URL %>';
       (function(document, window, $){
         'use strict';
     
@@ -486,7 +487,7 @@ function hideme(){
             else {
                 document.getElementById("photoimg").src = "../../assets/images/upload.png";
             }
-        axios.get(`http://3.136.20.160/getTaskByCourseId/${course_id}`)
+        axios.get( url+`/getTaskByCourseId/${course_id}`)
             .then(function (response) {
               console.log(response);
               for (let i=0;i<response.data.a.length;i++){
@@ -524,7 +525,7 @@ function hideme(){
                     document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
 
-                axios.post('http://3.136.20.160:80/doFeedback', {
+                axios.post( url+'/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type
