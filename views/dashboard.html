@@ -324,8 +324,8 @@
                                         <img id="photoimg" alt="" src="../../assets/images/upload.png">
                                     </a>
                                     <div id="name" class="font-size-20 mt-10"></div>
-                                    <div id="bootcamp_id" class="font-size-14"></div>
                                     <div id="courses" class="font-size-14"></div>
+                                    <div id="batch_id" class="font-size-14"></div>
                                 </div>
                             </div>
                         </div>
@@ -620,11 +620,7 @@
                     document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
 
-<<<<<<< HEAD
-                axios.post(url+'/doFeedback', {
-=======
                 axios.post(`${url}`+`/doFeedback`, {
->>>>>>> 9c5239b1ebcf029331cd05ce7b32238784064235
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type
@@ -705,6 +701,7 @@
                                 console.log(response);
                                 
                                 document.getElementById("courses").innerHTML = response.data.course_name.toUpperCase();
+                                document.getElementById("batch_id").innerHTML = sessionStorage.getItem("course_id");
                             }).catch(function(error) {
                                 console.log(error);
                             });
