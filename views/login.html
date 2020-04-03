@@ -230,7 +230,7 @@
               document.getElementById('message-div').innerHTML="You have entered an invalid email address or password!";              
             }
             else{
-              axios.get( url+`:80/getPhoneByEmail/${userEmailOrPhoneValue}`)
+              axios.get( url+`/getPhoneByEmail/${userEmailOrPhoneValue}`)
             .then(function (response) {
               console.log(response);
               sessionStorage.setItem("user_id", response.data["a"][0].phone);
