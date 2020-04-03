@@ -613,7 +613,7 @@
                     document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
 
-                axios.post('http://3.136.20.160:80/doFeedback', {
+                axios.post(url+'/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type
