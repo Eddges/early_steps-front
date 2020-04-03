@@ -49,4 +49,7 @@ router.get('/profileothers', function(req, res, next) {
 router.get('/testmaterials', function(req, res, next) {
   res.render('testmaterials', { title: 'Express' });
 });
+router.get('/testmaterials_dashboard', function(req, res, next) {
+  res.render('testmaterials_dashboard', { title: 'Express' });
+});
 module.exports = router;

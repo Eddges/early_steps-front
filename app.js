@@ -36,6 +36,7 @@ app.use('/home', indexRouter);
 app.use('/leaderboard', indexRouter);
 app.use('/profileothers', indexRouter);
 app.use('/testmaterials', indexRouter);
+app.use('/testmaterials_dashboard', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
