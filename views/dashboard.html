@@ -76,8 +76,8 @@
           <i class="icon wb-more-horizontal" aria-hidden="true"></i>
         </button>
             <div class="navbar-brand navbar-brand-center site-gridmenu-toggle">
-                <img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
-                <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span>
+                <a href="./home" style="color:black"><img class="navbar-brand-logo" href="./home" src="../../assets/images/logo-ca.png" alt="...">
+                <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span></a>
             </div>
             <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search" data-toggle="collapse">
           <span class="sr-only">Toggle Search</span>
@@ -326,7 +326,7 @@
                                 <div class="col-6">
                                     <div class="counter">
                                         <div class="counter-label total-completed">BADGE</div>
-                                        <div id="progress_details" class="red-600" style="font-size: 35px;"></div>
+                                        <div id="badge" class="blue-600" style="font-size: 35px;"></div>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -711,10 +711,10 @@
                         document.getElementById("contest_completed_bar").style.width = `${response.data["a"][0].quiz_completed}`+`%`;
 
                         // document.getElementById("total_time").innerText = `${response.data["a"][0].total_time}`+`hrs`;
-                        document.getElementById("progress_details").innerText = response.data["a"][0].progress_details;
+                        document.getElementById("badge").innerText = response.data["a"][0].progress_details;
                         
                         let val=response.data["a"][0].total_time;
-                        for(let i=0;i<4;i++)
+                        for(let i=0;i<5;i++)
                         {
                             if(val!=0)
                             {
