@@ -582,7 +582,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
         <script>
         var url= '<%= process.env.URL %>';
-        alert(url);
+       
             if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
                 globalCall();
             } else {
@@ -620,7 +620,7 @@
                     document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
 
-                axios.post('http://3.136.20.160:80/doFeedback', {
+                axios.post(`${url}`+`/doFeedback`, {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type
@@ -649,7 +649,7 @@
                 document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
 
-                axios.post('http://3.136.20.160:80/doFeedback', {
+                axios.post(`${url}`+`/doFeedback`, {
                         user_id: user_idValue,
                         feedback_details: mentorFeedback_textValue + "," + mentorName + "," + classesName,
                         feedback_type: mentorFeedback_type
@@ -671,7 +671,7 @@
 
             function globalCall() {
                 let user_id = sessionStorage.getItem("user_id");
-                axios.get(`http://3.136.20.160/getUserData/${user_id}`)
+                axios.get(url+`/getUserData/${user_id}`)
                     .then(function(response) {
                         console.log(response);
 
@@ -692,11 +692,11 @@
                         console.log(error);
                     });
 
-                axios.get(`http://3.136.20.160/getRegistration/${user_id}`)
+                axios.get(url+`/getRegistration/${user_id}`)
                     .then(function(response) {
                         console.log(response);
                         document.getElementById("name").innerHTML = response.data.user_name.toUpperCase();
-                        axios.get(`http://3.136.20.160/getCourse/`+`${sessionStorage.getItem("course_id")}`)
+                        axios.get(url+`/getCourse/`+`${sessionStorage.getItem("course_id")}`)
                             .then(function(response) {
                                 console.log(response);
                                 
@@ -708,7 +708,7 @@
                         console.log(error);
                     });
 
-                axios.get(`http://3.136.20.160/getProgress/${user_id}`)
+                axios.get(url+`/getProgress/${user_id}`)
                     .then(function(response) {
                         console.log(response);
                         document.getElementById("classes_completed").innerText = response.data["a"][0].classes_completed;
@@ -742,7 +742,7 @@
                         console.log(error);
                     });
 
-                axios.get(`http://3.136.20.160/getTaskByCourseId/`+`${sessionStorage.getItem("course_id")}`)
+                axios.get(url+`/getTaskByCourseId/`+`${sessionStorage.getItem("course_id")}`)
                     .then(function(response) {
                         console.log(response);
                         
@@ -791,7 +791,7 @@
                     {
 
                      // <span class="border border-primary">${x}</span>
-                    axios.get(`http://3.136.20.160/getClasses`)
+                    axios.get(url+`/getClasses`)
                     .then((response) => {
                         console.log(response)
                         
@@ -836,14 +836,10 @@
                             Feedback
                             </small>
                         <small>Start date :
-                            <span>${new Date(response.data.a[i].schedule_start).toLocaleString()} </span>
+                            <span>${new Date(response.data.a[i].schedule_start).toString().slice(0,15)} , ${new Date(response.data.a[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
                          
                         </small>
                         <br/>
-                        <small>End date :
-                            <span>${new Date(response.data.a[i].schedule_end).toLocaleString()} </span>
-                         
-                        </small>
                       </li>`);
 
                       document.getElementById(`feedbackbadge`+`${i}`).style.color = "white";
@@ -882,7 +878,7 @@
                 }
 
                     let course_id = sessionStorage.getItem("course_id");
-                        axios.get(`http://3.136.20.160/getScheduleByCourseId/${course_id}`)
+                        axios.get(url+`/getScheduleByCourseId/${course_id}`)
                         .then(function(response) {
                         console.log(response);
                         var stringDetail = "";

@@ -345,7 +345,7 @@
     </script>
     <script>
 
-
+var url= '<%= process.env.URL %>';
 function hideme(){
       document.getElementById('alert-message-div').style.display="none";
     }
@@ -372,7 +372,7 @@ function hideme(){
         }
 
         let course_id = sessionStorage.getItem("course_id");
-        axios.get(`http://3.136.20.160/getVideoByCourseId/`+`${course_id}`)
+        axios.get( url+`/getVideoByCourseId/1`)
             .then(function (response) {
               console.log(response);
               for (let i=0;i<response.data.a.length;i++){
@@ -427,7 +427,7 @@ function hideme(){
                     document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
 
-                axios.post('http://3.136.20.160:80/doFeedback', {
+                axios.post( url+'/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type

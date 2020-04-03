@@ -473,7 +473,7 @@
     <script src="../../assets/examples/js/tables/footable.js"></script>
     <script>
 
-
+var url= '<%= process.env.URL %>';
 function hideme(){
       document.getElementById('alert-message-div').style.display="none";
     }
@@ -502,7 +502,7 @@ if (sessionStorage.getItem("loggedCA") != md5("true") && sessionStorage.getItem(
 
           }
 
-        axios.get('http://3.136.20.160:80/getAllProgress')
+        axios.get( url+'/getAllProgress')
           .then(res1 =>{
             getAllUserData().then( function (response2) {
             let sample = res1.data.a.sort(function (a, b) { return b.problems_completed - a.problems_completed })
@@ -546,7 +546,7 @@ if (sessionStorage.getItem("loggedCA") != md5("true") && sessionStorage.getItem(
       }
 
       function getAllUserData() {
-        return axios.get(`http://3.136.20.160:80/getAllUsers`)
+        return axios.get( url+`/getAllUsers`)
           .then(function (response) {
             console.log(response);
             return response.data.a;
@@ -578,7 +578,7 @@ if (sessionStorage.getItem("loggedCA") != md5("true") && sessionStorage.getItem(
                     document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
 
-                axios.post('http://3.136.20.160:80/doFeedback', {
+                axios.post( url+'/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type
