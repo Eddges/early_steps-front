@@ -701,7 +701,15 @@
                                 console.log(response);
                                 
                                 document.getElementById("courses").innerHTML = response.data.course_name.toUpperCase();
-                                document.getElementById("batch_id").innerHTML = sessionStorage.getItem("course_id");
+                                // document.getElementById("batch_id").innerHTML = sessionStorage.getItem("course_id");
+
+                                let batchId = ["ON/CA/VA101","ON/CA/VA101","ON/CA/FS101","ON/CA/ML101","ON/CA/VA101","ON/CA/ML101","ON/CA/FS101","ON/CA/DA101","ON/CA/VA101","ON/CA/ML101","ON/CA/FS101","ON/CA/DA101"]
+                            
+                                if(sessionStorage.getItem("course_id")>=1 && sessionStorage.getItem("course_id")<=12)
+                                {
+                                    document.getElementById("batch_id").innerHTML = `Batch Id : `+ batchId[sessionStorage.getItem("course_id")-1];  
+                                }
+
                             }).catch(function(error) {
                                 console.log(error);
                             });
