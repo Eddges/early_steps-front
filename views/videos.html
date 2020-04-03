@@ -68,8 +68,8 @@
           <i class="icon wb-more-horizontal" aria-hidden="true"></i>
         </button>
             <div class="navbar-brand navbar-brand-center site-gridmenu-toggle active" aria-expanded="true">
-                <img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
-                <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span>
+              <a href="./home" style="color:black"><img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
+                <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span></a>
             </div>
             <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search" data-toggle="collapse">
           <span class="sr-only">Toggle Search</span>
@@ -373,12 +373,14 @@ function hideme(){
                 $('#video').append(`<li class="masonry-item">
                     <div class="card card-shadow">
                         <div class="card-header cover">
-                            <img class="cover-image" src="../../../global/photos/placeholder.png"alt="...">
+                          <video controls="controls" src=${response.data.a[i].video_link}>
+                          Your browser does not support the HTML5 Video element.
+                          </video>
                             </div>
                             <div class="card-block">
                                 <h3 class="card-title">${response.data.a[i].video_title}</h3>
                                 <p class="card-text type-link"><small>By  <a href="javascript:void(0)">Codeasylums</a><a href="javascript:void(0)">${response.data.a[i].video_datetime}</a>
-                                    <!-- <a href="javascript:void(0)"><span>3</span> Comments</a> -->
+                                    <!-- <a hzref="javascript:void(0)"><span>3</span> Comments</a> -->
                                         </small>
                                     </p>
                                     <p class="card-text">${response.data.a[i].video_details}</p>
