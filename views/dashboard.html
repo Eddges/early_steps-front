@@ -324,8 +324,8 @@
                                         <img id="photoimg" alt="" src="../../assets/images/upload.png">
                                     </a>
                                     <div id="name" class="font-size-20 mt-10"></div>
-                                    <div id="bootcamp_id" class="font-size-14"></div>
                                     <div id="courses" class="font-size-14"></div>
+                                    <div id="batch_id" class="font-size-14"></div>
                                 </div>
                             </div>
                         </div>
@@ -701,6 +701,7 @@
                                 console.log(response);
                                 
                                 document.getElementById("courses").innerHTML = response.data.course_name.toUpperCase();
+                                document.getElementById("batch_id").innerHTML = sessionStorage.getItem("course_id");
                             }).catch(function(error) {
                                 console.log(error);
                             });
