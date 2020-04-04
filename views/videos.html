@@ -71,10 +71,7 @@
               <a href="./home" style="color:black"><img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
                 <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span></a>
             </div>
-            <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search" data-toggle="collapse">
-          <span class="sr-only">Toggle Search</span>
-          
-        </button>
+            
         </div>
 
         <div class="navbar-container container-fluid">
@@ -241,7 +238,9 @@
           </div>
   <!-- End alert message -->
 
-
+        <h4>
+             Something Awesome is Coming
+          </h4>
         <ul id="video" class="blocks blocks-100 blocks-xxl-4 blocks-lg-3 blocks-md-2" data-plugin="masonry">
  
         </ul>
@@ -372,7 +371,7 @@ function hideme(){
         }
 
         let course_id = sessionStorage.getItem("course_id");
-        axios.get( url+`/getVideoByCourseId/1`)
+        /*axios.get( url+`/getVideoByCourseId/1`)
             .then(function (response) {
               console.log(response);
               for (let i=0;i<response.data.a.length;i++){
@@ -398,7 +397,7 @@ function hideme(){
               // response.data.a[0]
             }).catch(function (error){
               console.log(error);
-            });
+            });*/
      }
 
     if(sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
