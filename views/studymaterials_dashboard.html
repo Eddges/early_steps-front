@@ -531,11 +531,11 @@ function hideme(){
             });
      }
 
-    // if(sessionStorage.getItem("loggedCA") === md5("true")) {
-    //   globalFunction();
-    // } else {
-    //   window.location.href = "./login";
-    // }
+    if(sessionStorage.getItem("loggedCA") === md5("true")) {
+      globalFunction();
+    } else {
+      window.location.href = "./login";
+    }
 
       function logout(){
         sessionStorage.clear();
