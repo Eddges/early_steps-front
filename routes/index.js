@@ -22,9 +22,9 @@ router.get('/schedule', function(req, res, next) {
   res.render('schedule', { title: 'Express' });
 });
 
-router.get('/videos', function(req, res, next) {
-  res.render('videos', { title: 'Express' });
-});
+// router.get('/videos', function(req, res, next) {
+//   res.render('videos', { title: 'Express' });
+// });
 
 router.get('/profile', function(req, res, next) {
   res.render('profile', { title: 'Express' });
@@ -37,8 +37,8 @@ router.get('/profileothers', function(req, res, next) {
 router.get('/leaderboard', function(req, res, next) {
   res.render('leaderboard', { title: 'Express' });
 });
-router.get('/rewards', function(req, res, next) {
-  res.render('rewards', { title: 'Express' });
+router.get('/challenges', function(req, res, next) {
+  res.render('challenges', { title: 'Express' });
 });
 router.get('/home', function(req, res, next) {
   res.render('home', { title: 'Express' });
@@ -49,7 +49,7 @@ router.get('/profileothers', function(req, res, next) {
 router.get('/testmaterials', function(req, res, next) {
   res.render('testmaterials', { title: 'Express' });
 });
-router.get('/testmaterials_dashboard', function(req, res, next) {
-  res.render('testmaterials_dashboard', { title: 'Express' });
+router.get('/studymaterials_dashboard', function(req, res, next) {
+  res.render('studymaterials_dashboard', { title: 'Express' });
 });
 module.exports = router;
