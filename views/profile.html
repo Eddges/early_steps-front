@@ -500,13 +500,13 @@
                                 <div class="wizard-content">
                                     <div class="wizard-pane active" role="tabpanel">
                                         <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputUserNameOne">Name</label>
+                                            <label class="form-control-label" for="inputUserNameOne">Name<span style="color:red">*</span></label>
 
                                             <input type="text" class="form-control" id="name"  name="default" required="required" placeholder="Full name">
 
                                         </div>
                                         <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputUserNameOne" >Gender</label>
+                                            <label class="form-control-label" for="inputUserNameOne" >Gender<span style="color:red">*</span></label>
                                             <select class="form-control" id="gender" required="required" name="default" >
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
@@ -516,21 +516,21 @@
                                         </div>
                                         
                                         <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputPasswordOne">University</label>
+                                            <label class="form-control-label" for="inputPasswordOne">University<span style="color:red">*</span></label>
 
                                             <input type="text" class="form-control" id="university"  name="default" required="required" placeholder="University">
                                         </div>
                                         <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputPasswordOne">Year of Graduation</label>
+                                            <label class="form-control-label" for="inputPasswordOne">Year of Graduation<span style="color:red">*</span></label>
                                             <input type="text" class="form-control" id="graduationYear" name="default" required="required" placeholder="2020">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">LinkedIn Profile</label>
-                                            <input type="text" class="form-control" id="linkedinProfile" name="default" placeholder="https://www.linkedin.com/">
+                                            <input type="text" class="form-control" id="linkedinProfile" name="default" value="N/A" placeholder="https://www.linkedin.com/">
 
                                         </div>
                                         <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputUserNameOne" >T-shirt</label>
+                                            <label class="form-control-label" for="inputUserNameOne" >T-shirt<span style="color:red">*</span></label>
                                             <select class="form-control" id="teeShirt" required="required" name="default" >
                                                 <option value="S">Small</option>
                                                 <option value="M">Medium</option>
@@ -540,13 +540,13 @@
                                             
                                         </div>
                                         <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputPasswordOne">Address</label>
+                                            <label class="form-control-label" for="inputPasswordOne">Address<span style="color:red">*</span></label>
 
                                             <input type="text" class="form-control" id="address" name="default" required="required" placeholder="Address">
                                         </div>
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputPasswordOne">Github Id</label>
-                                            <input type="text" class="form-control" id="github" name="default" required="required" value="N/A">
+                                            <input type="text" class="form-control" id="github" name="default" value="N/A" placeholder="Github Id">
 
                                         </div>
                                         <!-- <div class="form-group form-material">
@@ -593,34 +593,34 @@
                                         <div class="form-group form-material">
                                             <label class="form-control-label" for="inputCardNumberOne">Where do you currently work?</label>
 
-                                            <input type="text" class="form-control" id="currentCompany" name="default" placeholder="Put N/A if you are a student." required="required" >
+                                            <input type="text" class="form-control" id="currentCompany" name="default" value="N/A" placeholder="Put N/A if you are a student." required="required" >
                                         </div>
                                         <div class="form-group form-material">
-                                            <label class="form-control-label" for="inputCardNumberOne">Last Degree</label>
+                                            <label class="form-control-label" for="inputCardNumberOne">Highest Degree<span style="color:red">*</span></label>
                                             <input type="text" class="form-control" id="lastDegree"  name="default" required="required" placeholder="Bachelor of Engineering">
 
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Years of experience:</label>
-                                            <input type="text" class="form-control" id="yearOfExp" name="default" required="required" placeholder="0 Years" >
+                                            <input type="text" class="form-control" id="yearOfExp" name="default" required="required" value="0 Years" placeholder="0 Years" >
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
-                                            <label class="form-control-label">Major in College</label>
+                                            <label class="form-control-label">Major in College<span style="color:red">*</span></label>
 
                                             <input type="text" class="form-control" id="majorInCollege"  name="default" required="required" placeholder="Branch">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Current Job Title</label>
-                                            <input type="text" class="form-control" id="currentJobTitle" placeholder="Put N/A if you are a student."name="default" required="required" >
+                                            <input type="text" class="form-control" id="currentJobTitle" value="N/A" placeholder="Put N/A if you are a student."name="default" required="required" >
 
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Location</label>
-                                            <input type="text" class="form-control" id="location"  name="default" required="required" placeholder="Put N/A if you are a student.">
+                                            <input type="text" class="form-control" id="location"  name="default" required="required" value="N/A" placeholder="Put N/A if you are a student.">
                                         </div>
                                         <div class="form-group form-material" for="inputCardNumberOne">
                                             <label class="form-control-label">Skype</label>
-                                            <input type="text" class="form-control" id="skype" value="N/A" >
+                                            <input type="text" class="form-control" id="skype" value="N/A" placeholder="Skype Id">
                                         </div>
                                         <center>
                                             <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doJobProfile();" style="color:white;" hidden>Submit Information</a>
