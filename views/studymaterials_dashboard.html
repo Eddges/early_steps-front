@@ -27,7 +27,9 @@
     <link rel="stylesheet" href="../../../global/vendor/slidepanel/slidePanel.css">
     <link rel="stylesheet" href="../../../global/vendor/flag-icon-css/flag-icon.css">
         <link rel="stylesheet" href="../../assets/examples/css/advanced/masonry.css">
-    
+    <link rel="stylesheet" href="../../../global/vendor/nestable/nestable.css">
+        <link rel="stylesheet" href="../../../global/vendor/tasklist/tasklist.css">
+        <link rel="stylesheet" href="../../../global/vendor/sortable/sortable.css">
     
     <!-- Fonts -->
     <link rel="stylesheet" href="../../../global/fonts/web-icons/web-icons.min.css">
@@ -131,34 +133,35 @@
         <div class="site-menubar-body scrollable scrollable-inverse is-enabled scrollable-vertical hoverscorll-disabled" style="position: relative;">
             <div class="scrollable-container" style="height: 401.984px; width: 260px;">
                 <div class="scrollable-content" style="width: 260px;">
-                    <ul class="site-menu" data-plugin="menu" style="transform: translate3d(0px, 0px, 0px);">
-                        <li class="site-menu-category"></li>
-                        <li class="site-menu-item has-sub ">
-                            <a href="/dashboard">
-                                <i class="site-menu-icon wb-home" style="color:#23b7e5" aria-hidden="true"></i>
-                                <span class="site-menu-title">Dashboard</span>
-                                <span class="site-menu-arrow"></span>
-                            </a>
-                           
-                        </li>
-                        <li class="site-menu-item">
-                            <a href="/profile">
-                                <i class="site-menu-icon wb-layout" style="color:#27c24c" aria-hidden="true"></i>
-                                <span class="site-menu-title">Profile</span>
-                                <span class="site-menu-arrow"></span>
-                            </a>
+                  <ul class="site-menu" data-plugin="menu" style="transform: translate3d(0px, 0px, 0px);">
+                    <li class="site-menu-category"></li>
+                    <li class="site-menu-item has-sub ">
+                        <a href="/dashboard">
+                            <i class="site-menu-icon wb-home" style="color:#23b7e5" aria-hidden="true"></i>
+                            <span class="site-menu-title">Dashboard</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                       
+                    </li>
+                    <li class="site-menu-item">
+                        <a href="/profile">
+                            <i class="site-menu-icon wb-layout" style="color:#27c24c" aria-hidden="true"></i>
+                            <span class="site-menu-title">Profile</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
 
-                        </li>
-                        <li class="site-menu-item">
-                            <a href="/schedule">
-                                <i class="site-menu-icon wb-calendar" style="color:#528ff0" aria-hidden="true"></i>
-                                <span class="site-menu-title">Schedule</span>
-                                <span class="site-menu-arrow"></span>
-                            </a>
+                    </li>
+                    <li class="site-menu-item">
+                        <a href="/schedule">
+                            <i class="site-menu-icon wb-calendar" style="color:#528ff0" aria-hidden="true"></i>
+                            <span class="site-menu-title">Schedule</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
 
-                        </li>
+                    </li>
 
 
+                   <!-- 
                         <li class="site-menu-item ">
                             <a href="/videos">
                                 <i class="site-menu-icon wb-camera" style="color:#f19a5e" aria-hidden="true"></i>
@@ -166,32 +169,32 @@
                                 <span class="site-menu-arrow"></span>
                             </a>
 
-                        </li>
-
-                        <li class="site-menu-item active">
-                            <a href="/rewards">
-                                <i class="site-menu-icon wb-star-outline" style="color:#23b7e5" aria-hidden="true"></i>
-                                <span class="site-menu-title">Rewards</span>
-                                <span class="site-menu-arrow"></span>
-                            </a>
-
-                        </li>
-                        <li class="site-menu-item">
-                          <a href="/leaderboard">
-                            <i class="site-menu-icon wb-graph-up" style="color:#f05050" aria-hidden="true"></i>
-                            <span class="site-menu-title">Leaderboard</span>
-                            <span class="site-menu-arrow"></span>
-                          </a>
-                        </li>
+                        </li> -->
 
                         <li class="site-menu-item ">
-                          <a href="/testmaterials_dashboard ">
+                          <a href="/challenges">
+                              <i class="site-menu-icon wb-star-outline" style="color:#23b7e5" aria-hidden="true"></i>
+                              <span class="site-menu-title">Challenges</span>
+                              <span class="site-menu-arrow"></span>
+                          </a>
+
+                      </li>
+                      <li class="site-menu-item ">
+                        <a href="/leaderboard">
+                          <i class="site-menu-icon wb-graph-up" style="color:#f05050" aria-hidden="true"></i>
+                          <span class="site-menu-title">Leaderboard</span>
+                          <span class="site-menu-arrow"></span>
+                        </a>
+                      </li>
+
+                      <li class="site-menu-item ">
+                          <a href="/studymaterials_dashboard ">
                               <i class="site-menu-icon wb-library" style="color:#f19a5e" aria-hidden="true"></i>
-                              <span class="site-menu-title">Test Materials</span>
+                              <span class="site-menu-title">Study Materials</span>
                               <span class="site-menu-arrow"></span>
                           </a>
                       </li>
-                    </ul>
+                </ul>
                     
                     
                 </div>
@@ -237,16 +240,158 @@
             <div id="message-div-info"></div>
           </div>
   <!-- End alert message -->
+<div class="panel">
+<div class="panel-body container-fluid">
 
-
-          <h4>
+  <h4>
              Something Awesome is Coming
           </h4>
-        <!-- <ul id="video" class="blocks blocks-100 blocks-xxl-4 blocks-lg-3 blocks-md-2" data-plugin="masonry">
+<!--<div class="row row-lg">
+     <div class="col-lg-6">
+               
+                <div class="example-wrap">
+                  <h4 class="example-title">Basic C++</h4>
+                  <p>C++ was developed by Bjarne Stroustrup, as an extension to the C language. 
+                  C++ gives programmers a high level of control over system resources and memory.</p>
+                  <div class="example">
+                    <div class="dd" data-plugin="nestable">
+                      <ol class="dd-list">
+                        
+                       
+                        <li class="dd-item dd-collapsed" data-id="3"><button class="dd-collapse" data-action="collapse" type="button">Collapse</button><button class="dd-expand" data-action="expand" type="button">Expand</button>
+                          <div class="dd-handle">RECURSION
+                            <span class="float-right text-danger">NEW</span>
+                          </div>
+                          <ol class="dd-list">
+                            <li class="dd-item" data-id="4">
+                              <div class="dd-handle">ITEM 4</div>
+                            </li>
+                            <li class="dd-item" data-id="5" data-foo="bar">
+                              <div class="dd-handle">ITEM 5</div>
+                            </li>
+                          </ol>
+                        </li>
+                       
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+               
+              </div>
+       
+     
 
-        </ul> -->
+        <div class="col-lg-6">
+               
+                <div class="example-wrap">
+                  <h4 class="example-title">Data Structure And Algorithm</h4>
+                  <p>C++ was developed by Bjarne Stroustrup, as an extension to the C language. 
+                  C++ gives programmers a high level of control over system resources and memory.</p>
+                  <div class="example">
+                    <div class="dd" data-plugin="nestable">
+                      <ol class="dd-list">
+                        
+                       
+                        <li class="dd-item dd-collapsed" data-id="3"><button class="dd-collapse" data-action="collapse" type="button">Collapse</button><button class="dd-expand" data-action="expand" type="button">Expand</button>
+                          <div class="dd-handle">STACK
+                            <span class="float-right text-danger">NEW</span>
+                          </div>
+                          <ol class="dd-list">
+                            <li class="dd-item" data-id="4">
+                              <div class="dd-handle">ITEM 4</div>
+                            </li>
+                            <li class="dd-item" data-id="5" data-foo="bar">
+                              <div class="dd-handle">ITEM 5</div>
+                            </li>
+                          </ol>
+                        </li>
+                       
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+               
+              </div>
+       
       </div>
-    </div>
+
+
+<div class="row row-lg">
+     <div class="col-lg-6">
+                
+                <div class="example-wrap">
+                  <h4 class="example-title">Competative Coding</h4>
+                  <p>C++ was developed by Bjarne Stroustrup, as an extension to the C language. 
+                  C++ gives programmers a high level of control over system resources and memory.</p>
+                  <div class="example">
+                    <div class="dd" data-plugin="nestable">
+                      <ol class="dd-list">
+                        
+                       
+                        <li class="dd-item dd-collapsed" data-id="3"><button class="dd-collapse" data-action="collapse" type="button">Collapse</button><button class="dd-expand" data-action="expand" type="button">Expand</button>
+                          <div class="dd-handle">TWO POINTER APPROACH
+                            <span class="float-right text-danger">NEW</span>
+                          </div>
+                          <ol class="dd-list">
+                            <li class="dd-item" data-id="4">
+                              <div class="dd-handle">ITEM 4</div>
+                            </li>
+                            <li class="dd-item" data-id="5" data-foo="bar">
+                              <div class="dd-handle">ITEM 5</div>
+                            </li>
+                          </ol>
+                        </li>
+                       
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+               
+      </div>
+     
+
+        <div class="col-lg-6">
+               
+                <div class="example-wrap">
+                  <h4 class="example-title">Dynamic Programming</h4>
+                  <p>C++ was developed by Bjarne Stroustrup, as an extension to the C language. 
+                  C++ gives programmers a high level of control over system resources and memory.</p>
+                  <div class="example">
+                    <div class="dd" data-plugin="nestable">
+                      <ol class="dd-list">
+                        
+                       
+                        <li class="dd-item dd-collapsed " data-id="3"><button class="dd-collapse" data-action="collapse" type="button">Collapse</button><button class="dd-expand" data-action="expand" type="button">Expand</button>
+                          <div class="dd-handle">BACKTRACKING
+                            <span class="float-right text-danger" >NEW</span>
+                          </div>
+                          <ol class="dd-list">
+                            <li class="dd-item" data-id="4">
+                              <div class="dd-handle">ITEM 4</div>
+                            </li>
+                            <li class="dd-item" data-id="5" data-foo="bar">
+                              <div class="dd-handle">ITEM 5</div>
+                            </li>
+                          </ol>
+                        </li>
+                       
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+               
+              </div>
+       
+      </div>
+      </div>
+</div> -->
+</div>
+</div>
+</div>
+    
+
+      
+    </div>    
 <div class="modal fade" id="exampleFormModal" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-simple modal-center" style="z-index:20000;">
             <form class="modal-content" style="z-index:20000;">
@@ -309,6 +454,8 @@
     <script src="../../../global/vendor/slidepanel/jquery-slidePanel.js"></script>
         <script src="../../../global/vendor/imagesloaded/imagesloaded.pkgd.js"></script>
         <script src="../../../global/vendor/masonry/masonry.pkgd.js"></script>
+                <script src="../../../global/vendor/sortable/Sortable.js"></script>
+        <script src="../../../global/vendor/nestable/jquery.nestable.js"></script>
     
     <!-- Scripts -->
     <script src="../../../global/js/Component.js"></script>
@@ -332,8 +479,12 @@
     <script src="../../../global/js/Plugin/slidepanel.js"></script>
     <script src="../../../global/js/Plugin/switchery.js"></script>
         <script src="../../../global/js/Plugin/masonry.js"></script>
+               <script src="../../../global/js/Plugin/sortable.js"></script>
+        <script src="../../../global/js/Plugin/nestable.js"></script>
+        <script src="../../../global/js/Plugin/tasklist.js"></script>
     
     <script>
+      var url= '<%= process.env.URL %>';
       (function(document, window, $){
         'use strict';
     
@@ -344,7 +495,7 @@
       })(document, window, jQuery);
     </script>
     <script>
- var url= '<%= process.env.URL %>';
+
 
 function hideme(){
       document.getElementById('alert-message-div').style.display="none";
@@ -360,17 +511,15 @@ function hideme(){
 
 
       function globalFunction(){ 
-        if(sessionStorage.getItem("photo"))
-        {
-            document.getElementById("photoimg").src = sessionStorage.getItem("photo");
-
-        }
-        else {
-            document.getElementById("photoimg").src = "../../assets/images/upload.png";
-
-        }
         let course_id = sessionStorage.getItem("course_id");
-        axios.get( url+`/getTaskByCourseId/${course_id}`)
+        if(sessionStorage.getItem("photo"))
+            {
+                document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+            }
+            else {
+                document.getElementById("photoimg").src = "../../assets/images/upload.png";
+            }
+        axios.get(url+`/getTaskByCourseId/${course_id}`)
             .then(function (response) {
               console.log(response);
               for (let i=0;i<response.data.a.length;i++){
@@ -382,7 +531,7 @@ function hideme(){
             });
      }
 
-    if(sessionStorage.getItem("loggedCA") === md5("true")&& sessionStorage.getItem("redirect") == "dashboard") {
+    if(sessionStorage.getItem("loggedCA") === md5("true")) {
       globalFunction();
     } else {
       window.location.href = "./login";
@@ -404,11 +553,11 @@ function hideme(){
                     userFeedback_type = document.getElementById("feedback_type2").innerHTML;
                 else if (document.getElementById("radio_feedback_type3").checked)
                     userFeedback_type = document.getElementById("feedback_type3").innerHTML;
-                    
+
                     document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
 
-                axios.post( url+'/doFeedback', {
+                axios.post(url+'/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue,
                         feedback_type: userFeedback_type
