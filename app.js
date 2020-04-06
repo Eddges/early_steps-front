@@ -30,13 +30,13 @@ app.use('/profileothers', indexRouter);
 app.use('/register', indexRouter);
 app.use('/dashboard', indexRouter);
 app.use('/schedule', indexRouter);
-app.use('/videos', indexRouter);
-app.use('/rewards', indexRouter);
+//app.use('/videos', indexRouter);
+app.use('/challenges', indexRouter);
 app.use('/home', indexRouter);
 app.use('/leaderboard', indexRouter);
 app.use('/profileothers', indexRouter);
 app.use('/testmaterials', indexRouter);
-app.use('/testmaterials_dashboard', indexRouter);
+app.use('/studymaterials_dashboard', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
