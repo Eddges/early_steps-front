@@ -55,12 +55,10 @@
          var url= '<%= process.env.URL %>';
         Breakpoints();
 
-        if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
-
-            } else {
-                window.location.href = "./login";
+        if (sessionStorage.getItem("loggedCA") !== md5("true")) {
+            window.location.href = "./login";
             }
-                    
+                                
         function globalCall(){
             if (sessionStorage.getItem("loggedCA") != md5("true")) {
                     console.log("GLOBAL");
