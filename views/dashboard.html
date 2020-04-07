@@ -311,7 +311,7 @@
 
 
 
-                <div class="col-xxl-4 col-xl-6 col-lg-6" style="height: 700px;">
+                <div class="col-xxl-4 col-xl-12 col-lg-12" style="height: 400px;">
                     <div id="personalCompletedWidget" class="card card-shadow pb-20">
                         <div class="card-header card-header-transparent cover overlay">
                             <img class="cover-image" src="../../../global/photos/placeholder.png">
@@ -397,7 +397,7 @@
                 </div>
 
 
-<div class="col-xxl-4 col-xl-6 col-lg-6" style="height: 700px;">
+<div class="col-xxl-4 col-xl-12 col-lg-12" style="height: 700px;">
             <!-- Panel Tickets -->
             <div class="panel">
               <div class="panel-heading">
@@ -583,7 +583,7 @@
             if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
                 globalCall();
             } else {
-                window.location.href = "./login";
+              //  window.location.href = "./login";
             }
 
             function hideme(){
@@ -828,43 +828,58 @@
                           }
                           
                                 $('#classes').append(`<li class="list-group-item justify-content-between">
-                        <small id="badge${i}" class="badge  float-right" style="padding:5px 5px;">${x}</small>
-                        <p>
-                          <span><i class="icon wb-video" aria-hidden="true"></i>${response.data.a[i].schedule_details.split(",")[0]}</span>
-                        </p>
-                        <small>Mentored by
-                          <a class="hightlight" href="javascript:void(0)">
-                            <span>${response.data.a[i].schedule_details.split(",")[1]} </span>
-                          </a>
-                          <br/>
-                        </small>
-                        <small id="feedbackbadge${i}" class="badge  float-right"  data-target="#MentorFormModal" data-toggle="modal" style="padding:5px 5px;cursor:pointer;display:none;" >
-                            Feedback
+                       <p>
+                          <span style="font-weight:bold"><i class="icon wb-video" aria-hidden="true"></i>${response.data.a[i].schedule_details.split(",")[0]}</span>
+                        <br><br>
+                        <small id="zoomlink${i}" class="badge badge-primary  "  style="cursor:pointer;margin-right:5px" >
+                            JOIN CLASS
                             </small>
-                        <small>Date :
+                       <small id="badge${i}" class="badge badge-success  " style="margin-right:5px">${x}</small>
+                        <small class="badge badge-outline badge-default  ">Date :
                             <span>${new Date(response.data.a[i].schedule_start).toString().slice(0,15)} , ${new Date(response.data.a[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
                          
                         </small>
-                        <br/>
+                        
+                        </p>
+                     
+                        <div class="content card card-default">
+                          <div class="card-block">
+                            Aspernatur ad aspernari sapienter constringendos conspiratione locatus. Ii maiores
+                            aequo tollit, profecta iucundo pueros assentior velit
+                            circumcisaque error fastidium nostros. Utuntur deserunt
+                            solvantur.
+                          </div>
+                         
+                        </div>
+                       
+                        <div style="text-align:center">
+                           <button type="button" id="feedbackbadge${i}" class="btn btn-block btn-warning"  data-target="#MentorFormModal" data-toggle="modal" style="width:fit-content;display:none;" >
+                            Submit Feedback
+                            </button>
+                            </div>
+                        
+                        
+                       
+                        
                       </li>`);
 
-                      document.getElementById(`feedbackbadge`+`${i}`).style.color = "white";
-                          document.getElementById(`feedbackbadge`+`${i}`).style.backgroundColor = "orange";
-                            document.getElementById(`feedbackbadge`+`${i}`).style.border = "1px solid orange";
+                     // document.getElementById(`feedbackbadge`+`${i}`).style.color = "white";
+                       //   document.getElementById(`feedbackbadge`+`${i}`).style.backgroundColor = "orange";
+                         //   document.getElementById(`feedbackbadge`+`${i}`).style.border = "1px solid orange";
 
                       if(x == "Upcoming")
                           {
                             
                            
-                            document.getElementById(`badge`+`${i}`).style.border = "1px solid dodgerblue";
-                            document.getElementById(`badge`+`${i}`).style.color = "dodgerblue";
+                           // document.getElementById(`badge`+`${i}`).style.border = "1px solid dodgerblue";
+                            document.getElementById(`badge`+`${i}`).style.color = "#0bb2d4";
                             
                           }
                         else if(x == "Completed")
                           {
                             document.getElementById(`feedbackbadge`+`${i}`).style.display = "block";
-                            document.getElementById(`badge`+`${i}`).style.color = "seagreen";
-                            document.getElementById(`badge`+`${i}`).style.border = "1px solid seagreen";
+                            //document.getElementById(`badge`+`${i}`).style.color = "seagreen";
+                            //document.getElementById(`badge`+`${i}`).style.border = "1px solid seagreen";
                           }
                        else  {
                           
