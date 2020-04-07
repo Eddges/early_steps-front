@@ -597,6 +597,19 @@
      function hidemepro(){
       document.getElementById('processing-div').style.display="none";
     }
+    function joinclass(url,index){
+        console.log(url,index);
+        if(url !== "")
+        {
+            console.log("notempty");
+            window.open(url,"_blank");
+        }
+        else {
+            console.log("empty");
+           
+        }
+
+    }
 
             function logout(){
               sessionStorage.clear();
@@ -809,14 +822,14 @@
                     .then((response) => {
                         console.log(response)
                         
-                     
-                          
                         if (response.data.a.length != 0) {
-                          
+                           
+                            // let sample1 = response.data.a.sort(function (a, b) { return new Date(a.schedule_start) - new Date(a.schedule_start )});
+                            // console.log(sample1,response.data.a)
                             for (let i = 0; i < response.data.a.length; i++) {
                                 if(response.data.a[i].course_id == sessionStorage.getItem("course_id"))
                                 {
-
+                                    let zoomurl = response.data.a[i].schedule_details.split(",")[2];
                               let start = new Date(response.data.a[i].schedule_start)
                           let end = new Date(response.data.a[i].schedule_end)
                           let x = ""
@@ -827,7 +840,8 @@
                           }
                           else if(end < new Date())
                           {
-                            x = "Completed"
+                            x = "Completed";
+                            zoomurl="";
                            
                           }
                           else {
@@ -839,9 +853,10 @@
                        <p>
                           <span style="font-weight:bold"><i class="icon wb-video" aria-hidden="true"></i>${response.data.a[i].schedule_details.split(",")[0]}</span>
                         <br><br>
+                        <a id="zoombtn${i}" onclick="joinclass('${zoomurl}','${i}')"> 
                         <small id="zoomlink${i}" class="badge badge-primary  "  style="cursor:pointer;margin-right:5px" >
                             JOIN CLASS
-                            </small>
+                            </small></a>
                        <small id="badge${i}" class="badge badge-success  " style="margin-right:5px">${x}</small>
                         <small class="badge badge-outline badge-default  ">Date :
                             <span>${new Date(response.data.a[i].schedule_start).toString().slice(0,15)} , ${new Date(response.data.a[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
@@ -878,13 +893,22 @@
                       if(x == "Upcoming")
                           {
                             
-                           
-                           // document.getElementById(`badge`+`${i}`).style.border = "1px solid dodgerblue";
-                            document.getElementById(`badge`+`${i}`).style.color = "#0bb2d4";
+                           if(zoomurl == "")
+                           {
+                            document.getElementById(`zoombtn`+`${i}`).href = "javascript:void(0)";
+                            document.getElementById(`zoomlink`+`${i}`).style.cursor = "not-allowed";
+                            document.getElementById(`zoomlink`+`${i}`).style.backgroundColor = "lightgrey";
+                           }
+                            document.getElementById(`badge`+`${i}`).style.color = "white";  //"#0bb2d4"
                             
                           }
                         else if(x == "Completed")
                           {
+
+                           
+                            document.getElementById(`zoombtn`+`${i}`).href = "javascript:void(0)";
+                            document.getElementById(`zoomlink`+`${i}`).style.cursor = "not-allowed";
+                            document.getElementById(`zoomlink`+`${i}`).style.backgroundColor = "lightgrey";
                             document.getElementById(`feedbackbadge`+`${i}`).style.display = "block";
                             //document.getElementById(`badge`+`${i}`).style.color = "seagreen";
                             //document.getElementById(`badge`+`${i}`).style.border = "1px solid seagreen";
