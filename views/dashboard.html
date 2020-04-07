@@ -602,6 +602,13 @@
               sessionStorage.clear();
               window.reload();
             }
+            
+            let classDate ="";
+            function setClassDate(props) {
+                classDate=props;
+                // console.log(props);
+            }
+
             function userFeedback() {
                 let user_idValue = sessionStorage.getItem("user_id");
                 let userFeedback_textValue = document.getElementById("userFeedback_text").value;
@@ -649,7 +656,7 @@
 
                 axios.post(`${url}`+`/doFeedback`, {
                         user_id: user_idValue,
-                        feedback_details: mentorFeedback_textValue + "," + mentorName + "," + classesName,
+                        feedback_details: mentorFeedback_textValue + "," + mentorName + "," + classesName + "," + classDate,
                         feedback_type: mentorFeedback_type
                     })
                     .then(function(response) {
@@ -854,7 +861,7 @@
                         </div>
                        
                         <div style="text-align:center">
-                           <button type="button" id="feedbackbadge${i}" class="btn btn-block btn-warning"  data-target="#MentorFormModal" data-toggle="modal" style="width:fit-content;display:none;" >
+                           <button type="button" id="feedbackbadge${i}" class="btn btn-block btn-warning"  data-target="#MentorFormModal" data-toggle="modal" style="width:fit-content;display:none;" onclick="setClassDate('${new Date(response.data.a[i].schedule_start).toString().slice(0,15)} , ${new Date(response.data.a[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}')">
                             Submit Feedback
                             </button>
                             </div>
