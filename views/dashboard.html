@@ -830,7 +830,7 @@
                         console.log(response)
                         
                         if (response.data.a.length != 0) {
-                           let newArr = response.data.a.sort(function(a,b){return new Date(a.schedule_start) - new Date(b.schedule_start)});
+                           let newArr = response.data.a.sort(function(a,b){return new Date(b.schedule_start) - new Date(a.schedule_start)});
                         //    console.log(Sorted_Data[1].schedule_start);
                         //    let live = [];
                         //    let upcoming = [];
