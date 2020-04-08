@@ -599,14 +599,21 @@
     }
     function joinclass(url,index){
         console.log(url,index);
-        if(url !== "")
+        if(url !== "" && url != "undefined")
         {
-            console.log("notempty");
             window.open(url,"_blank");
         }
+        // else if(url == "undefined")
+        // {
+        //     document.getElementById(`zoombtn`+`${index}`).href = "javascript:void(0)";
+        //     document.getElementById(`zoomlink`+`${index}`).style.cursor = "not-allowed";
+        //     document.getElementById(`zoomlink`+`${index}`).style.backgroundColor = "lightgrey";
+        // } 
         else {
-            console.log("empty");
-           
+            document.getElementById(`zoombtn`+`${index}`).href = "javascript:void(0)";
+            document.getElementById(`zoomlink`+`${index}`).style.cursor = "not-allowed";
+            document.getElementById(`zoomlink`+`${index}`).style.backgroundColor = "lightgrey";
+              
         }
 
     }
@@ -852,22 +859,21 @@
                                 if(newArr[i].course_id == sessionStorage.getItem("course_id"))
                                 {
                                     let zoomurl = newArr[i].schedule_details.split("~")[2];
-                              let start = new Date(newArr[i].schedule_start)
-                          let end = new Date(newArr[i].schedule_end)
-                          let x = ""
+                              let start = new Date(newArr[i].schedule_start);
+                          let end = new Date(newArr[i].schedule_end);
+                          let x = "";
                           if(start > new Date())
                           {
-                            x = "Upcoming"
+                            x = "Upcoming";
                             
                           }
                           else if(end < new Date())
                           {
                             x = "Completed";
                             zoomurl="";
-                           
                           }
                           else {
-                            x = "Live"
+                            x = "Live";
                             
                           }
                           
@@ -889,10 +895,7 @@
                      
                         <div class="content card card-default">
                           <div class="card-block">
-                            Aspernatur ad aspernari sapienter constringendos conspiratione locatus. Ii maiores
-                            aequo tollit, profecta iucundo pueros assentior velit
-                            circumcisaque error fastidium nostros. Utuntur deserunt
-                            solvantur.
+                            ${response.data.a[i].schedule_details.split("~")[1]}
                           </div>
                          
                         </div>
@@ -915,7 +918,7 @@
                       if(x == "Upcoming")
                           {
                             
-                           if(zoomurl == "")
+                           if(zoomurl == "" || zoomurl == "undefined")
                            {
                             document.getElementById(`zoombtn`+`${i}`).href = "javascript:void(0)";
                             document.getElementById(`zoomlink`+`${i}`).style.cursor = "not-allowed";
@@ -927,7 +930,6 @@
                         else if(x == "Completed")
                           {
 
-                           
                             document.getElementById(`zoombtn`+`${i}`).href = "javascript:void(0)";
                             document.getElementById(`zoomlink`+`${i}`).style.cursor = "not-allowed";
                             document.getElementById(`zoomlink`+`${i}`).style.backgroundColor = "lightgrey";
