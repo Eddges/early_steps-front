@@ -311,7 +311,7 @@
 
 
 
-                <div class="col-xxl-4 col-xl-6 col-lg-6" style="height: 700px;">
+                <div class="col-xxl-4 col-xl-12 col-lg-12" style="height: 400px;">
                     <div id="personalCompletedWidget" class="card card-shadow pb-20">
                         <div class="card-header card-header-transparent cover overlay">
                             <img class="cover-image" src="../../../global/photos/placeholder.png">
@@ -397,7 +397,7 @@
                 </div>
 
 
-<div class="col-xxl-4 col-xl-6 col-lg-6" style="height: 700px;">
+<div class="col-xxl-4 col-xl-12 col-lg-12" style="height: 700px;">
             <!-- Panel Tickets -->
             <div class="panel">
               <div class="panel-heading">
@@ -583,7 +583,7 @@
             if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
                 globalCall();
             } else {
-                window.location.href = "./login";
+              //  window.location.href = "./login";
             }
 
             function hideme(){
@@ -597,15 +597,43 @@
      function hidemepro(){
       document.getElementById('processing-div').style.display="none";
     }
+    function joinclass(url,index){
+        console.log(url,index);
+        if(url !== "" && url != "undefined")
+        {
+            window.open(url,"_blank");
+        }
+        // else if(url == "undefined")
+        // {
+        //     document.getElementById(`zoombtn`+`${index}`).href = "javascript:void(0)";
+        //     document.getElementById(`zoomlink`+`${index}`).style.cursor = "not-allowed";
+        //     document.getElementById(`zoomlink`+`${index}`).style.backgroundColor = "lightgrey";
+        // } 
+        else {
+            document.getElementById(`zoombtn`+`${index}`).href = "javascript:void(0)";
+            document.getElementById(`zoomlink`+`${index}`).style.cursor = "not-allowed";
+            document.getElementById(`zoomlink`+`${index}`).style.backgroundColor = "lightgrey";
+              
+        }
+
+    }
 
             function logout(){
               sessionStorage.clear();
               window.reload();
             }
+            
+            let classDate ="";
+            function setClassDate(props) {
+                classDate=props;
+                // console.log(props);
+            }
+
             function userFeedback() {
                 let user_idValue = sessionStorage.getItem("user_id");
                 let userFeedback_textValue = document.getElementById("userFeedback_text").value;
                 let userFeedback_type;
+                let date= new Date();
 
                 if (document.getElementById("radio_feedback_type1").checked)
                     userFeedback_type = document.getElementById("feedback_type1").innerHTML;
@@ -619,7 +647,7 @@
 
                 axios.post(`${url}`+`/doFeedback`, {
                         user_id: user_idValue,
-                        feedback_details: userFeedback_textValue,
+                        feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
                     })
                     .then(function(response) {
@@ -648,7 +676,7 @@
 
                 axios.post(`${url}`+`/doFeedback`, {
                         user_id: user_idValue,
-                        feedback_details: mentorFeedback_textValue + "," + mentorName + "," + classesName,
+                        feedback_details: mentorFeedback_textValue + "~" + mentorName + "~" + classesName + "~" + classDate,
                         feedback_type: mentorFeedback_type
                     })
                     .then(function(response) {
@@ -801,70 +829,114 @@
                     .then((response) => {
                         console.log(response)
                         
-                     
-                          
                         if (response.data.a.length != 0) {
-                          
-                            for (let i = 0; i < response.data.a.length; i++) {
-                                if(response.data.a[i].course_id == sessionStorage.getItem("course_id"))
+                           let Sorted_Data = response.data.a.sort(function(a,b){return new Date(a.schedule_start) - new Date(b.schedule_start)});
+                        //    console.log(Sorted_Data[1].schedule_start);
+                           let live = [];
+                           let upcoming = [];
+                           let completed = [];
+                           for(let i=0;i<Sorted_Data.length;i++)
+                           {
+                                if(new Date(Sorted_Data[i].schedule_start) > new Date())
                                 {
+                                    upcoming.push(Sorted_Data[i]);
+                                }
+                                else if(new Date(Sorted_Data[i].schedule_end) < new Date())
+                                {
+                                    completed.push(Sorted_Data[i]);
+                                }
+                                else
+                                {
+                                    live.push(Sorted_Data[i]);
+                                }
+                           }
+                        //    console.log(upcoming);
+                           let newArr= live.concat(upcoming);
+                           newArr = newArr.concat(completed);
+                           console.log(newArr);
 
-                              let start = new Date(response.data.a[i].schedule_start)
-                          let end = new Date(response.data.a[i].schedule_end)
-                          let x = ""
+                            for (let i = 0; i < newArr.length; i++) {
+                                if(newArr[i].course_id == sessionStorage.getItem("course_id"))
+                                {
+                                    let zoomurl = newArr[i].schedule_details.split("~")[2];
+                              let start = new Date(newArr[i].schedule_start);
+                          let end = new Date(newArr[i].schedule_end);
+                          let x = "";
+
                           if(start > new Date())
                           {
-                            x = "Upcoming"
+                            x = "Upcoming";
                             
                           }
                           else if(end < new Date())
                           {
-                            x = "Completed"
-                           
+                            x = "Completed";
+                            zoomurl="";
                           }
                           else {
-                            x = "Live"
+                            x = "Live";
                             
                           }
                           
                                 $('#classes').append(`<li class="list-group-item justify-content-between">
-                        <small id="badge${i}" class="badge  float-right" style="padding:5px 5px;">${x}</small>
-                        <p>
-                          <span><i class="icon wb-video" aria-hidden="true"></i>${response.data.a[i].schedule_details.split(",")[0]}</span>
-                        </p>
-                        <small>Mentored by
-                          <a class="hightlight" href="javascript:void(0)">
-                            <span>${response.data.a[i].schedule_details.split(",")[1]} </span>
-                          </a>
-                          <br/>
-                        </small>
-                        <small id="feedbackbadge${i}" class="badge  float-right"  data-target="#MentorFormModal" data-toggle="modal" style="padding:5px 5px;cursor:pointer;display:none;" >
-                            Feedback
-                            </small>
-                        <small>Date :
-                            <span>${new Date(response.data.a[i].schedule_start).toString().slice(0,15)} , ${new Date(response.data.a[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
+                       <p>
+                          <span style="font-weight:bold"><i class="icon wb-video" aria-hidden="true"></i>${newArr[i].schedule_details.split("~")[0]}</span>
+                        <br><br>
+                        <a id="zoombtn${i}" onclick="joinclass('${zoomurl}','${i}')"> 
+                        <small id="zoomlink${i}" class="badge badge-primary  "  style="cursor:pointer;margin-right:5px" >
+                            JOIN CLASS
+                            </small></a>
+                       <small id="badge${i}" class="badge badge-success  " style="margin-right:5px">${x}</small>
+                        <small class="badge badge-outline badge-default  ">Date :
+                            <span>${new Date(newArr[i].schedule_start).toString().slice(0,15)} , ${new Date(newArr[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
                          
                         </small>
-                        <br/>
+                        
+                        </p>
+                     
+                        <div class="content card card-default">
+                          <div class="card-block">
+                            ${response.data.a[i].schedule_details.split("~")[1]}
+                          </div>
+                         
+                        </div>
+                       
+                        <div style="text-align:center">
+                           <button type="button" id="feedbackbadge${i}" class="btn btn-block btn-warning"  data-target="#MentorFormModal" data-toggle="modal" style="width:fit-content;display:none;" onclick="setClassDate('${new Date(newArr[i].schedule_start).toString().slice(0,15)} , ${new Date(newArr[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}')">
+                            Submit Feedback
+                            </button>
+                            </div>
+                        
+                        
+                       
+                        
                       </li>`);
 
-                      document.getElementById(`feedbackbadge`+`${i}`).style.color = "white";
-                          document.getElementById(`feedbackbadge`+`${i}`).style.backgroundColor = "orange";
-                            document.getElementById(`feedbackbadge`+`${i}`).style.border = "1px solid orange";
+                     // document.getElementById(`feedbackbadge`+`${i}`).style.color = "white";
+                       //   document.getElementById(`feedbackbadge`+`${i}`).style.backgroundColor = "orange";
+                         //   document.getElementById(`feedbackbadge`+`${i}`).style.border = "1px solid orange";
 
                       if(x == "Upcoming")
                           {
                             
-                           
-                            document.getElementById(`badge`+`${i}`).style.border = "1px solid dodgerblue";
-                            document.getElementById(`badge`+`${i}`).style.color = "dodgerblue";
+                           if(zoomurl == "" || zoomurl == "undefined")
+                           {
+                            document.getElementById(`zoombtn`+`${i}`).href = "javascript:void(0)";
+                            document.getElementById(`zoomlink`+`${i}`).style.cursor = "not-allowed";
+                            document.getElementById(`zoomlink`+`${i}`).style.backgroundColor = "lightgrey";
+                           }
+                            document.getElementById(`badge`+`${i}`).style.color = "white";  //"#0bb2d4"
                             
                           }
                         else if(x == "Completed")
                           {
+
+                            document.getElementById(`zoombtn`+`${i}`).href = "javascript:void(0)";
+                            document.getElementById(`zoomlink`+`${i}`).style.cursor = "not-allowed";
+                            document.getElementById(`zoomlink`+`${i}`).style.backgroundColor = "lightgrey";
                             document.getElementById(`feedbackbadge`+`${i}`).style.display = "block";
-                            document.getElementById(`badge`+`${i}`).style.color = "seagreen";
-                            document.getElementById(`badge`+`${i}`).style.border = "1px solid seagreen";
+                            //document.getElementById(`badge`+`${i}`).style.color = "seagreen";
+                            //document.getElementById(`badge`+`${i}`).style.border = "1px solid seagreen";
                           }
                        else  {
                           
