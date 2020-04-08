@@ -830,29 +830,29 @@
                         console.log(response)
                         
                         if (response.data.a.length != 0) {
-                           let Sorted_Data = response.data.a.sort(function(a,b){return new Date(a.schedule_start) - new Date(b.schedule_start)});
+                           let newArr = response.data.a.sort(function(a,b){return new Date(a.schedule_start) - new Date(b.schedule_start)});
                         //    console.log(Sorted_Data[1].schedule_start);
-                           let live = [];
-                           let upcoming = [];
-                           let completed = [];
-                           for(let i=0;i<Sorted_Data.length;i++)
-                           {
-                                if(new Date(Sorted_Data[i].schedule_start) > new Date())
-                                {
-                                    upcoming.push(Sorted_Data[i]);
-                                }
-                                else if(new Date(Sorted_Data[i].schedule_end) < new Date())
-                                {
-                                    completed.push(Sorted_Data[i]);
-                                }
-                                else
-                                {
-                                    live.push(Sorted_Data[i]);
-                                }
-                           }
-                        //    console.log(upcoming);
-                           let newArr= live.concat(upcoming);
-                           newArr = newArr.concat(completed);
+                        //    let live = [];
+                        //    let upcoming = [];
+                        //    let completed = [];
+                        //    for(let i=0;i<Sorted_Data.length;i++)
+                        //    {
+                        //         if(new Date(Sorted_Data[i].schedule_start) > new Date())
+                        //         {
+                        //             upcoming.push(Sorted_Data[i]);
+                        //         }
+                        //         else if(new Date(Sorted_Data[i].schedule_end) < new Date())
+                        //         {
+                        //             completed.push(Sorted_Data[i]);
+                        //         }
+                        //         else
+                        //         {
+                        //             live.push(Sorted_Data[i]);
+                        //         }
+                        //    }
+                        // //    console.log(upcoming);
+                        //    let newArr= live.concat(upcoming);
+                        //    newArr = newArr.concat(completed);
                            console.log(newArr);
 
                             for (let i = 0; i < newArr.length; i++) {
@@ -896,7 +896,7 @@
                      
                         <div class="content card card-default">
                           <div class="card-block">
-                            ${response.data.a[i].schedule_details.split("~")[1]}
+                            ${newArr[i].schedule_details.split("~")[1]}
                           </div>
                          
                         </div>
