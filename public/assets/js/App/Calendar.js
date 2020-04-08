@@ -68,7 +68,7 @@
         for(let i=0;i<title1.length;i++)
         {
           myEvents.push({
-          title: `Topic: `+title1[i].split(",")[0] +","+` Mentor: `+title1[i].split(",")[1],
+          title: `Topic: `+title1[i].split("~")[0] +","+` Details: `+title1[i].split("~")[1],
           start: dateStart[i],
           end: dateEnd[i],
           backgroundColor: (0, _Config.colors)(newColor[i%10], 600),
