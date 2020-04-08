@@ -583,7 +583,7 @@ if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem
 
                 axios.post( url+'/doFeedback', {
                         user_id: user_idValue,
-                        feedback_details: userFeedback_textValue+","+date,
+                        feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
                     })
                     .then(function(response) {

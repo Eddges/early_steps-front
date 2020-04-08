@@ -647,7 +647,7 @@
 
                 axios.post(`${url}`+`/doFeedback`, {
                         user_id: user_idValue,
-                        feedback_details: userFeedback_textValue+","+date,
+                        feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
                     })
                     .then(function(response) {
@@ -676,7 +676,7 @@
 
                 axios.post(`${url}`+`/doFeedback`, {
                         user_id: user_idValue,
-                        feedback_details: mentorFeedback_textValue + "," + mentorName + "," + classesName + "," + classDate,
+                        feedback_details: mentorFeedback_textValue + "~" + mentorName + "~" + classesName + "~" + classDate,
                         feedback_type: mentorFeedback_type
                     })
                     .then(function(response) {
@@ -830,17 +830,42 @@
                         console.log(response)
                         
                         if (response.data.a.length != 0) {
-                           
-                            for (let i = 0; i < response.data.a.length; i++) {
-                                if(response.data.a[i].course_id == sessionStorage.getItem("course_id"))
+                           let Sorted_Data = response.data.a.sort(function(a,b){return new Date(a.schedule_start) - new Date(b.schedule_start)});
+                        //    console.log(Sorted_Data[1].schedule_start);
+                           let live = [];
+                           let upcoming = [];
+                           let completed = [];
+                           for(let i=0;i<Sorted_Data.length;i++)
+                           {
+                                if(new Date(Sorted_Data[i].schedule_start) > new Date())
                                 {
-                                    let zoomurl = response.data.a[i].schedule_details.split("~")[2];
-                              let start = new Date(response.data.a[i].schedule_start)
-                          let end = new Date(response.data.a[i].schedule_end)
-                          let x = ""
+                                    upcoming.push(Sorted_Data[i]);
+                                }
+                                else if(new Date(Sorted_Data[i].schedule_end) < new Date())
+                                {
+                                    completed.push(Sorted_Data[i]);
+                                }
+                                else
+                                {
+                                    live.push(Sorted_Data[i]);
+                                }
+                           }
+                        //    console.log(upcoming);
+                           let newArr= live.concat(upcoming);
+                           newArr = newArr.concat(completed);
+                           console.log(newArr);
+
+                            for (let i = 0; i < newArr.length; i++) {
+                                if(newArr[i].course_id == sessionStorage.getItem("course_id"))
+                                {
+                                    let zoomurl = newArr[i].schedule_details.split("~")[2];
+                              let start = new Date(newArr[i].schedule_start);
+                          let end = new Date(newArr[i].schedule_end);
+                          let x = "";
+
                           if(start > new Date())
                           {
-                            x = "Upcoming"
+                            x = "Upcoming";
                             
                           }
                           else if(end < new Date())
@@ -849,13 +874,13 @@
                             zoomurl="";
                           }
                           else {
-                            x = "Live"
+                            x = "Live";
                             
                           }
                           
                                 $('#classes').append(`<li class="list-group-item justify-content-between">
                        <p>
-                          <span style="font-weight:bold"><i class="icon wb-video" aria-hidden="true"></i>${response.data.a[i].schedule_details.split("~")[0]}</span>
+                          <span style="font-weight:bold"><i class="icon wb-video" aria-hidden="true"></i>${newArr[i].schedule_details.split("~")[0]}</span>
                         <br><br>
                         <a id="zoombtn${i}" onclick="joinclass('${zoomurl}','${i}')"> 
                         <small id="zoomlink${i}" class="badge badge-primary  "  style="cursor:pointer;margin-right:5px" >
@@ -863,7 +888,7 @@
                             </small></a>
                        <small id="badge${i}" class="badge badge-success  " style="margin-right:5px">${x}</small>
                         <small class="badge badge-outline badge-default  ">Date :
-                            <span>${new Date(response.data.a[i].schedule_start).toString().slice(0,15)} , ${new Date(response.data.a[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
+                            <span>${new Date(newArr[i].schedule_start).toString().slice(0,15)} , ${new Date(newArr[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
                          
                         </small>
                         
@@ -877,7 +902,7 @@
                         </div>
                        
                         <div style="text-align:center">
-                           <button type="button" id="feedbackbadge${i}" class="btn btn-block btn-warning"  data-target="#MentorFormModal" data-toggle="modal" style="width:fit-content;display:none;" onclick="setClassDate('${new Date(response.data.a[i].schedule_start).toString().slice(0,15)} , ${new Date(response.data.a[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}')">
+                           <button type="button" id="feedbackbadge${i}" class="btn btn-block btn-warning"  data-target="#MentorFormModal" data-toggle="modal" style="width:fit-content;display:none;" onclick="setClassDate('${new Date(newArr[i].schedule_start).toString().slice(0,15)} , ${new Date(newArr[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}')">
                             Submit Feedback
                             </button>
                             </div>
