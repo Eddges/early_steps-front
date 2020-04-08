@@ -169,7 +169,7 @@
 
                         </li> -->
 
-                        <li class="site-menu-item ">
+                        <li class="site-menu-item active">
                           <a href="/challenges">
                               <i class="site-menu-icon wb-star-outline" style="color:#23b7e5" aria-hidden="true"></i>
                               <span class="site-menu-title">Challenges</span>
@@ -401,6 +401,7 @@ function hideme(){
                 let user_idValue = sessionStorage.getItem("user_id");
                 let userFeedback_textValue = document.getElementById("userFeedback_text").value;
                 let userFeedback_type;
+                let date= new Date();
 
                 if (document.getElementById("radio_feedback_type1").checked)
                     userFeedback_type = document.getElementById("feedback_type1").innerHTML;
@@ -414,7 +415,7 @@ function hideme(){
 
                 axios.post( url+'/doFeedback', {
                         user_id: user_idValue,
-                        feedback_details: userFeedback_textValue,
+                        feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
                     })
                     .then(function(response) {

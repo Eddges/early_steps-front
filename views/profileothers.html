@@ -1078,6 +1078,7 @@
                 let user_idValue = sessionStorage.getItem("user_id");
                 let userFeedback_textValue = document.getElementById("userFeedback_text").value;
                 let userFeedback_type;
+                let date= new Date();
 
                 if (document.getElementById("radio_feedback_type1").checked)
                     userFeedback_type = document.getElementById("feedback_type1").innerHTML;
@@ -1091,7 +1092,7 @@
 
                 axios.post(url+'/doFeedback', {
                         user_id: user_idValue,
-                        feedback_details: userFeedback_textValue,
+                        feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
                     })
                     .then(function(response) {

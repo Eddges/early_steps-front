@@ -379,7 +379,7 @@ function hideme(){
                 $('#video').append(`<li class="masonry-item">
                     <div class="card card-shadow">
                         <div class="card-header cover">
-                          <video controls="controls" src=${response.data.a[i].video_details.split(",")[1]} width="100%">
+                          <video controls="controls" src=${response.data.a[i].video_details.split("~")[1]} width="100%">
                           Your browser does not support the HTML5 Video element.
                           </video>
                             </div>
@@ -389,7 +389,7 @@ function hideme(){
                                     <!-- <a hzref="javascript:void(0)"><span>3</span> Comments</a> -->
                                         </small>
                                     </p>
-                                    <p class="card-text">${response.data.a[i].video_details.split(",")[0]}</p>
+                                    <p class="card-text">${response.data.a[i].video_details.split("~")[0]}</p>
                                     </div>
                                     <!-- <div class="card-block"><div class="card-actions float-right"><a href="javascript:void(0)"><i class="icon wb-heart" aria-hidden="true"></i><span>108</span></a></div>
                                     </div>-->
@@ -416,6 +416,7 @@ function hideme(){
                 let user_idValue = sessionStorage.getItem("user_id");
                 let userFeedback_textValue = document.getElementById("userFeedback_text").value;
                 let userFeedback_type;
+                let date= new Date();
 
                 if (document.getElementById("radio_feedback_type1").checked)
                     userFeedback_type = document.getElementById("feedback_type1").innerHTML;
@@ -429,7 +430,7 @@ function hideme(){
 
                 axios.post( url+'/doFeedback', {
                         user_id: user_idValue,
-                        feedback_details: userFeedback_textValue,
+                        feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
                     })
                     .then(function(response) {
