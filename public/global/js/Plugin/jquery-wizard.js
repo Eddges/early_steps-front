@@ -43,7 +43,7 @@
           templates: {
             buttons: function buttons() {
               var options = this.options;
-              return "<div class=\"wizard-buttons\"><a class=\"btn btn-default btn-outline\" href=\"#".concat(this.id, "\" data-wizard=\"back\" role=\"button\">").concat(options.buttonLabels.back, "</a><a class=\"btn btn-primary btn-outline float-right\" href=\"#").concat(this.id, "\" data-wizard=\"next\" role=\"button\">").concat(options.buttonLabels.next, "</a><a class=\"btn btn-success btn-outline float-right\" href=\"#").concat(this.id, "\" data-wizard=\"finish\" role=\"button\">").concat(options.buttonLabels.finish, "</a></div>");
+              return "<div class=\"wizard-buttons\"><a class=\"btn btn-default btn-outline\" href=\"#".concat(this.id, "\" data-wizard=\"back\" role=\"button\">").concat(options.buttonLabels.back, "</a><a class=\"btn btn-primary btn-outline float-right\" href=\"#").concat(this.id, "\" data-wizard=\"next\" role=\"button\">").concat(options.buttonLabels.next, "</a><a id=\"btn_newid\"class=\"btn btn-success btn-outline float-right\" href=\"#").concat(this.id, "\" data-wizard=\"finish\" role=\"button\">").concat(options.buttonLabels.finish, "</a></div>");
             }
           },
           classes: {

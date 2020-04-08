@@ -207,6 +207,8 @@
       },
       onFinish: function onFinish() {// $('#exampleFormContainer').submit();
       sessionStorage.getItem("redirect") == "home";
+      window.scrollTo(0,0);
+      $("a#btn_newid")[1].className = "btn btn-success disabled btn-outline float-right";
       
       // console.log("CP: 0");
       // axios.get( url+`/getJobProfile/` + `${user_id}`)
