@@ -1075,6 +1075,7 @@
     }
 
         function userFeedback() {
+                window.scrollTo(0,0);
                 let user_idValue = sessionStorage.getItem("user_id");
                 let userFeedback_textValue = document.getElementById("userFeedback_text").value;
                 let userFeedback_type;
@@ -1109,9 +1110,13 @@
                         console.log(error);
                     });
             }
-
            
-    
+$('#exampleFormContainer').keypress(function (e) {                                       
+       if (e.which == 13) {
+            e.preventDefault();
+            // console.log("prevent default on Enter")
+       }
+});
 
 
 

@@ -97,6 +97,16 @@
       if(sessionStorage.getItem("loggedCA") !== md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
       window.location.href = "./login";
     }
+    
+    axios.get(url+`/getUserData/${sessionStorage.getItem("user_id")}`)
+                    .then(function(response) {
+                        console.log(response);
+                        sessionStorage.setItem("course_id",response.data["a"][0].course_id);
+                        sessionStorage.setItem("photo", response.data["a"][0].photo);             
+                    }).catch(function(error) {
+                        console.log(error);
+                    });
+                        
     </script>
 
     <script>
