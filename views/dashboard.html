@@ -680,6 +680,7 @@
                         feedback_type: mentorFeedback_type
                     })
                     .then(function(response) {
+                        window.scrollTo(0,0);
                         document.getElementById('processing-div').style.display="none";
                        document.getElementById('info-message-div').style.display="block";
                         document.getElementById('message-div-info').innerHTML="Feedback submitted successfully!";
