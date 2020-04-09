@@ -220,6 +220,7 @@
 
       async function doregistration(){
 
+        window.scrollTo(0,0);
         document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
 
@@ -233,11 +234,13 @@
         if(usernameValue==""){
           document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Username is required";
+          document.getElementById('processing-div').style.display="none";
           return false;
         }
          if(emailValue==""){
            document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Email is required";
+          document.getElementById('processing-div').style.display="none";
           return false;
         }
 
@@ -255,6 +258,7 @@
           {
           document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="You have entered an invalid email address!";
+          document.getElementById('processing-div').style.display="none";
           return false;
           }
         
@@ -263,6 +267,7 @@
          if(phoneValue==""){
            document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Phone is required";
+          document.getElementById('processing-div').style.display="none";
           return false;
         }
 
@@ -271,22 +276,26 @@
         {
             document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Please enter 10 digit phone number";
+          document.getElementById('processing-div').style.display="none";
           return false;
         }
       
          if(document.getElementById("password").value==""){
            document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Password is required";
+          document.getElementById('processing-div').style.display="none";
           return false;
         }
          if(document.getElementById("retypePassword").value==""){
            document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Confirm password is required";
+          document.getElementById('processing-div').style.display="none";
           return false;
         }
          if(document.getElementById("retypePassword").value!=document.getElementById("password").value){
            document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Passwords do not match";
+          document.getElementById('processing-div').style.display="none";
           return false;
         }
 
@@ -302,6 +311,8 @@
             {
                document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Email already registered!";
+          document.getElementById('processing-div').style.display="none";
+
           //return false;
            
           }
@@ -315,6 +326,8 @@
                 {
                     document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Phone number already registered!";
+          document.getElementById('processing-div').style.display="none";
+
           //return false;
                             
                 }
@@ -348,6 +361,8 @@
                   console.log(error);
                   document.getElementById('alert-message-div').style.display="block";
                   document.getElementById('message-div').innerHTML="User Name already registered!";
+                  document.getElementById('processing-div').style.display="none";
+
                 });
             }
         }
