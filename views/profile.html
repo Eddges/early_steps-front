@@ -1171,7 +1171,12 @@
                     });
             }
 
-
+$('#exampleFormContainer').keypress(function (e) {                                       
+       if (e.which == 13) {
+            e.preventDefault();
+            // console.log("prevent default on Enter")
+       }
+});
 
 
             
