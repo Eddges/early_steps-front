@@ -680,6 +680,7 @@
                         feedback_type: mentorFeedback_type
                     })
                     .then(function(response) {
+                        window.scrollTo(0,0);
                         document.getElementById('processing-div').style.display="none";
                        document.getElementById('info-message-div').style.display="block";
                         document.getElementById('message-div-info').innerHTML="Feedback submitted successfully!";
@@ -699,7 +700,7 @@
                 axios.get(url+`/getUserData/${user_id}`)
                     .then(function(response) {
                         console.log(response);
-
+                        sessionStorage.setItem("course_id",response.data["a"][0].course_id);
                         sessionStorage.setItem("photo", response.data["a"][0].photo);
                         // document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
                         document.getElementById("photo").src = response.data["a"][0].photo;
@@ -728,7 +729,7 @@
                                 document.getElementById("courses").innerHTML = response.data.course_name.toUpperCase();
                                 // document.getElementById("batch_id").innerHTML = sessionStorage.getItem("course_id");
 
-                                let batchId = ["ON/CA/VA101","ON/CA/VA101","ON/CA/FS101","ON/CA/ML101","ON/CA/VA101","ON/CA/ML101","ON/CA/FS101","ON/CA/DA101","ON/CA/VA101","ON/CA/ML101","ON/CA/FS101","ON/CA/DA101"]
+                                let batchId = ["ON/CA/VA101","ON/CA/VA102","ON/CA/FS201","ON/CA/ML301","ON/CA/VA103","ON/CA/ML302","ON/CA/FS202","ON/CA/DA401","ON/CA/VA104","ON/CA/ML303","ON/CA/FS203","ON/CA/DA402"];
                             
                                 if(sessionStorage.getItem("course_id")>=1 && sessionStorage.getItem("course_id")<=12)
                                 {
