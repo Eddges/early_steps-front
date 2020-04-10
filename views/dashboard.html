@@ -401,7 +401,7 @@
             <!-- Panel Tickets -->
             <div class="panel">
               <div class="panel-heading">
-                <h3 class="panel-title">Classes</h3>
+                <h3 class="panel-title">BootCamp Schedule</h3>
                 <div class="panel-actions panel-actions-keep">
                   <!-- <div class="dropdown">
                     <a class="panel-action" id="examplePanelDropdown" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="icon wb-more-vertical" aria-hidden="true"></i></a>
@@ -863,19 +863,22 @@
                               let start = new Date(newArr[i].schedule_start);
                           let end = new Date(newArr[i].schedule_end);
                           let x = "";
+                          let class_var = "";
 
                           if(start > new Date())
                           {
                             x = "Upcoming";
-                            
+                            class_var ="badge-primary";
                           }
                           else if(end < new Date())
                           {
                             x = "Completed";
+                            class_var ="badge-success";
                             zoomurl="";
                           }
                           else {
                             x = "Live";
+                            class_var ="badge-danger";
                             
                           }
                           
@@ -883,11 +886,8 @@
                        <p>
                           <span style="font-weight:bold"><i class="icon wb-video" aria-hidden="true"></i>${newArr[i].schedule_details.split("~")[0]}</span>
                         <br><br>
-                        <a id="zoombtn${i}" onclick="joinclass('${zoomurl}','${i}')"> 
-                        <small id="zoomlink${i}" class="badge badge-primary  "  style="cursor:pointer;margin-right:5px" >
-                            JOIN CLASS
-                            </small></a>
-                       <small id="badge${i}" class="badge badge-success  " style="margin-right:5px">${x}</small>
+                      
+                       <small id="badge${i}" class="badge ${class_var}  " style="margin-right:5px">${x}</small>
                         <small class="badge badge-outline badge-default  ">Date :
                             <span>${new Date(newArr[i].schedule_start).toString().slice(0,15)} , ${new Date(newArr[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
                          
@@ -906,6 +906,11 @@
                            <button type="button" id="feedbackbadge${i}" class="btn btn-block btn-warning"  data-target="#MentorFormModal" data-toggle="modal" style="width:fit-content;display:none;" onclick="setClassDate('${new Date(newArr[i].schedule_start).toString().slice(0,15)} , ${new Date(newArr[i].schedule_start).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}')">
                             Submit Feedback
                             </button>
+
+                              <a id="zoombtn${i}" onclick="joinclass('${zoomurl}','${i}')"> 
+                        <button type="button" id="zoomlink${i}" class="btn btn-block btn-primary  "  style="cursor:pointer;margin-right:5px;width:fit-content;" >
+                            JOIN CLASS
+                            </button></a>
                             </div>
                         
                         
@@ -932,9 +937,9 @@
                         else if(x == "Completed")
                           {
 
-                            document.getElementById(`zoombtn`+`${i}`).href = "javascript:void(0)";
-                            document.getElementById(`zoomlink`+`${i}`).style.cursor = "not-allowed";
-                            document.getElementById(`zoomlink`+`${i}`).style.backgroundColor = "lightgrey";
+                            //document.getElementById(`zoombtn`+`${i}`).href = "javascript:void(0)";
+                            //document.getElementById(`zoomlink`+`${i}`).style.cursor = "not-allowed";
+                            document.getElementById(`zoomlink`+`${i}`).style.display = "none";
                             document.getElementById(`feedbackbadge`+`${i}`).style.display = "block";
                             //document.getElementById(`badge`+`${i}`).style.color = "seagreen";
                             //document.getElementById(`badge`+`${i}`).style.border = "1px solid seagreen";
