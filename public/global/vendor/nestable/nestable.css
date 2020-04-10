@@ -27,7 +27,7 @@
 .dd-handle {
   box-sizing: border-box;
   display: block;
-  height: 34px;
+  height: auto;
   padding: 6px 10px;
   margin: 5px 0;
   text-decoration: none;
@@ -37,6 +37,20 @@
   .dd-handle:hover {
     color: #589ffc;
     background: #f3f7f9; }
+
+    .dd-handle-new {
+      box-sizing: border-box;
+      display: block;
+      height: auto;
+      padding: 6px 10px;
+      margin: 5px 0;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid #e4eaec;
+      border-radius: 0.215rem; }
+      .dd-handle-new:hover {
+        color: #589ffc;
+        background: #f3f7f9; }
 
 .dd-content {
   padding: 10px;
