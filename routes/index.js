@@ -46,8 +46,8 @@ router.get('/home', function(req, res, next) {
 router.get('/profileothers', function(req, res, next) {
   res.render('profileothers', { title: 'Express' });
 });
-router.get('/testmaterials', function(req, res, next) {
-  res.render('testmaterials', { title: 'Express' });
+router.get('/studymaterials', function(req, res, next) {
+  res.render('studymaterials', { title: 'Express' });
 });
 router.get('/studymaterials_dashboard', function(req, res, next) {
   res.render('studymaterials_dashboard', { title: 'Express' });
