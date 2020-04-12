@@ -344,7 +344,8 @@
             t_shirt_size: t_shirt_sizeValue,
             address: addressValue,
             public_sharing: "1",
-            github_handle: github_handleValue
+            github_handle: github_handleValue,
+            track_name: "NONE"
         })
         .then(function(response) {
           console.log("CP: 3");
@@ -468,7 +469,8 @@
             t_shirt_size: t_shirt_sizeValue,
             address: addressValue,
             public_sharing: "1",
-            github_handle: github_handleValue
+            github_handle: github_handleValue,
+            track_name: sessionStorage.getItem("track_name")
         })
         .then(function(response) {
             // alert("Profile details updated successfully")

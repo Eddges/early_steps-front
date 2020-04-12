@@ -59,21 +59,18 @@
         } else {
           window.location.href = "./login";
         }       
-        
        function globalFunction() {
+        if(sessionStorage.getItem("photo")){
+          document.getElementById("photoimg").src = sessionStorage.getItem("photo");
+        }
+        else {
+          document.getElementById("photoimg").src = "../../assets/images/upload.png";
+        }
 
-        if(sessionStorage.getItem("photo"))
-          {
-              document.getElementById("photoimg").src = sessionStorage.getItem("photo");
-
-          }
-          else {
-              document.getElementById("photoimg").src = "../../assets/images/upload.png";
-
-          }
-        let course_id = sessionStorage.getItem("course_id");
-        axios.get( url+`/getScheduleByCourseId/${course_id}`)
+        let user_id = sessionStorage.getItem("user_id");
+        axios.get( url+`/getScheduleByUser/${user_id}`)
         .then(function(response) {
+          console.log("API Response");
           console.log(response);
           var stringDetail = "";
           var stringStart = "";
@@ -93,6 +90,104 @@
           console.log(error);
         });
       }
+        // let courses = sessionStorage.getItem("course_id");
+        // let courseSplit = courses.split(";");
+        // const length = courseSplit.length;
+        // var stringDetail = "";
+        // var stringStart = "";
+        // var stringEnd = "";
+        // let promises = [];
+
+        // // for(let i=0; i<length; i++){
+        // //   promises.push(
+        //     axios.get( url+ '/getScheduleByCourseId/2')
+        //     .then(function(response) {
+        //       console.log(response);
+        //       console.log("Inside Response");
+        //       for(let i=0;i<response.data.a.length;i++) {
+        //         console.log("Inside Response");
+        //         stringDetail+=response.data.a[i].schedule_details + ";";
+        //         stringStart+=response.data.a[i].schedule_start + ";";
+        //         stringEnd+=response.data.a[i].schedule_end + ";";
+        //       }
+
+        //     }).catch(function(error){
+        //       console.log(error);
+        //     })
+          // )
+        // }
+
+        // console.log("CP : Before loop");
+        // // Promise.all(promises).then(() => console.log(stringDetail), console.log(stringStart), console.log(stringEnd));
+        // sessionStorage.setItem("stringDetail", stringDetail);
+        // sessionStorage.setItem("stringStart", stringStart);
+        // sessionStorage.setItem("stringEnd", stringEnd);        
+      // }
+
+
+      // let course_id = sessionStorage.getItem("course_id").split(";");
+        // let course_id = "1";
+        // const arrDates = [Date.parse("2020-04-04T00:00"), Date.parse("2020-04-11T00:00"), Date.parse("2020-04-18T00:00"), Date.parse("2020-04-25T00:00")];
+        // let course_dateDemo = Date.parse(new Date().toISOString());
+        // // console.log("CP : 1");
+        // var course_dateFinal;
+        // var index;
+        // // console.log("CP : 2");
+        // for(course_index in arrDates){
+        //   // console.log("CP : 3");
+        //   // console.log("arrDates : " + arrDates[course_index]);
+          
+        //   if(course_dateDemo >= arrDates[course_index]){
+        //     index = course_index;
+        //   }
+        // }
+        // let endIndex = parseInt(index) + 1;
+        // // let courses = sessionStorage.getItem("course_id");
+        // let courses = "1";
+        // let flag = false;
+        // let courseSplit;
+        // if(courses.includes(';')){
+        //   flag = true;
+        //   courseSplit = courses.split(";");
+        // }
+        // let courseSplit = courses.split(";");
+        // let startindex = parseInt(endIndex) - courseSplit.length;
+        // var stringDetail = "";
+        // var stringStart = "";
+        // var stringEnd = "";
+        // const length = courseSplit.length;
+        
+        // console.log("StartIndex : " + startindex);
+        // console.log("EndIndex :" + endIndex);
+        // console.log("CP : 6");
+
+        // for(let i=0; i<length; i++){
+        //   console.log("ResponseAaya : " + courseSplit[i]);
+        //   axios.get( url+`/getScheduleByCourseId/${courseSplit[i]}`)
+        //   .then(function(response) {
+        //     let start = startindex;
+        //     let end = endIndex;
+        //     console.log(response);
+            
+        //     for(let i=0;i<response.data.a.length, start<=end;i++,start++) {
+        //         if((Date.parse(response.data.a[i].schedule_start) >= arrDates[start]) && Date.parse(response.data.a[i].schedule_start) <= arrDates[end])
+        //           stringDetail+=response.data.a[i].schedule_details + ";";
+        //           stringStart+=response.data.a[i].schedule_start + ";";
+        //           stringEnd+=response.data.a[i].schedule_end + ";";
+        //     }
+        //     sessionStorage.setItem("stringDetail", stringDetail);
+        //     sessionStorage.setItem("stringStart", stringStart);
+        //     sessionStorage.setItem("stringEnd", stringEnd);
+        //   }).catch(function(error){
+        //     console.log(error);
+        //   });
+        // }
+        // console.log(stringDetail);
+        // console.log(stringStart);
+        // console.log(stringEnd);
+
+      // }
+
 
       if(sessionStorage.getItem("loggedCA") !== md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
       window.location.href = "./login";
@@ -101,7 +196,7 @@
     axios.get(url+`/getUserData/${sessionStorage.getItem("user_id")}`)
                     .then(function(response) {
                         console.log(response);
-                        sessionStorage.setItem("course_id",response.data["a"][0].course_id);
+                        // sessionStorage.setItem("course_id",response.data["a"][0].course_id);
                         sessionStorage.setItem("photo", response.data["a"][0].photo);             
                     }).catch(function(error) {
                         console.log(error);
