@@ -109,6 +109,7 @@
                         document.getElementById("teeShirt").value = res.data.a[0].t_shirt_size;
                         document.getElementById("address").value = res.data.a[0].address;
                         document.getElementById("github").value = res.data.a[0].github_handle;
+                        sessionStorage.setItem("track_name", res.data.a[0].track_name);
                         sessionStorage.setItem("request", "put");
                     }
                 })
@@ -271,9 +272,9 @@
                         
 
                         <li class="site-menu-item ">
-                            <a href="/testmaterials">
+                            <a href="/studymaterials">
                                 <i class="site-menu-icon wb-library" style="color:#f19a5e" aria-hidden="true"></i>
-                                <span class="site-menu-title">Test Materials</span>
+                                <span class="site-menu-title">Study Materials</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
 
