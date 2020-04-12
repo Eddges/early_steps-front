@@ -35,7 +35,7 @@ app.use('/challenges', indexRouter);
 app.use('/home', indexRouter);
 app.use('/leaderboard', indexRouter);
 app.use('/profileothers', indexRouter);
-app.use('/testmaterials', indexRouter);
+app.use('/studymaterials', indexRouter);
 app.use('/studymaterials_dashboard', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
