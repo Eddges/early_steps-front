@@ -456,7 +456,7 @@
                   <div data-role="container" class="scrollable-container" style="height: 178px; width: 280px;">
                     <div data-role="content" class="scrollable-content" style="width: 280px;"  >
                         <div class="example">
-                            <div class="dd" data-plugin="nestable" >
+                            <div class="dd" >
                               <ol class="dd-list" id="assignments">  
                                   </ol>
                                   </div>
@@ -755,9 +755,9 @@
   return result.toString().slice(0,15)+" "+ result.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 }
 
-            function globalCall() {
+            async function globalCall() {
                 let user_id = sessionStorage.getItem("user_id");
-                axios.get(url+`/getUserData/${user_id}`)
+              await axios.get(url+`/getUserData/${user_id}`)
                     .then(function(response) {
                         console.log(response);
                         sessionStorage.setItem("course_id",response.data["a"][0].course_id);
@@ -848,8 +848,8 @@
                     }).catch(function(error) {
                         console.log(error);
                     });
-
-                axios.get(url+`/getTaskByCourseId/`+`${sessionStorage.getItem("course_id")}`)
+                    
+               await axios.get(url+`/getTaskByCourseId/`+`${sessionStorage.getItem("course_id")}`)
                     .then(function(response) {
                         console.log(response);
                         
@@ -1026,11 +1026,11 @@
                           document.getElementById(`badge`+`${i}`).style.color = "white";
                             document.getElementById(`badge`+`${i}`).style.border = "1px solid red";
                           }
-                          if(newArr[i].assignment != null)
+                          if(newArr[i].assignment != null && newArr[i].assignment != "")
                           {
-                        // let workarr = newArr[i].assignment.split("~");
-                          let workarr1 = "hello~kaushal~tonystark~thor";
-                           let workarr = workarr1.split("~");
+                         let workarr = newArr[i].assignment.split("~");
+                          //let workarr1 = "hello~kaushal~tonystark~thor";
+                          // let workarr = workarr1.split("~");
                         //     console.log(workarr,workarr1);
 
 
