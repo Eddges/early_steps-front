@@ -456,7 +456,7 @@
                   <div data-role="container" class="scrollable-container" style="height: 178px; width: 280px;">
                     <div data-role="content" class="scrollable-content" style="width: 280px;"  >
                         <div class="example">
-                            <div class="dd" >
+                            <div class="dd" data-plugin="nestable" >
                               <ol class="dd-list" id="assignments">  
                                   </ol>
                                   </div>
@@ -1050,7 +1050,7 @@
                 for(var r= 0;r<workarr.length;r++)
                 {
                     $('#assgnlist').append(`
-                <a target="new" href=${newArr[i].schedule_details.split("~")[3]}>                        
+                <a target="_blank" href=${workarr[r]}>                        
                       <li class="dd-item dd-collapsed" data-id=${r}>
                         <div class="dd-handle-new">${workarr[r]}
                           <span class="float-right text-danger">NEW</span>

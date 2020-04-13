@@ -137,9 +137,9 @@
             });
 
             // Append the .dd-empty div if the list don't have any items on init
-            if (!items.length) {
-                this.appendEmptyElement(this.el);
-            }
+            // if (!items.length) {
+            //     this.appendEmptyElement(this.el);
+            // }
 
             list.el.on('click', 'button', function(e) {
                 if (list.dragEl) {
