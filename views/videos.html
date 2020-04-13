@@ -439,13 +439,13 @@ function hideme(){
                        document.getElementById('info-message-div').style.display="block";
                         document.getElementById('message-div-info').innerHTML="Feedback submitted successfully!";
                         
-                        console.log(response);
+                        //console.log(response);
                     })
                     .catch(function(error) {
                         document.getElementById('processing-div').style.display="none";
                         document.getElementById('alert-message-div').style.display="block";
                         document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
-                        console.log(error);
+                       // console.log(error);
                     });
             }   
     </script>

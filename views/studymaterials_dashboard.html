@@ -1845,13 +1845,13 @@ function hideme(){
             }
         axios.get(url+`/getTaskByCourseId/${course_id}`)
             .then(function (response) {
-              console.log(response);
+              //console.log(response);
               for (let i=0;i<response.data.a.length;i++){
                 $('#video').append(`<li class="masonry-item"><div class="card card-shadow"><div class="card-header cover"><img class="cover-image" src="../../../global/photos/placeholder.png"alt="..."></div><div class="card-block"><h3 class="card-title">${response.data.a[i].task_title}</h3><p class="card-text type-link"><small>By<a target="new" href="javascript:void(0)">Nathan Watts</a><a target="new" href="javascript:void(0)">${response.data.a[i].task_datetime}</a><a target="new" href="javascript:void(0)"><span>3</span> Comments</a></small></p><p class="card-text">${response.data.a[i].task_details}</p></div><div class="card-block"><div class="card-actions float-right"><a target="new" href="javascript:void(0)"><i class="icon wb-heart" aria-hidden="true"></i><span>108</span></a></div><button type="button" class="btn btn-outline btn-primarycard-link">Extra: ${response.data.a[i].task_extra}</button></div></div></li>`);
               }
               // response.data.a[0]
             }).catch(function (error){
-              console.log(error);
+              //console.log(error);
             });
      }
 
@@ -1893,13 +1893,13 @@ function hideme(){
                        document.getElementById('info-message-div').style.display="block";
                         document.getElementById('message-div-info').innerHTML="Feedback submitted successfully!";
                         
-                        console.log(response);
+                        //console.log(response);
                     })
                     .catch(function(error) {
                         document.getElementById('processing-div').style.display="none";
                         document.getElementById('alert-message-div').style.display="block";
                         document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
-                        console.log(error);
+                        //console.log(error);
                     });
             }   
     </script>

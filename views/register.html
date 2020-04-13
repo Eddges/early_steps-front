@@ -304,7 +304,7 @@
         let redirectURL = "./login";
         var flag1 = true;
         var flag2 = true
-        console.log(flag1,flag2)
+       // console.log(flag1,flag2)
       await axios.get( url+`/isRegisteredUserEmail/`+`${emailValue}`)
         .then((res)=>{
           if(res.data==="True")
@@ -319,7 +319,7 @@
         })
         .catch(async (err)=>{
           flag1 = false;
-          console.log(flag1,flag2)
+         // console.log(flag1,flag2)
           await axios.get( url+`/isRegisteredUserPhone/`+`${phoneValue}`)
               .then((res)=>{
                 if(res.data==="True")
@@ -332,12 +332,16 @@
                             
                 }
               })
-              .catch((err)=>{flag2 = false;console.log(flag1,flag2)})  
+              .catch((err)=>{
+                flag2 = false;
+                //console.log(flag1,flag2)
+              }
+                )  
         })
 
         if (flag1 === false && flag2 === false){
            if (passwordValue === retypepasswordValue) {
-              console.log("reg")
+              //console.log("reg")
 
              
               axios.post( url+'/doRegistration', {
@@ -358,7 +362,7 @@
                  
                 })
                 .catch(function (error) {
-                  console.log(error);
+                  //console.log(error);
                   document.getElementById('alert-message-div').style.display="block";
                   document.getElementById('message-div').innerHTML="User Name already registered!";
                   document.getElementById('processing-div').style.display="none";
