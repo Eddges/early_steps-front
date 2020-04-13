@@ -70,8 +70,8 @@
         let user_id = sessionStorage.getItem("user_id");
         axios.get( url+`/getScheduleByUser/${user_id}`)
         .then(function(response) {
-          console.log("API Response");
-          console.log(response);
+          // console.log("API Response");
+          // console.log(response);
           var stringDetail = "";
           var stringStart = "";
           var stringEnd = "";
@@ -83,11 +83,11 @@
           sessionStorage.setItem("stringDetail", stringDetail);
           sessionStorage.setItem("stringStart", stringStart);
           sessionStorage.setItem("stringEnd", stringEnd);
-          console.log(stringDetail);
-          console.log(stringStart);
-          console.log(stringEnd);
+          // console.log(stringDetail);
+          // console.log(stringStart);
+          // console.log(stringEnd);
         }).catch(function(error){
-          console.log(error);
+          //console.log(error);
         });
       }
         // let courses = sessionStorage.getItem("course_id");
@@ -195,11 +195,11 @@
     
     axios.get(url+`/getUserData/${sessionStorage.getItem("user_id")}`)
                     .then(function(response) {
-                        console.log(response);
+                        //console.log(response);
                         // sessionStorage.setItem("course_id",response.data["a"][0].course_id);
                         sessionStorage.setItem("photo", response.data["a"][0].photo);             
                     }).catch(function(error) {
-                        console.log(error);
+                       // console.log(error);
                     });
                         
     </script>
@@ -920,13 +920,13 @@ var url= '<%= process.env.URL %>';
                        document.getElementById('info-message-div').style.display="block";
                         document.getElementById('message-div-info').innerHTML="Feedback submitted successfully!";
                         
-                        console.log(response);
+                        //console.log(response);
                     })
                     .catch(function(error) {
                         document.getElementById('processing-div').style.display="none";
                         document.getElementById('alert-message-div').style.display="block";
                         document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
-                        console.log(error);
+                       // console.log(error);
                     });
             }
         </script>        
