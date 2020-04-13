@@ -848,7 +848,7 @@
                     }).catch(function(error) {
                         console.log(error);
                     });
-                    
+
                await axios.get(url+`/getTaskByCourseId/`+`${sessionStorage.getItem("course_id")}`)
                     .then(function(response) {
                         console.log(response);
@@ -1071,7 +1071,7 @@
                 }
 
                     let course_id = sessionStorage.getItem("course_id");
-                        axios.get(url+`/getScheduleByCourseId/${course_id}`)
+                        axios.get(url+`/getScheduleByUser/${sessionStorage.getItem("user_id")}`)
                         .then(function(response) {
                         console.log(response);
                         var stringDetail = "";
