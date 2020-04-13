@@ -35,6 +35,11 @@
     <link rel="stylesheet" href="../../assets/examples/css/dashboard/team.css">
     <link rel="stylesheet" href="../../assets/examples/css/uikit/modals.css">
          <link rel="stylesheet" href="../../assets/examples/css/advanced/rating.css">
+         <link rel="stylesheet" href="../../assets/examples/css/advanced/masonry.css">
+    <link rel="stylesheet" href="../../../global/vendor/nestable/nestable.css">
+        <link rel="stylesheet" href="../../../global/vendor/tasklist/tasklist.css">
+        <link rel="stylesheet" href="../../../global/vendor/sortable/sortable.css">
+    
 
     <!-- Fonts -->
     <link rel="stylesheet" href="../../global/fonts/weather-icons/weather-icons.css">
@@ -449,7 +454,13 @@
               <div class="panel-body">
                 <ul class="list-group list-group-dividered list-group-full h-700 scrollable is-enabled scrollable-vertical" data-plugin="scrollable" style="position: relative;">
                   <div data-role="container" class="scrollable-container" style="height: 178px; width: 280px;">
-                    <div data-role="content" class="scrollable-content" style="width: 280px;" id="assignmennts" >
+                    <div data-role="content" class="scrollable-content" style="width: 280px;"  >
+                        <div class="example">
+                            <div class="dd" data-plugin="nestable" >
+                              <ol class="dd-list" id="assignments">  
+                                  </ol>
+                                  </div>
+                                </div>
                                
                     </div>
                   </div>
@@ -580,6 +591,10 @@
         <script src="../../global/vendor/jvectormap/jquery-jvectormap.min.js"></script>
         <script src="../../global/vendor/jvectormap/maps/jquery-jvectormap-au-mill-en.js"></script>
         <script src="../../global/vendor/matchheight/jquery.matchHeight-min.js"></script>
+             <script src="../../../global/vendor/imagesloaded/imagesloaded.pkgd.js"></script>
+            <script src="../../../global/vendor/masonry/masonry.pkgd.js"></script>
+                <script src="../../../global/vendor/sortable/Sortable.js"></script>
+             <script src="../../../global/vendor/nestable/jquery.nestable.js"></script>
 
         <!-- Scripts -->
         <script src="../../global/js/Component.js"></script>
@@ -606,9 +621,13 @@
         <script src="../../global/js/Plugin/switchery.js"></script>
         <script src="../../global/js/Plugin/matchheight.js"></script>
         <script src="../../global/js/Plugin/jvectormap.js"></script>
-   <script src="../../../global/js/Plugin/raty.js"></script>
+        <script src="../../../global/js/Plugin/raty.js"></script>
         <script src="../assets/examples/js/dashboard/v1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+            <script src="../../../global/js/Plugin/masonry.js"></script>
+            <script src="../../../global/js/Plugin/sortable.js"></script>
+             <script src="../../../global/js/Plugin/nestable.js"></script>
+            <script src="../../../global/js/Plugin/tasklist.js"></script>
         <script>
         var url= '<%= process.env.URL %>';
        
@@ -767,6 +786,7 @@
                             .then(function(response) {
                                 console.log(response);
                                 sessionStorage.setItem("course_date", response.data.course_date);
+                                sessionStorage.setItem("course_name", response.data.course_name);
                                 document.getElementById("courses").innerHTML = response.data.course_name.toUpperCase();
                                 // document.getElementById("batch_id").innerHTML = sessionStorage.getItem("course_id");
 
@@ -907,7 +927,7 @@
                         //    let newArr= live.concat(upcoming);
                         //    newArr = newArr.concat(completed);
                            console.log(newArr);
-
+                            
                             for (let i = 0; i < newArr.length; i++) {
                                     let zoomurl = newArr[i].schedule_details.split("~")[2];
                               let start = new Date(newArr[i].schedule_start);
@@ -968,6 +988,8 @@
                         
                       </li>`);
 
+
+
                      // document.getElementById(`feedbackbadge`+`${i}`).style.color = "white";
                        //   document.getElementById(`feedbackbadge`+`${i}`).style.backgroundColor = "orange";
                          //   document.getElementById(`feedbackbadge`+`${i}`).style.border = "1px solid orange";
@@ -1004,7 +1026,42 @@
                           document.getElementById(`badge`+`${i}`).style.color = "white";
                             document.getElementById(`badge`+`${i}`).style.border = "1px solid red";
                           }
+                          if(newArr[i].assignment != null)
+                          {
+                        // let workarr = newArr[i].assignment.split("~");
+                          let workarr1 = "hello~kaushal~tonystark~thor";
+                           let workarr = workarr1.split("~");
+                        //     console.log(workarr,workarr1);
 
+
+                          $('#assignments').append(` 
+                          
+                <li class="dd-item dd-collapsed" data-id="3"><button class="dd-collapse" data-action="collapse" type="button">Collapse</button><button class="dd-expand" data-action="expand" type="button">Expand</button>
+                  <div class="dd-handle-new">${newArr[i].schedule_details.split("~")[0]}
+                    <span class="float-right text-danger">NEW</span>
+                  </div>
+                  <ol class="dd-list" id="assgnlist">
+                  
+                           
+                  </ol>
+                </li>
+            `)
+
+                for(var r= 0;r<workarr.length;r++)
+                {
+                    $('#assgnlist').append(`
+                <a target="new" href=${newArr[i].schedule_details.split("~")[3]}>                        
+                      <li class="dd-item dd-collapsed" data-id=${r}>
+                        <div class="dd-handle-new">${workarr[r]}
+                          <span class="float-right text-danger">NEW</span>
+                        </div>
+                      </li>
+                      </a>          
+                      `)
+                }
+                
+     
+}
                         }
                         }
                         // response.data.a[0]
