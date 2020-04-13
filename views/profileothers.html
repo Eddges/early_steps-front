@@ -61,7 +61,7 @@
                                 
         function globalCall(){
             if (sessionStorage.getItem("loggedCA") != md5("true")) {
-                    console.log("GLOBAL");
+                    //console.log("GLOBAL");
                     window.location.href = "./login";
             } else {
                     getprofiledata();
@@ -89,15 +89,15 @@
 
         function getUserData() {
             if (sessionStorage.getItem("loggedCA") != md5("true")) {
-                    console.log("GLOBAL");
+                    //console.log("GLOBAL");
                     window.location.href = "./login";
             }
             let user_id = sessionStorage.getItem("user_id");
             axios.get( url+`/getUserData/` + `${user_id}
                     `)
                 .then(res => {
-                    console.log(res)
-                    console.log("Inside getUserData()");
+                    // console.log(res)
+                    // console.log("Inside getUserData()");
                     sessionStorage.setItem("request", "post");
                     UserData1 = UserData.concat(res.data.a);
                     if (res.data.a.length !== 0) {
@@ -113,20 +113,22 @@
                         sessionStorage.setItem("request", "put");
                     }
                 })
-                .catch(err => {console.log(err),alert("Something went wrong, please try again")})
+                .catch(err => {
+                   // console.log(err),
+                    alert("Something went wrong, please try again")})
         }
 
         function getJobProfileData() {
             if (sessionStorage.getItem("loggedCA") != md5("true")) {
-                    console.log("GLOBAL");
+                   // console.log("GLOBAL");
                     window.location.href = "./login";
             }
             let user_id = sessionStorage.getItem("user_id");
             axios.get( url+`/getJobProfile/` + `${user_id}
                     `)
                 .then(res => {
-                    console.log(res)
-                    console.log("Inside getJobProfileData()");
+                   // console.log(res)
+                   // console.log("Inside getJobProfileData()");
                     sessionStorage.setItem("request", "post");
                     UserData2 = UserData.concat(res.data.a);
                     if (res.data.a.length !== 0) {
@@ -140,21 +142,23 @@
                         sessionStorage.setItem("request", "put");
                     }
                 })
-                .catch(err => {console.log(err),alert("Something went wrong, please try again")})
+                .catch(err => {
+                    //console.log(err),
+                    alert("Something went wrong, please try again")})
         }
 
         function getProgrammingProfileData() {
             if (sessionStorage.getItem("loggedCA") != md5("true")) {
-                    console.log("GLOBAL");
+                    //console.log("GLOBAL");
                     window.location.href = "./login";
             }
             let user_id = sessionStorage.getItem("user_id");
             axios.get( url+`/getProgrammingProfile/` + `${user_id}
                     `)
                 .then(res => {
-                    console.log(res)
+                    //console.log(res)
                     sessionStorage.setItem("request", "post");
-                    console.log("Inside getProgrammingProfileData()");
+                    //console.log("Inside getProgrammingProfileData()");
                     UserData3 = UserData.concat(res.data.a);
                     if (res.data.a.length !== 0) {
                         document.getElementById("codeforces").value = res.data.a[0].codeforces;
@@ -165,7 +169,9 @@
                         sessionStorage.setItem("request", "put");
                     }
                 })
-                .catch(err => {console.log(err),alert("Something went wrong, please try again")})
+                .catch(err => {
+                    //console.log(err),
+                    alert("Something went wrong, please try again")})
         }
     </script>
 </head>
@@ -1102,13 +1108,13 @@
                        document.getElementById('info-message-div').style.display="block";
                         document.getElementById('message-div-info').innerHTML="Feedback submitted successfully!";
                         
-                        console.log(response);
+                       // console.log(response);
                     })
                     .catch(function(error) {
                         document.getElementById('processing-div').style.display="none";
                         document.getElementById('alert-message-div').style.display="block";
                         document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
-                        console.log(error);
+                       // console.log(error);
                     });
             }
            

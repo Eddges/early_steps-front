@@ -224,7 +224,7 @@
         if (isNaN(userEmailOrPhoneValue)) {
           axios.get( url+`/isValidUserEmail?email=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
           .then(function (response) {
-            console.log(response);
+            //console.log(response);
             if(response.data==="False"){
               document.getElementById('alert-message-div').style.display="block";
               document.getElementById('message-div').innerHTML="You have entered an invalid email address or password!";              
@@ -232,12 +232,12 @@
             else{
               axios.get( url+`/getPhoneByEmail/${userEmailOrPhoneValue}`)
             .then(function (response) {
-              console.log(response);
+             // console.log(response);
               sessionStorage.setItem("user_id", response.data["a"][0].phone);
               sessionStorage.setItem("loggedCA", md5("true"));
               getProgrammingProfileData()
             }).catch(function (error){
-              console.log(error);
+              //console.log(error);
               document.getElementById('alert-message-div').style.display="block";
               document.getElementById('message-div').innerHTML="Something went wrong, Please try again!!";              
 
@@ -245,7 +245,7 @@
             }
 
           }).catch(function(error) {
-              console.log(error);
+              //console.log(error);
               document.getElementById('alert-message-div').style.display="block";
               document.getElementById('message-div').innerHTML="Invalid Credentials, Please verify!";              
           });
@@ -253,7 +253,7 @@
     // Input is number
     axios.get( url+`/isValidUserPhone?phone=${userEmailOrPhoneValue}&password=${passwordValue}&user_type=${userTypeValue}`)
     .then(function (response){
-        console.log(response);
+        //console.log(response);
         if(response.data==="False"){
           document.getElementById('alert-message-div').style.display="block";
           document.getElementById('message-div').innerHTML="Invalid Credentials, Please verify!";     
@@ -264,7 +264,7 @@
           getProgrammingProfileData();
         }
       }).catch(function (error){
-        console.log(error);
+        //console.log(error);
         document.getElementById('alert-message-div').style.display="block";
         document.getElementById('message-div').innerHTML="Invalid Credentials, Please verify!";              
 
@@ -292,7 +292,11 @@
                       }                      
                     // }
                 })
-                .catch(err => console.log(err))
+                .catch(function(error){
+                 // console.log(err)
+                }
+                 
+                 )
         }
         function clearAlert(){
           document.getElementById('alert-message-div').style.display="none";

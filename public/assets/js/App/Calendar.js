@@ -59,9 +59,9 @@
         dateStart.pop();
         var dateEnd = sessionStorage.getItem("stringEnd").split(";");
         dateEnd.pop();
-        console.log(title1);
-        console.log(dateStart);
-        console.log(dateEnd);
+        // console.log(title1);
+        // console.log(dateStart);
+        // console.log(dateEnd);
 
         var myEvents = [];
         var newColor = ["cyan","blue","green","pink","red"]
@@ -75,7 +75,7 @@
           borderColor: (0, _Config.colors)(newColor[i%10], 600)            
           })
         }
-        console.log(myEvents)
+        //console.log(myEvents)
 
         // var myEvents = [{
         //   title: `Topic: `+title1[0].split(",")[0] +","+` Mentor: `+title1[0].split(",")[1],
