@@ -543,21 +543,21 @@ if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem
                         document.getElementById('processing-div').style.display="none";
                         document.getElementById('alert-message-div').style.display="block";
                         document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
-                        console.log(error);
+                        //console.log(error);
                     });
       }
 
       function getAllUserData() {
         return axios.get( url+`/getAllUsers`)
           .then(function (response) {
-            console.log(response);
+            //console.log(response);
             return response.data.a;
           })
           .catch(function(error) {
                         document.getElementById('processing-div').style.display="none";
                         document.getElementById('alert-message-div').style.display="block";
                         document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
-                        console.log(error);
+                        //console.log(error);
                     });
       }
 
@@ -592,13 +592,13 @@ if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem
                        document.getElementById('info-message-div').style.display="block";
                         document.getElementById('message-div-info').innerHTML="Feedback submitted successfully!";
                         
-                        console.log(response);
+                        //console.log(response);
                     })
                     .catch(function(error) {
                         document.getElementById('processing-div').style.display="none";
                         document.getElementById('alert-message-div').style.display="block";
                         document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
-                        console.log(error);
+                       // console.log(error);
                     });
             }
     </script>

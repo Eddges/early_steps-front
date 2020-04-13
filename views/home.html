@@ -498,14 +498,14 @@
                        document.getElementById('info-message-div').style.display="block";
                         document.getElementById('message-div-info').innerHTML="your request has been submitted successfully. We will get back to you soon";
                         
-                        console.log(response);
+                        //console.log(response);
                     })
                     .catch(function(error) {
                         document.getElementById('processing-div').style.display="none";
                         document.getElementById('alert-message-div').style.display="block";
                         document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
                         //alert("Something went wrong, Please try again!")
-                        console.log(error);
+                       // console.log(error);
                     });
             }
 
@@ -535,14 +535,14 @@
                        document.getElementById('info-message-div').style.display="block";
                         document.getElementById('message-div-info').innerHTML="your feedback has been submitted successfully.";
                         
-                        console.log(response);
+                        //console.log(response);
                     })
                     .catch(function(error) {
                         document.getElementById('processing-div').style.display="none";
                         document.getElementById('alert-message-div').style.display="block";
                         document.getElementById('message-div').innerHTML="Something went wrong, Please try again!";
                         
-                        console.log(error);
+                       // console.log(error);
                     });
             }
 
@@ -550,7 +550,7 @@
                 let user_id = sessionStorage.getItem("user_id");
                 axios.get(url+`/getUserData/${user_id}`)
                     .then(function(response) {
-                        console.log(response);
+                        //console.log(response);
                         try{
                             document.getElementById(`${response.data.a[0].track_name}`).disabled = false;
                             sessionStorage.setItem("photo", response.data["a"][0].photo);
@@ -559,7 +559,7 @@
                         }
                         catch(err){
                             sessionStorage.setItem("redirect", "home");
-                            console.log(err);
+                           // console.log(err);
                         }
 
 
@@ -590,7 +590,7 @@
                         //     console.log(err);
                         // }                        
                     }).catch(function(error) {
-                        console.log(error);
+                        //console.log(error);
                     });
 
             }
