@@ -759,10 +759,12 @@
                 let user_id = sessionStorage.getItem("user_id");
               await axios.get(url+`/getUserData/${user_id}`)
                     .then(function(response) {
-                        //console.log(response);
+                        console.log(response);
                         sessionStorage.setItem("course_id",response.data["a"][0].course_id);
                         sessionStorage.setItem("photo", response.data["a"][0].photo);
+                        sessionStorage.getItem("redirect","dashboard");
                         // document.getElementById("name").innerHTML = response.data["a"][0].name.toUpperCase();
+                        document.getElementById("courses").innerHTML = response.data.a[0].track_name.toUpperCase();
                         document.getElementById("photo").src = response.data["a"][0].photo;
                         if(sessionStorage.getItem("photo"))
                         {
@@ -773,21 +775,21 @@
                             document.getElementById("photoimg").src = "../../assets/images/upload.png";
 
                         }
-                        
+                        sessionStorage.setItem("redirect", "dashboard");
                     }).catch(function(error) {
                        // console.log(error);
                     });
 
                 axios.get(url+`/getRegistration/${user_id}`)
                     .then(function(response) {
-                        //console.log(response);
+                        console.log(response);
                         document.getElementById("name").innerHTML = response.data.user_name.toUpperCase();
                         axios.get(url+`/getCourse/`+`${sessionStorage.getItem("course_id")}`)
                             .then(function(response) {
                                // console.log(response);
                                 sessionStorage.setItem("course_date", response.data.course_date);
                                 sessionStorage.setItem("course_name", response.data.course_name);
-                                document.getElementById("courses").innerHTML = response.data.course_name.toUpperCase();
+                                // document.getElementById("courses").innerHTML = response.data.course_name.toUpperCase();
                                 // document.getElementById("batch_id").innerHTML = sessionStorage.getItem("course_id");
 
                                 let batchId = ["ON/CA/VA101","ON/CA/VA102","ON/CA/FS201","ON/CA/ML301","ON/CA/VA103","ON/CA/ML302","ON/CA/FS202","ON/CA/DA401","ON/CA/VA104","ON/CA/ML303","ON/CA/FS203","ON/CA/DA402"];

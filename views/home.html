@@ -550,16 +550,18 @@
                 let user_id = sessionStorage.getItem("user_id");
                 axios.get(url+`/getUserData/${user_id}`)
                     .then(function(response) {
-                        //console.log(response);
+                        console.log(response);
+                        sessionStorage.setItem("course_id",response.data["a"][0].course_id);
+                        sessionStorage.setItem("photo", response.data["a"][0].photo);
+                        document.getElementById("photo").src = response.data["a"][0].photo;
+                        sessionStorage.setItem("track_name", response.data.a[0].track_name);
                         try{
                             document.getElementById(`${response.data.a[0].track_name}`).disabled = false;
-                            sessionStorage.setItem("photo", response.data["a"][0].photo);
-                            document.getElementById("photo").src = response.data["a"][0].photo;
                             sessionStorage.setItem("redirect", "dashboard");
                         }
                         catch(err){
-                            sessionStorage.setItem("redirect", "home");
-                           // console.log(err);
+                            // sessionStorage.setItem("redirect", "home");
+                           console.log(err);
                         }
 
 
