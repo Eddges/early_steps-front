@@ -124,7 +124,7 @@
             axios.get( url+`/getUserData/` + `${user_id}
                     `)
                 .then(res => {
-                   // console.log(res)
+                //    console.log(res);
                     //console.log("Inside getUserData()");
                     sessionStorage.setItem("request", "post");
                     UserData1 = UserData.concat(res.data.a);
@@ -137,6 +137,9 @@
                         document.getElementById("teeShirt").value = res.data.a[0].t_shirt_size;
                         document.getElementById("address").value = res.data.a[0].address;
                         document.getElementById("github").value = res.data.a[0].github_handle;
+                        document.getElementById("track_name").value = res.data.a[0].track_name;
+                        sessionStorage.setItem("track_name", res.data.a[0].track_name);
+                        sessionStorage.setItem("course_id", res.data.a[0].course_id);
                         sessionStorage.setItem("request", "put");
                     }
                 })
@@ -554,6 +557,10 @@
                                             <label class="form-control-label" for="inputPasswordOne">Github Id</label>
                                             <input type="text" class="form-control" id="github" name="default" value="N/A" placeholder="Github Id">
 
+                                        </div>
+                                        <div class="form-group form-material" hidden>
+                                            <label class="form-control-label" for="inputPasswordOne">HIDDEN</label>
+                                            <input type="text" class="form-control" id="track_name" name="default" value="NONE" placeholder="Github Id">
                                         </div>
                                         <!-- <div class="form-group form-material">
                                             <label class="form-control-label" for="inputUserNameOne">Course Enroll</label>
