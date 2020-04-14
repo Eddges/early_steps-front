@@ -380,6 +380,7 @@
                       document.getElementById('message-div-info').innerHTML="Profile submitted successfully!";
                       console.log("CP: 5");
                       setTimeout(()=>{
+                        sessionStorage.setItem("request", "put");
                         window.location.href = './home';
                       },2000);
                      
@@ -419,6 +420,7 @@
         let t_shirt_sizeValue = document.getElementById("teeShirt").value;
         let addressValue = document.getElementById("address").value;
         let github_handleValue = document.getElementById("github").value;
+        let track_name = document.getElementById("track_name").value;
         let photoValue;
         if (genderValue == "Male"){
             photoValue = "../../../global/photos/boy_image.png";
@@ -443,12 +445,7 @@
 
 
         let user_id = sessionStorage.getItem("user_id");
-        let course_id;
-        if(sessionStorage.getItem("redirect") == "home"){
-          course_id = 12345;
-        } else {
-          course_id = parseInt(sessionStorage.getItem("course_id"));
-        }
+        let course_id = sessionStorage.getItem("course_id");
 
         document.getElementById('processing-div').style.display="block";
         document.getElementById('message-processing').innerHTML="Processing...";
@@ -470,7 +467,7 @@
             address: addressValue,
             public_sharing: "1",
             github_handle: github_handleValue,
-            track_name: sessionStorage.getItem("track_name")
+            track_name: track_name
         })
         .then(function(response) {
             // alert("Profile details updated successfully")
