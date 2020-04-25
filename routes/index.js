@@ -52,4 +52,8 @@ router.get('/studymaterials', function(req, res, next) {
 router.get('/studymaterials_dashboard', function(req, res, next) {
   res.render('studymaterials_dashboard', { title: 'Express' });
 });
+
+router.get('/forgotpassword', function(req, res, next) {
+  res.render('forgotpassword', { title: 'Express' });
+});
 module.exports = router;
