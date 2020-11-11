@@ -52,7 +52,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
 
     <script>
-         var url= '<%= process.env.URL %>';
+         var url= 'https://api.codeasylums.com';
         Breakpoints();
 
         if (sessionStorage.getItem("loggedCA") !== md5("true")) {
@@ -277,12 +277,21 @@
                             </a>
 
                         </li>
+
+                        <li class="site-menu-item ">
+                            <a href="/assignments">
+                                <i class="site-menu-icon wb-layout" style="color:#27c24c" aria-hidden="true"></i>
+                                <span class="site-menu-title">Assignments</span>
+                                <span class="site-menu-arrow"></span>
+                            </a>
+
+                        </li>
                         
 
                         <li class="site-menu-item ">
                             <a href="/studymaterials">
                                 <i class="site-menu-icon wb-library" style="color:#f19a5e" aria-hidden="true"></i>
-                                <span class="site-menu-title">Study Materials</span>
+                                <span class="site-menu-title">Study Resources</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
 
@@ -714,7 +723,7 @@
     <script src="../../assets/examples/js/forms/wizard.js"></script>
 
     <script>
-         var url= '<%= process.env.URL %>';
+         var url= 'https://api.codeasylums.com';
         //     if (sessionStorage.getItem("loggedCA") != md5("true")) {
         //         console.log("GLOBAL");
         //         window.location.href = "./login";

@@ -37,6 +37,7 @@ app.use('/leaderboard', indexRouter);
 app.use('/profileothers', indexRouter);
 app.use('/studymaterials', indexRouter);
 app.use('/studymaterials_dashboard', indexRouter);
+app.use('/videoquiz', indexRouter);
 app.use('/forgotpassword', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
