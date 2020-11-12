@@ -655,6 +655,14 @@
               sessionStorage.clear();
               window.reload();
             }
+
+
+            axios.get('https://early-steps.herokuapp.com/getAllAssignment')
+            .then(res => {
+                console.log('Response data : ', res.data)
+            })
+            
+
         </script>
 </body>
 

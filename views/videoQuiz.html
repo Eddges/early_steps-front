@@ -237,25 +237,25 @@
                 <h4>What is the capital of India?</h4>
                 <div class="form-check">
                     
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="hh323gb32" id="5799372">
                     <label class="form-check-label" for="exampleRadios1">
                       Manila
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="hh323gb32" id="678823678">
                     <label class="form-check-label" for="exampleRadios2">
                       New Delhi
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="hh323gb32" id="344ggfd43">
                     <label class="form-check-label" for="exampleRadios2">
                       Bangkok
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="hh323gb32" id="9ja8b892">
                     <label class="form-check-label" for="exampleRadios2">
                       Singapore
                     </label>
@@ -265,27 +265,27 @@
                 <h4>What is the capital of China?</h4>
                 <div class="form-check">
                     
-                    <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" value="option1">
+                    <input class="form-check-input" type="radio" name="exampleRadios1" value="2121334dvg" id="8786b778d">
                     <label class="form-check-label" for="exampleRadios1">
-                    Beijing
+                        Beijing
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios2" value="option2">
+                    <input class="form-check-input" type="radio" name="exampleRadios1" value="2121334dvg" id="887b7b832">
                     <label class="form-check-label" for="exampleRadios2">
-                    Shanghai
+                        Shanghai
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios2" value="option2">
+                    <input class="form-check-input" type="radio" name="exampleRadios1" value="2121334dvg" id="mjfr8ds6">
                     <label class="form-check-label" for="exampleRadios2">
-                    Hong Kong
+                        Hong Kong
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios2" value="option2">
+                    <input class="form-check-input" type="radio" name="exampleRadios1" value="2121334dvg" id="22jjf820">
                     <label class="form-check-label" for="exampleRadios2">
-                    Taipei
+                        Taipei
                     </label>
                 </div>
                 <hr/>
@@ -293,7 +293,7 @@
                 <div class="form-group">
                     <h4>How do you think we can help with the water scarcity problem of India?</h4>
                     <!-- <input role="textbox" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
-                    <textarea style="width : 80%; height : 150px;"></textarea>
+                    <textarea onChange='textAreaChange(e)' id='9cbds8d9' style="width : 80%; height : 150px;"></textarea>
                     <small id="emailHelp" class="form-text text-muted">Elaborate with justifications.</small>
                 </div>
                 <hr />
@@ -301,7 +301,7 @@
                 <div class="form-group">
                     <h4>What steps have you taken as a child to preserve the flora and fauna in your region?</h4>
                     <!-- <input role="textbox" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
-                    <textarea style="width : 80%; height : 150px;"></textarea>
+                    <textarea id='mnmbiqsk2' style="width : 80%; height : 150px;"></textarea>
                     <small id="emailHelp" class="form-text text-muted">Elaborate with justifications.</small>
                 </div>
                 <hr />
@@ -381,8 +381,6 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                        <!-- <button type="button" class="btn btn-primary" id="btnStart">Start Recording</button>
-                        <button type='button' class="btn btn-danger" id="btnStop">Stop Recording</button> -->
                         </div>
                     </div>
                     </div>
@@ -393,7 +391,7 @@
 
                   
 
-                <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                <button id="submitForm" type="button" class="btn btn-primary mt-4">Submit</button>
               </form>
 
 
@@ -579,17 +577,16 @@
         }
 
 
-
-
-
-
+        // Video recording, storing and playback
 
         let constraintObj = {
-            audio : true,
+            audio : false,
             video : {
                 facingMode : 'user'
             }
         }
+
+        let vidURL = ''
 
 
         navigator.mediaDevices.getUserMedia(constraintObj)
@@ -634,6 +631,7 @@
                 chunks.push(e.data)
             }
 
+
             mediaRecorder.onstop = e => {
 
                 console.log('MediaRecorder stopped')
@@ -641,18 +639,60 @@
                 chunks = []
 
                 let videoURL = window.URL.createObjectURL(blob)
+                vidURL = videoURL
                 console.log('VideoURL : ', videoURL)
                 vidSave.src = videoURL
             }
 
         })
 
+        // Video end
 
+
+        // Getting data back from form
+
+        const studentId = 5
+        const assignmentId = 3
+        const mcqSubmission = {}
+        const writtenSubmission = {}
+
+        const written = {
+            '9cbds8d9' : 'How do you think we can help with the water scarcity problem of India?',
+            'mnmbiqsk2' : 'What steps have you taken as a child to preserve the flora and fauna in your region?'
+        }
+
+        $(':radio').on('change', (e) => {
+            mcqSubmission[e.target.value] = e.target.id
+            console.log('mcqSubmission : ', mcqSubmission)
+        })
         
+        for (iterator in written) {
+            console.log('Iterator : ', iterator)
+        }
 
+        $('#submitForm').on('click', () => {
+            console.log('Button clicked')
+            
+            for (iterator in written) {
+                writtenSubmission[iterator] = ($(`#${iterator}`).val())
+            }
 
+            console.log('MCQ : ', mcqSubmission)
+            console.log('MCQ : ', writtenSubmission)
+            console.log('VideoURL : ', vidURL)
 
-
+            axios.post('https://early-steps.herokuapp.com/createSubmission', {
+                user_assignment_id: studentId,
+                assignment_id: assignmentId,
+                submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: vidURL}
+            })
+            .then(res => {
+                console.log('Response data : ', res.data)
+            })
+            .catch(err => {
+                console.log('Error : ', err)
+            })
+        })
 
 
     </script>
