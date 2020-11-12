@@ -688,6 +688,10 @@
             })
             .then(res => {
                 console.log('Response data : ', res.data)
+                if(res.data==='True'){
+                    alert('Submitted Successfully!')
+                    window.location.replace('http://localhost:3000/assignments')
+                }
             })
             .catch(err => {
                 console.log('Error : ', err)
