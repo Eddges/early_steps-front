@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="../../global/vendor/chartist/chartist.css">
     <link rel="stylesheet" href="../../global/vendor/jvectormap/jquery-jvectormap.css">
     <link rel="stylesheet" href="../../global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
-    <link rel="stylesheet" href="../assets/examples/css/dashboard/v1.css">
+    <link rel="stylesheet" href="../../assets/examples/css/dashboard/v1.css">
     <link rel="stylesheet" href="../../assets/examples/css/dashboard/team.css">
     <link rel="stylesheet" href="../../assets/examples/css/uikit/modals.css">
 
@@ -329,81 +329,19 @@
                 <h3>Choose the correct option</h3>
                 <hr/>
 
+
                 <div id='objectiveDisplay'></div>
 
-                <h4>What is the capital of India?</h4>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" value="hh323gb32" id="5799372">
-                    <label class="form-check-label" for="exampleRadios1">
-                      Manila
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" value="hh323gb32" id="678823678">
-                    <label class="form-check-label" for="exampleRadios2">
-                      New Delhi
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" value="hh323gb32" id="344ggfd43">
-                    <label class="form-check-label" for="exampleRadios2">
-                      Bangkok
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" value="hh323gb32" id="9ja8b892">
-                    <label class="form-check-label" for="exampleRadios2">
-                      Singapore
-                    </label>
-                  </div>
-                  <hr/>
-
-                <h4>What is the capital of China?</h4>
-                <div class="form-check">
-                    
-                    <input class="form-check-input" type="radio" name="exampleRadios1" value="2121334dvg" id="8786b778d">
-                    <label class="form-check-label" for="exampleRadios1">
-                        Beijing
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios1" value="2121334dvg" id="887b7b832">
-                    <label class="form-check-label" for="exampleRadios2">
-                        Shanghai
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios1" value="2121334dvg" id="mjfr8ds6">
-                    <label class="form-check-label" for="exampleRadios2">
-                        Hong Kong
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios1" value="2121334dvg" id="22jjf820">
-                    <label class="form-check-label" for="exampleRadios2">
-                        Taipei
-                    </label>
-                </div>
-                <hr/>
 
                 <div id="writtenDisplay"></div>
 
 
 
-                <div class="form-group">
-                    <h4>What steps have you taken as a child to preserve the flora and fauna in your region?</h4>
-                    <!-- <input role="textbox" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
-                    <textarea id='mnmbiqsk2' style="width : 80%; height : 150px;"></textarea>
-                    <small id="emailHelp" class="form-text text-muted">Elaborate with justifications.</small>
-                </div>
-                <hr />
-
                 <h3>Video Assignment</h3>
                 <hr />
 
                 <div id="videoDisplay"></div>
-                <h4>Record a video and tell us how you as a child can convince the elders of your house to minimize waste production.</h4>
+                <h4 id="videoDisplayHeading"></h4>
                 <div class="vid2Div" style='position : relative; width : 400px;'>
                     <div
                         id="videoVignette"
@@ -788,12 +726,14 @@
         const objectiveDisplay = document.querySelector('#objectiveDisplay')
         const writtenDisplay = document.querySelector('#writtenDisplay')
         const videoDisplay = document.querySelector('#videoDisplay')
+        const videoDisplayHeading = document.querySelector('#videoDisplayHeading')
 
         let objectiveArray = []
         let writtenArray = []
         let videoObj = {}
         let written = {
         }
+        let vidQuestionId = -1
 
         let docURL = document.URL.split('/')[document.URL.split('/').length - 1]
 
@@ -813,6 +753,33 @@
                 `
             })
 
+            JSON.parse(res.data.assignment_content_mcq).map(iterator => {
+                console.log('Iterator : ', iterator)
+                objectiveDisplay.innerHTML += `
+                <h4 id='${iterator.questionId}'>${iterator.question}?</h4>
+                `
+                iterator.options.map(itr => {
+                    objectiveDisplay.innerHTML += `
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="${iterator.questionId}" value="${iterator.questionId}" id="${itr.optionId}">
+                        <label class="form-check-label" for="${iterator.questionId}">
+                        ${itr.text}
+                        </label>
+                    </div>
+                    `
+                })
+            })
+
+            const videoQuestion = JSON.parse(res.data.assignment_content_video)
+
+            $(':radio').on('change', (e) => {
+                console.log('Changed')
+                mcqSubmission[e.target.value] = e.target.id
+                console.log('mcqSubmission : ', mcqSubmission)
+            })
+
+            vidQuestionId = videoQuestion.videoId
+            videoDisplayHeading.innerHTML = videoQuestion.question
 
         })
 
@@ -820,17 +787,19 @@
         // Getting data back from form
 
         const studentId = 5
-        const assignmentId = 3
+        const assignmentId = docURL
         const mcqSubmission = {}
         const writtenSubmission = {}
 
-
+        const radioButtonChange = () => {
+            console.log('Changed')
+            $(':radio').on('change', (e) => {
+                console.log('Changed')
+                mcqSubmission[e.target.value] = e.target.id
+                console.log('mcqSubmission : ', mcqSubmission)
+            })
+        }
         
-
-        $(':radio').on('change', (e) => {
-            mcqSubmission[e.target.value] = e.target.id
-            console.log('mcqSubmission : ', mcqSubmission)
-        })
         
         console.log('Hey')
 
@@ -841,14 +810,22 @@
                 writtenSubmission[iterator] = ($(`#${iterator}`).val())
             }
 
-            console.log('MCQ : ', mcqSubmission)
-            console.log('MCQ : ', writtenSubmission)
-            console.log('VideoURL : ', vidURL)
+            const videoSubmission = {
+                vidURL: vidURL,
+                questionId: vidQuestionId
+            }
 
+            console.log('MCQ : ', mcqSubmission)
+            console.log('Written : ', writtenSubmission)
+            console.log('VideoURL : ', videoSubmission)
+
+            console.log('Final : ', {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission})
+
+            
             axios.post('https://early-steps.herokuapp.com/createSubmission', {
                 user_assignment_id: studentId,
                 assignment_id: assignmentId,
-                submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: vidURL}
+                submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission}
             })
             .then(res => {
                 console.log('Response data : ', res.data)
@@ -862,6 +839,10 @@
             })
         })
             
+        axios.get('https://early-steps.herokuapp.com/getAllSubmission')
+        .then(res => {
+            console.log('All assignment data : ', res.data)
+        })
 
         </script>
 </body>
