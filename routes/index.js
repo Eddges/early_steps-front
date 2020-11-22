@@ -52,11 +52,17 @@ router.get('/studymaterials', function(req, res, next) {
 router.get('/studymaterials_dashboard', function(req, res, next) {
   res.render('studymaterials_dashboard', { title: 'Express' });
 });
-router.get('/videoquiz', function(req, res, next) {
-  res.render('videoQuiz', { title: 'Express' });
-});
+
 router.get('/assignments', function(req, res, next) {
   res.render('assignments', { title: 'Express' });
+});
+
+router.get('/assignments/:moduleId', function(req, res, next) {
+  res.render('assignmentslist', { title: 'Express' });
+});
+
+router.get('/assignments/:moduleId/:assignmentId', function(req, res, next) {
+  res.render('submit', { title: 'Express' });
 });
 
 router.get('/forgotpassword', function(req, res, next) {

@@ -292,71 +292,52 @@
    
 
         <div class="page-content container-fluid">
-        
+            
 
-         <!-- alert message -->
-         <div class="alert dark alert-info alert-dismissible animation-slide-top " id="processing-div" style="display:none" role="alert">
-                    <button type="button" class="close" onClick="hidemepro()" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                    <div id="message-processing"></div>
-                  </div>
-          <!-- End alert message -->
+            <!-- alert message -->
+            <div class="alert dark alert-info alert-dismissible animation-slide-top " id="processing-div" style="display:none" role="alert">
+                        <button type="button" class="close" onClick="hidemepro()" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        </button>
+                        <div id="message-processing"></div>
+                    </div>
+            <!-- End alert message -->
 
 
-         <!-- alert message -->
-         <div class="alert dark alert-danger alert-dismissible animation-slide-top " id="alert-message-div" style="display:none" role="alert">
-                    <button type="button" class="close" onClick="hideme()" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                    <div id="message-div"></div>
-                  </div>
-          <!-- End alert message -->
-          
+            <!-- alert message -->
+            <div class="alert dark alert-danger alert-dismissible animation-slide-top " id="alert-message-div" style="display:none" role="alert">
+                        <button type="button" class="close" onClick="hideme()" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        </button>
+                        <div id="message-div"></div>
+                    </div>
+            <!-- End alert message -->
+            
 
- <!-- alert message -->
-         <div class="alert dark alert-success alert-dismissible animation-slide-top " id="info-message-div" style="display:none" role="alert">
+            <!-- alert message -->
+            <div class="alert dark alert-success alert-dismissible animation-slide-top " id="info-message-div" style="display:none" role="alert">
                     <button type="button" class="close" onClick="hidemeinfo()" aria-label="Close">
-                      <span aria-hidden="true">×</span>
+                        <span aria-hidden="true">×</span>
                     </button>
                     <div id="message-div-info"></div>
-                  </div>
-          <!-- End alert message -->
-
-
-
-
-
-          
-    <div class="row" data-plugin="matchHeight" data-by-row="true">
-
-        <div class="col-xxl-3 col-xl-6" style="height: 380px;">
-            <span class="w-100 p-3">Wednesday, Nov 11</span>
-            <div class="card card-shadow">
-            <div class="card-block text-center bg-white p-40">
-                <div class="avatar avatar-100 mb-20">
-                <img src="../../assets/images/africa.svg" alt="" style="border-radius:0px;">
                 </div>
-                <p id="coursename1" class="font-size-20 blue-grey-700">Geography - India</p>
-                
-                <p class="mb-35" style="font-weight:bold">India, officially the Republic of India, is a country in South Asia. It is the second-most populous country, the seventh-largest country by land area, and the most populous democracy in the world.</p>
-                
-                <button type="button" class="btn btn-primary px-20" onclick="enterportal();"  >View Assignments</button><br>
-                <!-- <button id="VirginAlgorithm" type="button"  disabled="true" class="btn px-20 btn-success" onclick="enterportal();" style="margin-top:10px;">View Assignment</button> -->
-            </div>
-            </div>
-            <!-- End Panel Web Designer -->
-        </div>
-             
-    </div>
+            <!-- End alert message -->
+
+
+
+            <h1 class="display-4">All assignments</h1>
+            <hr class="my-4" />
+            <div id="assignment-list"></div>
+        
 
 
 
 
 
-            </div>
+
         </div>
     </div>
+
     <!-- End Page -->
     <div class="modal fade" id="exampleFormModal" aria-labelledby="exampleFormModalLabel" role="dialog" tabindex="-1" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-simple modal-center" style="z-index:20000;">
@@ -599,10 +580,28 @@
               window.reload();
             }
 
+            const divAssignmentList = document.querySelector('#assignment-list')
+            const moduleId = +document.URL.split('/')[document.URL.split('/').length -1]
 
-            axios.get('https://early-steps.herokuapp.com/getAllAssignment')
+            axios.get('https://early-steps.herokuapp.com/getModuleAllAssignment/2')
             .then(res => {
-                console.log('Response data : ', res.data)
+                console.log(res.data)
+                res.data.a.map((iterator, index) => {
+                    if(iterator.module_id===moduleId) {
+                        divAssignmentList.innerHTML += `
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">${iterator.assignment_name}</h5>
+                            <p class="card-text">${iterator.assignment_desc}</p>
+                            <small>Submission Score: <strong>${iterator.assignment_submission_score}</strong></small>
+                            <hr />
+                            <a href="${document.URL.split('/')[document.URL.split('/').length -1]}/${iterator.assignment_id}" class="btn btn-primary">View</a>
+                            </div>
+                        </div>
+                    `
+                    }
+
+                })
             })
             
 
