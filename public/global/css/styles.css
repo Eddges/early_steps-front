@@ -1,0 +1,25 @@
+body {
+  font-family: 'Lato' !important;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.proceedButton {
+  border: none;
+  background-color: #ff5858;
+  border-radius: 5px;
+  color: white;
+  font-weight: 900;
+  padding: 8px 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.yellowBG {
+  background-color: #f5dd90;
+  border-radius: 5px;
+  color: black;
+}
+/*# sourceMappingURL=styles.css.map */
