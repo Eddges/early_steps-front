@@ -8,7 +8,7 @@ a {
 
 .proceedButton {
   border: none;
-  background-color: #ff5858;
+  background-color: #f76c5e;
   border-radius: 5px;
   color: white;
   font-weight: 900;
@@ -18,8 +18,12 @@ a {
 }
 
 .yellowBG {
-  background-color: #f5dd90;
+  background-color: #f76b5e2a;
   border-radius: 5px;
-  color: black;
+}
+
+.card {
+  -webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.049);
+          box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.049);
 }
 /*# sourceMappingURL=styles.css.map */

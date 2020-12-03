@@ -736,11 +736,18 @@
         let vidQuestionId = -1
 
         let docURL = document.URL.split('/')[document.URL.split('/').length - 1]
+        let moduleId = document.URL.split('/')[document.URL.split('/').length - 2]
+
+        let currentLevel = 0
+        let nextLevel = 0
+        let nextAssignmentId = 0
 
         axios.get(`https://early-steps.herokuapp.com/getAssignment/${docURL}`)
         .then(res => {
             console.log(res.data)
-            
+            currentLevel = res.data.assignment_level
+            nextLevel = currentLevel + 1
+
             JSON.parse(res.data.assignment_content_text).map((iterator, index) => {
                 written[iterator.questionId] = iterator.question
                 writtenDisplay.innerHTML += `
@@ -754,7 +761,7 @@
             })
 
             JSON.parse(res.data.assignment_content_mcq).map(iterator => {
-                console.log('Iterator : ', iterator)
+                // console.log('Iterator : ', iterator)
                 objectiveDisplay.innerHTML += `
                 <h4 id='${iterator.questionId}'>${iterator.question}?</h4>
                 `
@@ -801,7 +808,6 @@
         }
         
         
-        console.log('Hey')
 
         $('#submitForm').on('click', () => {
             console.log('Button clicked')
@@ -831,7 +837,8 @@
                 console.log('Response data : ', res.data)
                 if(res.data==='True'){
                     alert('Submitted Successfully!')
-                    window.location.replace('https://glacial-spire-45143.herokuapp.com/assignments')
+                    // window.location.replace('https://glacial-spire-45143.herokuapp.com/assignments')
+                    window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
                 }
             })
             .catch(err => {
@@ -839,9 +846,27 @@
             })
         })
             
-        axios.get('https://early-steps.herokuapp.com/getAllSubmission')
+        // axios.get('https://early-steps.herokuapp.com/getAllSubmission')
+        // .then(res => {
+        //     console.log('All assignment data : ', res.data)
+        //     res.data.a.map((iterator, index) => {
+        //         if(iterator.module_id===moduleId){
+
+        //         }
+        //     })
+        // })
+
+        axios.get('https://early-steps.herokuapp.com/getAllAssignment')
         .then(res => {
-            console.log('All assignment data : ', res.data)
+            res.data.a.map((iterator, index) => {
+                if (+iterator.module_id=== +moduleId) {
+                    console.log('Iterator : ', iterator)
+                    if(+iterator.assignment_level === nextLevel) {
+                        nextAssignmentId = iterator.assignment_id
+                        console.log('Iterator : ', iterator)
+                    } 
+                }
+            })
         })
 
         </script>

@@ -4761,7 +4761,7 @@ a.list-group-item {
     border-right: 1px solid #e4eaec; }
 
 .page {
-  background: #f1f4f5; }
+  background: #fff; }
 
 .page-dark.layout-full {
   color: #fff; }
@@ -7043,7 +7043,7 @@ a.list-group-item {
   background-color: #e4eaec; }
 
 .timeline-period {
-  background: #f1f4f5; }
+  background: #fff; }
 
 .timeline-dot {
   color: #fff;

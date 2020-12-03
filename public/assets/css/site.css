@@ -455,7 +455,7 @@ body.site-gridmenu-active {
 .page {
   position: relative;
   min-height: calc(100% - 44px);
-  background: #f1f4f5; }
+  background: #fff; }
 
 .page-dark.layout-full {
   position: relative;
@@ -6687,7 +6687,7 @@ ul.panel-actions {
   font-size: 26px;
   text-align: center;
   text-transform: uppercase;
-  background: #f1f4f5; }
+  background: #fff; }
 
 .timeline-content {
   width: 100%;
@@ -7869,7 +7869,7 @@ h3.example-title {
 .example-well {
   position: relative;
   margin-bottom: 30px;
-  background-color: #f1f4f5; }
+  background-color: #fff; }
   .example-well .center {
     position: absolute;
     top: 50%;
@@ -7921,7 +7921,7 @@ h3.example-title {
 .example-grid .example-col, .example-blocks .example-col {
   min-height: 0;
   padding: 10px 15px 12px;
-  background-color: #f1f4f5;
+  background-color: #fff;
   border-radius: 0; }
 
 .example-grid .example-col {
