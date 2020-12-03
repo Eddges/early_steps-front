@@ -19,6 +19,8 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../../global/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../global/css/bootstrap-extend.min.css">
+    <!-- <link rel="stylesheet" href="../../global/css/styles.css"> -->
+    <link rel="stylesheet" href="../../global/css/ModalSubmission/ModalSubmission.css">
     <link rel="stylesheet" href="../../assets/css/site.min.css">
 
     <!-- Plugins -->
@@ -428,7 +430,37 @@
               </form>
 
 
+            
+            <!-- Modal -->
 
+
+            <!-- <div class="modal fade" id="completeModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    
+                    <div class="ModalSubmission">
+                        <span class='SubmitHeader'>Hooray!!!</span>
+                        <img class='SubmitIllustration' src="../../assets/images/jump.jpg" alt='Submit Image' />
+                        <span class='SubmitHeader2'>You just won</span>
+                        <span id='spanCoins' class='SubmitCoins'>1200 coins!</span>
+                        <button class='btn btn-primary' class='ModalSubmitButton'>Collect Now!</button>
+                    </div>
+
+                </div>
+            </div> -->
+
+            <div class="Backdrop" id='successModal' >
+                <div class="Modal">
+                    
+                    <div class="ModalSubmission">
+                        <span class='SubmitHeader'>Hooray!!!</span>
+                        <img class='SubmitIllustration' src="../../assets/images/jump.jpg" alt='Submit Image' />
+                        <span id='submitHeader2' class='SubmitHeader2'>You just won</span>
+                        <span id='spanCoins' class='SubmitCoins'>1200 coins!</span>
+                        <button id='ModalContinueButton' class='ModalSubmitButton'>Collect Now!</button>
+                    </div>
+
+                </div>
+            </div>
 
 
 
@@ -720,6 +752,7 @@
 
         // Video end
 
+        
 
         // Displaying data on the page
 
@@ -727,6 +760,11 @@
         const writtenDisplay = document.querySelector('#writtenDisplay')
         const videoDisplay = document.querySelector('#videoDisplay')
         const videoDisplayHeading = document.querySelector('#videoDisplayHeading')
+        const spanCoins = document.querySelector('#spanCoins')
+        // const successModal = document.querySelector('#successModal')
+        
+        $('#successModal').css('display', 'none')
+        
 
         let objectiveArray = []
         let writtenArray = []
@@ -741,12 +779,18 @@
         let currentLevel = 0
         let nextLevel = 0
         let nextAssignmentId = 0
+        let redirectionFlag = false
+        let assignmentCoins = 0
 
         axios.get(`https://early-steps.herokuapp.com/getAssignment/${docURL}`)
         .then(res => {
             console.log(res.data)
             currentLevel = res.data.assignment_level
             nextLevel = currentLevel + 1
+
+            console.log('Next Level : ', nextLevel)
+
+            assignmentCoins = res.data.assignment_submission_score
 
             JSON.parse(res.data.assignment_content_text).map((iterator, index) => {
                 written[iterator.questionId] = iterator.question
@@ -788,6 +832,8 @@
             vidQuestionId = videoQuestion.videoId
             videoDisplayHeading.innerHTML = videoQuestion.question
 
+            $('#completeModal').modal()
+
         })
 
 
@@ -826,7 +872,6 @@
             console.log('VideoURL : ', videoSubmission)
 
             console.log('Final : ', {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission})
-
             
             axios.post('https://early-steps.herokuapp.com/createSubmission', {
                 user_assignment_id: studentId,
@@ -836,9 +881,27 @@
             .then(res => {
                 console.log('Response data : ', res.data)
                 if(res.data==='True'){
-                    alert('Submitted Successfully!')
+                    // alert('Submitted Successfully!')
                     // window.location.replace('https://glacial-spire-45143.herokuapp.com/assignments')
-                    window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
+                    if(redirectionFlag) {
+                        $('#spanCoins').html(`${assignmentCoins} coins!`)
+                        $('#successModal').fadeIn()
+                        $('#ModalContinueButton').html(`Unlock Level ${nextLevel}`)
+                        $('#ModalContinueButton').on('click', () => {
+                            window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
+                        })
+                        
+                    }
+                    else{
+                        $('#spanCoins').html(`You have finished all assignments`)
+                        $('#spanCoins').css('font-size', '1.5rem')
+                        $('#ModalContinueButton').html(`Continue`)
+                        $('#submitHeader2').css('display', 'none')
+                        $('#successModal').fadeIn()
+                        $('#ModalContinueButton').on('click', () => {
+                            window.location.replace(`http://localhost:3000/assignments/`)
+                        })
+                    }
                 }
             })
             .catch(err => {
@@ -860,13 +923,16 @@
         .then(res => {
             res.data.a.map((iterator, index) => {
                 if (+iterator.module_id=== +moduleId) {
-                    console.log('Iterator : ', iterator)
                     if(+iterator.assignment_level === nextLevel) {
+                        console.log('Next assignment : ', iterator)
                         nextAssignmentId = iterator.assignment_id
                         console.log('Iterator : ', iterator)
+                        console.log('Next Assignment ID : ', nextAssignmentId)
+                        redirectionFlag = true
                     } 
                 }
             })
+
         })
 
         </script>

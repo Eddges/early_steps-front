@@ -1,0 +1,97 @@
+.Backdrop {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.426);
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 1600;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Backdrop .Modal {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Backdrop .Modal .ModalSubmission {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.Backdrop .Modal .ModalSubmission .SubmitHeader {
+  font-size: 2.5rem;
+  font-weight: 600;
+  padding: 5px 0px;
+  color: black;
+}
+
+.Backdrop .Modal .ModalSubmission .SubmitHeader2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: black;
+}
+
+.Backdrop .Modal .ModalSubmission .SubmitCoins {
+  font-size: 2.5rem;
+  font-weight: 600;
+  padding: 0px;
+  color: #ffbe29;
+}
+
+.Backdrop .Modal .ModalSubmission img {
+  width: 400px;
+}
+
+.Backdrop .Modal .ModalSubmission .ModalSubmitButton {
+  margin-top: 10px;
+  padding: 10px 50px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: #f76c5e;
+  -webkit-box-shadow: 0px 0px 5px #f76b5ed5;
+          box-shadow: 0px 0px 5px #f76b5ed5;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.Backdrop .Modal .ModalSubmission .ModalSubmitButton:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 15px #f76b5eea;
+          box-shadow: 0px 0px 15px #f76b5eea;
+}
+/*# sourceMappingURL=ModalSubmission.css.map */
