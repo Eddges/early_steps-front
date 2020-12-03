@@ -17,6 +17,12 @@ a {
   cursor: pointer;
 }
 
+.proceedButton:disabled {
+  background-color: #c2493e51;
+  color: white;
+  cursor: not-allowed;
+}
+
 .yellowBG {
   background-color: #f76b5e2a;
   border-radius: 5px;

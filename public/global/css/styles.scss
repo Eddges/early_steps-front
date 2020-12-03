@@ -16,6 +16,11 @@ a {
   padding : 8px 28px;
   font-weight: bold;
   cursor: pointer;
+  &:disabled{
+    background-color: #c2493e51;
+    color : rgb(255, 255, 255);
+    cursor: not-allowed;
+  }
 }
 
 .yellowBG{

@@ -592,26 +592,63 @@
             const divAssignmentList = document.querySelector('#assignment-list')
             const moduleId = +document.URL.split('/')[document.URL.split('/').length -1]
 
-            axios.get('https://early-steps.herokuapp.com/getModuleAllAssignment/2')
-            .then(res => {
-                console.log(res.data)
-                res.data.a.map((iterator, index) => {
-                    if(iterator.module_id===moduleId) {
-                        divAssignmentList.innerHTML += `
-                        <div class="card">
-                            <div class="card-body yellowBG">
-                            <h5 class="card-title">${iterator.assignment_name}</h5>
-                            <p class="card-text">${iterator.assignment_desc}</p>
-                            <small>Submission Score: <strong>${iterator.assignment_submission_score}</strong></small>
-                            <hr />
-                            <a href="${document.URL.split('/')[document.URL.split('/').length -1]}/${iterator.assignment_id}" class="proceedButton">View</a>
-                            </div>
-                        </div>
-                    `
-                    }
+            let userId = 5
+            let submittedAssignments = []
+            let maxLevel = 0
 
+            const redirectAssignment = (key) => {
+                // console.log('Clicked')
+                console.log('Clicked with key : ', key)
+                const moduleId = document.URL.split('/')[document.URL.split('/').length -1]
+                window.location.replace(`http://localhost:3000/assignments/${moduleId}/${key}`)
+            }
+
+            axios.get(`https://early-steps.herokuapp.com/getUserAssignmentSubmission/${userId}`)
+            .then(res => {
+                // console.log('Submissions : ', res.data)
+                res.data.a.map((iterator, index) => {
+                    submittedAssignments.push(iterator.assignment_id)
+                })
+
+                submittedAssignments = [...new Set(submittedAssignments)]
+                console.log('Submitted Asses', submittedAssignments)
+
+                axios.get('https://early-steps.herokuapp.com/getModuleAllAssignment/2')
+                .then(res => {
+                    console.log(res.data)
+                    res.data.a.map((iterator, index) => {
+                        if(iterator.module_id===moduleId) {
+                            let buttonEnabled = false
+                            if(submittedAssignments.includes(iterator.assignment_id)) {
+                                let temp = iterator.assignment_level
+                                maxLevel = maxLevel>temp ? maxLevel : temp
+                                buttonEnabled = true
+                            }
+                            console.log('Max level : ', maxLevel)
+                            if(iterator.assignment_level === maxLevel + 1) {
+                                buttonEnabled = true
+                            }
+                            divAssignmentList.innerHTML += `
+                            <div class="card">
+                                <div class="card-body yellowBG">
+                                <h5 class="card-title">${iterator.assignment_name}</h5>
+                                <p class="card-text">${iterator.assignment_desc}</p>
+                                <small>Coins : <strong>${iterator.assignment_submission_score}</strong></small>
+                                <hr />
+                                <button onclick='redirectAssignment(${iterator.assignment_id})' ${!buttonEnabled && 'disabled'} class="proceedButton">Solve</button>
+                                </div>
+                            </div>
+                        `
+                        }
+
+                    })
                 })
             })
+
+            
+
+
+            
             
 
         </script>
