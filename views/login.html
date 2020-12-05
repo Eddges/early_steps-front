@@ -16,6 +16,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../../../global/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../global/css/bootstrap-extend.min.css">
+    <link rel="stylesheet" href="../../../global/css/styles.css">
     <link rel="stylesheet" href="../../assets/css/site.min.css">
     
     <!-- Plugins -->
@@ -52,17 +53,17 @@
       Breakpoints();
     </script>
   </head>
-  <body class="animsition page-login-v3 layout-full">
+  <body class="animsition page-login-v3 layout-full  coralBG" >
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
 
     <!-- Page -->
-    <div class="page vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">>
+    <div class="page vertical-align text-center yellowBG" data-animsition-in="fade-in" data-animsition-out="fade-out">
 
     
-      <div class="page-content vertical-align-middle animation-slide-top animation-duration-1">
+      <div class="page-content vertical-align-middle animation-slide-top animation-duration-1 ">
         <div class="panel">
         <!-- alert message -->
          <div class="alert dark alert-danger alert-dismissible animation-slide-top " id="alert-message-div" style="display:none" role="alert">
@@ -74,55 +75,33 @@
           <!-- End alert message -->
           <div class="panel-body">
             <div class="brand">
-              <img class="brand-img" src="../../assets//images/logo-ca.png" alt="..." style="width:40%">
+              <img class="brand-img" src="../../assets//images/EarlyStepsLogo.webp" alt="..." style="width:80%">
               
             </div>
            
             <form>
               <div class="form-group form-material floating" data-plugin="formMaterial">
                 <input onclick="clearAlert()" id="userEmailOrPhone" type="text" class="form-control" name="email" />
-                <label class="floating-label">Email/Phone</label>
+                <label class="floating-label green" >Email/Phone</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
                 <input onclick="clearAlert()" id="password" type="password" class="form-control" name="password" />
-                <label class="floating-label">Password</label>
+                <label class="floating-label ">Password</label>
               </div>
-              <small class="float-left" style="margin-left: -20px;"><a href="forgotpassword" >Forgot password ?</a></small>
-              <!-- <div class="form-group form-material">
-                <label class="form-control-label"></label>
-                <select class="form-control" id="course_id" required="required" name="default" >
-                  <option value="0">Select Course</option>
-                    <option value="100">Not Enrolled</option>
-                    <option value="1">Virgin Algorithm - 4th April 2020</option>
-                    <option value="2">Virgin Algorithm - 12th April 2020</option>
-                    <option value="3">Full Stack - 12th April 2020</option>
-                    <option value="4">Machine Learning - 12th April 2020</option>
-                    <option value="5">Virgin Algorithm - 19th April 2020</option>
-                    <option value="6">Machine Learning - 19th April 2020</option>
-                    <option value="7">Full Stack - 19th April 2020</option>
-                    <option value="7">Data Analytics - 19th April 2020</option>
-                    <option value="5">Virgin Algorithm - 26th April 2020</option>
-                    <option value="6">Machine Learning - 26th April 2020</option>
-                    <option value="7">Full Stack - 26th April 2020</option>
-                    <option value="7">Data Analytics - 26th April 2020</option>
-                  </select>
-            </div> -->
+              <small class="float-left" style="margin-left: -20px;"><a class='coral' href="forgotpassword" >Forgot password?</a></small>
+
               <div class="form-group clearfix">
-              <!--  <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg float-left">
-                  <input type="checkbox" id="inputCheckbox" name="remember">
-                  <label for="inputCheckbox">Remember me</label>
-                </div>
-                <a class="float-right" href="forgot-password.html">Forgot password?</a> -->
+
               </div>
-                  <a class="btn btn-primary btn-block btn-lg mx-auto" onclick="doLogin();" style="color:white;">Sign in</a>
+                  <a class="btn btn-primary btn-block btn-lg mx-auto esButton fontLight" onclick="doLogin();" style="color:white;">Sign in</a>
             </form>
-            <p>Still no account? Please go to <a href="register">Sign up</a></p>
+            <p>Haven't signed up? Go to <a class='coral' href="register">Register</a></p>
           </div>
         </div>
 
         <footer class="page-copyright page-copyright-inverse">
-          <p>CODEASYLUMS</p>
-          <p>© 2020. All RIGHT RESERVED.</p>
+          <p class='grey'>Early Steps</p>
+          <p class='grey'>© 2020. All RIGHT RESERVED.</p>
          
         </footer>
       </div>

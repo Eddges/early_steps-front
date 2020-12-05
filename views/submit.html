@@ -19,7 +19,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../../global/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../global/css/bootstrap-extend.min.css">
-    <!-- <link rel="stylesheet" href="../../global/css/styles.css"> -->
+    <link rel="stylesheet" href="../../global/css/styles.css">
     <link rel="stylesheet" href="../../global/css/ModalSubmission/ModalSubmission.css">
     <link rel="stylesheet" href="../../assets/css/site.min.css">
 
@@ -78,8 +78,8 @@
           <i class="icon wb-more-horizontal" aria-hidden="true"></i>
         </button>
             <div class="navbar-brand navbar-brand-center site-gridmenu-toggle">
-                <a href="./home" style="color:black"><img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
-                <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span></a>
+                <a href="./home" style="color:black"><img class="navbar-brand-logo" src="../../assets/images/EarlyStepsLogo.webp" alt="...">
+                <!-- <span class="navbar-brand-text hidden-xs-down"> Early Steps</span></a> -->
             </div>
             
         </div>
@@ -328,7 +328,7 @@
 
 
             <form class="pl-3">
-                <h3>Choose the correct option</h3>
+                <h3 id='objectiveHeader' style='display : none;'>Choose the correct option</h3>
                 <hr/>
 
 
@@ -339,13 +339,13 @@
 
 
 
-                <h3>Video Assignment</h3>
+                <h3 id='videoHeader' style='display: none;'>Video Assignment</h3>
                 <hr />
 
                 <div id="videoDisplay"></div>
-                <h4 id="videoDisplayHeading"></h4>
-                <div class="vid2Div" style='position : relative; width : 400px;'>
-                    <div
+                <h4 style='display: none;' id="videoDisplayHeading"></h4>
+                <div style='display: none;' class="vid2Div" id='vid2Div' style='position : relative; width : 400px;'>
+                    <!-- <div
                         id="videoVignette"
                         style='
                             position : absolute;
@@ -361,7 +361,7 @@
                         '
                     >
                         <span>Record a video to preview!</span>
-                    </div>
+                    </div> -->
                     <video id="vid2" controls style="width : 400px;"></video>
                 </div>
                 
@@ -681,6 +681,57 @@
               window.reload();
             }
 
+
+        
+
+        // Displaying data on the page
+
+        const objectiveDisplay = document.querySelector('#objectiveDisplay')
+        const writtenDisplay = document.querySelector('#writtenDisplay')
+        const videoDisplay = document.querySelector('#videoDisplay')
+        const videoDisplayHeading = document.querySelector('#videoDisplayHeading')
+        const spanCoins = document.querySelector('#spanCoins')
+        // const successModal = document.querySelector('#successModal')
+        
+        $('#successModal').css('display', 'none')
+        
+
+        let objectiveArray = []
+        let writtenArray = []
+        let videoObj = {}
+        let written = {
+        }
+        let vidQuestionId = -1
+
+        let docURL = document.URL.split('/')[document.URL.split('/').length - 1]
+        let moduleId = document.URL.split('/')[document.URL.split('/').length - 2]
+
+        let currentLevel = 0
+        let nextLevel = 0
+        let nextAssignmentId = 0
+        let redirectionFlag = false
+        let assignmentCoins = 0
+
+
+        axios.get(`https://early-steps.herokuapp.com/getAssignment/${docURL}`)
+        .then(res => {
+            console.log(res.data)
+            currentLevel = res.data.assignment_level
+            nextLevel = currentLevel + 1
+
+            console.log('Next Level : ', nextLevel)
+
+            assignmentCoins = res.data.assignment_submission_score
+
+            if(res.data.assignment_content_mcq) {
+                $('#objectiveHeader').css('display', 'flex')
+            }
+
+            if(res.data.assignment_content_video) {
+                $('#videoHeader').css('display', 'flex')
+                $('#videoDisplayHeading').css('display', 'flex')
+                $('#vid2Div').css('display', 'flex')
+
             // Video recording, storing and playback
 
         let constraintObj = {
@@ -751,46 +802,7 @@
         })
 
         // Video end
-
-        
-
-        // Displaying data on the page
-
-        const objectiveDisplay = document.querySelector('#objectiveDisplay')
-        const writtenDisplay = document.querySelector('#writtenDisplay')
-        const videoDisplay = document.querySelector('#videoDisplay')
-        const videoDisplayHeading = document.querySelector('#videoDisplayHeading')
-        const spanCoins = document.querySelector('#spanCoins')
-        // const successModal = document.querySelector('#successModal')
-        
-        $('#successModal').css('display', 'none')
-        
-
-        let objectiveArray = []
-        let writtenArray = []
-        let videoObj = {}
-        let written = {
-        }
-        let vidQuestionId = -1
-
-        let docURL = document.URL.split('/')[document.URL.split('/').length - 1]
-        let moduleId = document.URL.split('/')[document.URL.split('/').length - 2]
-
-        let currentLevel = 0
-        let nextLevel = 0
-        let nextAssignmentId = 0
-        let redirectionFlag = false
-        let assignmentCoins = 0
-
-        axios.get(`https://early-steps.herokuapp.com/getAssignment/${docURL}`)
-        .then(res => {
-            console.log(res.data)
-            currentLevel = res.data.assignment_level
-            nextLevel = currentLevel + 1
-
-            console.log('Next Level : ', nextLevel)
-
-            assignmentCoins = res.data.assignment_submission_score
+            }
 
             JSON.parse(res.data.assignment_content_text).map((iterator, index) => {
                 written[iterator.questionId] = iterator.question
