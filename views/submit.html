@@ -328,6 +328,11 @@
 
 
             <form class="pl-3">
+
+                <div class='spinner'>
+                    <div class="loader"></div>
+                </div>
+
                 <h3 id='objectiveHeader' style='display : none;'>Choose the correct option</h3>
                 <hr/>
 
@@ -426,7 +431,7 @@
 
                   
 
-                <button id="submitForm" type="button" class="esButton">Submit</button>
+                <button id="submitForm" style='display: none;' type="button" class="esButton">Submit</button>
               </form>
 
 
@@ -715,6 +720,8 @@
 
         axios.get(`https://early-steps.herokuapp.com/getAssignment/${docURL}`)
         .then(res => {
+            $('.spinner').css('display', 'none')
+            $('#submitForm').css('display', '')
             console.log(res.data)
             currentLevel = res.data.assignment_level
             nextLevel = currentLevel + 1
