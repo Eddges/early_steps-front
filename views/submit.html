@@ -365,7 +365,7 @@
                     <video id="vid2" controls style="width : 400px;"></video>
                 </div>
                 
-                <button type="button" id='toggleRecord' class="btn btn-warning w-100 mt-3" data-toggle="modal" data-target="#exampleModal">
+                <button style='display: none;' type="button" id='toggleRecord' class="btn btn-warning w-100 mt-3" data-toggle="modal" data-target="#exampleModal">
                     Record
                 </button>
 
@@ -426,7 +426,7 @@
 
                   
 
-                <button id="submitForm" type="button" class="btn btn-primary mt-4">Submit</button>
+                <button id="submitForm" type="button" class="esButton">Submit</button>
               </form>
 
 
@@ -731,77 +731,80 @@
                 $('#videoHeader').css('display', 'flex')
                 $('#videoDisplayHeading').css('display', 'flex')
                 $('#vid2Div').css('display', 'flex')
+                $('#toggleRecord').css('display', '')
 
             // Video recording, storing and playback
 
-        let constraintObj = {
-            audio : false,
-            video : {
-                facingMode : 'user'
-            }
-        }
-
-        let vidURL = ''
-
-
-        navigator.mediaDevices.getUserMedia(constraintObj)
-        .then(mediaStreamObj => {
-            let video = document.querySelector('#vid1')
-            video.srcObject = mediaStreamObj
-
-            video.onloadedmetadata = (ev) => {
-                video.play()
+            let constraintObj = {
+                audio : false,
+                video : {
+                    facingMode : 'user'
+                }
             }
 
-            const start = document.getElementById('btnStart')
-            const stop  = document.getElementById('btnStop')
-            const vidSave = document.getElementById('vid2')
-            const vignette = document.getElementById('videoVignette')
-            const recordButton = document.querySelector('#toggleRecord')
-            const recordButtonAgain = document.querySelector('#toggleRecordAgain')
-            const mediaRecorder = new MediaRecorder(mediaStreamObj)
-            let chunks = []
+            let vidURL = ''
 
-            start.addEventListener('click', e => {
-                start.style.display = 'none'
-                stop.style.display = 'flex'
-                mediaRecorder.start()
-                console.log('Recording started')
+
+            navigator.mediaDevices.getUserMedia(constraintObj)
+            .then(mediaStreamObj => {
+                let video = document.querySelector('#vid1')
+                video.srcObject = mediaStreamObj
+
+                video.onloadedmetadata = (ev) => {
+                    video.play()
+                }
+
+                const start = document.getElementById('btnStart')
+                const stop  = document.getElementById('btnStop')
+                const vidSave = document.getElementById('vid2')
+                // const vignette = document.getElementById('videoVignette')
+                const recordButton = document.querySelector('#toggleRecord')
+                const recordButtonAgain = document.querySelector('#toggleRecordAgain')
+                const mediaRecorder = new MediaRecorder(mediaStreamObj)
+                let chunks = []
+
+                start.addEventListener('click', e => {
+                    start.style.display = 'none'
+                    stop.style.display = 'flex'
+                    // $('#btnStart').css('display', 'none')
+                    // $('#btnStop').css('display', 'flex')
+                    mediaRecorder.start()
+                    console.log('Recording started')
+                })
+
+                stop.addEventListener('click', e => {
+                    start.style.display = 'flex'
+                    stop.style.display = 'none'
+                    // vidSave.style.display = 'flex'
+                    // vignette.style.display = 'none'
+
+                    recordButton.style.display = 'none'
+                    recordButtonAgain.style.display = 'flex'
+                    mediaRecorder.stop()
+                    console.log('Recording stopped')
+                })
+
+                mediaRecorder.ondataavailable = e => {
+                    console.log('Pushing data into chunk')
+                    chunks.push(e.data)
+                }
+
+
+                mediaRecorder.onstop = e => {
+
+                    console.log('MediaRecorder stopped')
+                    let blob = new Blob(chunks, { 'type' : 'video/mp4' })
+                    chunks = []
+
+                    let videoURL = window.URL.createObjectURL(blob)
+                    vidURL = videoURL
+                    console.log('VideoURL : ', videoURL)
+                    vidSave.src = videoURL
+                }
+
             })
 
-            stop.addEventListener('click', e => {
-                start.style.display = 'flex'
-                stop.style.display = 'none'
-                // vidSave.style.display = 'flex'
-                vignette.style.display = 'none'
-
-                recordButton.style.display = 'none'
-                recordButtonAgain.style.display = 'flex'
-                mediaRecorder.stop()
-                console.log('Recording stopped')
-            })
-
-            mediaRecorder.ondataavailable = e => {
-                console.log('Pushing data into chunk')
-                chunks.push(e.data)
-            }
-
-
-            mediaRecorder.onstop = e => {
-
-                console.log('MediaRecorder stopped')
-                let blob = new Blob(chunks, { 'type' : 'video/mp4' })
-                chunks = []
-
-                let videoURL = window.URL.createObjectURL(blob)
-                vidURL = videoURL
-                console.log('VideoURL : ', videoURL)
-                vidSave.src = videoURL
-            }
-
-        })
-
-        // Video end
+            // Video end
             }
 
             JSON.parse(res.data.assignment_content_text).map((iterator, index) => {
