@@ -80,8 +80,8 @@
           <i class="icon wb-more-horizontal" aria-hidden="true"></i>
         </button>
             <div class="navbar-brand navbar-brand-center site-gridmenu-toggle">
-                <a href="./home" style="color:black"><img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
-                <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span></a>
+                <a href="./home" style="color:black"><img class="navbar-brand-logo" src="../../assets/images/EarlyStepsLogo.webp" alt="...">
+                </a>
             </div>
             
         </div>
@@ -329,30 +329,14 @@
 
 
 
-
+        <div class='spinner'>
+            <div class="loader"></div>
+        </div>
 
           
-    <div class="row" data-plugin="match Height" data-by-row="true">
+    <div class="row" id='coursesRow' data-plugin="match Height" data-by-row="true">
 
-        <div class="col-xxl-3 col-xl-6" style="height: 380px;">
-            <span class="w-100 p-3">Wednesday, Nov 11</span>
-            <div class="card card-shadow">
-            <div class="card-block text-center bg-white p-40">
-                <div class="avatar avatar-100 mb-10" style='width : 35%;'>
-                    <img src="../../assets/images/assignment.jpg" alt="" style="border-radius:0px;">
-                </div>
-                <p id="coursename1" class="font-size-20 blue-grey-700">Week 1</p>
-                
-                <p class="mb-35" style="font-weight:bold">In this week, we learn about leadership, confidence and presentational skills to put you ahead of the curve.</p>
-                
-                <button type="button" class="proceedButton" onclick="enterportal();"  >View Assignments</button><br>
-
-                <!-- <button type="button" class="btn btn-primary px-20" onclick="enterportal();"  >View Assignments</button><br> -->
-                <!-- <button id="VirginAlgorithm" type="button"  disabled="true" class="btn px-20 btn-success" onclick="enterportal();" style="margin-top:10px;">View Assignment</button> -->
-            </div>
-            </div>
-            <!-- End Panel Web Designer -->
-        </div>
+        
              
     </div>
 
@@ -473,7 +457,7 @@
       document.getElementById('processing-div').style.display="none";
     }
             function enterportal(key){
-                const moduleId = 2
+                const moduleId = key
                 window.location.href = "/assignments/" + moduleId;
 
             }
@@ -555,7 +539,7 @@
                         document.getElementById("photo").src = response.data["a"][0].photo;
                         sessionStorage.setItem("track_name", response.data.a[0].track_name);
                         try{
-                            document.getElementById(`${response.data.a[0].track_name}`).disabled = false;
+                            // document.getElementById(`${response.data.a[0].track_name}`).disabled = false;
                             sessionStorage.setItem("redirect", "dashboard");
                         }
                         catch(err){
@@ -605,10 +589,39 @@
               window.reload();
             }
 
+            let courseId = 12345
+            let course = {}
 
-            axios.get('https://early-steps.herokuapp.com/getAllAssignment')
-            .then(res => {
-                console.log('Response data : ', res.data)
+            axios.get(url + '/getUserData/' + sessionStorage.getItem('user_id'))
+            .then(response => {
+                console.log('Response User : ', response.data.a[0])
+                courseId = response.data.a[0].course_id
+
+                
+                axios.get(url + '/getCourse/' + courseId)
+                .then(res => {
+                    course = res.data
+                    console.log('Course', course)
+                    $('.spinner').css('display', 'none')
+                    document.querySelector('#coursesRow').innerHTML += `
+                        <div class="col-xxl-3 col-xl-6" >
+                            <span class="w-100 p-3">${course.course_date}</span>
+                            <div class="card card-shadow">
+                                <div class="card-block text-center bg-white p-40">
+                                    <div class="avatar avatar-100 mb-10" style='width : 35%;'>
+                                        <img src="../../assets/images/assignment.jpg" alt="" style="border-radius:0px;">
+                                    </div>
+                                    <p id="coursename1" class="font-size-20 blue-grey-700">${course.course_name}</p>
+                                    
+                                    <p class="mb-35">${course.course_details}</p>
+                                    
+                                    <button type="button" class="proceedButton textLight" onclick="enterportal(${course.course_id});"  >View Assignments</button><br>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                })
+
             })
             
 

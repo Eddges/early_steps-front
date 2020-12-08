@@ -327,8 +327,30 @@
 
         document.getElementById('processing-div').style.display="block";
         document.getElementById('message-processing').innerHTML="Processing...";
+        
 
-          axios.post( url+'/doUserData', {
+        console.log('Log : ', {
+          bootcamp_id: 1234,
+          course_id: 12345,
+          user_id: sessionStorage.getItem("user_id"),
+          name: nameValue,
+          gender: genderValue,
+          is_otp_verified: true,
+          is_email_verified: true,
+          photo: photoValue,
+          organization: organizationValue,
+          university: universityValue,
+          graduation_year: graduationYearValue,
+          linkedIn_profile: linkedInProfileValue,
+          t_shirt_size: t_shirt_sizeValue,
+          address: addressValue,
+          public_sharing: "1",
+          github_handle: github_handleValue,
+          track_name: "NONE"
+      })
+
+
+          axios.post( url+'doUserData', {
             bootcamp_id: 1234,
             course_id: 12345,
             user_id: sessionStorage.getItem("user_id"),

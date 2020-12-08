@@ -79,8 +79,8 @@
           <i class="icon wb-more-horizontal" aria-hidden="true"></i>
         </button>
             <div class="navbar-brand navbar-brand-center site-gridmenu-toggle">
-                <a href="./home" style="color:black"><img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
-                <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span></a>
+                <a href="./home" style="color:black"><img class="navbar-brand-logo" src="../../assets/images/EarlyStepsLogo.webp" alt="...">
+                </a>
             </div>
             
         </div>
@@ -619,7 +619,7 @@
                 submittedAssignments = [...new Set(submittedAssignments)]
                 console.log('Submitted Asses', submittedAssignments)
 
-                axios.get('https://early-steps.herokuapp.com/getModuleAllAssignment/2')
+                axios.get('https://early-steps.herokuapp.com/getModuleAllAssignment/37')
                 .then(res => {
                     console.log(res.data)
                     $('.spinner').css('display', 'none')

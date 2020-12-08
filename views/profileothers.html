@@ -8,7 +8,7 @@
     <meta name="description" content="Best Coding Bootcamp in India">
     <meta name="author" content="CodeAsylums">
 
-    <title>CodeAsylums</title>
+    <title>Early Steps</title>
 
     <link rel="apple-touch-icon" href="../../assets/images/logo-ca.png">
     <link rel="shortcut icon" href="../../assets/images/logo-ca.png">
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../../../global/vendor/intro-js/introjs.css">
     <link rel="stylesheet" href="../../../global/vendor/slidepanel/slidePanel.css">
     <link rel="stylesheet" href="../../../global/vendor/flag-icon-css/flag-icon.css">
-    <link rel="stylesheet" href="../../../global/vendor/waves/waves.css">
+    <!-- <link rel="stylesheet" href="../../../global/vendor/waves/waves.css"> -->
     <link rel="stylesheet" href="../../../global/vendor/jquery-wizard/jquery-wizard.css">
     <link rel="stylesheet" href="../../../global/vendor/formvalidation/formValidation.css">
 
@@ -195,8 +195,8 @@
           <i class="icon wb-more-horizontal" aria-hidden="true"></i>
         </button>
             <div class="navbar-brand navbar-brand-center site-gridmenu-toggle active" aria-expanded="true">
-                <a href="./home" style="color:black"><img class="navbar-brand-logo" src="../../assets/images/logo-ca.png" alt="...">
-                <span class="navbar-brand-text hidden-xs-down"> CodeAsylums</span></a>
+                <a href="./home" style="color:black"><img class="navbar-brand-logo" src="../../assets/images/EarlyStepsLogo.webp" alt="Early Steps">
+                </a>
             </div>
             
         </div>
@@ -260,14 +260,7 @@
                 <div class="scrollable-content" style="width: 260px;">
                     <ul class="site-menu" data-plugin="menu" style="transform: translate3d(0px, 0px, 0px);">
                         <li class="site-menu-category"></li>
-                        <li class="site-menu-item has-sub">
-                            <a href="/home">
-                                <i class="site-menu-icon wb-home" style="color:#23b7e5" aria-hidden="true"></i>
-                                <span class="site-menu-title">Home</span>
-                                <span class="site-menu-arrow"></span>
-                            </a>
-                           
-                        </li>
+
                         
                         <li class="site-menu-item active">
                             <a href="/profileothers">
@@ -278,24 +271,6 @@
 
                         </li>
 
-                        <li class="site-menu-item ">
-                            <a href="/assignments">
-                                <i class="site-menu-icon wb-layout" style="color:#27c24c" aria-hidden="true"></i>
-                                <span class="site-menu-title">Assignments</span>
-                                <span class="site-menu-arrow"></span>
-                            </a>
-
-                        </li>
-                        
-
-                        <li class="site-menu-item ">
-                            <a href="/studymaterials">
-                                <i class="site-menu-icon wb-library" style="color:#f19a5e" aria-hidden="true"></i>
-                                <span class="site-menu-title">Study Resources</span>
-                                <span class="site-menu-arrow"></span>
-                            </a>
-
-                        </li>
 
 
                     </ul>
@@ -723,7 +698,11 @@
     <script src="../../assets/examples/js/forms/wizard.js"></script>
 
     <script>
-         var url= 'https://early-steps.herokuapp.com/';
+        //  var url= 'https://early-steps.herokuapp.com/';
+
+
+        var url= 'https://api.codeasylums.com/';
+
         //     if (sessionStorage.getItem("loggedCA") != md5("true")) {
         //         console.log("GLOBAL");
         //         window.location.href = "./login";
@@ -1113,6 +1092,7 @@
                     document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
 
+                console.log("Post request on : ", url+'/doFeedback')
                 axios.post(url+'/doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue+"~"+date,

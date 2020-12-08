@@ -348,7 +348,7 @@
                 <hr />
 
                 <div id="videoDisplay"></div>
-                <h4 style='display: none;' id="videoDisplayHeading"></h4>
+                <h4 style='display: none;' class='flex-column' id="videoDisplayHeading"></h4>
                 <div style='display: none;' class="vid2Div" id='vid2Div' style='position : relative; width : 400px;'>
                     <!-- <div
                         id="videoVignette"
@@ -717,7 +717,8 @@
         let redirectionFlag = false
         let assignmentCoins = 0
 
-
+        let vidURL = ''
+        
         axios.get(`https://early-steps.herokuapp.com/getAssignment/${docURL}`)
         .then(res => {
             $('.spinner').css('display', 'none')
@@ -740,90 +741,108 @@
                 $('#vid2Div').css('display', 'flex')
                 $('#toggleRecord').css('display', '')
 
-            // Video recording, storing and playback
+                // Video recording, storing and playback
 
-            let constraintObj = {
-                audio : false,
-                video : {
-                    facingMode : 'user'
-                }
-            }
-
-            let vidURL = ''
-
-
-            navigator.mediaDevices.getUserMedia(constraintObj)
-            .then(mediaStreamObj => {
-                let video = document.querySelector('#vid1')
-                video.srcObject = mediaStreamObj
-
-                video.onloadedmetadata = (ev) => {
-                    video.play()
+                let constraintObj = {
+                    audio : false,
+                    video : {
+                        facingMode : 'user'
+                    }
                 }
 
-                const start = document.getElementById('btnStart')
-                const stop  = document.getElementById('btnStop')
-                const vidSave = document.getElementById('vid2')
-                // const vignette = document.getElementById('videoVignette')
-                const recordButton = document.querySelector('#toggleRecord')
-                const recordButtonAgain = document.querySelector('#toggleRecordAgain')
-                const mediaRecorder = new MediaRecorder(mediaStreamObj)
-                let chunks = []
+            
 
-                start.addEventListener('click', e => {
-                    start.style.display = 'none'
-                    stop.style.display = 'flex'
-                    // $('#btnStart').css('display', 'none')
-                    // $('#btnStop').css('display', 'flex')
-                    mediaRecorder.start()
-                    console.log('Recording started')
+
+                navigator.mediaDevices.getUserMedia(constraintObj)
+                .then(mediaStreamObj => {
+                    let video = document.querySelector('#vid1')
+                    video.srcObject = mediaStreamObj
+
+                    video.onloadedmetadata = (ev) => {
+                        video.play()
+                    }
+
+                    const start = document.getElementById('btnStart')
+                    const stop  = document.getElementById('btnStop')
+                    const vidSave = document.getElementById('vid2')
+                    // const vignette = document.getElementById('videoVignette')
+                    const recordButton = document.querySelector('#toggleRecord')
+                    const recordButtonAgain = document.querySelector('#toggleRecordAgain')
+                    const mediaRecorder = new MediaRecorder(mediaStreamObj)
+                    let chunks = []
+
+                    start.addEventListener('click', e => {
+                        start.style.display = 'none'
+                        stop.style.display = 'flex'
+                        // $('#btnStart').css('display', 'none')
+                        // $('#btnStop').css('display', 'flex')
+                        mediaRecorder.start()
+                        console.log('Recording started')
+                    })
+
+                    stop.addEventListener('click', e => {
+                        start.style.display = 'flex'
+                        stop.style.display = 'none'
+                        // vidSave.style.display = 'flex'
+                        // vignette.style.display = 'none'
+
+                        recordButton.style.display = 'none'
+                        recordButtonAgain.style.display = 'flex'
+                        mediaRecorder.stop()
+                        console.log('Recording stopped')
+                    })
+
+                    mediaRecorder.ondataavailable = e => {
+                        console.log('Pushing data into chunk')
+                        chunks.push(e.data)
+                    }
+
+
+                    mediaRecorder.onstop = e => {
+
+                        console.log('MediaRecorder stopped')
+                        let blob = new Blob(chunks, { 'type' : 'video/mp4' })
+                        chunks = []
+
+                        let videoURL = window.URL.createObjectURL(blob)
+                        vidURL = videoURL
+                        console.log('VideoURL : ', videoURL)
+                        vidSave.src = videoURL
+                    }
+
                 })
-
-                stop.addEventListener('click', e => {
-                    start.style.display = 'flex'
-                    stop.style.display = 'none'
-                    // vidSave.style.display = 'flex'
-                    // vignette.style.display = 'none'
-
-                    recordButton.style.display = 'none'
-                    recordButtonAgain.style.display = 'flex'
-                    mediaRecorder.stop()
-                    console.log('Recording stopped')
-                })
-
-                mediaRecorder.ondataavailable = e => {
-                    console.log('Pushing data into chunk')
-                    chunks.push(e.data)
-                }
-
-
-                mediaRecorder.onstop = e => {
-
-                    console.log('MediaRecorder stopped')
-                    let blob = new Blob(chunks, { 'type' : 'video/mp4' })
-                    chunks = []
-
-                    let videoURL = window.URL.createObjectURL(blob)
-                    vidURL = videoURL
-                    console.log('VideoURL : ', videoURL)
-                    vidSave.src = videoURL
-                }
-
-            })
 
             // Video end
             }
 
             JSON.parse(res.data.assignment_content_text).map((iterator, index) => {
                 written[iterator.questionId] = iterator.question
-                writtenDisplay.innerHTML += `
-                    <div class="form-group">
-                        <h4>${iterator.question}</h4>
-                        <textarea id='${iterator.questionId}' style="width : 80%; height : 150px;"></textarea>
-                        <small id="emailHelp" class="form-text text-muted">Elaborate with justifications.</small>
-                    </div>
-                    <hr />        
-                `
+                if(iterator.assetURL) {
+                    writtenDisplay.innerHTML += `
+                        <br />
+                        <hr />
+                        <div class="form-group">
+                            <img src='${iterator.assetURL}' style='width : 200px;' />
+                            <h4>${iterator.question}</h4>
+                            <textarea id='${iterator.questionId}' style="width : 80%; height : 150px;"></textarea>
+                            <small id="emailHelp" class="form-text text-muted">Elaborate with justifications.</small>
+                        </div>
+                        <hr />        
+                    `
+                }
+                else{
+                    writtenDisplay.innerHTML += `
+                        <br />
+                        <hr />
+                        <div class="form-group">
+                            <h4>${iterator.question}</h4>
+                            <textarea id='${iterator.questionId}' style="width : 80%; height : 150px;"></textarea>
+                            <small id="emailHelp" class="form-text text-muted">Elaborate with justifications.</small>
+                        </div>
+                        <hr />        
+                    `
+                }
+
             })
 
             JSON.parse(res.data.assignment_content_mcq).map(iterator => {
@@ -852,7 +871,13 @@
             })
 
             vidQuestionId = videoQuestion.videoId
-            videoDisplayHeading.innerHTML = videoQuestion.question
+            if(videoQuestion.assetURL) {
+                videoDisplayHeading.innerHTML = `<img src='${videoQuestion.assetURL}' style='width : 200px' />` +  videoQuestion.question
+            }
+            else{
+                videoDisplayHeading.innerHTML = videoQuestion.question
+            }
+            
 
             $('#completeModal').modal()
 
