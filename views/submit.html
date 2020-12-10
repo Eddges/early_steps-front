@@ -60,6 +60,28 @@
     <script>
         Breakpoints();
     </script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+    <script type="text/javascript">
+    //Bucket Configurations
+        var bucketName = 'earlystepsfilestorage';
+        var bucketRegion = 'ap-south-1';
+        var IdentityPoolId = 'ap-south-1:a0022861-ee88-4d79-9545-32e9e77a5ff0';
+        
+        AWS.config.update({
+            region: bucketRegion,
+            credentials: new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: IdentityPoolId
+            })
+        });
+
+        var s3 = new AWS.S3({
+            apiVersion: '2006-03-01',
+            params: {Bucket: bucketName}
+        });
+    </script>
 </head>
 
 <body class="animsition dashboard">
@@ -634,11 +656,87 @@
               window.reload();
             }
 
+            function s3upload(file) {
+                // var fileName = file.name;
+                var fileName = docURL + '.mp4'
+                var filePath = 'assignmentSubmission/' + sessionStorage.getItem('user_id') + fileName;
+                var fileUrl = 'https://' + bucketRegion + '.amazonaws.com/my-first-bucket/' +  filePath;
+                console.log('Filename : ', fileName)
+                let uploadedURL = ''
+                s3.upload({
+                    Bucket: bucketName,
+                    Key: filePath,
+                    Body: file,
+                    ACL: 'public-read'
+                }, function(err, data) {
+                        if(err) {
+                            console.log('Error : ', err)
+                        }
+                        else{
+                            console.log('Successfully Uploaded!', data);
+                            document.getElementById('vid2').src = `${data.Location}`
+                            vidURLUpload = data.Location
+                            for (iterator in written) {
+                                writtenSubmission[iterator] = ($(`#${iterator}`).val())
+                            }
+
+                            const videoSubmission = {
+                                vidURL: vidURLUpload,
+                                questionId: vidQuestionId
+                            }
+
+                            console.log('MCQ : ', mcqSubmission)
+                            console.log('Written : ', writtenSubmission)
+                            console.log('VideoURL : ', videoSubmission)
+
+                            console.log('Final : ', {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission})
+                            
+                            axios.post('https://early-steps.herokuapp.com/createSubmission', {
+                                user_assignment_id: studentId,
+                                assignment_id: assignmentId,
+                                submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission}
+                            })
+                            .then(res => {
+                                console.log('Response data : ', res.data)
+                                if(res.data==='True'){
+                                    // alert('Submitted Successfully!')
+                                    // window.location.replace('https://glacial-spire-45143.herokuapp.com/assignments')
+                                    if(redirectionFlag) {
+                                        $('#spanCoins').html(`${assignmentCoins} coins!`)
+                                        $('#successModal').fadeIn()
+                                        $('#ModalContinueButton').html(`Unlock Level ${nextLevel}`)
+                                        $('#ModalContinueButton').on('click', () => {
+                                            window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
+                                        })
+                                        
+                                    }
+                                    else{
+                                        $('#spanCoins').html(`You have finished all assignments`)
+                                        $('#spanCoins').css('font-size', '1.5rem')
+                                        $('#ModalContinueButton').html(`Continue`)
+                                        $('#submitHeader2').css('display', 'none')
+                                        $('#successModal').fadeIn()
+                                        $('#ModalContinueButton').on('click', () => {
+                                            window.location.replace(`http://localhost:3000/assignments/`)
+                                        })
+                                    }
+                                }
+                            })
+                            .catch(err => {
+                                console.log('Error : ', err)
+                            })
+                        }
+                        
+                })
+
+                
+            };
+
 
         
 
         // Displaying data on the page
-
+        let videoUploadFlag = false
         const objectiveDisplay = document.querySelector('#objectiveDisplay')
         const writtenDisplay = document.querySelector('#writtenDisplay')
         const videoDisplay = document.querySelector('#videoDisplay')
@@ -666,6 +764,8 @@
         let assignmentCoins = 0
 
         let vidURL = ''
+        let vidBlob = null
+        let vidURLUpload = 'xxxxx'
         
         axios.get(`https://early-steps.herokuapp.com/getAssignment/${docURL}`)
         .then(res => {
@@ -686,7 +786,7 @@
             }
 
             if(res.data.assignment_content_video !== '{}') {
-                
+                videoUploadFlag = true
                 $('#videoHeader').css('display', 'flex')
                 $('#videoDisplayHeading').css('display', 'flex')
                 $('#vid2Div').css('display', 'flex')
@@ -702,7 +802,6 @@
                 }
 
             
-
 
                 navigator.mediaDevices.getUserMedia(constraintObj)
                 .then(mediaStreamObj => {
@@ -759,6 +858,7 @@
                         vidURL = videoURL
                         console.log('VideoURL : ', videoURL)
                         vidSave.src = videoURL
+                        vidBlob = blob
                     }
 
                 })
@@ -855,67 +955,61 @@
 
         $('#submitForm').on('click', () => {
             console.log('Button clicked')
-            
-            for (iterator in written) {
-                writtenSubmission[iterator] = ($(`#${iterator}`).val())
+
+            if(videoUploadFlag) {
+                s3upload(vidBlob)
             }
 
-            const videoSubmission = {
-                vidURL: vidURL,
-                questionId: vidQuestionId
-            }
+            else{
 
-            console.log('MCQ : ', mcqSubmission)
-            console.log('Written : ', writtenSubmission)
-            console.log('VideoURL : ', videoSubmission)
-
-            console.log('Final : ', {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission})
-            
-            axios.post('https://early-steps.herokuapp.com/createSubmission', {
-                user_assignment_id: studentId,
-                assignment_id: assignmentId,
-                submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission}
-            })
-            .then(res => {
-                console.log('Response data : ', res.data)
-                if(res.data==='True'){
-                    // alert('Submitted Successfully!')
-                    // window.location.replace('https://glacial-spire-45143.herokuapp.com/assignments')
-                    if(redirectionFlag) {
-                        $('#spanCoins').html(`${assignmentCoins} coins!`)
-                        $('#successModal').fadeIn()
-                        $('#ModalContinueButton').html(`Unlock Level ${nextLevel}`)
-                        $('#ModalContinueButton').on('click', () => {
-                            window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
-                        })
-                        
-                    }
-                    else{
-                        $('#spanCoins').html(`You have finished all assignments`)
-                        $('#spanCoins').css('font-size', '1.5rem')
-                        $('#ModalContinueButton').html(`Continue`)
-                        $('#submitHeader2').css('display', 'none')
-                        $('#successModal').fadeIn()
-                        $('#ModalContinueButton').on('click', () => {
-                            window.location.replace(`http://localhost:3000/assignments/`)
-                        })
-                    }
+                for (iterator in written) {
+                    writtenSubmission[iterator] = ($(`#${iterator}`).val())
                 }
-            })
-            .catch(err => {
-                console.log('Error : ', err)
-            })
-        })
-            
-        // axios.get('https://early-steps.herokuapp.com/getAllSubmission')
-        // .then(res => {
-        //     console.log('All assignment data : ', res.data)
-        //     res.data.a.map((iterator, index) => {
-        //         if(iterator.module_id===moduleId){
 
-        //         }
-        //     })
-        // })
+                const videoSubmission = {}
+                console.log('MCQ : ', mcqSubmission)
+                console.log('Written : ', writtenSubmission)
+                console.log('VideoURL : ', videoSubmission)
+
+                console.log('Final : ', {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission})
+                
+                axios.post('https://early-steps.herokuapp.com/createSubmission', {
+                    user_assignment_id: studentId,
+                    assignment_id: assignmentId,
+                    submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission}
+                })
+                .then(res => {
+                    console.log('Response data : ', res.data)
+                    if(res.data==='True'){
+                        // window.location.replace('https://glacial-spire-45143.herokuapp.com/assignments')
+                        if(redirectionFlag) {
+                            $('#spanCoins').html(`${assignmentCoins} coins!`)
+                            $('#successModal').fadeIn()
+                            $('#ModalContinueButton').html(`Unlock Level ${nextLevel}`)
+                            $('#ModalContinueButton').on('click', () => {
+                                window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
+                            })
+                            
+                        }
+                        else{
+                            $('#spanCoins').html(`You have finished all assignments`)
+                            $('#spanCoins').css('font-size', '1.5rem')
+                            $('#ModalContinueButton').html(`Continue`)
+                            $('#submitHeader2').css('display', 'none')
+                            $('#successModal').fadeIn()
+                            $('#ModalContinueButton').on('click', () => {
+                                window.location.replace(`http://localhost:3000/assignments/`)
+                            })
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.log('Error : ', err)
+                })
+            }
+            
+        })
+
 
         axios.get('https://early-steps.herokuapp.com/getAllAssignment')
         .then(res => {
@@ -931,6 +1025,9 @@
             })
 
         })
+
+
+        
 
         </script>
 </body>
