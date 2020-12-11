@@ -96,26 +96,42 @@
               <img class="brand-img" src="../../assets//images/EarlyStepsLogo.webp" alt="..." style="width:80%">
               
             </div>
-            <form>
-              <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input onclick="clearAlert()" id="username" type="text" class="form-control" name="username" required="required"/>
-                <label class="floating-label">UserName</label>
-              </div>
-              <div class="form-group form-material floating" data-plugin="formMaterial">
+            <form style='padding-top : 15px;'>
+              <div class="form-group form-material floating" data-plugin="formMaterial" style='margin : 20px 0px !important;'>
                 <input onclick="clearAlert()" id="email" type="email" class="form-control" name="email" required="required"/>
                 <label class="floating-label">Email</label>
               </div>
-              <div class="form-group form-material floating" data-plugin="formMaterial">
+              <div class="form-group form-material floating" data-plugin="formMaterial" style='margin : 20px 0px !important;'>
                 <input onclick="clearAlert()" id="phone" type="phone" class="form-control" name="phone" required="required"/>
-                <label class="floating-label">Phone No</label>
+                <label class="floating-label">Phone</label>
               </div>
-              <div class="form-group form-material floating" data-plugin="formMaterial">
+              <!-- <div class="form-group form-material floating" data-plugin="formMaterial">
+                <input onclick="clearAlert()" id="username" type="text" class="form-control" name="username" required="required" onfocus="(this.type='date')"/>
+                <label class="floating-label">UserName</label>
+              </div> -->
+              <div class="form-group form-material floating" data-plugin="formMaterial" style='margin : 20px 0px !important;'>
+                <input onclick="clearAlert()" id="username" type="text" class="form-control" name="username" required="required"/>
+                <label class="floating-label">First Name</label>
+              </div>
+              <div class="form-group form-material floating" data-plugin="formMaterial" style='margin : 20px 0px !important;'>
+                <input onclick="clearAlert()" id="lastname" type="text" class="form-control" name="username" required="required"/>
+                <label class="floating-label">Last Name</label>
+              </div>
+              <div class="form-group form-material floating" data-plugin="formMaterial" style='margin : 20px 0px !important;'>
+                <input onclick="clearAlert()" id="dob" type="text" class="form-control" name="username" required="required" onfocus="(this.type='date')"/>
+                <label class="floating-label">Date of Birth</label>
+              </div>
+              <div class="form-group form-material floating" data-plugin="formMaterial" style='margin : 20px 0px !important;'>
+                <input onclick="clearAlert()" id="grade" type="number" class="form-control" name="username" required="required"/>
+                <label class="floating-label">Class / Grade</label>
+              </div>
+              <div class="form-group form-material floating" data-plugin="formMaterial" style='margin : 20px 0px !important;'>
                 <input onclick="clearAlert()" id="password" type="password" class="form-control" name="password" required="required"/>
                 <label class="floating-label">Password</label>
               </div>
-              <div class="form-group form-material floating" data-plugin="formMaterial">
+              <div class="form-group form-material floating" data-plugin="formMaterial" style='margin : 20px 0px !important;'>
                 <input onclick="clearAlert()" id="retypePassword" type="password" class="form-control" name="PasswordCheck" required="required"/>
-                <label class="floating-label">Re-enter Password</label>
+                <label class="floating-label">Confirm Password</label>
               </div>
               <!-- <div class="form-group form-material" data-plugin="formMaterial">
                 <label class="form-control-label"></label>
@@ -341,6 +357,7 @@
               }
                 )  
         })
+
 
         if (flag1 === false && flag2 === false){
            if (passwordValue === retypepasswordValue) {
