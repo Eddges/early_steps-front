@@ -304,10 +304,10 @@
                             </a>
 
                         </li>
-                        <li class="site-menu-item ">
+                        <li class="site-menu-item " id='sessionLink'>
                             <a href="/dashboard">
                                 <i class="site-menu-icon wb-calendar" style="color:#528ff0" aria-hidden="true"></i>
-                                <span class="site-menu-title">Classes</span>
+                                <span class="site-menu-title">Live Sessions</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
 
@@ -324,7 +324,7 @@
 
                         </li> -->
 
-                        <li class="site-menu-item ">
+                        <li class="site-menu-item " id='assignmentLink'>
                             <a href="/assignments">
                                 <i class="site-menu-icon wb-star-outline" style="color:#23b7e5" aria-hidden="true"></i>
                                 <span class="site-menu-title">Assignments</span>
@@ -340,13 +340,13 @@
                           </a>
                         </li> -->
 
-                        <li class="site-menu-item  ">
+                        <!-- <li class="site-menu-item  ">
                             <a href="/studymaterials_dashboard ">
                                 <i class="site-menu-icon wb-library" style="color:#f19a5e" aria-hidden="true"></i>
                                 <span class="site-menu-title">Study Resources</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                     </li>
                     </ul>
@@ -1185,13 +1185,27 @@
                     });
             }
 
-$('#exampleFormContainer').keypress(function (e) {                                       
-       if (e.which == 13) {
-            e.preventDefault();
-            // console.log("prevent default on Enter")
-       }
-});
+        $('#exampleFormContainer').keypress(function (e) {                                       
+            if (e.which == 13) {
+                    e.preventDefault();
+                    // console.log("prevent default on Enter")
+            }
+        });
+        
+        document.querySelector('#sessionLink').style.display = 'none'
+        document.querySelector('#assignmentLink').style.display = 'none'
 
+        axios.get(url + '/getUserData/' + sessionStorage.getItem('user_id'))
+        .then(response => {
+            console.log('Response User : ', response.data.a[0])
+            const data = response.data.a[0]
+
+            if(data.course_id!=='12345') {
+                document.querySelector('#sessionLink').style.display = 'flex'
+                document.querySelector('#assignmentLink').style.display = 'flex'
+            }
+
+        })
 
             
     </script>

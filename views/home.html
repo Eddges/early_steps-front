@@ -159,10 +159,10 @@
                             </a>
 
                         </li>
-                        <li class="site-menu-item ">
+                        <li class="site-menu-item " id='sessionLink'>
                             <a href="/dashboard">
                                 <i class="site-menu-icon wb-calendar" style="color:#528ff0" aria-hidden="true"></i>
-                                <span class="site-menu-title">Classes</span>
+                                <span class="site-menu-title">Live Sessions</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
 
@@ -179,7 +179,7 @@
 
                         </li> -->
 
-                        <li class="site-menu-item ">
+                        <li class="site-menu-item " id='assignmentLink'>
                             <a href="/assignments">
                                 <i class="site-menu-icon wb-star-outline" style="color:#23b7e5" aria-hidden="true"></i>
                                 <span class="site-menu-title">Assignments</span>
@@ -195,13 +195,13 @@
                           </a>
                         </li> -->
 
-                        <li class="site-menu-item  ">
+                        <!-- <li class="site-menu-item  ">
                             <a href="/studymaterials_dashboard ">
                                 <i class="site-menu-icon wb-library" style="color:#f19a5e" aria-hidden="true"></i>
                                 <span class="site-menu-title">Study Resources</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                     </li>
                     </ul>
@@ -278,12 +278,27 @@
                     <span class='treasureHeading'>You have</span>
 
                 </div> -->
+
+                <div class='spinner'>
+                    <div class="loader"></div>
+                </div>
                 
-                <div class="ModalSubmission">
+                <div class="ModalSubmission" id='treasureChest'>
                     <span class='SubmitHeader'>Treasure Chest</span>
                     <img class='SubmitIllustration' src="../../assets/images/treasure.jpg" alt='Treasure Chest' />
                     <span id='submitHeader2' class='SubmitHeader2'>You have</span>
                     <span id='spanCoins' class='SubmitCoins'></span>
+                </div>
+
+                <div class="ModalSubmission" id='lockedScreen'>
+                    <img class='SubmitIllustration' src="../../assets/images/welcome.jpg" alt='Treasure Chest' />
+                    <span class='SubmitHeader' id='lockedName'></span>
+                    <p id='submitHeader2' class=''>We are so excited to have you in our program!</p>
+                    <p class='mt-5' >We hope you are excited too</p>
+                    <p class='mt-5' >What you will find here: </p>
+                    <p class='mt-5' >48 hours before every live session, you will be able to access the study material</p>
+                    <p class='mt-5' >24 hours after each session, you will be able to access the assignment. You must complete the assignment before the next session.</p>
+                    <p class='mt-5' >PLEASE BE ONLINE ON TIME!</p>
                 </div>
     
           
@@ -515,16 +530,35 @@
 
         console.log(sessionStorage.getItem('user_id'))
 
+        document.querySelector('#lockedScreen').style.display = 'none'
+        document.querySelector('#treasureChest').style.display = 'none'
+        document.querySelector('#sessionLink').style.display = 'none'
+        document.querySelector('#assignmentLink').style.display = 'none'
+
         axios.get(herokuAPI + '/getUserData/' + sessionStorage.getItem('user_id'))
         .then(response => {
+            document.querySelector('.spinner').style.display = 'none'
             console.log('Response User : ', response.data.a[0])
             const data = response.data.a[0]
 
-            if(data.total_coins) {
-                totalCoins = data.totalCoins
+            if(data.course_id!=='12345') {
+                document.querySelector('#treasureChest').style.display = ''
+                document.querySelector('#lockedScreen').style.display = 'none'
+                document.querySelector('#sessionLink').style.display = 'flex'
+            document.querySelector('#assignmentLink').style.display = 'flex'
+                if(data.total_coins) {
+                    totalCoins = data.totalCoins
+                }
+                document.querySelector('#spanCoins').innerHTML = totalCoins + ' coins!'
             }
 
-            document.querySelector('#spanCoins').innerHTML = totalCoins + ' coins!'
+            else{
+                document.querySelector('#treasureChest').style.display = 'none'
+                document.querySelector('#lockedScreen').style.display = ''
+                document.querySelector('#lockedName').innerHTML = `Hi ${data.name}`
+            }
+
+            
 
         })
 
