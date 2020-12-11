@@ -929,7 +929,16 @@ var url= '<%= process.env.URL %>';
                        // console.log(error);
                     });
             }
-        </script>        
-      </script>
+
+
+
+            let courseId = sessionStorage.getItem('course_id')
+            axios.get(url + `/getCourseByBootacampId/`+ courseId)
+            .then(res => {
+              console.log(res.data)
+            })
+        
+      </script>        
+
   </body>
 </html>
