@@ -603,9 +603,12 @@
                     console.log(res.data)
                     $('.spinner').css('display', 'none')
                     res.data.map(iterator => {
+                        const moduleDate = new Date(iterator.course_date)
+                        const currDate = new Date()
+                        const displayDate = String(moduleDate).split(' ').splice(0, 5).join(' ').split(':').splice(0, 2).join(':')
                         document.querySelector('#coursesRow').innerHTML += `
                             <div class="col-xxl-3 col-xl-6" >
-                                <span class="w-100 p-3">${iterator.course_date}</span>
+                                <span class="w-100 p-3">${displayDate}</span>
                                 <div class="card card-shadow">
                                     <div class="card-block text-center bg-white p-40">
                                         <div class="avatar avatar-100 mb-10" style='width : 35%;'>
@@ -615,11 +618,14 @@
                                         
                                         <p class="mb-35">${iterator.course_details}</p>
                                         
-                                        <button type="button" class="proceedButton textLight" onclick="enterportal(${iterator.course_id});"  >View Assignments</button><br>
+                                        <button type="button" class="proceedButton textLight" id='module${iterator.course_id}' onclick="enterportal(${iterator.course_id});"  >View Assignments</button><br>
                                     </div>
                                 </div>
                             </div>
                         `
+                        if(moduleDate>=currDate) {
+                            document.querySelector(`#module${iterator.course_id}`).setAttribute('disabled', 'true')
+                        }
                     })
                 })
 
