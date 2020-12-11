@@ -135,6 +135,19 @@
   width: 30%;
 }
 
+.lockedScreenHome {
+  padding: 0px;
+}
+
+.lockedScreenHome img {
+  width: 50%;
+}
+
+.lockedScreenHome p {
+  max-width: 350px;
+  text-align: center;
+}
+
 .spinner {
   width: 100%;
   min-height: 60vh;
@@ -212,6 +225,19 @@
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 576px) {
+  .ModalSubmission img {
+    width: 50%;
+  }
+  .lockedScreenHome {
+    padding: 30px;
+    padding-top: 20px;
+  }
+  .lockedScreenHome img {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=styles.css.map */

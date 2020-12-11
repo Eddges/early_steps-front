@@ -303,8 +303,8 @@
                     <div class="loader"></div>
                 </div>
 
-                <h4 id='objectiveHeader' style='display : none;'>Choose the correct option</h4>
-                <hr/>
+                <!-- <h4 id='objectiveHeader' style='display : none;'>Choose the correct option</h4>
+                <hr/> -->
 
 
                 <div id='objectiveDisplay'></div>
@@ -315,7 +315,7 @@
 
 
                 <h3 id='videoHeader' style='display: none;'>Video Assignment</h3>
-                <hr />
+                <!-- <hr /> -->
 
                 <div id="videoDisplay"></div>
                 <h4 style='display: none;' class='flex-column' id="videoDisplayHeading"></h4>
@@ -689,8 +689,12 @@
                             console.log('Written : ', writtenSubmission)
                             console.log('VideoURL : ', videoSubmission)
 
-                            console.log('Final : ', {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission})
-                            
+                            console.log('Final : ', {
+                                user_assignment_id: studentId,
+                                assignment_id: assignmentId,
+                                submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission}
+                            })
+                                        
                             axios.post('https://early-steps.herokuapp.com/createSubmission', {
                                 user_assignment_id: studentId,
                                 assignment_id: assignmentId,
@@ -939,7 +943,9 @@
 
         // Getting data back from form
 
-        const studentId = 5
+        const studentId = sessionStorage.getItem('user_id')
+        // const studentId = 1
+
         const assignmentId = docURL
         const mcqSubmission = {}
         const writtenSubmission = {}
@@ -973,7 +979,11 @@
                 console.log('Written : ', writtenSubmission)
                 console.log('VideoURL : ', videoSubmission)
 
-                console.log('Final : ', {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission})
+                console.log('Final : ', {
+                    user_assignment_id: studentId,
+                    assignment_id: assignmentId,
+                    submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission}
+                })
                 
                 axios.post('https://early-steps.herokuapp.com/createSubmission', {
                     user_assignment_id: studentId,

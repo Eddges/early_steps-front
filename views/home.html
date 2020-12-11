@@ -219,6 +219,17 @@
 
     <!-- Page -->
     <div class="page">
+
+        <div class="ModalSubmission lockedScreenHome" id='lockedScreen'>
+            <img class='SubmitIllustration' src="../../assets/images/welcome.jpg" alt='Treasure Chest' />
+            <span class='SubmitHeader' id='lockedName'></span>
+            <p id='submitHeader2' class=''>We are so excited to have you in our program!</p>
+            <p class='mt-5' >We hope you are excited too</p>
+            <p class='mt-5' >What you will find here: </p>
+            <p class='mt-5' >48 hours before every live session, you will be able to access the study material</p>
+            <p class='mt-5' >24 hours after each session, you will be able to access the assignment. You must complete the assignment before the next session.</p>
+            <p class='mt-5' >PLEASE BE ONLINE ON TIME!</p>
+        </div>
    
 
         <div class="page-content container-fluid">
@@ -290,16 +301,7 @@
                     <span id='spanCoins' class='SubmitCoins'></span>
                 </div>
 
-                <div class="ModalSubmission" id='lockedScreen'>
-                    <img class='SubmitIllustration' src="../../assets/images/welcome.jpg" alt='Treasure Chest' />
-                    <span class='SubmitHeader' id='lockedName'></span>
-                    <p id='submitHeader2' class=''>We are so excited to have you in our program!</p>
-                    <p class='mt-5' >We hope you are excited too</p>
-                    <p class='mt-5' >What you will find here: </p>
-                    <p class='mt-5' >48 hours before every live session, you will be able to access the study material</p>
-                    <p class='mt-5' >24 hours after each session, you will be able to access the assignment. You must complete the assignment before the next session.</p>
-                    <p class='mt-5' >PLEASE BE ONLINE ON TIME!</p>
-                </div>
+                
     
           
 
@@ -545,11 +547,12 @@
                 document.querySelector('#treasureChest').style.display = ''
                 document.querySelector('#lockedScreen').style.display = 'none'
                 document.querySelector('#sessionLink').style.display = 'flex'
-            document.querySelector('#assignmentLink').style.display = 'flex'
+                document.querySelector('#assignmentLink').style.display = 'flex'
                 if(data.total_coins) {
-                    totalCoins = data.totalCoins
+                    totalCoins = data.total_coins
                 }
-                document.querySelector('#spanCoins').innerHTML = totalCoins + ' coins!'
+                console.log('Total coins : ', totalCoins)
+                document.querySelector('#spanCoins').innerHTML = `${totalCoins}` + ' coins!'
             }
 
             else{

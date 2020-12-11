@@ -598,7 +598,7 @@
             const divAssignmentList = document.querySelector('#assignment-list')
             const moduleId = +document.URL.split('/')[document.URL.split('/').length -1]
 
-            let userId = 5
+            let userId = sessionStorage.getItem('user_id')
             let submittedAssignments = []
             let maxLevel = 0
 
@@ -611,7 +611,7 @@
 
             axios.get(`https://early-steps.herokuapp.com/getUserAssignmentSubmission/${userId}`)
             .then(res => {
-                // console.log('Submissions : ', res.data)
+                console.log('Submissions : ', res.data)
                 res.data.a.map((iterator, index) => {
                     submittedAssignments.push(iterator.assignment_id)
                 })
@@ -619,7 +619,7 @@
                 submittedAssignments = [...new Set(submittedAssignments)]
                 console.log('Submitted Asses', submittedAssignments)
 
-                axios.get('https://early-steps.herokuapp.com/getModuleAllAssignment/37')
+                axios.get('https://early-steps.herokuapp.com/getModuleAllAssignment/' + moduleId)
                 .then(res => {
                     console.log(res.data)
                     $('.spinner').css('display', 'none')
