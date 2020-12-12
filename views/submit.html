@@ -256,7 +256,12 @@
 
 
     <!-- Page -->
-    <div class="page">
+    <div class="page" style='position : relative;'>
+
+        <div class='divCoins'>
+            <img src='../../assets/images/coins.svg' alt='Coins Image' />
+            <span class='spanCoins' id='coinsCount'></span>
+        </div>
    
 
         <div class="page-content container-fluid">
@@ -1071,6 +1076,20 @@
 
         })
 
+        let totalCoins = 0
+
+        axios.get(url + '/getUserData/' + sessionStorage.getItem('user_id'))
+        .then(response => {
+            const data = response.data.a[0]
+            if(data.total_coins) {
+                totalCoins = data.total_coins
+            }
+            console.log('Totalcoins : ', totalCoins)
+            document.querySelector('#coinsCount').innerHTML = `${totalCoins}`
+        })
+        .catch(err => {
+            console.log('error : ', err)
+        })
 
         
 
