@@ -444,21 +444,85 @@
         <script src="../assets/examples/js/dashboard/v1.js"></script>
 
         <script>
-        var url= 'https://early-steps.herokuapp.com/';
-        function hideme(){
-      document.getElementById('alert-message-div').style.display="none";
-    }
+            var url= 'https://early-steps.herokuapp.com/';
+            
+            function hideme(){
+                document.getElementById('alert-message-div').style.display="none";
+            }
 
-    function hidemeinfo(){
-      document.getElementById('info-message-div').style.display="none";
-    }
+            function hidemeinfo(){
+                document.getElementById('info-message-div').style.display="none";
+            }
 
-     function hidemepro(){
-      document.getElementById('processing-div').style.display="none";
-    }
+            function hidemepro(){
+                document.getElementById('processing-div').style.display="none";
+            }
+            
+    
+            let userId = sessionStorage.getItem('user_id')
+            let submittedAssignments = []
+            let maxLevel = 0
+            let nextLevel = 0
+            let nextId = 0
+
             function enterportal(key){
-                const moduleId = key
-                window.location.href = "/assignments/" + moduleId;
+
+                console.log('Key : ', key)
+
+                axios.get(`https://early-steps.herokuapp.com/getUserAssignmentSubmission/${sessionStorage.getItem('user_id')}`)
+                .then(res => {
+                    console.log('Submissions : ', res.data)
+                    res.data.a.map((iterator, index) => {
+                        submittedAssignments.push(iterator.assignment_id)
+                    })
+
+                    submittedAssignments = [...new Set(submittedAssignments)]
+                    console.log('Submitted Asses', submittedAssignments)
+
+                    axios.get('https://early-steps.herokuapp.com/getModuleAllAssignment/' + key)
+                    .then(res2 => {
+                        console.log(res2.data)
+                        res2.data.a.map((iterator, index) => {
+                            if(submittedAssignments.includes(iterator.assignment_id)) {
+                                let temp = iterator.assignment_level
+                                maxLevel = maxLevel>temp ? maxLevel : temp
+                            }
+
+                        })
+                        res2.data.a.map((iterator, index) => {
+
+                            if(+iterator.assignment_level === maxLevel + 1) {
+                                nextLevel = maxLevel + 1
+                                nextId = iterator.assignment_id
+                                console.log('Iterator : ', iterator)
+                            }
+                            console.log('Max level : ', maxLevel)
+                            console.log('Next level : ', nextLevel)
+
+                        })
+                        console.log('NextId : ', nextId)
+                        if(nextId != 0) {
+                            // console.log('Moving to assignmentId : ', nextId)
+                            // console.log('Level : ', nextLevel)
+
+                            window.location.href = "/assignments/" + key + '/' + nextId;
+                        }
+                        else if(nextId == 0) {
+                            alert('You have finished all assignments')
+                            maxLevel = 0
+                        }
+                        else{
+                            alert('Error')
+                            maxLevel = 0
+                        }
+                    })
+                })
+
+                // console.log('Next : ', nextLevel)
+                // console.log('Max : ', maxLevel)
+
+                // const moduleId = key
+                // window.location.href = "/assignments/" + moduleId;
 
             }
 
@@ -605,6 +669,8 @@
                     res.data.map(iterator => {
                         const moduleDate = new Date(iterator.course_date)
                         const currDate = new Date()
+                        // const subDate = moduleDate.setHours(moduleDate.getHours() - 48)
+                        // console.log('Subtracted : ', new Date(subDate))
                         const displayDate = String(moduleDate).split(' ').splice(0, 5).join(' ').split(':').splice(0, 2).join(':')
                         document.querySelector('#coursesRow').innerHTML += `
                             <div class="col-xxl-3 col-xl-6" >
@@ -623,9 +689,9 @@
                                 </div>
                             </div>
                         `
-                        if(moduleDate>=currDate) {
-                            document.querySelector(`#module${iterator.course_id}`).setAttribute('disabled', 'true')
-                        }
+                        // if(moduleDate>=currDate) {
+                        //     document.querySelector(`#module${iterator.course_id}`).setAttribute('disabled', 'true')
+                        // }
                     })
                 })
 

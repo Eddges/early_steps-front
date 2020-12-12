@@ -770,6 +770,10 @@
         let vidURL = ''
         let vidBlob = null
         let vidURLUpload = 'xxxxx'
+
+        const objectiveKey = {}
+
+        let objectiveScore = 0
         
         axios.get(`https://early-steps.herokuapp.com/getAssignment/${docURL}`)
         .then(res => {
@@ -778,6 +782,10 @@
             document.querySelector('#assignmentDesc').innerHTML = res.data.assignment_desc
             $('#submitForm').css('display', '')
             console.log(res.data)
+            JSON.parse(res.data.assignment_content_mcq).map(iterator => {
+                objectiveKey[iterator.questionId] = iterator.correct
+            })
+            console.log('ObjectiveKey : ', objectiveKey)
             currentLevel = res.data.assignment_level
             nextLevel = currentLevel + 1
 
@@ -924,6 +932,11 @@
             $(':radio').on('change', (e) => {
                 console.log('Changed')
                 mcqSubmission[e.target.value] = e.target.id
+
+                // if(objectiveKey[e.target.value]==e.target.id) {
+                //     objectiveScore += 500
+                // }
+                // console.log('Objective score : ', objectiveScore)
                 console.log('mcqSubmission : ', mcqSubmission)
             })
 
@@ -963,6 +976,16 @@
 
         $('#submitForm').on('click', () => {
             console.log('Button clicked')
+
+            if(mcqSubmission) {
+                Object.keys(mcqSubmission).map(iterator => {
+                    if(objectiveKey[iterator] == mcqSubmission[iterator]) {
+                        objectiveScore += 500
+                    }
+                })
+            }
+
+            console.log('Objective Score : ', objectiveScore)
 
             if(videoUploadFlag) {
                 s3upload(vidBlob)
