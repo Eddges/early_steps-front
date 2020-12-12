@@ -256,29 +256,31 @@
 
       function getProgrammingProfileData() {
             let user_id = sessionStorage.getItem("user_id");
-            axios.get( url+`/getProgrammingProfile/` + `${user_id}
-                    `)
-                .then(res => {
-                  // sessionStorage.setItem("course_id", document.getElementById("course_id").value);
-                    // if(document.getElementById("course_id").value==="1000")
-                    // {
-                    //   window.location.href = "./dashboard-others";                     }
-                    // else
-                    // {
-                        sessionStorage.setItem("redirect", "home");
-                        if(res.data.a.length!=0){
-                        window.location.href = "./home"; 
-                      }
-                      else{
-                        window.location.href = "./profileothers"; 
-                      }                      
-                    // }
-                })
-                .catch(function(error){
-                 // console.log(err)
-                }
+            window.location.href = "./home"; 
+            sessionStorage.setItem("redirect", "home");
+            // axios.get( url+`/getProgrammingProfile/` + `${user_id}
+            //         `)
+            //     .then(res => {
+            //       // sessionStorage.setItem("course_id", document.getElementById("course_id").value);
+            //         // if(document.getElementById("course_id").value==="1000")
+            //         // {
+            //         //   window.location.href = "./dashboard-others";                     }
+            //         // else
+            //         // {
+            //             sessionStorage.setItem("redirect", "home");
+            //             if(res.data.a.length!=0){
+            //             window.location.href = "./home"; 
+            //           }
+            //           else{
+            //             window.location.href = "./profileothers"; 
+            //           }                      
+            //         // }
+            //     })
+            //     .catch(function(error){
+            //      // console.log(err)
+            //     }
                  
-                 )
+            //      )
         }
         function clearAlert(){
           document.getElementById('alert-message-div').style.display="none";

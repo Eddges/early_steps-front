@@ -1026,6 +1026,7 @@
                 axios.post('https://early-steps.herokuapp.com/createSubmission', {
                     user_assignment_id: studentId,
                     assignment_id: assignmentId,
+                    mcq_score: objectiveScore,
                     submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission}
                 })
                 .then(res => {
