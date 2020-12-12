@@ -110,11 +110,11 @@
                 <label class="floating-label">UserName</label>
               </div> -->
               <div class="form-group form-material floating" data-plugin="formMaterial" style='margin : 20px 0px !important;'>
-                <input onclick="clearAlert()" id="username" type="text" class="form-control" name="username" required="required"/>
+                <input onclick="clearAlert()" id="fname" type="text" class="form-control" name="username" required="required"/>
                 <label class="floating-label">First Name</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial" style='margin : 20px 0px !important;'>
-                <input onclick="clearAlert()" id="lastname" type="text" class="form-control" name="username" required="required"/>
+                <input onclick="clearAlert()" id="lname" type="text" class="form-control" name="username" required="required"/>
                 <label class="floating-label">Last Name</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial" style='margin : 20px 0px !important;'>
@@ -244,23 +244,42 @@
                 document.getElementById('message-processing').innerHTML="Processing...";
 
                 
-        let usernameValue = document.getElementById("username").value;
+        // let usernameValue = document.getElementById("username").value;
         let emailValue = document.getElementById("email").value;
         let phoneValue = document.getElementById("phone").value;
         let passwordValue = md5(document.getElementById("password").value);
         let retypepasswordValue = md5(document.getElementById("retypePassword").value);
+        let usernameValue = phoneValue;
 
-        if(usernameValue==""){
-          document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Username is required";
-          document.getElementById('processing-div').style.display="none";
-          return false;
-        }
+        let fname = document.getElementById('fname').value
+        let lname = document.getElementById('lname').value
+        let dob = document.getElementById('dob').value
+
+        let grade = document.getElementById('grade').value
+
+        // document.getElementById('fname').addEventListener('change', e => {
+        //   console.log('e.target.value')
+        //   lname = e.target.value
+        // })
+
+        // document.getElementById('fname').addEventListener('change', e => {
+        //   console.log('e.target.value')
+        //   lname = e.target.value
+        // })
+
+
+
+        // if(usernameValue==""){
+        //     document.getElementById('alert-message-div').style.display="block";
+        //     document.getElementById('message-div').innerHTML="Username is required";
+        //     document.getElementById('processing-div').style.display="none";
+        //     return false;
+        // }
          if(emailValue==""){
-           document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Email is required";
-          document.getElementById('processing-div').style.display="none";
-          return false;
+            document.getElementById('alert-message-div').style.display="block";
+            document.getElementById('message-div').innerHTML="Email is required";
+            document.getElementById('processing-div').style.display="none";
+            return false;
         }
 
         // if(document.getElementById('course_id').value==="0")
@@ -275,47 +294,47 @@
         
           if(!regex.test(emailValue))
           {
-          document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="You have entered an invalid email address!";
-          document.getElementById('processing-div').style.display="none";
-          return false;
+            document.getElementById('alert-message-div').style.display="block";
+            document.getElementById('message-div').innerHTML="You have entered an invalid email address!";
+            document.getElementById('processing-div').style.display="none";
+            return false;
           }
         
           
 
          if(phoneValue==""){
-           document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Phone is required";
-          document.getElementById('processing-div').style.display="none";
-          return false;
+            document.getElementById('alert-message-div').style.display="block";
+            document.getElementById('message-div').innerHTML="Phone is required";
+            document.getElementById('processing-div').style.display="none";
+            return false;
         }
 
         var phoneno = /^\d{10}$/;
         if(!(phoneValue.match(phoneno)))
         {
             document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Please enter 10 digit phone number";
-          document.getElementById('processing-div').style.display="none";
-          return false;
+            document.getElementById('message-div').innerHTML="Please enter 10 digit phone number";
+            document.getElementById('processing-div').style.display="none";
+            return false;
         }
       
          if(document.getElementById("password").value==""){
-           document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Password is required";
-          document.getElementById('processing-div').style.display="none";
-          return false;
+            document.getElementById('alert-message-div').style.display="block";
+            document.getElementById('message-div').innerHTML="Password is required";
+            document.getElementById('processing-div').style.display="none";
+            return false;
         }
          if(document.getElementById("retypePassword").value==""){
-           document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Confirm password is required";
-          document.getElementById('processing-div').style.display="none";
-          return false;
+            document.getElementById('alert-message-div').style.display="block";
+            document.getElementById('message-div').innerHTML="Confirm password is required";
+            document.getElementById('processing-div').style.display="none";
+            return false;
         }
          if(document.getElementById("retypePassword").value!=document.getElementById("password").value){
-           document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Passwords do not match";
-          document.getElementById('processing-div').style.display="none";
-          return false;
+            document.getElementById('alert-message-div').style.display="block";
+            document.getElementById('message-div').innerHTML="Passwords do not match";
+            document.getElementById('processing-div').style.display="none";
+            return false;
         }
 
 
@@ -329,8 +348,8 @@
           if(res.data==="True")
             {
                document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Email already registered!";
-          document.getElementById('processing-div').style.display="none";
+                document.getElementById('message-div').innerHTML="Email already registered!";
+                document.getElementById('processing-div').style.display="none";
 
           //return false;
            
@@ -344,8 +363,8 @@
                 if(res.data==="True")
                 {
                     document.getElementById('alert-message-div').style.display="block";
-          document.getElementById('message-div').innerHTML="Phone number already registered!";
-          document.getElementById('processing-div').style.display="none";
+                    document.getElementById('message-div').innerHTML="Phone number already registered!";
+                    document.getElementById('processing-div').style.display="none";
 
           //return false;
                             
@@ -367,7 +386,11 @@
               axios.post( url+'/doRegistration', {
                 user_id: phoneValue,
                 user_type: userTypeValue,
-                user_name: usernameValue,
+                first_name: fname,
+                last_name: lname,
+                dob: dob,
+                grade: grade,
+                user_name: phoneValue,
                 phone: phoneValue,
                 email: emailValue,
                 password: passwordValue
