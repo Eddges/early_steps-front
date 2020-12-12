@@ -212,8 +212,8 @@
     
     <script>
     
-    // var url= 'https://early-steps.herokuapp.com/';
-    var url= 'https://api.codeasylums.com/';
+    var url= 'https://early-steps.herokuapp.com/';
+    // var url= 'https://api.codeasylums.com/';
 
     function hideme(){
       document.getElementById('alert-message-div').style.display="none";
@@ -380,7 +380,18 @@
 
         if (flag1 === false && flag2 === false){
            if (passwordValue === retypepasswordValue) {
-              //console.log("reg")
+              console.log("reg", {
+                user_id: phoneValue,
+                user_type: userTypeValue,
+                first_name: fname,
+                last_name: lname,
+                dob: dob,
+                grade: grade,
+                user_name: phoneValue,
+                phone: phoneValue,
+                email: emailValue,
+                password: passwordValue
+                })
 
              
               axios.post( url+'/doRegistration', {
@@ -396,12 +407,13 @@
                 password: passwordValue
                 })
                 .then(function (response) {
+                  console.log('Response, ', response.data)
                   document.getElementById('processing-div').style.display="none";
-                       document.getElementById('info-message-div').style.display="block";
-                        document.getElementById('message-div-info').innerHTML="Registered successfully!";
-                        setTimeout(()=>{
-                          window.location.href = redirectURL;
-                        },1500);
+                  document.getElementById('info-message-div').style.display="block";
+                  document.getElementById('message-div-info').innerHTML="Registered successfully!";
+                  setTimeout(()=>{
+                    window.location.href = redirectURL;
+                  },1500);
                  
                 })
                 .catch(function (error) {
