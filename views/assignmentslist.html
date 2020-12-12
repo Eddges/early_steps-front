@@ -606,7 +606,8 @@
                 // console.log('Clicked')
                 console.log('Clicked with key : ', key)
                 const moduleId = document.URL.split('/')[document.URL.split('/').length -1]
-                window.location.replace(`http://localhost:3000/assignments/${moduleId}/${key}`)
+                // window.location.replace(`http://localhost:3000/assignments/${moduleId}/${key}`)
+                window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/${moduleId}/${key}`)
             }
 
             axios.get(`https://early-steps.herokuapp.com/getUserAssignmentSubmission/${userId}`)

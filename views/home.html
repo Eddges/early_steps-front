@@ -295,7 +295,7 @@
                 </div>
                 
                 <div class="ModalSubmission" id='treasureChest'>
-                    <span class='SubmitHeader'>Treasure Chest</span>
+                    <span class='SubmitHeader' id='submitHeader'></span>
                     <img class='SubmitIllustration' src="../../assets/images/treasure.jpg" alt='Treasure Chest' />
                     <span id='submitHeader2' class='SubmitHeader2'>You have</span>
                     <span id='spanCoins' class='SubmitCoins'></span>
@@ -540,30 +540,36 @@
 
         axios.get(herokuAPI + '/getUserData/' + sessionStorage.getItem('user_id'))
         .then(response => {
-            document.querySelector('.spinner').style.display = 'none'
+            
             console.log('Response User : ', response.data)
             const data = response.data.a[0]
 
             if(data.course_id!=='NA') {
-                document.querySelector('#treasureChest').style.display = ''
-                document.querySelector('#lockedScreen').style.display = 'none'
-                document.querySelector('#sessionLink').style.display = 'flex'
-                document.querySelector('#assignmentLink').style.display = 'flex'
-                if(data.total_coins) {
-                    totalCoins = data.total_coins
-                }
-                console.log('Total coins : ', totalCoins)
-                document.querySelector('#spanCoins').innerHTML = `${totalCoins}` + ' coins!'
+                axios.get(herokuAPI + '/getRegistration/' + sessionStorage.getItem('user_id'))
+                .then(response => {
+                    document.querySelector('.spinner').style.display = 'none'
+                    document.querySelector('#treasureChest').style.display = ''
+                    document.querySelector('#lockedScreen').style.display = 'none'
+                    document.querySelector('#sessionLink').style.display = 'flex'
+                    document.querySelector('#assignmentLink').style.display = 'flex'
+                    if(data.total_coins) {
+                        totalCoins = data.total_coins
+                    }
+                    console.log('Total coins : ', totalCoins)
+                    document.querySelector('#spanCoins').innerHTML = `${totalCoins}` + ' coins!'
+                    document.querySelector('#submitHeader').innerHTML = `Hi ${response.data.first_name}`
+                })
+                
             }
 
             else{
-                
-
                 axios.get(herokuAPI + '/getRegistration/' + sessionStorage.getItem('user_id'))
                 .then(response => {
+                    document.querySelector('.spinner').style.display = 'none'
                     console.log('Reg user : ', response.data)
                     document.querySelector('#treasureChest').style.display = 'none'
                     document.querySelector('#lockedScreen').style.display = ''
+                    
                     document.querySelector('#lockedName').innerHTML = `Hi ${response.data.first_name}`
                 })
                 

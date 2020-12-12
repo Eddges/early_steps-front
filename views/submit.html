@@ -668,6 +668,8 @@
               window.reload();
             }
 
+            let redirectionFlag = false
+
             function s3upload(file) {
                 // var fileName = file.name;
                 var fileName = docURL + '.mp4'
@@ -702,12 +704,14 @@
                             console.log('VideoURL : ', videoSubmission)
 
                             console.log('Final : ', {
+                                mcq_score : objectiveScore,
                                 user_assignment_id: studentId,
                                 assignment_id: assignmentId,
                                 submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission}
                             })
                                         
                             axios.post('https://early-steps.herokuapp.com/createSubmission', {
+                                mcq_score : objectiveScore,
                                 user_assignment_id: studentId,
                                 assignment_id: assignmentId,
                                 submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission}
@@ -722,7 +726,8 @@
                                         $('#successModal').fadeIn()
                                         $('#ModalContinueButton').html(`Unlock Level ${nextLevel}`)
                                         $('#ModalContinueButton').on('click', () => {
-                                            window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
+                                            // window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
+                                            window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/${moduleId}/${nextAssignmentId}`)
                                         })
                                         
                                     }
@@ -733,7 +738,7 @@
                                         $('#submitHeader2').css('display', 'none')
                                         $('#successModal').fadeIn()
                                         $('#ModalContinueButton').on('click', () => {
-                                            window.location.replace(`http://localhost:3000/assignments/`)
+                                            window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/`)
                                         })
                                     }
                                 }
@@ -776,7 +781,7 @@
         let currentLevel = 0
         let nextLevel = 0
         let nextAssignmentId = 0
-        let redirectionFlag = false
+        
         let assignmentCoins = 0
 
         let vidURL = ''
@@ -1034,11 +1039,12 @@
                     if(res.data==='True'){
                         // window.location.replace('https://glacial-spire-45143.herokuapp.com/assignments')
                         if(redirectionFlag) {
-                            $('#spanCoins').html(`${assignmentCoins} coins!`)
+                            $('#spanCoins').html(`${assignmentCoins + objectiveScore} coins!`)
                             $('#successModal').fadeIn()
                             $('#ModalContinueButton').html(`Unlock Level ${nextLevel}`)
                             $('#ModalContinueButton').on('click', () => {
-                                window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
+                                // window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
+                                window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/${moduleId}/${nextAssignmentId}`)
                             })
                             
                         }
@@ -1049,7 +1055,7 @@
                             $('#submitHeader2').css('display', 'none')
                             $('#successModal').fadeIn()
                             $('#ModalContinueButton').on('click', () => {
-                                window.location.replace(`http://localhost:3000/assignments/`)
+                                window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/`)
                             })
                         }
                     }
