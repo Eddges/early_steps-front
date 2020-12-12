@@ -642,8 +642,15 @@
                     .then(function(response) {
                         // console.log(response);
                         sessionStorage.setItem("course_id",response.data["a"][0].course_id);
-                        sessionStorage.setItem("photo", response.data["a"][0].photo);
-                        document.getElementById("photo").src = response.data["a"][0].photo;
+                        if(response.data.a[0].photo === 'NA') {
+                            sessionStorage.setItem("photo", '../../assets/images/upload.png');
+                            document.getElementById("photo").src = '../../assets/images/upload.png';
+                        }
+                        else{
+                            sessionStorage.setItem("photo", response.data["a"][0].photo);
+                            document.getElementById("photo").src = response.data["a"][0].photo;
+
+                        }
                         sessionStorage.setItem("track_name", response.data.a[0].track_name);
                         try{
                             document.getElementById(`${response.data.a[0].track_name}`).disabled = false;
