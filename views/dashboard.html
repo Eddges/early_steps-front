@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Best Coding Bootcamp in India">
+    <meta name="description" content="Take advantage of this lockdown. Give an early start to your leadership journey!">
     <meta name="author" content="CodeAsylums">
 
     <title>Early Steps</title>
@@ -116,7 +116,7 @@
                         </a>
                         <div class="dropdown-menu" role="menu">
                           
-                            <a class="dropdown-item"  href="./login" onclick="logout();" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+                            <a class="dropdown-item"  href="/login" onclick="logout();" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
                         </div>
                     </li>
 
@@ -602,7 +602,7 @@
         if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
             globalCall();
         } else {
-            window.location.href = "./login";
+            window.location.href = "/login";
         }
 
         function hideme(){

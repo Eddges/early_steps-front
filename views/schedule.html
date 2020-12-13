@@ -57,7 +57,7 @@
        if(sessionStorage.getItem("loggedCA") === md5("true")&& sessionStorage.getItem("redirect") == "dashboard") {
         
         } else {
-          window.location.href = "./login";
+          window.location.href = "/login";
         }       
        function globalFunction() {
         if(sessionStorage.getItem("photo")){
@@ -190,7 +190,7 @@
 
 
       if(sessionStorage.getItem("loggedCA") !== md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
-      window.location.href = "./login";
+      window.location.href = "/login";
     }
     
     axios.get(url+`/getUserData/${sessionStorage.getItem("user_id")}`)
@@ -259,7 +259,7 @@
                         </a>
                         <div class="dropdown-menu" role="menu">
                           
-                            <a class="dropdown-item" href="./login" onclick="logout();" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+                            <a class="dropdown-item" href="/login" onclick="logout();" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
                         </div>
                     </li>
 
