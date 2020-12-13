@@ -697,8 +697,30 @@
                             console.log('Successfully Uploaded!', data);
                             document.getElementById('vid2').src = `${data.Location}`
                             vidURLUpload = data.Location
+
                             for (iterator in written) {
                                 writtenSubmission[iterator] = ($(`#${iterator}`).val())
+                            }
+
+                            let writtenBreak = false
+                            console.log('Written break when clicked : ', writtenBreak)
+
+                            
+
+                            if(writtenSubmission) {
+                                Object.keys(writtenSubmission).map(itr => {
+                                    if(writtenSubmission[itr].length < 180) {
+                                        console.log('Found iterator with written < 180')
+                                        alert('You need to write more for written assignments!')
+                                        writtenBreak = true
+                                    }
+                                })
+                            }
+
+                            console.log('Written break after algo : ', writtenBreak)
+
+                            if(writtenBreak) {
+                                return
                             }
 
                             const videoSubmission = {
@@ -716,6 +738,8 @@
                                 assignment_id: assignmentId,
                                 submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission}
                             })
+
+                            console.log('Uploading!!')
                                         
                             axios.post('https://early-steps.herokuapp.com/createSubmission', {
                                 mcq_score : objectiveScore,
@@ -1003,6 +1027,7 @@
 
         $('#submitForm').on('click', () => {
             console.log('Button clicked')
+            let writtenBreak = false
 
             if(mcqSubmission) {
                 Object.keys(mcqSubmission).map(iterator => {
@@ -1022,6 +1047,23 @@
 
                 for (iterator in written) {
                     writtenSubmission[iterator] = ($(`#${iterator}`).val())
+                    
+                }
+                console.log('Written break when clicked : ', writtenBreak)
+                if(writtenSubmission) {
+                    Object.keys(writtenSubmission).map(itr => {
+                    if(writtenSubmission[itr].length < 180) {
+                        alert('You need to write more for written assignments!')
+                        writtenBreak = true
+                    }
+                })
+                }
+
+                console.log('Written break after algo : ', writtenBreak)
+                
+
+                if(writtenBreak) {
+                    return
                 }
 
                 const videoSubmission = {}
@@ -1032,8 +1074,11 @@
                 console.log('Final : ', {
                     user_assignment_id: studentId,
                     assignment_id: assignmentId,
+                    mcq_score: objectiveScore,
                     submission_content: {mcq: mcqSubmission, text: writtenSubmission, video: videoSubmission}
                 })
+
+                console.log('Uploading!!')
                 
                 axios.post('https://early-steps.herokuapp.com/createSubmission', {
                     user_assignment_id: studentId,
