@@ -555,7 +555,7 @@
             const data = response.data.a[0]
 
             if(data.course_id!=='NA') {
-                axios.get(herokuAPI + '/getRegistration/' + sessionStorage.getItem('user_id'))
+                axios.get(url + '/getRegistration/' + sessionStorage.getItem('user_id'))
                 .then(response => {
                     document.querySelector('.spinner').style.display = 'none'
                     document.querySelector('#treasureChest').style.display = ''
