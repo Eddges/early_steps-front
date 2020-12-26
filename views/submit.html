@@ -760,7 +760,8 @@
                                         $('#ModalContinueButton').html(`Unlock Level ${nextLevel}`)
                                         $('#ModalContinueButton').on('click', () => {
                                             // window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
-                                            window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/${moduleId}/${nextAssignmentId}`)
+                                            // window.location.href(`https://glacial-spire-45143.herokuapp.com/assignments/${moduleId}/${nextAssignmentId}`)
+                                            window.location.href = `/assignments/${moduleId}/${nextAssignmentId}`
                                         })
                                         
                                     }
@@ -771,7 +772,8 @@
                                         $('#submitHeader2').css('display', 'none')
                                         $('#successModal').fadeIn()
                                         $('#ModalContinueButton').on('click', () => {
-                                            window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/`)
+                                            // window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/`)
+                                            window.location.href = `/assignments/`
                                         })
                                     }
                                 }
@@ -1098,7 +1100,8 @@
                             $('#ModalContinueButton').html(`Unlock Level ${nextLevel}`)
                             $('#ModalContinueButton').on('click', () => {
                                 // window.location.replace(`http://localhost:3000/assignments/${moduleId}/${nextAssignmentId}`)
-                                window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/${moduleId}/${nextAssignmentId}`)
+                                // window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/${moduleId}/${nextAssignmentId}`)
+                                window.location.href = `/assignments/${moduleId}/${nextAssignmentId}`
                             })
                             
                         }
@@ -1109,7 +1112,8 @@
                             $('#submitHeader2').css('display', 'none')
                             $('#successModal').fadeIn()
                             $('#ModalContinueButton').on('click', () => {
-                                window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/`)
+                                // window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/`)
+                                window.location.href = '/assignments'
                             })
                         }
                     }
