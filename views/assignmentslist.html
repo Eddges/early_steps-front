@@ -450,18 +450,19 @@
         <script src="../assets/examples/js/dashboard/v1.js"></script>
 
         <script>
-        var url= 'https://early-steps.herokuapp.com/';
-        function hideme(){
-      document.getElementById('alert-message-div').style.display="none";
-    }
+            // var url= 'https://early-steps.herokuapp.com/';
+            var url = 'http://earlysteps-env-2.eba-7ipamjqn.us-west-2.elasticbeanstalk.com/'
+            function hideme(){
+                document.getElementById('alert-message-div').style.display="none";
+            }
 
-    function hidemeinfo(){
-      document.getElementById('info-message-div').style.display="none";
-    }
+            function hidemeinfo(){
+            document.getElementById('info-message-div').style.display="none";
+            }
 
-     function hidemepro(){
-      document.getElementById('processing-div').style.display="none";
-    }
+            function hidemepro(){
+            document.getElementById('processing-div').style.display="none";
+            }
             function enterportal(key){
                 const moduleId = 2
                 window.location.href = "/assignments/" + moduleId;
@@ -477,7 +478,7 @@
                 document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
                         
-                axios.post(url+'/doFeedback', {
+                axios.post(url+'doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
@@ -514,7 +515,7 @@
 
                 document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
-                axios.post(url + '/doFeedback', {
+                axios.post(url + 'doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
@@ -537,7 +538,7 @@
 
             function globalCall() {
                 let user_id = sessionStorage.getItem("user_id");
-                axios.get(url+`/getUserData/${user_id}`)
+                axios.get(url+`getUserData/${user_id}`)
                     .then(function(response) {
                         // console.log(response);
                         sessionStorage.setItem("course_id",response.data["a"][0].course_id);
@@ -610,7 +611,7 @@
                 window.location.replace(`https://glacial-spire-45143.herokuapp.com/assignments/${moduleId}/${key}`)
             }
 
-            axios.get(`https://early-steps.herokuapp.com/getUserAssignmentSubmission/${userId}`)
+            axios.get(url + `getUserAssignmentSubmission/${userId}`)
             .then(res => {
                 console.log('Submissions : ', res.data)
                 res.data.a.map((iterator, index) => {
@@ -620,7 +621,7 @@
                 submittedAssignments = [...new Set(submittedAssignments)]
                 console.log('Submitted Asses', submittedAssignments)
 
-                axios.get('https://early-steps.herokuapp.com/getModuleAllAssignment/' + moduleId)
+                axios.get(url + 'getModuleAllAssignment/' + moduleId)
                 .then(res => {
                     console.log(res.data)
                     $('.spinner').css('display', 'none')

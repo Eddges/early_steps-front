@@ -407,8 +407,9 @@
         <script>
 
 
-        var url= 'https://early-steps.herokuapp.com/';
-        const herokuAPI = 'https://early-steps.herokuapp.com/'
+        // var url= 'https://early-steps.herokuapp.com/';
+        // const herokuAPI = 'https://early-steps.herokuapp.com/'
+        const url = 'http://earlysteps-env-2.eba-7ipamjqn.us-west-2.elasticbeanstalk.com'
 
         let totalCoins = 0
 
@@ -532,7 +533,7 @@
         if (sessionStorage.getItem("loggedCA") === md5("true")) {
             globalCall();
         } else {
-            window.location.href = "./login";
+            window.location.href = "/login";
         }
         function logout(){
             sessionStorage.clear();
@@ -547,7 +548,7 @@
         document.querySelector('#assignmentLink').style.display = 'none'
 
 
-        axios.get(herokuAPI + '/getUserData/' + sessionStorage.getItem('user_id'))
+        axios.get(url + '/getUserData/' + sessionStorage.getItem('user_id'))
         .then(response => {
             
             console.log('Response User : ', response.data)
@@ -572,7 +573,7 @@
             }
 
             else{
-                axios.get(herokuAPI + '/getRegistration/' + sessionStorage.getItem('user_id'))
+                axios.get(url + '/getRegistration/' + sessionStorage.getItem('user_id'))
                 .then(response => {
                     document.querySelector('.spinner').style.display = 'none'
                     console.log('Reg user : ', response.data)

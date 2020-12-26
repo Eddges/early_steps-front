@@ -551,18 +551,20 @@
         <script src="../../assets/examples/js/dashboard/v1.js"></script>
 
         <script>
-        var url= 'https://early-steps.herokuapp.com/';
-        function hideme(){
-      document.getElementById('alert-message-div').style.display="none";
-    }
+            // var url= 'https://early-steps.herokuapp.com/';
+            var url = 'http://earlysteps-env-2.eba-7ipamjqn.us-west-2.elasticbeanstalk.com/'
+            function hideme(){
+                document.getElementById('alert-message-div').style.display="none";
+            }
 
-    function hidemeinfo(){
-      document.getElementById('info-message-div').style.display="none";
-    }
+            function hidemeinfo(){
+            document.getElementById('info-message-div').style.display="none";
+            }
 
-     function hidemepro(){
-      document.getElementById('processing-div').style.display="none";
-    }
+            function hidemepro(){
+            document.getElementById('processing-div').style.display="none";
+            }
+
             function enterportal(key){
                 const moduleId = 2
                 window.location.href = "/assignments/" + moduleId;
@@ -578,7 +580,7 @@
                 document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
                         
-                axios.post(url+'/doFeedback', {
+                axios.post(url+'doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
@@ -615,7 +617,7 @@
 
                 document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
-                axios.post(url + '/doFeedback', {
+                axios.post(url + 'doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
@@ -638,7 +640,7 @@
 
             function globalCall() {
                 let user_id = sessionStorage.getItem("user_id");
-                axios.get(url+`/getUserData/${user_id}`)
+                axios.get(url+`getUserData/${user_id}`)
                     .then(function(response) {
                         // console.log(response);
                         sessionStorage.setItem("course_id",response.data["a"][0].course_id);
@@ -741,7 +743,7 @@
 
                             console.log('Uploading!!')
                                         
-                            axios.post('https://early-steps.herokuapp.com/createSubmission', {
+                            axios.post(url + 'createSubmission', {
                                 mcq_score : objectiveScore,
                                 user_assignment_id: studentId,
                                 assignment_id: assignmentId,
@@ -823,7 +825,7 @@
 
         let objectiveScore = 0
         
-        axios.get(`https://early-steps.herokuapp.com/getAssignment/${docURL}`)
+        axios.get(url + `getAssignment/${docURL}`)
         .then(res => {
             $('.spinner').css('display', 'none')
             document.querySelector('#assignmentName').innerHTML = res.data.assignment_name
@@ -1080,7 +1082,7 @@
 
                 console.log('Uploading!!')
                 
-                axios.post('https://early-steps.herokuapp.com/createSubmission', {
+                axios.post(url + 'createSubmission', {
                     user_assignment_id: studentId,
                     assignment_id: assignmentId,
                     mcq_score: objectiveScore,
@@ -1120,7 +1122,7 @@
         })
 
 
-        axios.get('https://early-steps.herokuapp.com/getAllAssignment')
+        axios.get(url + 'getAllAssignment')
         .then(res => {
             res.data.a.map((iterator, index) => {
                 if (+iterator.module_id=== +moduleId) {
@@ -1137,7 +1139,7 @@
 
         let totalCoins = 0
 
-        axios.get(url + '/getUserData/' + sessionStorage.getItem('user_id'))
+        axios.get(url + 'getUserData/' + sessionStorage.getItem('user_id'))
         .then(response => {
             const data = response.data.a[0]
             if(data.total_coins) {

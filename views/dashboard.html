@@ -597,7 +597,8 @@
 
     <script>
 
-        var url= 'https://early-steps.herokuapp.com/';
+        // var url= 'https://early-steps.herokuapp.com/';
+        var url = 'http://earlysteps-env-2.eba-7ipamjqn.us-west-2.elasticbeanstalk.com/'
        
         if (sessionStorage.getItem("loggedCA") === md5("true") && sessionStorage.getItem("redirect") == "dashboard") {
             globalCall();
@@ -659,7 +660,7 @@
                 document.getElementById('processing-div').style.display="block";
             document.getElementById('message-processing').innerHTML="Processing...";
 
-            axios.post(`${url}`+`/doFeedback`, {
+            axios.post(`${url}`+`doFeedback`, {
                     user_id: user_idValue,
                     feedback_details: userFeedback_textValue+"~"+date,
                     feedback_type: userFeedback_type
@@ -688,7 +689,7 @@
             document.getElementById('processing-div').style.display="block";
             document.getElementById('message-processing').innerHTML="Processing...";
 
-            axios.post(`${url}`+`/doFeedback`, {
+            axios.post(`${url}`+`doFeedback`, {
                     user_id: user_idValue,
                     feedback_details: mentorFeedback_textValue + "~" + mentorName + "~" + classesName + "~" + classDate,
                     feedback_type: mentorFeedback_type
@@ -720,7 +721,7 @@
 
         async function globalCall() {
             let user_id = sessionStorage.getItem("user_id");
-            await axios.get(url+`/getUserData/${user_id}`)
+            await axios.get(url+`getUserData/${user_id}`)
                 .then(function(response) {
                     // console.log(response);
                     sessionStorage.setItem("course_id",response.data["a"][0].course_id);
@@ -744,11 +745,11 @@
                     // console.log(error);
                 });
 
-                axios.get(url+`/getRegistration/${user_id}`)
+                axios.get(url+`getRegistration/${user_id}`)
                     .then(function(response) {
                         // console.log(response);
                         document.getElementById("name").innerHTML = response.data.user_name.toUpperCase();
-                        axios.get(url+`/getCourse/`+`${sessionStorage.getItem("course_id")}`)
+                        axios.get(url+`getCourse/`+`${sessionStorage.getItem("course_id")}`)
                             .then(function(response) {
                                console.log('Response', response);
                                 sessionStorage.setItem("course_date", response.data.course_date);
@@ -771,7 +772,7 @@
                        // console.log(error);
                     });
 
-                axios.get(url+`/getProgress/${user_id}`)
+                axios.get(url+`getProgress/${user_id}`)
                     .then(function(response) {
                         //console.log(response);
 
@@ -816,7 +817,7 @@
                        // console.log(error);
                     });
 
-                await axios.get(url+`/getTaskByCourseId/`+`${sessionStorage.getItem("course_id")}`)
+                await axios.get(url+`getTaskByCourseId/`+`${sessionStorage.getItem("course_id")}`)
                     .then(function(response) {
                         //console.log(response);
                         
@@ -866,7 +867,7 @@
 
                     let courseId = sessionStorage.getItem('course_id')
                     const modules = []
-                    axios.get(url + `/getCourseByBootacampId/`+ courseId)
+                    axios.get(url + `getCourseByBootacampId/`+ courseId)
                     .then(result1 => {
                         console.log(result1.data)
                         result1.data.map(iterator => {
@@ -874,7 +875,7 @@
                         })
                         modules.reverse()
                         modules.map(itr => {
-                            axios.get(url + `/getScheduleByCourseId/`+ itr)
+                            axios.get(url + `getScheduleByCourseId/`+ itr)
 
                             .then((response) => {
                        // console.log(response);
@@ -1018,7 +1019,7 @@
                 
 
                     let course_id = sessionStorage.getItem("course_id");
-                        axios.get(url+`/getScheduleByUser/${sessionStorage.getItem("user_id")}`)
+                        axios.get(url+`getScheduleByUser/${sessionStorage.getItem("user_id")}`)
                         .then(function(response) {
                        // console.log(response);
                         var stringDetail = "";

@@ -444,7 +444,8 @@
         <script src="../assets/examples/js/dashboard/v1.js"></script>
 
         <script>
-            var url= 'https://early-steps.herokuapp.com/';
+            // var url= 'https://early-steps.herokuapp.com/';
+            var url = 'http://earlysteps-env-2.eba-7ipamjqn.us-west-2.elasticbeanstalk.com/'
             
             function hideme(){
                 document.getElementById('alert-message-div').style.display="none";
@@ -469,7 +470,7 @@
 
                 console.log('Key : ', key)
 
-                axios.get(`https://early-steps.herokuapp.com/getUserAssignmentSubmission/${sessionStorage.getItem('user_id')}`)
+                axios.get(url + `getUserAssignmentSubmission/${sessionStorage.getItem('user_id')}`)
                 .then(res => {
                     console.log('Submissions : ', res.data)
                     res.data.a.map((iterator, index) => {
@@ -479,7 +480,7 @@
                     submittedAssignments = [...new Set(submittedAssignments)]
                     console.log('Submitted Asses', submittedAssignments)
 
-                    axios.get('https://early-steps.herokuapp.com/getModuleAllAssignment/' + key)
+                    axios.get(url + 'getModuleAllAssignment/' + key)
                     .then(res2 => {
                         console.log(res2.data)
                         res2.data.a.map((iterator, index) => {
@@ -535,7 +536,7 @@
                 document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
                         
-                axios.post(url+'/doFeedback', {
+                axios.post(url+'doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
@@ -572,7 +573,7 @@
 
                 document.getElementById('processing-div').style.display="block";
                 document.getElementById('message-processing').innerHTML="Processing...";
-                axios.post(url + '/doFeedback', {
+                axios.post(url + 'doFeedback', {
                         user_id: user_idValue,
                         feedback_details: userFeedback_textValue+"~"+date,
                         feedback_type: userFeedback_type
@@ -595,7 +596,7 @@
 
             function globalCall() {
                 let user_id = sessionStorage.getItem("user_id");
-                axios.get(url+`/getUserData/${user_id}`)
+                axios.get(url+`getUserData/${user_id}`)
                     .then(function(response) {
                         // console.log(response);
                         sessionStorage.setItem("course_id",response.data["a"][0].course_id);
@@ -664,12 +665,12 @@
             let course = {}
 
 
-            axios.get(url + '/getUserData/' + sessionStorage.getItem('user_id'))
+            axios.get(url + 'getUserData/' + sessionStorage.getItem('user_id'))
             .then(response => {
                 console.log('Response User : ', response.data.a[0])
                 courseId = response.data.a[0].course_id
 
-                axios.get(url + `/getCourseByBootacampId/`+ courseId)
+                axios.get(url + `getCourseByBootacampId/`+ courseId)
                 .then(res => {
                     console.log(res.data)
                     $('.spinner').css('display', 'none')
